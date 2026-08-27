@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jake Cardenas — Portfolio</title>
+    <meta
+      name="description"
+      content="Jake Cardenas — BSIT (Artificial Intelligence) student at St. Paul University Philippines. Full-stack and AI developer."
+    />
+    <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./assets/icons/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@300..600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/devicon@2.17.0/devicon.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
+    />
+    <link href="./style.css?v=19" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <a href="#home" class="side-logo mono" data-nav-logo
+          >jake<span class="text-faint">.dev</span></a
+        >
+
+        <nav class="side-nav mono" id="siteNav" aria-label="Sections">
+          <a href="#home" class="nav-link active" data-nav>HOME</a>
+          <a href="#about" class="nav-link" data-nav>ABOUT</a>
+          <a href="#skills" class="nav-link" data-nav>SKILLS</a>
+          <a href="#experience" class="nav-link" data-nav>EXPERIENCE</a>
+          <a href="#projects" class="nav-link" data-nav>PROJECTS</a>
+          <a href="#education" class="nav-link" data-nav>EDUCATION</a>
+          <a href="#contact" class="nav-link" data-nav>CONTACT</a>
+        </nav>
+
+        <div class="side-foot">
+          <div class="control-pill">
+            <div class="theme-switch" role="group" aria-label="Theme">
+              <button
+                class="ctl-btn"
+                data-theme-btn="system"
+                aria-label="Match system theme"
+                title="System"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="4" width="20" height="13" rx="2" />
+                  <path d="M8 21h8M12 17v4" />
+                </svg>
+              </button>
+              <button
+                class="ctl-btn"
+                data-theme-btn="light"
+                aria-label="Light mode"
+                title="Light"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="4" />
+                  <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                  />
+                </svg>
+              </button>
+              <button
+                class="ctl-btn"
+                data-theme-btn="dark"
+                aria-label="Dark mode"
+                title="Dark"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+                </svg>
+              </button>
+            </div>
+
+            <span class="pill-divider" aria-hidden="true"></span>
+
+            <button
+              id="soundToggle"
+              class="ctl-btn sound-btn"
+              aria-label="Toggle interface sound"
+              aria-pressed="true"
+              title="Sound"
+            >
+              <svg
+                class="sound-icon-on"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M11 5 6 9H2v6h4l5 4V5Z" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              </svg>
+              <svg
+                class="sound-icon-off"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M11 5 6 9H2v6h4l5 4V5Z" />
+                <line x1="23" y1="9" x2="17" y2="15" />
+                <line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            </button>
+          </div>
+
+          <a href="mailto:marijakee@gmail.com" class="side-email mono"
+            >marijakee@gmail.com</a
+          >
+        </div>
+
+        <button
+          id="menuBtn"
+          class="menu-btn mono"
+          aria-controls="siteNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="menu-bars" aria-hidden="true"><i></i><i></i></span>
+          <span class="menu-label">MENU</span>
+        </button>
+      </aside>
+
+      <main class="main">
+        <section id="home" class="section section--hero reveal">
+          <div class="eyebrow">01 — HOME</div>
+
+          <div class="hero-grid">
+            <div
+              class="photo-swap"
+              role="button"
+              tabindex="0"
+              aria-label="Toggle profile photo"
+            >
+              <div class="photo-frame">
+                <canvas
+                  class="photo-1 halftone-canvas"
+                  data-src="./assets/images/profile/profile1.jpg"
+                  aria-label="Jake Cardenas"
+                ></canvas>
+                <canvas
+                  class="photo-2 halftone-canvas"
+                  data-src="./assets/images/profile/profile2.jpg"
+                  aria-label="Jake Cardenas on a balcony"
+                ></canvas>
+              </div>
+              <div class="photo-dots" aria-hidden="true">
+                <span class="dot"></span><span class="dot-2"></span>
+              </div>
+            </div>
+
+            <div class="hero-body">
+              <div class="status mono">
+                <span class="status-dot" aria-hidden="true"></span> OPEN TO
+                OPPORTUNITIES
+              </div>
+
+              <h1 class="hero-name"><span>Jake</span><span>Cardenas</span></h1>
+
+              <p class="hero-lede">
+                BSIT Student at St. Paul University Tuguegarao, Specializing in
+                Artificial Intelligence. Passionate about AI, Software
+                Development and Technology. I love making things, understanding
+                how they work and discovering new ideas. Always learning, always
+                curious, always looking for the next thing.
+              </p>
+
+              <div class="info-row">
+                <a href="mailto:marijakee@gmail.com" class="info-pill mono">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m22 6-10 7L2 6" />
+                  </svg>
+                  marijakee@gmail.com <span class="info-arrow">↗</span>
+                </a>
+                <a
+                  href="https://instagram.com/prblynot.jky"
+                  target="_blank"
+                  rel="noopener"
+                  class="info-pill mono"
+                >
+                  <i class="si si-instagram"></i>
+                  @prblynot.jky <span class="info-arrow">↗</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/jake-cardenas-710076410/"
+                  target="_blank"
+                  rel="noopener"
+                  class="info-pill mono"
+                >
+                  <i class="devicon-linkedin-plain"></i>
+                  LinkedIn <span class="info-arrow">↗</span>
+                </a>
+                <a
+                  href="https://github.com/JakeCardenas"
+                  target="_blank"
+                  rel="noopener"
+                  class="info-pill mono"
+                >
+                  <i class="devicon-github-original"></i>
+                  GitHub <span class="info-arrow">↗</span>
+                </a>
+              </div>
+
+              <div class="btn-row">
+                <a href="#projects" class="btn btn-solid mono"
+                  >VIEW PROJECTS <span aria-hidden="true">→</span></a
+                >
+                <a
+                  href="./assets/jake-cardenas-resume.pdf"
+                  download
+                  class="btn btn-ghost mono"
+                  >DOWNLOAD RESUME <span aria-hidden="true">↓</span></a
+                >
+              </div>
+
+              <div class="stat-strip">
+                <div class="stat">
+                  <div class="stat-num">1</div>
+                  <div class="stat-label mono">PROJECT SHIPPED</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-num">4</div>
+                  <div class="stat-label mono">LANGUAGES</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-num">2022</div>
+                  <div class="stat-label mono">LAST GRADUATED</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" class="section reveal">
+          <div class="eyebrow">02 — ABOUT</div>
+          <h2 class="section-title">Jake Cardenas</h2>
+
+          <div class="prose">
+            <p>
+              Hi, I am Jake Cardenas, a 3rd year Bachelor of Science in
+              Information Technology (BSIT) major in Artificial Intelligence
+              student at St. Paul University Tuguegarao.
+            </p>
+            <p>
+              I've always been interested in how things work behind the scenes,
+              which naturally led me to explore AI and software development. I
+              like solving problems, I like learning through doing, and I like
+              figuring out how things work, whether it's debugging code,
+              building a project, or exploring a new technology.
+            </p>
+            <p>
+              My passion lies in expanding my knowledge in Artificial
+              Intelligence, full-stack development, and software development and
+              I am excited to learn through attempting and create projects that
+              have real-world impact. I am always open to opportunities that
+              will help me learn, collaborate, contribute and grow as a future
+              IT professional.
+            </p>
+          </div>
+
+          <div class="stat-strip stat-strip--wide">
+            <div class="stat">
+              <div class="stat-num">1</div>
+              <div class="stat-label mono">PROJECT SHIPPED</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">1</div>
+              <div class="stat-label mono">INTERNSHIP DONE</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">4</div>
+              <div class="stat-label mono">LANGUAGES</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">2022</div>
+              <div class="stat-label mono">LAST GRADUATED</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" class="section reveal">
+          <div class="eyebrow">03 — SKILLS</div>
+          <h2 class="section-title">What I work with</h2>
+
+          <div class="skill-grid stagger">
+            <div class="card skill-card">
+              <div class="card-label mono">LANGUAGES</div>
+              <div class="badge-wrap">
+                <span class="skill-badge mono"
+                  ><i class="devicon-html5-plain colored"></i>HTML</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-css3-plain colored"></i>CSS</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-javascript-plain colored"></i
+                  >JavaScript</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-typescript-plain colored"></i
+                  >TypeScript</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-php-plain colored"></i>PHP</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-python-plain colored"></i>Python</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-java-plain colored"></i>Java</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-c-plain colored"></i>C</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-cplusplus-plain colored"></i>C++</span
+                >
+              </div>
+            </div>
+
+            <div class="card skill-card">
+              <div class="card-label mono">FRAMEWORKS</div>
+              <div class="badge-wrap">
+                <span class="skill-badge mono"
+                  ><i class="devicon-react-original colored"></i>React</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-nextjs-plain colored"></i>Next.js</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-nodejs-plain colored"></i>Node.js</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-express-original colored"></i>Express</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-tailwindcss-plain colored"></i>Tailwind
+                  CSS</span
+                >
+              </div>
+            </div>
+
+            <div class="card skill-card">
+              <div class="card-label mono">FRONTEND</div>
+              <div class="badge-wrap">
+                <span class="skill-badge mono"
+                  ><i class="devicon-react-original colored"></i>React</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-nextjs-plain colored"></i>Next.js</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-html5-plain colored"></i>HTML</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-css3-plain colored"></i>CSS</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-javascript-plain colored"></i
+                  >JavaScript</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-typescript-plain colored"></i
+                  >TypeScript</span
+                >
+              </div>
+            </div>
+
+            <div class="card skill-card">
+              <div class="card-label mono">DATABASE</div>
+              <div class="badge-wrap">
+                <span class="skill-badge mono"
+                  ><i class="devicon-mysql-plain colored"></i>MySQL</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-postgresql-plain colored"></i
+                  >PostgreSQL</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-mongodb-plain colored"></i>MongoDB</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-firebase-plain colored"></i>Firebase</span
+                >
+              </div>
+            </div>
+
+            <div class="card skill-card">
+              <div class="card-label mono">TOOLS &amp; DEV ENVIRONMENT</div>
+              <div class="badge-wrap">
+                <span class="skill-badge mono"
+                  ><i class="devicon-git-plain colored"></i>Git</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-github-original colored"></i>GitHub</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-vscode-plain colored"></i>VS Code</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-npm-original-wordmark colored"></i
+                  >npm</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-vercel-original colored"></i>Vercel</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="si si-xampp"></i>XAMPP</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="devicon-figma-plain colored"></i>Figma</span
+                >
+              </div>
+            </div>
+
+            <div class="card skill-card">
+              <div class="card-label mono">AI TOOLS</div>
+              <div class="badge-wrap">
+                <span class="skill-badge mono"
+                  ><i class="si si-openai"></i>OpenAI</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="si si-claude"></i>Claude</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="si si-googlegemini"></i>Gemini</span
+                >
+                <span class="skill-badge mono"
+                  ><i class="si si-githubcopilot"></i>GitHub Copilot</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" class="section reveal">
+          <div class="eyebrow">04 — EXPERIENCE</div>
+          <h2 class="section-title">Where I've worked</h2>
+
+          <div class="tab-row" role="tablist" aria-label="Experience by year">
+            <button
+              class="exp-tab mono active"
+              data-exp="0"
+              role="tab"
+              aria-selected="true"
+              aria-controls="exp-0"
+            >
+              2025
+            </button>
+            <button
+              class="exp-tab mono"
+              data-exp="1"
+              role="tab"
+              aria-selected="false"
+              aria-controls="exp-1"
+            >
+              2026
+            </button>
+          </div>
+
+          <div
+            class="card entry-card exp-panel"
+            id="exp-0"
+            data-exp-panel="0"
+            role="tabpanel"
+          >
+            <span class="year-pill mono">2025</span>
+            <div class="entry-head">
+              <h3 class="entry-title">Midyear Interactive Youth Forum</h3>
+              <div class="entry-sub mono">
+                "NextGen Leadership: Champions of Good Governance"
+              </div>
+              <div class="entry-meta mono">
+                September 17–19, 2025<span class="meta-sep">·</span>Summit
+                Galleria Cebu, Cebu City
+              </div>
+            </div>
+            <p class="entry-body">
+              A national youth leadership forum that brought together student
+              officers and leaders from different schools across the Philippines
+              to learn about leadership, good governance, accountability, and
+              youth participation.
+            </p>
+            <div class="chip-row">
+              <span class="chip mono">Leadership</span>
+              <span class="chip mono">Good Governance</span>
+              <span class="chip mono">Youth Development</span>
+            </div>
+          </div>
+
+          <div
+            class="card entry-card exp-panel is-hidden"
+            id="exp-1"
+            data-exp-panel="1"
+            role="tabpanel"
+          >
+            <span class="year-pill mono">2026</span>
+            <div class="entry-head">
+              <h3 class="entry-title">
+                Full Stack &amp; Agentic AI Developer Industry Project
+                Internship
+              </h3>
+              <div class="entry-sub mono">
+                Employability Advantage × AusBiz Consulting Pty Ltd
+              </div>
+              <div class="entry-meta mono">
+                10-Week Hands-on Industry Engagement Program<span
+                  class="meta-sep"
+                  >·</span
+                >February 17 – May 5, 2026
+              </div>
+            </div>
+            <p class="entry-body">
+              Successfully completed a 10-week industry project internship
+              focused on Full Stack Development and Agentic AI, with hands-on
+              experience in industry-based projects and guidance from industry
+              experts at AusBiz Consulting Pty Ltd.
+            </p>
+
+            <div class="card-label mono">PROGRAM DETAILS</div>
+            <dl class="detail-grid">
+              <div class="detail">
+                <dt class="mono">PROGRAM</dt>
+                <dd>Hands-on Industry Engagement</dd>
+              </div>
+              <div class="detail">
+                <dt class="mono">ROLE</dt>
+                <dd>Full Stack &amp; Agentic AI Developer Intern</dd>
+              </div>
+              <div class="detail">
+                <dt class="mono">START DATE</dt>
+                <dd>February 17, 2026</dd>
+              </div>
+              <div class="detail">
+                <dt class="mono">ISSUE DATE</dt>
+                <dd>May 5, 2026</dd>
+              </div>
+              <div class="detail detail--wide">
+                <dt class="mono">INDUSTRY PARTNER</dt>
+                <dd>AusBiz Consulting Pty Ltd</dd>
+              </div>
+            </dl>
+
+            <div class="chip-row">
+              <span class="chip mono">Full Stack Development</span>
+              <span class="chip mono">Agentic AI</span>
+              <span class="chip mono">Industry Mentorship</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" class="section reveal">
+          <div class="eyebrow">05 — PROJECTS</div>
+          <h2 class="section-title">Things I've built</h2>
+
+          <article class="card project-card">
+            <div class="entry-head project-head">
+              <span class="icon-chip">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="4" width="20" height="14" rx="2" />
+                  <path d="M8 21h8M12 18v3" />
+                </svg>
+              </span>
+              <div>
+                <h3 class="entry-title">Digital Twin Platform</h3>
+                <div class="entry-meta mono">
+                  FULL-STACK<span class="meta-sep">·</span>INTERACTIVE
+                  PORTFOLIO<span class="meta-sep">·</span>AI-POWERED CHAT
+                </div>
+              </div>
+            </div>
+
+            <p class="entry-body">
+              A full-stack digital twin platform with an interactive portfolio
+              and AI-powered chat.
+            </p>
+
+            <div class="card-label mono">TECH STACK</div>
+            <div class="tech-row">
+              <span class="tech mono"
+                ><i class="devicon-react-original colored"></i>React.js</span
+              >
+              <span class="tech mono"
+                ><i class="devicon-nextjs-plain"></i>Next.js</span
+              >
+              <span class="tech mono"
+                ><i class="devicon-nodejs-plain colored"></i>Node.js</span
+              >
+              <span class="tech mono"
+                ><span class="icon-generic"></span>AI</span
+              >
+            </div>
+
+            <a
+              href="https://github.com/Kuraedev/groupecaproject"
+              target="_blank"
+              rel="noopener"
+              class="link-out mono"
+            >
+              VIEW ON GITHUB <span aria-hidden="true">↗</span>
+            </a>
+
+            <div class="project-carousel" data-carousel>
+              <div class="carousel-stack">
+                <div class="carousel-slide active" data-slide="0">
+                  <img
+                    src="./assets/images/projects/project1.jpg"
+                    alt="Digital Twin Platform interface"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="carousel-slide" data-slide="1">
+                  <img
+                    src="./assets/images/projects/project2.jpg"
+                    alt="Digital Twin Platform portfolio"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div class="carousel-dots">
+                <button
+                  class="carousel-dot active"
+                  data-dot="0"
+                  aria-label="Screenshot 1"
+                ></button>
+                <button
+                  class="carousel-dot"
+                  data-dot="1"
+                  aria-label="Screenshot 2"
+                ></button>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section id="education" class="section reveal">
+          <div class="eyebrow">06 — EDUCATION</div>
+          <h2 class="section-title">Academic background</h2>
+
+          <div class="card entry-card">
+            <div class="entry-head project-head">
+              <span class="icon-chip">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M22 10 12 5 2 10l10 5 10-5Z" />
+                  <path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" />
+                </svg>
+              </span>
+              <div class="edu-head-body">
+                <h3 class="entry-title">
+                  Bachelor of Science in Information Technology
+                </h3>
+                <div class="entry-meta mono">
+                  St. Paul University Philippines, Tuguegarao City
+                </div>
+                <div class="entry-meta mono">2022 — 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="sub-title">Certifications &amp; Training</h3>
+          <div class="cert-list">
+            <div class="cert-row">
+              <span class="cert-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </span>
+              <div>
+                <div class="cert-title">
+                  Certificate of Participation — Midyear Interactive Youth Forum
+                </div>
+                <div class="entry-meta mono">
+                  PAPSAS<span class="meta-sep">·</span>Summit Galleria Cebu,
+                  Cebu City<span class="meta-sep">·</span>2025
+                </div>
+              </div>
+            </div>
+
+            <div class="cert-row">
+              <span class="cert-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </span>
+              <div>
+                <div class="cert-title">
+                  Full Stack &amp; Agentic AI Developer Internship Completion
+                </div>
+                <div class="entry-meta mono">
+                  AusBiz Consulting Pty Ltd<span class="meta-sep">·</span>2026
+                </div>
+              </div>
+            </div>
+
+            <div class="cert-row">
+              <span class="cert-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </span>
+              <div>
+                <div class="cert-title">
+                  Councilor Officer — Paulinian Student Government
+                </div>
+                <div class="entry-meta mono">
+                  St. Paul University Philippines<span class="meta-sep">·</span
+                  >2025 — 2026
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="section reveal">
+          <div class="eyebrow">07 — CONTACT</div>
+
+          <div class="contact-card">
+            <div class="contact-lead">
+              <h2 class="contact-title">Let's work together.</h2>
+              <p class="contact-muted">
+                Open to full-time roles, freelance projects, and internships. I
+                respond within 24 hours.
+              </p>
+            </div>
+
+            <div class="contact-links">
+              <a href="mailto:marijakee@gmail.com" class="contact-row mono">
+                <span class="contact-row-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m22 6-10 7L2 6" />
+                  </svg>
+                </span>
+                <span class="contact-row-label">marijakee@gmail.com</span>
+                <span class="contact-row-arrow">↗</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/jake-cardenas-710076410/"
+                target="_blank"
+                rel="noopener"
+                class="contact-row mono"
+              >
+                <span class="contact-row-icon"
+                  ><i class="devicon-linkedin-plain"></i
+                ></span>
+                <span class="contact-row-label">LinkedIn</span>
+                <span class="contact-row-arrow">↗</span>
+              </a>
+              <a
+                href="https://github.com/JakeCardenas"
+                target="_blank"
+                rel="noopener"
+                class="contact-row mono"
+              >
+                <span class="contact-row-icon"
+                  ><i class="devicon-github-original"></i
+                ></span>
+                <span class="contact-row-label">GitHub</span>
+                <span class="contact-row-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="site-foot mono">
+            © 2026 JAKE.DEV — BUILT STATIC, HOSTED ANYWHERE.
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./js/sound.js?v=19"></script>
+    <script src="./js/script.js?v=19"></script>
+  </body>
+</html>
