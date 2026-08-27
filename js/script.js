@@ -196,7 +196,7 @@ document.querySelectorAll(".nav-link").forEach((el) => {
   el.addEventListener("click", () => SoundManager.play("click"));
 });
 
-document.querySelectorAll(".exp-tab, #menuBtn").forEach((el) => {
+document.querySelectorAll("#menuBtn").forEach((el) => {
   el.addEventListener("click", () => SoundManager.play("swell"));
 });
 
@@ -365,23 +365,6 @@ if (photoSwap) {
   });
 }
 
-const expTabs = document.querySelectorAll(".exp-tab");
-const expPanels = document.querySelectorAll(".exp-panel");
-expTabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    const target = tab.getAttribute("data-exp");
-    expTabs.forEach((t) => {
-      t.classList.toggle("active", t === tab);
-      t.setAttribute("aria-selected", String(t === tab));
-    });
-    expPanels.forEach((panel) => {
-      panel.classList.toggle(
-        "is-hidden",
-        panel.getAttribute("data-exp-panel") !== target,
-      );
-    });
-  });
-});
 
 document.querySelectorAll("[data-carousel]").forEach((carousel) => {
   const slides = carousel.querySelectorAll(".carousel-slide");

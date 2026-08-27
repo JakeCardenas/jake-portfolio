@@ -38,7 +38,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
     />
-    <link href="./style.css?v=21" rel="stylesheet" />
+    <link href="./style.css?v=22" rel="stylesheet" />
   </head>
   <body>
     <div class="shell">
@@ -467,116 +467,62 @@
           <div class="eyebrow">04 — EXPERIENCE</div>
           <h2 class="section-title">Where I've worked</h2>
 
-          <div class="tab-row" role="tablist" aria-label="Experience by year">
-            <button
-              class="exp-tab mono active"
-              data-exp="0"
-              role="tab"
-              aria-selected="true"
-              aria-controls="exp-0"
-            >
-              2025
-            </button>
-            <button
-              class="exp-tab mono"
-              data-exp="1"
-              role="tab"
-              aria-selected="false"
-              aria-controls="exp-1"
-            >
-              2026
-            </button>
-          </div>
+          <ol class="timeline stagger">
+            <li class="tl-item">
+              <div class="tl-year mono">2026</div>
+              <div class="card tl-card">
+                <h3 class="entry-title">
+                  Full Stack &amp; Agentic AI Developer Intern
+                </h3>
+                <div class="tl-org">
+                  Employability Advantage
+                  <span class="meta-sep">×</span> AusBiz Consulting Pty Ltd
+                </div>
+                <div class="entry-meta mono">
+                  February 17 – May 5, 2026<span class="meta-sep">·</span>10-week
+                  industry engagement
+                </div>
+                <p class="entry-body">
+                  A 10-week industry engagement run by Employability Advantage
+                  with engineers from AusBiz Consulting. I worked on
+                  industry-based project briefs covering full-stack development
+                  and agentic AI, with weekly mentorship and code review from
+                  the AusBiz team.
+                </p>
+                <div class="chip-row">
+                  <span class="chip mono">Full-Stack Development</span>
+                  <span class="chip mono">Agentic AI</span>
+                  <span class="chip mono">Code Review</span>
+                </div>
+              </div>
+            </li>
 
-          <div
-            class="card entry-card exp-panel"
-            id="exp-0"
-            data-exp-panel="0"
-            role="tabpanel"
-          >
-            <span class="year-pill mono">2025</span>
-            <div class="entry-head">
-              <h3 class="entry-title">Midyear Interactive Youth Forum</h3>
-              <div class="entry-sub mono">
-                "NextGen Leadership: Champions of Good Governance"
+            <li class="tl-item">
+              <div class="tl-year mono">2025</div>
+              <div class="card tl-card">
+                <h3 class="entry-title">Midyear Interactive Youth Forum</h3>
+                <div class="tl-org">
+                  Philippine Association of Practitioners of Student Affairs and
+                  Services
+                </div>
+                <div class="entry-meta mono">
+                  September 17–19, 2025<span class="meta-sep">·</span>Summit
+                  Galleria Cebu, Cebu City
+                </div>
+                <p class="entry-body">
+                  A national forum bringing together student officers from
+                  schools across the Philippines. Three days of sessions on
+                  leadership, good governance, accountability and youth
+                  participation.
+                </p>
+                <div class="chip-row">
+                  <span class="chip mono">Leadership</span>
+                  <span class="chip mono">Good Governance</span>
+                  <span class="chip mono">Youth Development</span>
+                </div>
               </div>
-              <div class="entry-meta mono">
-                September 17–19, 2025<span class="meta-sep">·</span>Summit
-                Galleria Cebu, Cebu City
-              </div>
-            </div>
-            <p class="entry-body">
-                A national forum bringing together student officers from schools
-                across the Philippines. Three days of sessions on leadership,
-                good governance, accountability and youth participation.
-              </p>
-            <div class="chip-row">
-              <span class="chip mono">Leadership</span>
-              <span class="chip mono">Good Governance</span>
-              <span class="chip mono">Youth Development</span>
-            </div>
-          </div>
-
-          <div
-            class="card entry-card exp-panel is-hidden"
-            id="exp-1"
-            data-exp-panel="1"
-            role="tabpanel"
-          >
-            <span class="year-pill mono">2026</span>
-            <div class="entry-head">
-              <h3 class="entry-title">
-                Full Stack &amp; Agentic AI Developer Industry Project
-                Internship
-              </h3>
-              <div class="entry-sub mono">
-                Employability Advantage × AusBiz Consulting Pty Ltd
-              </div>
-              <div class="entry-meta mono">
-                10-Week Hands-on Industry Engagement Program<span
-                  class="meta-sep"
-                  >·</span
-                >February 17 – May 5, 2026
-              </div>
-            </div>
-            <p class="entry-body">
-                A 10-week industry engagement run by Employability Advantage
-                with engineers from AusBiz Consulting. I worked on
-                industry-based project briefs covering full-stack development
-                and agentic AI, with weekly mentorship and code review from the
-                AusBiz team.
-              </p>
-
-            <div class="card-label mono">PROGRAM DETAILS</div>
-            <dl class="detail-grid">
-              <div class="detail">
-                <dt class="mono">PROGRAM</dt>
-                <dd>Hands-on Industry Engagement</dd>
-              </div>
-              <div class="detail">
-                <dt class="mono">ROLE</dt>
-                <dd>Full Stack &amp; Agentic AI Developer Intern</dd>
-              </div>
-              <div class="detail">
-                <dt class="mono">START DATE</dt>
-                <dd>February 17, 2026</dd>
-              </div>
-              <div class="detail">
-                <dt class="mono">ISSUE DATE</dt>
-                <dd>May 5, 2026</dd>
-              </div>
-              <div class="detail detail--wide">
-                <dt class="mono">INDUSTRY PARTNER</dt>
-                <dd>AusBiz Consulting Pty Ltd</dd>
-              </div>
-            </dl>
-
-            <div class="chip-row">
-              <span class="chip mono">Full Stack Development</span>
-              <span class="chip mono">Agentic AI</span>
-              <span class="chip mono">Industry Mentorship</span>
-            </div>
-          </div>
+            </li>
+          </ol>
         </section>
 
         <section id="projects" class="section reveal">
@@ -874,7 +820,7 @@
       </div>
     </div>
 
-    <script src="./js/sound.js?v=21"></script>
-    <script src="./js/script.js?v=21"></script>
+    <script src="./js/sound.js?v=22"></script>
+    <script src="./js/script.js?v=22"></script>
   </body>
 </html>

@@ -990,36 +990,6 @@ body::after {
   gap: 0.55rem;
 }
 
-.tab-row {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-.exp-tab {
-  padding: 0.55rem 1.05rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--bg-soft);
-  color: var(--fg-muted);
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  transition:
-    background 0.22s ease,
-    color 0.22s ease,
-    border-color 0.22s ease,
-    transform 0.2s var(--ease);
-}
-.exp-tab:hover {
-  color: var(--fg);
-  border-color: var(--border-strong);
-  transform: translateY(-1px);
-}
-.exp-tab.active {
-  background: var(--fg);
-  color: var(--bg);
-  border-color: var(--fg);
-}
 
 .entry-card {
   position: relative;
@@ -1388,15 +1358,8 @@ body::after {
   transform: translateY(-2px);
 }
 
-.exp-tab:not(.active) {
-  opacity: 0.72;
-}
-.exp-tab:not(.active):hover {
-  opacity: 1;
-}
 
 .btn:active,
-.exp-tab:active,
 .contact-row:active {
   transform: translateY(0) scale(0.995);
 }
@@ -1942,5 +1905,84 @@ body::after {
   .cert-modal-panel,
   .cert-thumb img {
     transition: none;
+  }
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.tl-year {
+  position: relative;
+  padding-top: 1.85rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--fg-faint);
+  text-align: right;
+}
+/* the rail: a dot on each entry, joined by a line to the next */
+.tl-year::before {
+  content: "";
+  position: absolute;
+  top: 2.05rem;
+  right: -0.72rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--fg);
+}
+.tl-item:not(:last-child) .tl-year::after {
+  content: "";
+  position: absolute;
+  top: 3.1rem;
+  right: -0.42rem;
+  bottom: -1.9rem;
+  width: 1px;
+  background: var(--border);
+}
+
+.tl-card {
+  padding: 1.5rem 1.65rem;
+}
+.tl-card .entry-title {
+  padding-right: 0;
+}
+.tl-org {
+  margin-top: 0.35rem;
+  font-size: 0.88rem;
+  color: var(--fg-muted);
+}
+.tl-card .entry-meta {
+  margin-top: 0.3rem;
+}
+.tl-card .entry-body {
+  margin-top: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .tl-item {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .tl-year {
+    padding-top: 0;
+    text-align: left;
+  }
+  .tl-year::before,
+  .tl-year::after {
+    display: none;
   }
 }
