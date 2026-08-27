@@ -441,7 +441,7 @@ const CERTS = {
     name: "Certificate of Participation",
     org: "Philippine Association of Practitioners of Student Affairs and Services (PAPSAS)",
     note: "Awarded for taking part in the 2025 Midyear Interactive Youth Forum, a national gathering of student leaders on the theme “NextGen Leadership: Champions of Good Governance.”",
-    img: "./certificates/youth-forum-participation.jpg",
+    img: "./assets/certificates/youth-forum-participation.jpg",
     facts: [
       ["Event", "2025 Midyear Interactive Youth Forum"],
       ["Held", "September 17–19, 2025"],
@@ -452,7 +452,7 @@ const CERTS = {
     name: "Certificate of Appearance",
     org: "Philippine Association of Practitioners of Student Affairs and Services (PAPSAS)",
     note: "Issued for appearing at the three-day 2025 Midyear Interactive Youth Forum in Cebu City.",
-    img: "./certificates/youth-forum-appearance.jpg",
+    img: "./assets/certificates/youth-forum-appearance.jpg",
     facts: [
       ["Event", "2025 Midyear Interactive Youth Forum"],
       ["Held", "September 17–19, 2025"],
@@ -463,7 +463,7 @@ const CERTS = {
     name: "Statement of Completion",
     org: "Employability Advantage, with AusBiz Consulting Pty Ltd",
     note: "Completed a 10-week Full Stack and Agentic AI Developer industry project internship, working on industry-based projects under mentorship from AusBiz engineers.",
-    img: "./certificates/ausbiz-internship.jpg",
+    img: "./assets/certificates/ausbiz-internship.jpg",
     facts: [
       ["Program", "10-Week Full Stack & Agentic AI Developer Internship"],
       ["Start date", "17 February 2026"],

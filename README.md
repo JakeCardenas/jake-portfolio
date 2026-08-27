@@ -20,7 +20,7 @@ reading canvas pixels from a relative path is blocked.
 ## Structure
 
     index.html              markup for every section
-    style.css               design tokens and all styling
+    css/style.css           design tokens and all styling
     js/
       sound.js              Web Audio interaction sounds
       script.js             halftone renderer, theme, nav, modal, GitHub graph
@@ -28,8 +28,8 @@ reading canvas pixels from a relative path is blocked.
       icons/                favicon set, generated from the profile photo
       images/profile/       portrait photos, rendered to canvas as halftone
       images/projects/      project screenshots
+      certificates/         certificate scans shown in the modal
       resume/               CV goes here (see the README inside)
-    certificates/           certificate scans shown in the modal
 
 ## Notes
 
