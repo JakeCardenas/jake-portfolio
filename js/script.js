@@ -558,10 +558,13 @@ if (ghGraph) {
 
     const total = (data.total && data.total.lastYear) || 0;
     caption.textContent = `${total.toLocaleString()} CONTRIBUTION${total === 1 ? "" : "S"} IN THE LAST YEAR`;
-    ghGraph.setAttribute(
-      "aria-label",
-      `${total} GitHub contributions in the last year`,
-    );
+    const link = ghGraph.closest(".gh-graph-link");
+    if (link) {
+      link.setAttribute(
+        "aria-label",
+        `View JakeCardenas on GitHub — ${total} contributions in the last year`,
+      );
+    }
   }
 
   function fail() {
@@ -570,20 +573,30 @@ if (ghGraph) {
   }
 
   // hover readout, positioned against the panel
+  const hideTip = () => {
+    tip.hidden = true;
+  };
+
   ghGraph.addEventListener("mouseover", (e) => {
     const cell = e.target.closest(".gh-cell[data-date]");
-    if (!cell) return;
+    if (!cell) return hideTip();
     const n = Number(cell.dataset.count);
     tip.textContent = `${n} contribution${n === 1 ? "" : "s"} · ${fmt(cell.dataset.date)}`;
     tip.hidden = false;
+
     const g = ghGraph.getBoundingClientRect();
     const c = cell.getBoundingClientRect();
-    tip.style.left = c.left - g.left + c.width / 2 + "px";
+    const half = tip.offsetWidth / 2;
+    // keep it inside the panel, or a cell near either edge pushes the
+    // tooltip past the viewport and widens the whole page
+    const x = c.left - g.left + c.width / 2;
+    tip.style.left = Math.min(Math.max(x, half), g.width - half) + "px";
     tip.style.top = c.top - g.top - 8 + "px";
   });
-  ghGraph.addEventListener("mouseleave", () => {
-    tip.hidden = true;
-  });
+
+  ghGraph.addEventListener("mouseleave", hideTip);
+  window.addEventListener("scroll", hideTip, { passive: true });
+  window.addEventListener("resize", hideTip);
 
   (async () => {
     try {

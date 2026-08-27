@@ -2190,3 +2190,63 @@ body::after {
     animation: none;
   }
 }
+
+.gh-graph-link {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  border-radius: var(--r-sm);
+}
+/* the whole matrix lifts a little when it is the click target */
+.gh-graph-link:hover .gh-cell[data-level="0"] {
+  opacity: 0.32;
+}
+.gh-graph-link:hover .gh-cell[data-level="1"] {
+  opacity: 0.55;
+}
+.gh-graph-link:hover .gh-cell[data-level="2"] {
+  opacity: 0.75;
+}
+.gh-graph-link:hover .gh-cell[data-level="3"] {
+  opacity: 0.92;
+}
+
+.gh-graph-hint {
+  position: absolute;
+  top: -1.85rem;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--fg-dim);
+  opacity: 0;
+  transform: translateY(3px);
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s var(--ease);
+}
+.gh-graph-link:hover .gh-graph-hint,
+.gh-graph-link:focus-visible .gh-graph-hint {
+  opacity: 1;
+  transform: none;
+}
+.gh-graph-link:hover .gh-graph-hint span {
+  transform: translate(2px, -2px);
+}
+.gh-graph-hint span {
+  transition: transform 0.25s var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-graph-hint {
+    transition: none;
+  }
+}
+
+/* belt and braces: the panel never contributes page-level overflow */
+.gh-panel {
+  overflow: hidden;
+}
