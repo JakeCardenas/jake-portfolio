@@ -189,56 +189,35 @@ soundBtn.addEventListener("click", (e) => {
   updateSoundBtnUI();
 });
 
-const HOVER_TARGETS = [
-  ".nav-link",
-  ".side-logo",
-  ".side-email",
-  ".btn",
-  ".exp-tab",
-  ".link-out",
-  ".info-pill:not(.is-static)",
-  ".contact-row",
-  ".cert-row",
-  ".carousel-dot",
-  ".carousel-slide",
-  ".photo-swap",
-  ".ctl-btn",
-  ".menu-btn",
-  ".stat",
-].join(", ");
-
-const CLICK_TARGETS = ".btn, .ctl-btn:not(#soundToggle)";
-const SWELL_TARGETS = ".exp-tab, #menuBtn";
-
-document.querySelectorAll(HOVER_TARGETS).forEach((el) => {
-  el.addEventListener("mouseenter", () => SoundManager.play("hover"));
-});
-
-document.querySelectorAll(CLICK_TARGETS).forEach((el) => {
+// Sound is reserved for moments that actually change what is on screen.
+// Hovering, scrolling and ordinary buttons stay silent — the point is
+// that when something does play, it means something.
+document.querySelectorAll(".nav-link").forEach((el) => {
   el.addEventListener("click", () => SoundManager.play("click"));
 });
 
-document.querySelectorAll(SWELL_TARGETS).forEach((el) => {
+document.querySelectorAll(".exp-tab, #menuBtn").forEach((el) => {
   el.addEventListener("click", () => SoundManager.play("swell"));
 });
 
-// clicking the peeking screenshot brings it forward — same as a dot
-document.querySelectorAll(".skill-badge").forEach((el) => {
-  el.addEventListener("mouseenter", () => SoundManager.play("hoverSoft"));
+document.querySelectorAll("[data-theme-btn]").forEach((el) => {
+  el.addEventListener("click", () => SoundManager.play("click"));
 });
 
 document.querySelectorAll("[data-carousel]").forEach((carousel) => {
-  carousel.querySelectorAll(".carousel-dot").forEach((dot) => {
-    dot.addEventListener("click", () => {
-      if (!dot.classList.contains("active")) SoundManager.play("swap");
+  carousel
+    .querySelectorAll(".carousel-dot, .carousel-slide")
+    .forEach((el) => {
+      el.addEventListener("click", () => {
+        if (!el.classList.contains("active")) SoundManager.play("swap");
+      });
     });
-  });
-  carousel.querySelectorAll(".carousel-slide").forEach((slide) => {
-    slide.addEventListener("click", () => {
-      if (!slide.classList.contains("active")) SoundManager.play("swap");
-    });
-  });
 });
+
+const photoSwapEl = document.querySelector(".photo-swap");
+if (photoSwapEl) {
+  photoSwapEl.addEventListener("click", () => SoundManager.play("swap"));
+}
 
 const root = document.documentElement;
 const themeBtns = document.querySelectorAll("[data-theme-btn]");
@@ -433,3 +412,116 @@ window.addEventListener("resize", () => {
   clearTimeout(halftoneResizeTimer);
   halftoneResizeTimer = setTimeout(renderAllHalftones, 180);
 });
+
+const CERTS = {
+  "youth-forum-participation": {
+    name: "Certificate of Participation",
+    org: "Philippine Association of Practitioners of Student Affairs and Services (PAPSAS)",
+    note: "Awarded for taking part in the 2025 Midyear Interactive Youth Forum, a national gathering of student leaders on the theme “NextGen Leadership: Champions of Good Governance.”",
+    img: "./certificates/youth-forum-participation.jpg",
+    facts: [
+      ["Event", "2025 Midyear Interactive Youth Forum"],
+      ["Held", "September 17–19, 2025"],
+      ["Venue", "Summit Galleria Hotel, Cebu City"],
+    ],
+  },
+  "youth-forum-appearance": {
+    name: "Certificate of Appearance",
+    org: "Philippine Association of Practitioners of Student Affairs and Services (PAPSAS)",
+    note: "Issued for appearing at the three-day 2025 Midyear Interactive Youth Forum in Cebu City.",
+    img: "./certificates/youth-forum-appearance.jpg",
+    facts: [
+      ["Event", "2025 Midyear Interactive Youth Forum"],
+      ["Held", "September 17–19, 2025"],
+      ["Venue", "Summit Galleria Hotel, Cebu City"],
+    ],
+  },
+  "ausbiz-internship": {
+    name: "Statement of Completion",
+    org: "Employability Advantage, with AusBiz Consulting Pty Ltd",
+    note: "Completed a 10-week Full Stack and Agentic AI Developer industry project internship, working on industry-based projects under mentorship from AusBiz engineers.",
+    img: "./certificates/ausbiz-internship.jpg",
+    facts: [
+      ["Program", "10-Week Full Stack & Agentic AI Developer Internship"],
+      ["Start date", "17 February 2026"],
+      ["Issued", "5 May 2026"],
+      ["Certificate ID", "178373412"],
+    ],
+  },
+};
+
+const certModal = document.getElementById("certModal");
+if (certModal) {
+  const img = document.getElementById("certModalImg");
+  const nameEl = document.getElementById("certModalName");
+  const orgEl = document.getElementById("certModalOrg");
+  const noteEl = document.getElementById("certModalNote");
+  const factsEl = document.getElementById("certModalFacts");
+  const panel = certModal.querySelector(".cert-modal-panel");
+  let lastFocused = null;
+
+  function openCert(key) {
+    const c = CERTS[key];
+    if (!c) return;
+    nameEl.textContent = c.name;
+    orgEl.textContent = c.org;
+    noteEl.textContent = c.note;
+    img.src = c.img;
+    img.alt = c.name + " issued by " + c.org;
+    factsEl.innerHTML = c.facts
+      .map(
+        ([k, v]) =>
+          `<div class="cert-fact"><dt class="mono">${k}</dt><dd>${v}</dd></div>`,
+      )
+      .join("");
+
+    lastFocused = document.activeElement;
+    certModal.hidden = false;
+    document.body.style.overflow = "hidden";
+    // force a reflow rather than waiting on rAF, which never fires in a
+    // background tab and would leave the panel open but transparent
+    void certModal.offsetHeight;
+    certModal.classList.add("is-open");
+    SoundManager.play("swell");
+    certModal.querySelector(".cert-modal-close").focus();
+  }
+
+  function closeCert() {
+    certModal.classList.remove("is-open");
+    document.body.style.overflow = "";
+    setTimeout(() => {
+      certModal.hidden = true;
+      img.removeAttribute("src");
+    }, 260);
+    if (lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll("[data-cert]").forEach((btn) => {
+    btn.addEventListener("click", () => openCert(btn.dataset.cert));
+  });
+  certModal.querySelectorAll("[data-cert-close]").forEach((el) => {
+    el.addEventListener("click", closeCert);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (certModal.hidden) return;
+    if (e.key === "Escape") closeCert();
+    if (e.key === "Tab") {
+      const f = panel.querySelectorAll("button, a[href]");
+      if (!f.length) return;
+      const first = f[0],
+        last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  // a certificate that has not been added yet should not show a broken frame
+  document.querySelectorAll(".cert-thumb img").forEach((t) => {
+    t.addEventListener("error", () => t.closest(".cert-thumb").classList.add("is-empty"));
+  });
+}
