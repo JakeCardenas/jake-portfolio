@@ -203,21 +203,13 @@ const HOVER_TARGETS = [
   ".menu-btn",
   ".cert-card",
   ".carousel-dot",
-  ".carousel-slide",
   ".photo-swap",
   ".gh-graph-link",
   ".tl-card",
-  ".stat",
 ].join(", ");
 
 document.querySelectorAll(HOVER_TARGETS).forEach((el) => {
   el.addEventListener("mouseenter", () => SoundManager.play("hover"));
-});
-
-// the skills grid is far denser than anything on the reference, so it
-// gets the quieter variant
-document.querySelectorAll(".skill-badge").forEach((el) => {
-  el.addEventListener("mouseenter", () => SoundManager.play("hoverSoft"));
 });
 
 document.querySelectorAll(".btn, .ctl-btn:not(#soundToggle)").forEach((el) => {
