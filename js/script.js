@@ -508,3 +508,108 @@ if (certModal) {
     t.addEventListener("error", () => t.closest(".cert-thumb").classList.add("is-empty"));
   });
 }
+
+const ghGraph = document.getElementById("ghGraph");
+if (ghGraph) {
+  const caption = document.getElementById("ghCaption");
+  const tip = document.getElementById("ghTip");
+  const USER = "JakeCardenas";
+  const API = `https://github-contributions-api.jogruber.de/v4/${USER}?y=last`;
+  const CACHE_KEY = "gh-contrib";
+  const CACHE_MAX_AGE = 6 * 60 * 60 * 1000;
+
+  const fmt = (iso) =>
+    new Date(iso + "T00:00:00").toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+
+  function render(data) {
+    const days = data.contributions || [];
+    if (!days.length) return fail();
+
+    // pad to a whole week so every column has seven cells
+    const lead = new Date(days[0].date + "T00:00:00").getDay();
+    const cells = Array.from({ length: lead }, () => null).concat(days);
+
+    const weeks = [];
+    for (let i = 0; i < cells.length; i += 7) weeks.push(cells.slice(i, i + 7));
+
+    ghGraph.innerHTML = weeks
+      .map(
+        (week) =>
+          `<div class="gh-week">` +
+          week
+            .map((d) =>
+              d === null
+                ? `<span class="gh-cell is-pad"></span>`
+                : `<span class="gh-cell" data-level="${d.level}" data-date="${d.date}" data-count="${d.count}"></span>`,
+            )
+            .join("") +
+          `</div>`,
+      )
+      .join("");
+
+    // stagger the columns so the grid draws itself in
+    ghGraph.querySelectorAll(".gh-week").forEach((w, i) => {
+      w.style.animationDelay = Math.min(i * 12, 620) + "ms";
+    });
+
+    const total = (data.total && data.total.lastYear) || 0;
+    caption.textContent = `${total.toLocaleString()} CONTRIBUTION${total === 1 ? "" : "S"} IN THE LAST YEAR`;
+    ghGraph.setAttribute(
+      "aria-label",
+      `${total} GitHub contributions in the last year`,
+    );
+  }
+
+  function fail() {
+    ghGraph.classList.add("is-unavailable");
+    caption.textContent = "CONTRIBUTION ACTIVITY UNAVAILABLE — VIEW ON GITHUB";
+  }
+
+  // hover readout, positioned against the panel
+  ghGraph.addEventListener("mouseover", (e) => {
+    const cell = e.target.closest(".gh-cell[data-date]");
+    if (!cell) return;
+    const n = Number(cell.dataset.count);
+    tip.textContent = `${n} contribution${n === 1 ? "" : "s"} · ${fmt(cell.dataset.date)}`;
+    tip.hidden = false;
+    const g = ghGraph.getBoundingClientRect();
+    const c = cell.getBoundingClientRect();
+    tip.style.left = c.left - g.left + c.width / 2 + "px";
+    tip.style.top = c.top - g.top - 8 + "px";
+  });
+  ghGraph.addEventListener("mouseleave", () => {
+    tip.hidden = true;
+  });
+
+  (async () => {
+    try {
+      const cached = JSON.parse(sessionStorage.getItem(CACHE_KEY) || "null");
+      if (cached && Date.now() - cached.at < CACHE_MAX_AGE) {
+        render(cached.data);
+        return;
+      }
+    } catch (err) {
+      /* cache unreadable, just fetch */
+    }
+    try {
+      const res = await fetch(API);
+      if (!res.ok) throw new Error(res.status);
+      const data = await res.json();
+      render(data);
+      try {
+        sessionStorage.setItem(
+          CACHE_KEY,
+          JSON.stringify({ at: Date.now(), data }),
+        );
+      } catch (err) {
+        /* storage full or blocked */
+      }
+    } catch (err) {
+      fail();
+    }
+  })();
+}

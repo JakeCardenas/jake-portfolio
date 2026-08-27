@@ -38,7 +38,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
     />
-    <link href="./style.css?v=24" rel="stylesheet" />
+    <link href="./style.css?v=26" rel="stylesheet" />
   </head>
   <body>
     <div class="shell">
@@ -54,7 +54,7 @@
           <a href="#experience" class="nav-link" data-nav>EXPERIENCE</a>
           <a href="#projects" class="nav-link" data-nav>PROJECTS</a>
           <a href="#education" class="nav-link" data-nav>EDUCATION</a>
-          <a href="#contact" class="nav-link" data-nav>CONTACT</a>
+          <a href="#github" class="nav-link" data-nav>GITHUB</a>
         </nav>
 
         <div class="side-foot">
@@ -723,61 +723,42 @@
           </div>
         </section>
 
-        <section id="contact" class="section reveal">
-          <div class="eyebrow">07 — CONTACT</div>
+        <section id="github" class="section reveal">
+          <div class="section-head">
+            <div class="eyebrow">07 — GITHUB</div>
+            <a
+              href="https://github.com/JakeCardenas"
+              target="_blank"
+              rel="noopener"
+              class="link-out mono gh-profile-link"
+            >
+              <i class="devicon-github-original" aria-hidden="true"></i>
+              @JAKECARDENAS <span aria-hidden="true">↗</span>
+            </a>
+          </div>
 
-          <div class="contact-card">
-            <div class="contact-lead">
-              <h2 class="contact-title">Let's work together.</h2>
-              <p class="contact-muted">
-                Open to full-time roles, freelance projects, and internships. I
-                respond within 24 hours.
+          <div class="gh-panel">
+            <div
+              class="gh-graph"
+              id="ghGraph"
+              role="img"
+              aria-label="GitHub contribution activity for the last year"
+            ></div>
+            <div class="gh-foot">
+              <p class="gh-caption mono" id="ghCaption">
+                LOADING CONTRIBUTION ACTIVITY…
               </p>
+              <div class="gh-legend mono" aria-hidden="true">
+                <span>LESS</span>
+                <span class="gh-key" data-level="0"></span>
+                <span class="gh-key" data-level="1"></span>
+                <span class="gh-key" data-level="2"></span>
+                <span class="gh-key" data-level="3"></span>
+                <span class="gh-key" data-level="4"></span>
+                <span>MORE</span>
+              </div>
             </div>
-
-            <div class="contact-links">
-              <a href="mailto:marijakee@gmail.com" class="contact-row mono">
-                <span class="contact-row-icon">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="m22 6-10 7L2 6" />
-                  </svg>
-                </span>
-                <span class="contact-row-label">marijakee@gmail.com</span>
-                <span class="contact-row-arrow">↗</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/jake-cardenas-710076410/"
-                target="_blank"
-                rel="noopener"
-                class="contact-row mono"
-              >
-                <span class="contact-row-icon"
-                  ><i class="devicon-linkedin-plain"></i
-                ></span>
-                <span class="contact-row-label">LinkedIn</span>
-                <span class="contact-row-arrow">↗</span>
-              </a>
-              <a
-                href="https://github.com/JakeCardenas"
-                target="_blank"
-                rel="noopener"
-                class="contact-row mono"
-              >
-                <span class="contact-row-icon"
-                  ><i class="devicon-github-original"></i
-                ></span>
-                <span class="contact-row-label">GitHub</span>
-                <span class="contact-row-arrow">↗</span>
-              </a>
-            </div>
+            <div class="gh-tip mono" id="ghTip" hidden></div>
           </div>
 
           <div class="site-foot mono">
@@ -820,7 +801,7 @@
       </div>
     </div>
 
-    <script src="./js/sound.js?v=24"></script>
-    <script src="./js/script.js?v=24"></script>
+    <script src="./js/sound.js?v=26"></script>
+    <script src="./js/script.js?v=26"></script>
   </body>
 </html>
