@@ -189,10 +189,38 @@ soundBtn.addEventListener("click", (e) => {
   updateSoundBtnUI();
 });
 
-// Sound is reserved for moments that actually change what is on screen.
-// Hovering, scrolling and ordinary buttons stay silent — the point is
-// that when something does play, it means something.
-document.querySelectorAll(".nav-link").forEach((el) => {
+// Mirrors how bryllim.com behaves: hovering an interactive element
+// gives a short tick, buttons and toggles click, panels swell, and a
+// link is silent on click because the hover already acknowledged it.
+const HOVER_TARGETS = [
+  ".nav-link",
+  ".side-logo",
+  ".side-email",
+  ".btn",
+  ".link-out",
+  ".info-pill:not(.is-static)",
+  ".ctl-btn",
+  ".menu-btn",
+  ".cert-card",
+  ".carousel-dot",
+  ".carousel-slide",
+  ".photo-swap",
+  ".gh-graph-link",
+  ".tl-card",
+  ".stat",
+].join(", ");
+
+document.querySelectorAll(HOVER_TARGETS).forEach((el) => {
+  el.addEventListener("mouseenter", () => SoundManager.play("hover"));
+});
+
+// the skills grid is far denser than anything on the reference, so it
+// gets the quieter variant
+document.querySelectorAll(".skill-badge").forEach((el) => {
+  el.addEventListener("mouseenter", () => SoundManager.play("hoverSoft"));
+});
+
+document.querySelectorAll(".btn, .ctl-btn:not(#soundToggle)").forEach((el) => {
   el.addEventListener("click", () => SoundManager.play("click"));
 });
 
@@ -200,18 +228,16 @@ document.querySelectorAll("#menuBtn").forEach((el) => {
   el.addEventListener("click", () => SoundManager.play("swell"));
 });
 
-document.querySelectorAll("[data-theme-btn]").forEach((el) => {
+document.querySelectorAll(".nav-link").forEach((el) => {
   el.addEventListener("click", () => SoundManager.play("click"));
 });
 
 document.querySelectorAll("[data-carousel]").forEach((carousel) => {
-  carousel
-    .querySelectorAll(".carousel-dot, .carousel-slide")
-    .forEach((el) => {
-      el.addEventListener("click", () => {
-        if (!el.classList.contains("active")) SoundManager.play("swap");
-      });
+  carousel.querySelectorAll(".carousel-dot, .carousel-slide").forEach((el) => {
+    el.addEventListener("click", () => {
+      if (!el.classList.contains("active")) SoundManager.play("swap");
     });
+  });
 });
 
 const photoSwapEl = document.querySelector(".photo-swap");

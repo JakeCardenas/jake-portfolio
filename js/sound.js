@@ -10,6 +10,9 @@ const SoundManager = (() => {
   // every gain below is bryllim's measured value; this scales the lot
   const MASTER = 1.7;
 
+  let lastHover = 0;
+  const HOVER_GAP_MS = 45;
+
   function ensureContext() {
     if (!ctx) {
       const AC = window.AudioContext || window.webkitAudioContext;
@@ -94,6 +97,26 @@ const SoundManager = (() => {
   }
 
   const sounds = {
+    // measured off bryllim: a bright noise tick with a very quiet sine
+    // body under it. This is the one that fires most, so it is short.
+    hover() {
+      const now = performance.now();
+      if (now - lastHover < HOVER_GAP_MS) return;
+      lastHover = now;
+      noise({ freq: 5400, q: 1.8, peak: 0.14, decay: 0.019 });
+      tone({ freq: 2600, peak: 0.018, decay: 0.013 });
+    },
+
+    // same voice at a third the level, for the dense skills grid where
+    // 29 badges sit within a few pixels of each other
+    hoverSoft() {
+      const now = performance.now();
+      if (now - lastHover < HOVER_GAP_MS * 2) return;
+      lastHover = now;
+      noise({ freq: 5400, q: 1.8, peak: 0.05, decay: 0.014 });
+      tone({ freq: 2600, peak: 0.007, decay: 0.01 });
+    },
+
     click() {
       noise({ freq: 2200, q: 1.6, peak: 0.12, decay: 0.017 });
       noise({ freq: 3800, q: 1.6, peak: 0.1, decay: 0.021, delay: 0.024 });
