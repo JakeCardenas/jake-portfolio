@@ -328,9 +328,31 @@ const siteNav = document.getElementById("siteNav");
 function setMenuOpen(open) {
   siteNav.classList.toggle("open", open);
   menuBtn.setAttribute("aria-expanded", String(open));
+  document.body.classList.toggle("menu-open", open);
 }
 menuBtn.addEventListener("click", () => {
   setMenuOpen(!siteNav.classList.contains("open"));
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && siteNav.classList.contains("open")) {
+    setMenuOpen(false);
+    menuBtn.focus();
+  }
+});
+
+// tapping anywhere outside the rail closes it
+document.addEventListener("click", (e) => {
+  if (!siteNav.classList.contains("open")) return;
+  if (e.target.closest(".sidebar")) return;
+  setMenuOpen(false);
+});
+
+// the rail only exists below the desktop breakpoint; leaving that range
+// with it open would otherwise strand body scroll locked
+const desktopQuery = window.matchMedia("(min-width: 1024px)");
+desktopQuery.addEventListener("change", (e) => {
+  if (e.matches) setMenuOpen(false);
 });
 
 const sections = document.querySelectorAll("section[id]");
