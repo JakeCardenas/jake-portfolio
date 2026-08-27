@@ -38,7 +38,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
     />
-    <link href="./style.css?v=37" rel="stylesheet" />
+    <link href="./style.css?v=39" rel="stylesheet" />
   </head>
   <body>
     <div class="shell">
@@ -186,12 +186,12 @@
               <div class="photo-frame">
                 <canvas
                   class="photo-1 halftone-canvas"
-                  data-src="./assets/images/profile/profile1.jpg"
+                  data-src="./assets/images/profile/jake-profile.jpg"
                   aria-label="Jake Cardenas"
                 ></canvas>
                 <canvas
                   class="photo-2 halftone-canvas"
-                  data-src="./assets/images/profile/profile2.jpg"
+                  data-src="./assets/images/profile/jake-profile-alt.jpg"
                   aria-label="Jake Cardenas on a balcony"
                 ></canvas>
               </div>
@@ -264,9 +264,13 @@
                 <a href="#projects" class="btn btn-solid mono"
                   >VIEW PROJECTS <span aria-hidden="true">→</span></a
                 >
+                <!-- add assets/resume/jake-cardenas-resume.pdf, then
+                     delete the hidden attribute below to show this -->
                 <a
-                  href="./assets/jake-cardenas-resume.pdf"
+                  href="./assets/resume/jake-cardenas-resume.pdf"
                   download
+                  id="resumeBtn"
+                  hidden
                   class="btn btn-ghost mono"
                   >DOWNLOAD RESUME <span aria-hidden="true">↓</span></a
                 >
@@ -590,14 +594,14 @@
               <div class="carousel-stack">
                 <div class="carousel-slide active" data-slide="0">
                   <img
-                    src="./assets/images/projects/project1.jpg"
+                    src="./assets/images/projects/digital-twin-1.jpg"
                     alt="Digital Twin Platform interface"
                     loading="lazy"
                   />
                 </div>
                 <div class="carousel-slide" data-slide="1">
                   <img
-                    src="./assets/images/projects/project2.jpg"
+                    src="./assets/images/projects/digital-twin-2.jpg"
                     alt="Digital Twin Platform portfolio"
                     loading="lazy"
                   />
@@ -807,7 +811,7 @@
       </div>
     </div>
 
-    <script src="./js/sound.js?v=37"></script>
-    <script src="./js/script.js?v=37"></script>
+    <script src="./js/sound.js?v=39"></script>
+    <script src="./js/script.js?v=39"></script>
   </body>
 </html>
