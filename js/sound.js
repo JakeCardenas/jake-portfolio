@@ -8,7 +8,7 @@ const SoundManager = (() => {
   enabled = enabled === null ? true : enabled === "true";
 
   // every gain below is bryllim's measured value; this scales the lot
-  const MASTER = 1.7;
+  const MASTER = 4;
 
   let lastHover = 0;
   const HOVER_GAP_MS = 45;
