@@ -468,7 +468,6 @@ const CERTS = {
       ["Program", "10-Week Full Stack & Agentic AI Developer Internship"],
       ["Start date", "17 February 2026"],
       ["Issued", "5 May 2026"],
-      ["Certificate ID", "178373412"],
     ],
   },
 };
