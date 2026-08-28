@@ -13,9 +13,9 @@ Any static server works:
 
 Then open http://localhost:4173
 
-Opening `index.html` directly also works — the profile photos are
-embedded as data URIs so the halftone effect survives `file://`, where
-reading canvas pixels from a relative path is blocked.
+Opening `index.html` directly also works — `js/halftone-sources.js`
+carries the portraits as data URIs so the halftone effect survives
+`file://`, where reading canvas pixels from a relative path is blocked.
 
 ## Structure
 
@@ -23,6 +23,7 @@ reading canvas pixels from a relative path is blocked.
     css/style.css           design tokens and all styling
     js/
       sound.js              Web Audio interaction sounds
+      halftone-sources.js   grayscale portrait data, for file:// only
       script.js             halftone renderer, theme, nav, modal, GitHub graph
     assets/
       icons/                favicon set, generated from the profile photo

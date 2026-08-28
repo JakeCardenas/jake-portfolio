@@ -97,8 +97,7 @@ const SoundManager = (() => {
   }
 
   const sounds = {
-    // measured off bryllim: a bright noise tick with a very quiet sine
-    // body under it. This is the one that fires most, so it is short.
+    // fires the most, so keep it short
     hover() {
       const now = performance.now();
       if (now - lastHover < HOVER_GAP_MS) return;
@@ -112,8 +111,7 @@ const SoundManager = (() => {
       noise({ freq: 3800, q: 1.6, peak: 0.1, decay: 0.021, delay: 0.024 });
     },
 
-    // swapping the front project card: low body and high snap together,
-    // with a short sine tail behind them
+    // low body and high snap together, sine tail behind
     swap() {
       noise({ freq: 1700, q: 1.4, peak: 0.13, decay: 0.021 });
       noise({ freq: 4600, q: 1.8, peak: 0.12, decay: 0.017 });
