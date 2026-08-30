@@ -447,7 +447,7 @@ const CERTS = {
   "ausbiz-internship": {
     name: "Statement of Completion",
     org: "Employability Advantage, with AusBiz Consulting Pty Ltd",
-    note: "Completed a 10-week Full Stack and Agentic AI Developer industry project internship, working on industry-based projects under mentorship from AusBiz engineers.",
+    note: "Completed a 10-week Full Stack and Agentic AI Developer industry project internship, building projects under mentorship from AusBiz engineers.",
     img: "./assets/certificates/ausbiz-internship.jpg",
     facts: [
       ["Program", "10-Week Full Stack & Agentic AI Developer Internship"],
