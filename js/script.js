@@ -532,6 +532,15 @@ if (certModal) {
   });
 }
 
+
+// gear shots fall back to the line icon until the photo is dropped in
+document.querySelectorAll(".gear-shot img").forEach((img) => {
+  const frame = img.closest(".gear-shot");
+  const miss = () => frame.classList.add("is-empty");
+  img.addEventListener("error", miss);
+  if (img.complete && !img.naturalWidth) miss();
+});
+
 const ghGraph = document.getElementById("ghGraph");
 if (ghGraph) {
   const caption = document.getElementById("ghCaption");
