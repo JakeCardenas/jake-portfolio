@@ -877,6 +877,11 @@ body::after {
 .skill-badge .si {
   font-size: 0.94rem;
 }
+.skill-badge .icon-svg {
+  width: 1rem;
+  height: auto;
+  flex: none;
+}
 .si-openai {
   color: #412991;
 }
@@ -889,17 +894,35 @@ body::after {
 .si-xampp {
   color: #fb7a24;
 }
-.si-githubcopilot {
-  color: var(--fg);
-}
 .si-instagram {
   color: #e4405f;
+}
+.si-davinciresolve {
+  color: #233a51;
 }
 .dark .si-openai {
   color: #a78bfa;
 }
 .dark .si-googlegemini {
   color: #b9a5d6;
+}
+.dark .si-davinciresolve {
+  color: #8fa9c6;
+}
+/* these brand colours are near-black, so they vanish on the dark ground */
+.dark .devicon-photoshop-plain.colored {
+  color: #31a8ff;
+}
+.dark .devicon-github-original,
+.dark .devicon-nextjs-plain,
+.dark .devicon-vercel-original.colored {
+  color: var(--fg);
+}
+.dark .devicon-cplusplus-plain.colored {
+  color: #6aa2d8;
+}
+.dark .devicon-mysql-plain.colored {
+  color: #4d9ec4;
 }
 
 .chip {
@@ -2342,6 +2365,9 @@ body.menu-open {
     font-size: 0.72rem;
     padding: 0.42rem 0.7rem;
     gap: 0.45rem;
+  }
+  .skill-badge .icon-svg {
+    width: 0.9rem;
   }
   .skill-badge i {
     font-size: 0.9rem;
