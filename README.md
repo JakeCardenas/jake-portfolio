@@ -20,6 +20,7 @@ carries the portraits as data URIs so the halftone effect survives
 ## Structure
 
     index.html              markup for every section
+    gear.html               the gear page, sharing index.html's shell
     css/style.css           design tokens and all styling
     js/
       sound.js              Web Audio interaction sounds
@@ -29,14 +30,20 @@ carries the portraits as data URIs so the halftone effect survives
       icons/                favicon set, generated from the profile photo
       images/profile/       portrait photos, rendered to canvas as halftone
       images/projects/      project screenshots
+      images/gear/          product shots for the gear page
       certificates/         certificate scans shown in the modal
       resume/               CV goes here (see the README inside)
 
 ## Notes
 
-Cache busting is manual: `index.html` links CSS and JS with a `?v=`
-query. Bump it when editing either, or browsers may pair a new file
-with a stale one.
+Cache busting is manual: both pages link CSS and JS with a `?v=` query.
+Bump it in `index.html` and `gear.html` together when editing either, or
+browsers may pair a new file with a stale one.
+
+`gear.html` reuses the same sidebar, controls, and stylesheet as the home
+page. It skips `halftone-sources.js`, which only the hero portraits need,
+and its section carries no `id` so the home page's scroll-spy cannot clear
+the active GEAR link.
 
 The GitHub section pulls live contribution data at runtime and caches
 it for six hours, so it stays current without being committed.
