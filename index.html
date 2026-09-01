@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@300..600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@300..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"
       rel="stylesheet"
     />
 
@@ -38,7 +38,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
     />
-    <link href="./css/style.css?v=73" rel="stylesheet" />
+    <link href="./css/style.css?v=81" rel="stylesheet" />
   </head>
   <body>
     <div class="shell">
@@ -297,7 +297,7 @@
           <div class="eyebrow">02 — ABOUT</div>
           <h2 class="section-title">Jake Cardenas</h2>
 
-          <div class="prose">
+          <div class="prose serif">
             <p>
               Hi, I'm Jake Cardenas, a 3rd-year Bachelor of Science in
               Information Technology (BSIT) student majoring in Artificial
@@ -343,149 +343,73 @@
           <div class="eyebrow">03 — SKILLS</div>
           <h2 class="section-title">What I work with</h2>
 
-          <div class="skill-grid stagger">
-            <div class="card skill-card">
-              <div class="card-label mono">PROGRAMMING LANGUAGES</div>
-              <div class="badge-wrap">
-                <span class="skill-badge mono"
-                  ><i class="devicon-javascript-plain colored"></i>JavaScript</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-typescript-plain colored"></i>TypeScript</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-python-plain colored"></i>Python</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-java-plain colored"></i>Java</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-php-plain colored"></i>PHP</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-cplusplus-plain colored"></i>C++</span
-                >
+            <dl class="stack-list stagger">
+              <div class="stack-row">
+                <dt class="stack-label mono">PROGRAMMING LANGUAGES</dt>
+                <dd class="stack-items">
+                  <span>JavaScript</span>
+                  <span>TypeScript</span>
+                  <span>Python</span>
+                  <span>Java</span>
+                  <span>PHP</span>
+                  <span>C++</span>
+                </dd>
               </div>
-            </div>
-
-            <div class="card skill-card">
-              <div class="card-label mono">FRONTEND</div>
-              <div class="badge-wrap">
-                <span class="skill-badge mono"
-                  ><i class="devicon-html5-plain colored"></i>HTML5</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-css3-plain colored"></i>CSS3</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-react-original colored"></i>React</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-nextjs-plain colored"></i>Next.js</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-tailwindcss-plain colored"></i>Tailwind CSS</span
-                >
+              <div class="stack-row">
+                <dt class="stack-label mono">FRONTEND</dt>
+                <dd class="stack-items">
+                  <span>HTML5</span>
+                  <span>CSS3</span>
+                  <span>React</span>
+                  <span>Next.js</span>
+                  <span>Tailwind CSS</span>
+                </dd>
               </div>
-            </div>
-
-            <div class="card skill-card">
-              <div class="card-label mono">BACKEND</div>
-              <div class="badge-wrap">
-                <span class="skill-badge mono"
-                  ><i class="devicon-nodejs-plain colored"></i>Node.js</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-laravel-plain colored"></i>Laravel</span
-                >
+              <div class="stack-row">
+                <dt class="stack-label mono">BACKEND</dt>
+                <dd class="stack-items">
+                  <span>Node.js</span>
+                  <span>Laravel</span>
+                </dd>
               </div>
-            </div>
-
-            <div class="card skill-card">
-              <div class="card-label mono">DATABASE</div>
-              <div class="badge-wrap">
-                <span class="skill-badge mono"
-                  ><i class="devicon-mysql-plain colored"></i>MySQL</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-postgresql-plain colored"></i>PostgreSQL</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-firebase-plain colored"></i>Firebase</span
-                >
+              <div class="stack-row">
+                <dt class="stack-label mono">DATABASE</dt>
+                <dd class="stack-items">
+                  <span>MySQL</span>
+                  <span>PostgreSQL</span>
+                  <span>Firebase</span>
+                </dd>
               </div>
-            </div>
-
-            <div class="card skill-card">
-              <div class="card-label mono">TOOLS &amp; ENVIRONMENT</div>
-              <div class="badge-wrap">
-                <span class="skill-badge mono"
-                  ><i class="devicon-git-plain colored"></i>Git</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-github-original colored"></i>GitHub</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-vscode-plain colored"></i>VS Code</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-vercel-original colored"></i>Vercel</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="si si-xampp"></i>XAMPP</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-figma-plain colored"></i>Figma</span
-                >
+              <div class="stack-row">
+                <dt class="stack-label mono">TOOLS &amp; ENVIRONMENT</dt>
+                <dd class="stack-items">
+                  <span>Git</span>
+                  <span>GitHub</span>
+                  <span>VS Code</span>
+                  <span>Vercel</span>
+                  <span>XAMPP</span>
+                  <span>Figma</span>
+                </dd>
               </div>
-            </div>
-
-            <div class="card skill-card">
-              <div class="card-label mono">AI &amp; MACHINE LEARNING</div>
-              <div class="badge-wrap">
-                <span class="skill-badge mono"
-                  ><i class="si si-openai"></i>OpenAI</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="si si-claude"></i>Claude</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="si si-googlegemini"></i>Gemini</span
-                >
+              <div class="stack-row">
+                <dt class="stack-label mono">AI &amp; MACHINE LEARNING</dt>
+                <dd class="stack-items">
+                  <span>OpenAI</span>
+                  <span>Claude</span>
+                  <span>Gemini</span>
+                </dd>
               </div>
-            </div>
-
-            <div class="card skill-card">
-              <div class="card-label mono">CREATIVE &amp; EDITING</div>
-              <div class="badge-wrap">
-                <span class="skill-badge mono"
-                  ><svg
-                    class="icon-svg"
-                    viewBox="0 0 144.1 106.61"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      transform="translate(-439.95 -458.69)"
-                      d="M440,476.09a19.63,19.63,0,0,1,18.6-17.39h81.94a19.9,19.9,0,0,1,14.75,8.54,20.65,20.65,0,0,1,3.13,7.31l24.08-11.94a1.07,1.07,0,0,1,1.54.82c0,4.51,0,9,0,13.54a2.24,2.24,0,0,1-1.39,2.12q-33.23,16.48-66.47,33L582.5,544.9a2.3,2.3,0,0,1,1.54,2c0,4.52,0,9,0,13.56a1.11,1.11,0,0,1-1.77.9c-7.9-4-15.91-7.77-23.75-11.85a31.52,31.52,0,0,1-2.1,5.5,20,20,0,0,1-12.79,9.87,22.06,22.06,0,0,1-5.5.45H461.76c-1.72,0-3.45,0-5.16-.13A19.6,19.6,0,0,1,440,547.77c0-4.37,0-8.75,0-13.12a2.91,2.91,0,0,1,2-2.39c13.62-6.73,27.21-13.52,40.85-20.22q-20.61-10.26-41.25-20.46a2.65,2.65,0,0,1-1.58-2.41C440,484.82,439.93,480.45,440,476.09Zm15.18.09c-.82,1.65-.44,3.56-.51,5.34,15,7.41,29.89,14.86,44.86,22.22q22.19-11,44.4-22c0-1.33.06-2.66,0-4a5,5,0,0,0-5-4.28H459.75A4.94,4.94,0,0,0,455.17,476.18Zm-.51,66.36c.07,1.8-.32,3.74.55,5.41a5,5,0,0,0,4.55,2.65H539a4.94,4.94,0,0,0,4.33-2.49c1-1.75.54-3.85.64-5.77-14.83-7.32-29.64-14.76-44.5-22Q477,531.44,454.66,542.54Z"
-                    /></svg
-                  >CapCut</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="si si-davinciresolve"></i>DaVinci Resolve</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-photoshop-plain colored"></i>Photoshop</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-canva-original colored"></i>Canva</span
-                >
-                <span class="skill-badge mono"
-                  ><i class="devicon-blender-original colored"></i>Blender</span
-                >
+              <div class="stack-row">
+                <dt class="stack-label mono">CREATIVE &amp; EDITING</dt>
+                <dd class="stack-items">
+                  <span>CapCut</span>
+                  <span>DaVinci Resolve</span>
+                  <span>Photoshop</span>
+                  <span>Canva</span>
+                  <span>Blender</span>
+                </dd>
               </div>
-            </div>
-          </div>
+            </dl>
         </section>
 
         <section id="experience" class="section reveal">
@@ -495,7 +419,7 @@
           <ol class="timeline stagger">
             <li class="tl-item">
               <div class="tl-year mono">2026</div>
-              <div class="card tl-card">
+              <div class="tl-card">
                 <h3 class="entry-title">
                   Full Stack &amp; Agentic AI Developer Intern
                 </h3>
@@ -523,7 +447,7 @@
 
             <li class="tl-item">
               <div class="tl-year mono">2025</div>
-              <div class="card tl-card">
+              <div class="tl-card">
                 <h3 class="entry-title">Midyear Interactive Youth Forum</h3>
                 <div class="tl-org">
                   Philippine Association of Practitioners of Student Affairs and
@@ -553,21 +477,8 @@
           <div class="eyebrow">05 — PROJECTS</div>
           <h2 class="section-title">Things I've built</h2>
 
-          <article class="card project-card">
+          <article class="project-card">
             <div class="entry-head project-head">
-              <span class="icon-chip">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="2" y="4" width="20" height="14" rx="2" />
-                  <path d="M8 21h8M12 18v3" />
-                </svg>
-              </span>
               <div>
                 <h3 class="entry-title">Digital Twin Platform</h3>
                 <div class="entry-meta mono">
@@ -585,13 +496,13 @@
             <div class="card-label mono">TECH STACK</div>
             <div class="tech-row">
               <span class="tech mono"
-                ><i class="devicon-react-original colored"></i>React.js</span
+                ><i class="devicon-react-original"></i>React.js</span
               >
               <span class="tech mono"
                 ><i class="devicon-nextjs-plain"></i>Next.js</span
               >
               <span class="tech mono"
-                ><i class="devicon-nodejs-plain colored"></i>Node.js</span
+                ><i class="devicon-nodejs-plain"></i>Node.js</span
               >
               <span class="tech mono"
                 ><span class="icon-generic"></span>AI</span
@@ -639,22 +550,8 @@
             </div>
           </article>
 
-          <article class="card project-card">
+          <article class="project-card">
             <div class="entry-head project-head">
-              <span class="icon-chip">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path
-                    d="M3.5 9.5v5M6.5 6.5v11M17.5 6.5v11M20.5 9.5v5M6.5 12h11"
-                  />
-                </svg>
-              </span>
               <div>
                 <h3 class="entry-title">Reps — Workout Tracker</h3>
                 <div class="entry-meta mono">
@@ -674,14 +571,14 @@
             <div class="card-label mono">TECH STACK</div>
             <div class="tech-row">
               <span class="tech mono"
-                ><i class="devicon-javascript-plain colored"></i
+                ><i class="devicon-javascript-plain"></i
                 >JavaScript</span
               >
               <span class="tech mono"
-                ><i class="devicon-nodejs-plain colored"></i>Node.js</span
+                ><i class="devicon-nodejs-plain"></i>Node.js</span
               >
               <span class="tech mono"
-                ><i class="devicon-sqlite-plain colored"></i>SQLite</span
+                ><i class="devicon-sqlite-plain"></i>SQLite</span
               >
               <span class="tech mono"><span class="icon-generic"></span>PWA</span>
             </div>
@@ -727,21 +624,8 @@
             </div>
           </article>
 
-          <article class="card project-card">
+          <article class="project-card">
             <div class="entry-head project-head">
-              <span class="icon-chip">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M12 3 3 8l9 5 9-5-9-5Z" />
-                  <path d="M3 12l9 5 9-5M3 16l9 5 9-5" />
-                </svg>
-              </span>
               <div>
                 <h3 class="entry-title">CardenasDev — Key Visual</h3>
                 <div class="entry-meta mono">
@@ -760,7 +644,7 @@
             <div class="card-label mono">MADE WITH</div>
             <div class="tech-row">
               <span class="tech mono"
-                ><i class="devicon-photoshop-plain colored"></i>Adobe
+                ><i class="devicon-photoshop-plain"></i>Adobe
                 Photoshop</span
               >
             </div>
@@ -783,21 +667,8 @@
           <div class="eyebrow">06 — EDUCATION</div>
           <h2 class="section-title">Academic background</h2>
 
-          <div class="card entry-card">
+          <div class="entry-card">
             <div class="entry-head project-head">
-              <span class="icon-chip">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M22 10 12 5 2 10l10 5 10-5Z" />
-                  <path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" />
-                </svg>
-              </span>
               <div class="edu-head-body">
                 <h3 class="entry-title">
                   Bachelor of Science in Information Technology
@@ -967,8 +838,8 @@
       </div>
     </div>
 
-    <script src="./js/sound.js?v=73"></script>
-    <script src="./js/halftone-sources.js?v=73"></script>
-    <script src="./js/script.js?v=73"></script>
+    <script src="./js/sound.js?v=81"></script>
+    <script src="./js/halftone-sources.js?v=81"></script>
+    <script src="./js/script.js?v=81"></script>
   </body>
 </html>

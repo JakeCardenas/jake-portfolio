@@ -8,59 +8,81 @@
 }
 
 :root {
-  --bg: #f4f4f2;
-  --bg-soft: #ececea;
-  --bg-softer: #e4e4e1;
-  --fg: #0a0a0a;
-  --fg-muted: #4a4a48;
-  --fg-dim: #6b6b68;
-  --fg-faint: #97979a;
-  --border: #dcdcd8;
-  --border-strong: #c6c6c2;
-  --card: #fbfbfa;
+  color-scheme: light;
+
+  /* the ramp — every colour in the site resolves to one of these */
+  --ink: #0a0a0a;
+  --paper: #ffffff;
+  --g50: #fafafa;
+  --g100: #f5f5f5;
+  --g200: #e9e9e9;
+  --g300: #d4d4d4;
+  --g400: #a3a3a3;
+  --g500: #737373;
+  --g600: #525252;
+  --g700: #404040;
+
+  /* semantic roles map onto the ramp; dark mode only re-points these */
+  --bg: var(--paper);
+  --bg-soft: var(--g100);
+  --bg-softer: var(--g200);
+  --fg: var(--ink);
+  --fg-muted: var(--g600);
+  --fg-dim: var(--g500);
+  --fg-faint: var(--g400);
+  --border: var(--g200);
+  --border-strong: var(--g300);
+  --card: var(--g50);
 
   --dot-color: rgba(10, 10, 10, 0.9);
   --dot-size: 9px;
   --dot-size-wide: 13px;
 
-  --shadow-sm: 0 1px 2px rgba(15, 15, 20, 0.04);
-  --shadow-card: 0 26px 55px -22px rgba(10, 10, 10, 0.3);
-  --shadow-lift: 0 30px 60px -20px rgba(10, 10, 10, 0.38);
-  --shadow-badge:
-    0 1px 2px rgba(15, 15, 20, 0.05), 0 4px 10px -8px rgba(15, 15, 20, 0.3);
+  /* soft ground contact, not elevation */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 8px 22px -14px rgba(0, 0, 0, 0.25);
+  --shadow-lift: 0 18px 36px -20px rgba(0, 0, 0, 0.4);
+  --shadow-modal: 0 40px 90px -20px rgba(0, 0, 0, 0.35);
+  --shadow-badge: 0 1px 2px rgba(0, 0, 0, 0.04);
 
+  --r-xs: 0.375rem;
   --r-sm: 0.5rem;
   --r-md: 0.75rem;
   --r-lg: 1rem;
-  --r-xl: 1.5rem;
-  --gear-line: #e8e8e4;
-  --gear-line-hover: #d2d2cc;
+  --r-xl: 1rem;
+  --gear-line: var(--g200);
+  --gear-line-hover: var(--g300);
 
   --sidebar-w: 14rem;
-  --content-w: 71rem;
+  --measure-read: 42rem;
+  --content-w: 56rem;
 
-  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark {
-  --bg: #0c0c0f;
-  --bg-soft: #141418;
-  --bg-softer: #1c1c21;
-  --fg: #f4f4f5;
-  --fg-muted: #b8b8c0;
-  --fg-dim: #8f8f98;
-  --fg-faint: #8a8a92;
-  --border: #2a2a30;
-  --border-strong: #3a3a42;
-  --card: #131316;
+  color-scheme: dark;
 
+  --ink: #f4f4f5;
+  --paper: #0c0c0f;
+  --g50: #18181b;
+  --g100: #1e1e22;
+  --g200: #2a2a30;
+  --g300: #3a3a42;
+  --g400: #8a8a92;
+  --g500: #a0a0a8;
+  --g600: #b8b8c0;
+  --g700: #d0d0d6;
+
+  --card: var(--g50);
   --dot-color: rgba(244, 244, 245, 0.42);
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-card: 0 26px 55px -22px rgba(10, 10, 10, 0.3);
-  --shadow-lift: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
-  --shadow-badge:
-    0 1px 2px rgba(0, 0, 0, 0.5), 0 4px 10px -8px rgba(0, 0, 0, 0.8);
+  /* shadows all but disappear on dark; borders carry the structure */
+  --shadow-sm: none;
+  --shadow-card: 0 8px 22px -14px rgba(0, 0, 0, 0.6);
+  --shadow-lift: 0 18px 36px -20px rgba(0, 0, 0, 0.7);
+  --shadow-modal: 0 40px 90px -20px rgba(0, 0, 0, 0.7);
+  --shadow-badge: none;
 }
 
 * {
@@ -119,13 +141,42 @@ img {
   font-family: "Geist Mono", ui-monospace, monospace;
 }
 
+/* pixel is an accent: small numbers and markers only */
 .pixel,
-.hero-name,
-.eyebrow,
 .stat-num {
   font-family: "Geist Pixel", "Geist Mono", ui-monospace, monospace;
   font-weight: 400;
 }
+
+/* long-form editorial voice */
+.serif {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+/* emphasis by inversion — the spec's one loud move */
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+/* slim scrollbars that follow the theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--g300) transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--g300);
+  border-radius: 999px;
+}
+
 .text-faint {
   color: var(--fg-faint);
 }
@@ -591,7 +642,7 @@ body::after {
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: #22c55e;
+  background: var(--fg);
   box-shadow: 0 0 0 0 currentColor;
   animation: pulse 2.8s ease-out infinite;
 }
@@ -759,18 +810,20 @@ body::after {
 }
 
 .section {
-  padding: 5.5rem 0;
+  padding: 3.5rem 0;
 }
 .section:first-child {
   padding-top: 1rem;
 }
 
 .eyebrow {
-  font-size: 0.875rem;
-  line-height: 1.43;
-  letter-spacing: normal;
-  color: var(--fg-faint);
-  margin-bottom: 2.133rem;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  margin-bottom: 1.6rem;
 }
 
 .section-title {
@@ -821,23 +874,6 @@ body::after {
   transform: translateY(-3px);
 }
 
-.icon-chip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: var(--r-sm);
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  color: var(--fg-muted);
-  flex: none;
-}
-.icon-chip svg {
-  width: 16px;
-  height: 16px;
-}
-
 .icon-generic {
   width: 12px;
   height: 12px;
@@ -845,86 +881,6 @@ body::after {
   background: var(--fg-faint);
   display: inline-block;
   flex: none;
-}
-
-.skill-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.5rem 0.85rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  box-shadow: var(--shadow-badge);
-  font-size: 0.75rem;
-  color: var(--fg);
-  transition:
-    transform 0.2s var(--ease),
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-}
-.skill-badge:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lift);
-  border-color: var(--border-strong);
-}
-.skill-badge i {
-  font-size: 1rem;
-  line-height: 1;
-  width: 1rem;
-  text-align: center;
-  flex: none;
-}
-
-.skill-badge .si {
-  font-size: 0.94rem;
-}
-.skill-badge .icon-svg {
-  width: 1rem;
-  height: auto;
-  flex: none;
-}
-.si-openai {
-  color: #412991;
-}
-.si-claude {
-  color: #d97757;
-}
-.si-googlegemini {
-  color: #8e75b2;
-}
-.si-xampp {
-  color: #fb7a24;
-}
-.si-instagram {
-  color: #e4405f;
-}
-.si-davinciresolve {
-  color: #233a51;
-}
-.dark .si-openai {
-  color: #a78bfa;
-}
-.dark .si-googlegemini {
-  color: #b9a5d6;
-}
-.dark .si-davinciresolve {
-  color: #8fa9c6;
-}
-/* these brand colours are near-black, so they vanish on the dark ground */
-.dark .devicon-photoshop-plain.colored {
-  color: #31a8ff;
-}
-.dark .devicon-github-original,
-.dark .devicon-nextjs-plain,
-.dark .devicon-vercel-original.colored {
-  color: var(--fg);
-}
-.dark .devicon-cplusplus-plain.colored {
-  color: #6aa2d8;
-}
-.dark .devicon-mysql-plain.colored {
-  color: #4d9ec4;
 }
 
 .gear-title {
@@ -950,14 +906,9 @@ body::after {
   margin-bottom: 1.6rem;
 }
 .gear-group-head .card-label {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
-}
-.gear-note {
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--fg-faint);
 }
 
 .gear-grid {
@@ -1102,15 +1053,58 @@ body::after {
   }
 }
 
+/* skills: a stack read as a record, not a wall of badges */
+.stack-list {
+  margin: 0;
+  border-top: 1px solid var(--border);
+}
+.stack-row {
+  display: grid;
+  grid-template-columns: 12.5rem 1fr;
+  gap: 1.5rem;
+  padding: 1.05rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.stack-label {
+  margin: 0;
+  padding-top: 0.2rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+.stack-items {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--fg);
+}
+.stack-items span:not(:last-child)::after {
+  content: "·";
+  margin: 0 0.55rem;
+  color: var(--fg-faint);
+}
+
+@media (max-width: 640px) {
+  .stack-row {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+    padding: 0.95rem 0;
+  }
+  .stack-label {
+    padding-top: 0;
+  }
+}
+
 .chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.7rem;
-  border-radius: var(--r-sm);
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
-  color: var(--fg-muted);
-  font-size: 0.6rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: none;
+  border: 1px solid var(--border-strong);
+  color: var(--fg-dim);
+  font-size: 0.5625rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1171,20 +1165,6 @@ body::after {
 }
 .link-out:hover span {
   transform: translate(2px, -2px);
-}
-
-.skill-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14.5rem, 1fr));
-  gap: 1rem;
-}
-.skill-card {
-  padding: 1.333rem;
-}
-.badge-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
 }
 
 .entry-card {
@@ -1271,15 +1251,19 @@ body::after {
 }
 
 .project-card {
-  padding: 1.75rem 1.85rem 1.85rem;
+  padding: 0;
   border: 0;
+  background: none;
   box-shadow: none;
 }
 .project-card:hover {
   box-shadow: none;
+  transform: none;
 }
 .project-card + .project-card {
-  margin-top: 1.6rem;
+  margin-top: 3.5rem;
+  padding-top: 3.5rem;
+  border-top: 1px solid var(--border);
 }
 .project-card .entry-head {
   margin-bottom: 1.1rem;
@@ -1515,11 +1499,6 @@ body::after {
 }
 .stat:hover {
   background: var(--bg-soft);
-}
-
-.skill-badge:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-badge);
 }
 
 .side-email,
@@ -2149,7 +2128,7 @@ body::after {
 }
 
 .tl-card {
-  padding: 1.5rem 1.65rem;
+  padding: 0 0 0.25rem;
 }
 .tl-card .entry-title {
   padding-right: 0;
@@ -2538,25 +2517,6 @@ body.menu-open {
     min-height: 3rem;
   }
 
-  .skill-card {
-    padding: 1.15rem 1.15rem 1.25rem;
-  }
-  .badge-wrap {
-    gap: 0.45rem;
-  }
-  .skill-badge {
-    font-size: 0.72rem;
-    padding: 0.42rem 0.7rem;
-    gap: 0.45rem;
-  }
-  .skill-badge .icon-svg {
-    width: 0.9rem;
-  }
-  .skill-badge i {
-    font-size: 0.9rem;
-    width: 0.9rem;
-  }
-
   .project-card .entry-title {
     font-size: 1.05rem;
   }
@@ -2784,4 +2744,18 @@ body.menu-open {
   .section--hero {
     min-height: 0;
   }
+}
+
+.entry-card {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.prose.serif {
+  max-width: var(--measure-read);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
 }
