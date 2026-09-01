@@ -395,6 +395,46 @@ const CERTS = {
       ["Issued", "5 May 2026"],
     ],
   },
+
+  "react-fundamentals": {
+    name: "Certificate of Achievement",
+    org: "CodeCred",
+    note: "An in-depth assessment of React.js principles, covering component architecture, state management, and performance optimization. This certification validates expertise in building scalable React applications.",
+    img: "./assets/certificates/react-fundamentals.jpg",
+    verify: "https://www.codecred.dev/verify/c2aec721-8724-4413-b8d0-bbaf808f82b5",
+    facts: [
+      ["Subject", "React Fundamentals"],
+      ["Final score", "96%"],
+      ["Difficulty", "Advanced"],
+      ["Issued", "September 1, 2026"],
+    ],
+  },
+  "neo4j-certified-professional": {
+    name: "Certificate of Completion",
+    org: "Neo4j GraphAcademy",
+    note: "Completed all requirements for Neo4j Certified Professional, covering the graph database fundamentals on the Path to Neo4j Certification.",
+    img: "./assets/certificates/neo4j-certified-professional.jpg",
+    verify: "https://graphacademy.neo4j.com/c/b0d1cda4-c70e-427b-bf3e-634bce0bed1b/",
+    facts: [
+      ["Certification", "Neo4j Certified Professional"],
+      ["Category", "Path to Neo4j Certification"],
+      ["Course duration", "1 hour"],
+      ["Issued", "September 1, 2026"],
+    ],
+  },
+  "neo4j-genai-fundamentals": {
+    name: "Certificate of Completion",
+    org: "Neo4j GraphAcademy",
+    note: "Completed all requirements for Neo4j & GenerativeAI Fundamentals, covering how graph databases support generative AI as a context engineer.",
+    img: "./assets/certificates/neo4j-genai-fundamentals.jpg",
+    verify: "https://graphacademy.neo4j.com/c/dfeb3224-af87-4ba7-88f1-4a9ad1df7aa9/",
+    facts: [
+      ["Course", "Neo4j & GenerativeAI Fundamentals"],
+      ["Category", "Context Engineer"],
+      ["Course duration", "2 hours"],
+      ["Issued", "September 1, 2026"],
+    ],
+  },
 };
 
 const certModal = document.getElementById("certModal");
@@ -415,12 +455,16 @@ if (certModal) {
     noteEl.textContent = c.note;
     img.src = c.img;
     img.alt = c.name + " issued by " + c.org;
-    factsEl.innerHTML = c.facts
-      .map(
-        ([k, v]) =>
-          `<div class="cert-fact"><dt class="mono">${k}</dt><dd>${v}</dd></div>`,
-      )
-      .join("");
+    factsEl.innerHTML =
+      c.facts
+        .map(
+          ([k, v]) =>
+            `<div class="cert-fact"><dt class="mono">${k}</dt><dd>${v}</dd></div>`,
+        )
+        .join("") +
+      (c.verify
+        ? `<div class="cert-fact"><dt class="mono">Verify</dt><dd><a class="cert-verify mono" href="${c.verify}" target="_blank" rel="noopener">VERIFY CERTIFICATE <span aria-hidden="true">↗</span></a></dd></div>`
+        : "");
 
     lastFocused = document.activeElement;
     certModal.hidden = false;

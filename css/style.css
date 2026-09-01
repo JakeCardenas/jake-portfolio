@@ -2759,3 +2759,14 @@ body.menu-open {
   font-size: 1.0625rem;
   line-height: 1.75;
 }
+
+.cert-verify {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--fg);
+  text-decoration-color: rgb(10 10 10 / 0.25);
+  text-underline-offset: 2px;
+}
+.cert-verify:hover {
+  text-decoration-color: var(--fg);
+}
