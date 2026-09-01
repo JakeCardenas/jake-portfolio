@@ -314,6 +314,8 @@ body::after {
 .main {
   flex: 1;
   min-width: 0;
+  /* auto margins centre the column in whatever space is left beside the rail */
+  margin-inline: auto;
   padding: 3.5rem 1.5rem 4rem;
   max-width: calc(var(--content-w) + 3rem);
 }
@@ -433,16 +435,11 @@ body::after {
   color: var(--bg);
 }
 
-.sound-btn .sound-icon-off {
+/* cuelume toggles [hidden] on the two icons; dim the control when off */
+.sound-btn svg[hidden] {
   display: none;
 }
-.sound-btn.muted .sound-icon-on {
-  display: none;
-}
-.sound-btn.muted .sound-icon-off {
-  display: block;
-}
-.sound-btn.muted {
+.sound-btn[aria-pressed="false"] {
   opacity: 0.5;
 }
 
@@ -853,7 +850,7 @@ body::after {
 }
 
 .prose {
-  max-width: 44rem;
+  max-width: var(--measure-read);
   color: var(--fg-muted);
   display: flex;
   flex-direction: column;
@@ -895,7 +892,7 @@ body::after {
 }
 
 .gear-intro {
-  max-width: 38rem;
+  max-width: var(--measure-read);
   margin-bottom: 4.5rem;
   font-size: 1.05rem;
   line-height: 1.65;
@@ -1217,7 +1214,7 @@ body::after {
   color: var(--fg-muted);
   font-size: 1rem;
   line-height: 1.625;
-  max-width: 48rem;
+  max-width: var(--measure-read);
   margin-bottom: 1.6rem;
 }
 

@@ -163,66 +163,6 @@ function renderAllHalftones() {
   });
 }
 
-const soundBtn = document.getElementById("soundToggle");
-function updateSoundBtnUI() {
-  soundBtn.classList.toggle("muted", !SoundManager.isEnabled());
-  soundBtn.setAttribute("aria-pressed", String(SoundManager.isEnabled()));
-}
-updateSoundBtnUI();
-soundBtn.addEventListener("click", (e) => {
-  e.stopPropagation();
-  const turningOn = !SoundManager.isEnabled();
-  SoundManager.setEnabled(turningOn);
-  if (turningOn) SoundManager.play("chime");
-  updateSoundBtnUI();
-});
-
-// hover ticks, buttons click, panels swell; links stay silent on click
-const HOVER_TARGETS = [
-  ".nav-link",
-  ".side-logo",
-  ".side-email",
-  ".btn",
-  ".link-out",
-  ".info-pill:not(.is-static)",
-  ".ctl-btn",
-  ".menu-btn",
-  ".cert-card",
-  ".carousel-dot",
-  ".photo-swap",
-  ".gh-graph-link",
-  ".tl-card",
-].join(", ");
-
-document.querySelectorAll(HOVER_TARGETS).forEach((el) => {
-  el.addEventListener("mouseenter", () => SoundManager.play("hover"));
-});
-
-document.querySelectorAll(".btn, .ctl-btn:not(#soundToggle)").forEach((el) => {
-  el.addEventListener("click", () => SoundManager.play("click"));
-});
-
-document.querySelectorAll("#menuBtn").forEach((el) => {
-  el.addEventListener("click", () => SoundManager.play("swell"));
-});
-
-document.querySelectorAll(".nav-link").forEach((el) => {
-  el.addEventListener("click", () => SoundManager.play("click"));
-});
-
-document.querySelectorAll("[data-carousel]").forEach((carousel) => {
-  carousel.querySelectorAll(".carousel-dot, .carousel-slide").forEach((el) => {
-    el.addEventListener("click", () => {
-      if (!el.classList.contains("active")) SoundManager.play("swap");
-    });
-  });
-});
-
-const photoSwapEl = document.querySelector(".photo-swap");
-if (photoSwapEl) {
-  photoSwapEl.addEventListener("click", () => SoundManager.play("swap"));
-}
-
 const root = document.documentElement;
 const themeBtns = document.querySelectorAll("[data-theme-btn]");
 const systemQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -488,7 +428,6 @@ if (certModal) {
     // rAF never fires in a background tab, so force the reflow instead
     void certModal.offsetHeight;
     certModal.classList.add("is-open");
-    SoundManager.play("swell");
     certModal.querySelector(".cert-modal-close").focus();
   }
 
