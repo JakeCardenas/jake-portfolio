@@ -143,7 +143,10 @@ img {
 
 /* pixel is an accent: small numbers and markers only */
 .pixel,
-.stat-num {
+.stat-num,
+.hero-name,
+.section-title,
+.gear-title {
   font-family: "Geist Pixel", "Geist Mono", ui-monospace, monospace;
   font-weight: 400;
 }
@@ -827,9 +830,9 @@ body::after {
 }
 
 .section-title {
-  font-size: clamp(1.4rem, 3vw, 1.6rem);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.5rem, 3.1vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: normal;
   margin-bottom: 2.5rem;
 }
 
@@ -886,7 +889,7 @@ body::after {
 .gear-title {
   font-size: clamp(2rem, 4.5vw, 2.6rem);
   font-weight: 400;
-  letter-spacing: -0.015em;
+  letter-spacing: normal;
   line-height: 1.1;
   margin-bottom: 1.6rem;
 }
