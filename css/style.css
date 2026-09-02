@@ -318,7 +318,9 @@ body::after {
   /* auto margins centre the column in whatever space is left beside the rail */
   margin-inline: auto;
   padding: 3.5rem 1.5rem 4rem;
-  max-width: calc(var(--content-w) + 3rem);
+  /* padding must sit outside the measure, or the reading column comes up short */
+  max-width: var(--content-w);
+  box-sizing: content-box;
 }
 
 .sidebar {
@@ -502,9 +504,15 @@ body::after {
 
 .hero-grid {
   display: grid;
-  gap: 2.75rem;
+  gap: 2.25rem;
   align-items: start;
   margin-top: 1.75rem;
+}
+@media (min-width: 640px) {
+  .hero-grid {
+    grid-template-columns: 18rem minmax(0, 1fr);
+    gap: 2.5rem;
+  }
 }
 
 .photo-swap {
@@ -550,11 +558,13 @@ body::after {
 }
 .photo-frame {
   position: relative;
-
   aspect-ratio: 3 / 4;
   background: transparent;
   border-radius: 0;
   overflow: hidden;
+  /* the halftone fades out at the bottom rather than stopping on a hard edge */
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 42%);
+  mask-image: linear-gradient(to top, transparent 0%, #000 42%);
 }
 .halftone-canvas {
   position: absolute;
@@ -2621,7 +2631,7 @@ body.menu-open {
 
 /* pages that carry grids rather than prose get the wider measure */
 .main--wide {
-  max-width: calc(var(--content-w-wide) + 3rem);
+  max-width: var(--content-w-wide);
 }
 
 /* ── page-wide halftone backdrop ─────────────────────────────────────────── */
@@ -3049,4 +3059,110 @@ body.menu-open {
 /* components set their own display, which silently defeats the hidden attribute */
 [hidden] {
   display: none !important;
+}
+
+/* ── hero links: small lowercase mono, no pills ──────────────────────────── */
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.85rem;
+  margin-bottom: 1.9rem;
+  font-size: 0.75rem;
+  color: var(--fg-dim);
+}
+.hero-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.22s ease;
+}
+.hero-links a:hover {
+  color: var(--fg);
+}
+.hero-links span {
+  font-size: 0.65rem;
+}
+
+/* ── stack preview pills ─────────────────────────────────────────────────── */
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.pill {
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xs);
+  background: var(--bg);
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+}
+.pill-more {
+  border-style: dashed;
+  border-color: var(--border-strong);
+  color: var(--fg-dim);
+  text-decoration: none;
+  transition: border-color 0.22s ease, color 0.22s ease;
+}
+.pill-more:hover {
+  border-color: var(--fg);
+  color: var(--fg);
+}
+
+/* ── compact hairline rows: year | title | org ───────────────────────────── */
+.row-list {
+  border-top: 1px solid var(--border);
+}
+.row-item {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.15rem 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.22s ease;
+}
+.row-item:hover {
+  background: var(--g50);
+}
+.row-year {
+  font-size: 0.7rem;
+  color: var(--fg-faint);
+}
+.row-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--fg);
+}
+.row-org {
+  grid-column: 2;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--fg-dim);
+}
+@media (min-width: 640px) {
+  /* the reference splits the row 2 / 6 / 4 of twelve */
+  .row-item {
+    grid-template-columns: 2fr 6fr 4fr;
+  }
+  .row-org {
+    grid-column: 3;
+    text-align: right;
+  }
+}
+
+/* the stack block sits under the rows with its own quiet header */
+.sub-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 2.25rem 0 1rem;
+}
+.sub-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg-dim);
 }
