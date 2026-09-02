@@ -508,11 +508,6 @@ if (certModal) {
       }
     }
   });
-
-  // a certificate that has not been added yet should not show a broken frame
-  document.querySelectorAll(".cert-thumb img").forEach((t) => {
-    t.addEventListener("error", () => t.closest(".cert-thumb").classList.add("is-empty"));
-  });
 }
 
 
