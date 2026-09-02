@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jake Cardenas — Portfolio</title>
-    <meta
-      name="description"
-      content="Jake Cardenas — BSIT (Artificial Intelligence) student at St. Paul University Philippines. Full-stack and AI developer."
-    />
+    <meta name="description" content="Jake Cardenas — BSIT (Artificial Intelligence) student at St. Paul University Philippines. Full-stack and AI developer." />
     <link rel="icon" href="./assets/icons/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" href="./assets/icons/icon-192.png" type="image/png" sizes="192x192" />
     <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" />
@@ -15,21 +12,16 @@
     <meta name="theme-color" content="#f4f4f2" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0c0c0f" media="(prefers-color-scheme: dark)" />
     <meta property="og:title" content="Jake Cardenas — Portfolio" />
-    <meta
-      property="og:description"
-      content="BSIT student majoring in Artificial Intelligence at St. Paul University Philippines. Full-stack and AI development."
-    />
+    <meta property="og:description" content="Jake Cardenas — BSIT (Artificial Intelligence) student at St. Paul University Philippines. Full-stack and AI developer." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="./assets/icons/icon-512.png" />
     <meta name="twitter:card" content="summary" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <link
       href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@300..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"
       rel="stylesheet"
     />
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/devicon@2.17.0/devicon.min.css"
@@ -38,81 +30,48 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
     />
-    <link href="./css/style.css?v=91" rel="stylesheet" />
+    <link href="./css/style.css?v=100" rel="stylesheet" />
   </head>
   <body>
+    <div aria-hidden="true" class="page-halftone">
+      <span class="ht ht-tr"></span><span class="ht ht-bl"></span>
+    </div>
+
     <div class="shell">
       <aside class="sidebar">
-        <a href="#home" class="side-logo mono" data-nav-logo
-          >jakecardenas.com</a
-        >
+        <a href="./index.html" class="side-logo mono" data-nav-logo>jakecardenas.com</a>
 
         <nav class="side-nav mono" id="siteNav" aria-label="Sections">
-          <a href="#home" class="nav-link active" data-nav>HOME</a>
-          <a href="#about" class="nav-link" data-nav>ABOUT</a>
-          <a href="#skills" class="nav-link" data-nav>SKILLS</a>
-          <a href="#experience" class="nav-link" data-nav>EXPERIENCE</a>
-          <a href="#projects" class="nav-link" data-nav>PROJECTS</a>
-          <a href="#certifications" class="nav-link" data-nav>CERTIFICATIONS</a>
-          <a href="./gear.html" class="nav-link" data-nav>GEAR</a>
-          <a href="#github" class="nav-link" data-nav>GITHUB</a>
+          <div class="nav-group">
+            <a href="./blog.html" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>BLOG</a>
+            <a href="./gear.html" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 19h18M9.5 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>GEAR</a>
+            <a href="./projects.html" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7.5A1.5 1.5 0 015.5 6h4l2 2.5h7A1.5 1.5 0 0120 10v7.5A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5v-10z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>PROJECTS</a>
+            <a href="./certifications.html" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="5" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>CERTIFICATIONS</a>
+          </div>
+          <span class="nav-rule" aria-hidden="true"></span>
+          <div class="nav-group">
+            <a href="#experience" class="nav-link" data-nav>EXPERIENCE &amp; STACK</a>
+            <a href="#internships" class="nav-link" data-nav>INTERNSHIPS</a>
+            <a href="#github" class="nav-link" data-nav>GITHUB</a>
+          </div>
         </nav>
 
         <div class="side-foot">
           <div class="control-pill">
             <div class="theme-switch" role="group" aria-label="Theme">
-              <button
-                class="ctl-btn"
-                data-theme-btn="system"
-                aria-label="Match system theme"
-                title="System"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="2" y="4" width="20" height="13" rx="2" />
-                  <path d="M8 21h8M12 17v4" />
+              <button class="ctl-btn" data-theme-btn="system" aria-label="Match system theme" title="System">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4" />
                 </svg>
               </button>
-              <button
-                class="ctl-btn"
-                data-theme-btn="light"
-                aria-label="Light mode"
-                title="Light"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+              <button class="ctl-btn" data-theme-btn="light" aria-label="Light mode" title="Light">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="4" />
-                  <path
-                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
-                  />
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
                 </svg>
               </button>
-              <button
-                class="ctl-btn"
-                data-theme-btn="dark"
-                aria-label="Dark mode"
-                title="Dark"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+              <button class="ctl-btn" data-theme-btn="dark" aria-label="Dark mode" title="Dark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
                 </svg>
               </button>
@@ -120,55 +79,22 @@
 
             <span class="pill-divider" aria-hidden="true"></span>
 
-            <button
-              id="soundToggle"
-              class="ctl-btn sound-btn"
-              data-sound-toggle
-              aria-label="Enable interface sounds"
-              aria-pressed="false"
-              title="Sounds off"
-            >
-              <svg
-                class="sound-icon-on" data-sound-on
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+            <button id="soundToggle" class="ctl-btn sound-btn" data-sound-toggle
+                    aria-label="Enable interface sounds" aria-pressed="false" title="Sounds off">
+              <svg class="sound-icon-on" data-sound-on viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
               </svg>
-              <svg
-                class="sound-icon-off" data-sound-off
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M11 5 6 9H2v6h4l5 4V5Z" />
-                <line x1="23" y1="9" x2="17" y2="15" />
-                <line x1="17" y1="9" x2="23" y2="15" />
+              <svg class="sound-icon-off" data-sound-off viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" />
               </svg>
             </button>
           </div>
 
-          <a href="mailto:marijakee@gmail.com" class="side-email mono"
-            >marijakee@gmail.com</a
-          >
+          <a href="mailto:marijakee@gmail.com" class="side-email mono">marijakee@gmail.com</a>
         </div>
 
-        <button
-          id="menuBtn"
-          class="menu-btn mono"
-          aria-controls="siteNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button id="menuBtn" class="menu-btn mono" aria-controls="siteNav"
+                aria-expanded="false" aria-label="Toggle navigation">
           <span class="menu-bars" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="menu-label">MENU</span>
         </button>
@@ -176,7 +102,7 @@
 
       <main class="main">
         <section id="home" class="section section--hero reveal">
-          <div class="eyebrow">01 — HOME</div>
+
 
           <div class="hero-grid">
             <div
@@ -261,7 +187,7 @@
               </div>
 
               <div class="btn-row">
-                <a href="#projects" class="btn btn-solid mono"
+                <a href="./projects.html" class="btn btn-solid mono"
                   >VIEW PROJECTS <span aria-hidden="true">→</span></a
                 >
                 <!-- add assets/resume/jake-cardenas-resume.pdf, then
@@ -276,75 +202,215 @@
                 >
               </div>
 
-              <div class="stat-strip">
-                <div class="stat">
-                  <div class="stat-num">4</div>
-                  <div class="stat-label mono">PROJECTS SHIPPED</div>
+              
+            </div>
+          </div>
+        </section>
+
+          <div class="stat-row">
+            <a class="stat-cell" href="./projects.html">
+              <span class="stat-num">3<span class="stat-arrow" aria-hidden="true">↗</span></span>
+              <span class="stat-label mono">PROJECTS SHIPPED</span>
+            </a>
+            <a class="stat-cell" href="./certifications.html">
+              <span class="stat-num">5<span class="stat-arrow" aria-hidden="true">↗</span></span>
+              <span class="stat-label mono">CERTIFICATES</span>
+            </a>
+            <a class="stat-cell" href="#experience">
+              <span class="stat-num">6<span class="stat-arrow" aria-hidden="true">↗</span></span>
+              <span class="stat-label mono">LANGUAGES</span>
+            </a>
+            <a class="stat-cell" href="#internships">
+              <span class="stat-num">1<span class="stat-arrow" aria-hidden="true">↗</span></span>
+              <span class="stat-label mono">INTERNSHIP</span>
+            </a>
+          </div>
+
+        <div class="ht-rule" aria-hidden="true"></div>
+
+        <section id="blog" class="section reveal">
+          <div class="num-head">
+            <h2 class="num-title">01 — blog</h2>
+            <a href="./blog.html" class="num-link mono">ALL POSTS →</a>
+          </div>
+          <p class="empty-note">
+            Notes on what I'm learning — AI, full-stack work, and the projects
+            behind them. First posts are on the way.
+          </p>
+        </section>
+
+        <section id="gear" class="section reveal">
+          <div class="num-head">
+            <h2 class="num-title">02 — gear</h2>
+            <a href="./gear.html" class="num-link mono">ALL GEAR →</a>
+          </div>
+          <div class="gear-preview">
+            <a class="gp-item" href="./gear.html">
+              <span class="gp-shot"><img src="./assets/images/gear/macbook-air-m2.jpg?v=100" alt="" loading="lazy" /></span>
+              <span class="gp-name">MacBook Air M2</span>
+              <span class="gp-meta mono">Laptop</span>
+            </a>
+            <a class="gp-item" href="./gear.html">
+              <span class="gp-shot"><img src="./assets/images/gear/aoc-24g2sp.jpg?v=100" alt="" loading="lazy" /></span>
+              <span class="gp-name">AOC 24G2SP</span>
+              <span class="gp-meta mono">Monitor</span>
+            </a>
+            <a class="gp-item" href="./gear.html">
+              <span class="gp-shot"><img src="./assets/images/gear/aula-f75.jpg?v=100" alt="" loading="lazy" /></span>
+              <span class="gp-name">Aula F75</span>
+              <span class="gp-meta mono">Keyboard</span>
+            </a>
+            <a class="gp-item" href="./gear.html">
+              <span class="gp-shot"><img src="./assets/images/gear/logitech-gpx-superlight.jpg?v=100" alt="" loading="lazy" /></span>
+              <span class="gp-name">Logitech G Pro X Superlight</span>
+              <span class="gp-meta mono">Mouse</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="projects" class="section reveal">
+          <div class="num-head">
+            <h2 class="num-title">03 — projects</h2>
+            <a href="./projects.html" class="num-link mono">ALL PROJECTS →</a>
+          </div>
+          <div class="deck" data-deck>
+              <article class="deck-card is-left" role="button" tabindex="0"
+                       aria-label="Show Reps — Workout Tracker"
+                       onclick="activateCard(this)"
+                       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();activateCard(this);}">
+                <div class="deck-shot"><img src="./assets/images/projects/reps-1.jpg?v=100" alt="" loading="lazy" /></div>
+                <h3 class="deck-title">Reps — Workout Tracker</h3>
+                <div class="deck-meta mono">WEB APP · · · OFFLINE-FIRST PWA · · · NODE BACKEND</div>
+                <p class="deck-body">A workout tracker for planning exercises, customizing sets and reps, and following your gym progress. It has a library of 99 movements, a weekly split planner, a set-by-set runner with a rest timer, and it installs as an offline PWA.</p>
+                <a href="https://reps-one-psi.vercel.app/" target="_blank" rel="noopener" class="deck-link mono">VIEW LIVE SITE <span aria-hidden="true">↗</span></a>
+              </article>
+              <article class="deck-card is-center" role="button" tabindex="0"
+                       aria-label="Show Digital Twin Platform"
+                       onclick="activateCard(this)"
+                       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();activateCard(this);}">
+                <div class="deck-shot"><img src="./assets/images/projects/digital-twin-1.jpg?v=100" alt="" loading="lazy" /></div>
+                <h3 class="deck-title">Digital Twin Platform</h3>
+                <div class="deck-meta mono">FULL-STACK · · · INTERACTIVE PORTFOLIO · · · AI-POWERED CHAT</div>
+                <p class="deck-body">A full-stack platform with an interactive portfolio and an AI-powered chat.</p>
+                <a href="https://grouptwodigitaltwin.vercel.app/" target="_blank" rel="noopener" class="deck-link mono">VIEW LIVE SITE <span aria-hidden="true">↗</span></a>
+              </article>
+              <article class="deck-card is-right" role="button" tabindex="0"
+                       aria-label="Show CardenasDev — Key Visual"
+                       onclick="activateCard(this)"
+                       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();activateCard(this);}">
+                <div class="deck-shot"><img src="./assets/images/projects/cardenasdev-1.jpg?v=100" alt="" loading="lazy" /></div>
+                <h3 class="deck-title">CardenasDev — Key Visual</h3>
+                <div class="deck-meta mono">GRAPHIC DESIGN · · · PORTFOLIO KEY VISUAL · · · PHOTOSHOP</div>
+                <p class="deck-body">A key visual for my portfolio, inspired by The Creation of Adam, representing the connection between ideas, technology, and my journey exploring AI and full-stack development.</p>
+              </article>
+          </div>
+        </section>
+
+        <section id="certifications" class="section reveal">
+          <div class="num-head">
+            <h2 class="num-title">04 — certifications</h2>
+            <a href="./certifications.html" class="num-link mono">ALL CERTIFICATIONS →</a>
+          </div>
+          <div class="cert-grid">
+<a
+              class="cert-card"
+              href="https://drive.google.com/file/d/1kaa25uQ6G0TsSBra3EwroDLtl43DO5Bb/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="--rot: -4deg; --ty: 6px"
+              aria-label="View the Certificate of Participation and Certificate of Appearance from the Philippine Association of Practitioners of Student Affairs and Services, Inc. (opens in a new tab)"
+            >
+              <span class="cert-mark">
+                <img src="./assets/certificates/logos/papsas.png?v=100" alt="Philippine Association of Practitioners of Student Affairs and Services, Inc." loading="lazy" />
+              </span>
+              <span class="cert-title">Certificate of Participation &amp; Appearance</span>
+              <span class="cert-issuer mono" title="Philippine Association of Practitioners of Student Affairs and Services, Inc.">PAPSAS</span>
+              <span class="cert-open mono"><svg class="cert-leaf" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg><span>VIEW</span><svg class="cert-leaf cert-leaf--flip" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg></span>
+            </a>
+<a
+              class="cert-card"
+              href="https://www.credential.net/e6193529-ada5-4b33-ad90-61ec7595deaf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="--rot: 3deg; --ty: -4px"
+              aria-label="Verify the Full Stack &amp; Agentic AI Internship from Employability Advantage (opens in a new tab)"
+            >
+              <span class="cert-mark">
+                <img src="./assets/certificates/logos/employability-advantage.png?v=100" alt="Employability Advantage" loading="lazy" />
+              </span>
+              <span class="cert-title">Full Stack &amp; Agentic AI Internship</span>
+              <span class="cert-issuer mono">Employability Advantage</span>
+              <span class="cert-open mono"><svg class="cert-leaf" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg><span>VERIFY</span><svg class="cert-leaf cert-leaf--flip" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg></span>
+            </a>
+<a
+              class="cert-card"
+              href="https://www.codecred.dev/verify/c2aec721-8724-4413-b8d0-bbaf808f82b5"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="--rot: -2deg; --ty: 3px"
+              aria-label="Verify React Fundamentals from CodeCred (opens in a new tab)"
+            >
+              <span class="cert-mark">
+                <img src="./assets/certificates/logos/codecred.svg?v=100" alt="CodeCred" loading="lazy" />
+              </span>
+              <span class="cert-title">React Fundamentals</span>
+              <span class="cert-issuer mono">CodeCred</span>
+              <span class="cert-open mono"><svg class="cert-leaf" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg><span>VERIFY</span><svg class="cert-leaf cert-leaf--flip" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg></span>
+            </a>
+<a
+              class="cert-card"
+              href="https://graphacademy.neo4j.com/c/b0d1cda4-c70e-427b-bf3e-634bce0bed1b/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="--rot: 4deg; --ty: -6px"
+              aria-label="Verify Neo4j Certified Professional from Neo4j GraphAcademy (opens in a new tab)"
+            >
+              <span class="cert-mark">
+                <img src="./assets/certificates/logos/neo4j.svg?v=100" alt="Neo4j GraphAcademy" loading="lazy" />
+              </span>
+              <span class="cert-title">Neo4j Certified Professional</span>
+              <span class="cert-issuer mono">Neo4j</span>
+              <span class="cert-open mono"><svg class="cert-leaf" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg><span>VERIFY</span><svg class="cert-leaf cert-leaf--flip" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg></span>
+            </a>
+          </div>
+        </section>
+
+        <section id="experience" class="section reveal">
+          <div class="num-head">
+            <h2 class="num-title">05 — experience &amp; stack</h2>
+          </div>
+          <ol class="timeline stagger">
+<li class="tl-item">
+              <div class="tl-year mono">2025</div>
+              <div class="tl-card">
+                <h3 class="entry-title">Midyear Interactive Youth Forum</h3>
+                <div class="tl-org">
+                  Philippine Association of Practitioners of Student Affairs and
+                  Services
                 </div>
-                <div class="stat">
-                  <div class="stat-num">4</div>
-                  <div class="stat-label mono">LANGUAGES</div>
+                <div class="entry-meta mono">
+                  September 17–19, 2025<span class="meta-sep">·</span>Summit
+                  Galleria Cebu, Cebu City
                 </div>
-                <div class="stat">
-                  <div class="stat-num">3</div>
-                  <div class="stat-label mono">CERTIFICATES</div>
+                <p class="entry-body">
+                  A national youth leadership forum that brought together
+                  student officers and leaders from schools across the
+                  Philippines to learn about leadership, good governance,
+                  accountability, and youth participation.
+                </p>
+                <div class="chip-row">
+                  <span class="chip mono">Leadership</span>
+                  <span class="chip mono">Good Governance</span>
+                  <span class="chip mono">Youth Development</span>
                 </div>
               </div>
-            </div>
+            </li>
+          </ol>
+
+          <div class="sub-head">
+            <h3 class="card-label mono">STACK</h3>
           </div>
-        </section>
-
-        <section id="about" class="section reveal">
-          <div class="eyebrow">02 — ABOUT</div>
-          <h2 class="section-title">Jake Cardenas</h2>
-
-          <div class="prose serif">
-            <p>
-              Hi, I'm Jake Cardenas, a 3rd-year Bachelor of Science in
-              Information Technology (BSIT) student majoring in Artificial
-              Intelligence at St. Paul University Tuguegarao.
-            </p>
-            <p>
-              I've always been interested in how things work behind the scenes,
-              which is what led me to AI and software development. I like
-              solving problems, I like learning by doing, and I like
-              understanding what makes something work, whether that's debugging
-              code, building a project, or trying out a new technology.
-            </p>
-            <p>
-              My passion lies in growing my knowledge of artificial
-              intelligence and full-stack development, and I'm excited to learn
-              by building projects that have real-world impact. I'm always open
-              to opportunities that help me learn, collaborate, contribute, and
-              grow as a future IT professional.
-            </p>
-          </div>
-
-          <div class="stat-strip stat-strip--wide">
-            <div class="stat">
-              <div class="stat-num">4</div>
-              <div class="stat-label mono">PROJECTS SHIPPED</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">2</div>
-              <div class="stat-label mono">INTERNSHIPS DONE</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">4</div>
-              <div class="stat-label mono">LANGUAGES</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">3</div>
-              <div class="stat-label mono">CERTIFICATES</div>
-            </div>
-          </div>
-        </section>
-
-        <section id="skills" class="section reveal">
-          <div class="eyebrow">03 — SKILLS</div>
-          <h2 class="section-title">What I work with</h2>
-
-            <dl class="stack-list stagger">
+<dl class="stack-list stagger">
               <div class="stack-row">
                 <dt class="stack-label mono">PROGRAMMING LANGUAGES</dt>
                 <dd class="stack-items">
@@ -413,12 +479,12 @@
             </dl>
         </section>
 
-        <section id="experience" class="section reveal">
-          <div class="eyebrow">04 — EXPERIENCE</div>
-          <h2 class="section-title">Where I've worked</h2>
-
+        <section id="internships" class="section reveal">
+          <div class="num-head">
+            <h2 class="num-title">06 — internships</h2>
+          </div>
           <ol class="timeline stagger">
-            <li class="tl-item">
+<li class="tl-item">
               <div class="tl-year mono">2026</div>
               <div class="tl-card">
                 <h3 class="entry-title">
@@ -445,338 +511,15 @@
                 </div>
               </div>
             </li>
-
-            <li class="tl-item">
-              <div class="tl-year mono">2025</div>
-              <div class="tl-card">
-                <h3 class="entry-title">Midyear Interactive Youth Forum</h3>
-                <div class="tl-org">
-                  Philippine Association of Practitioners of Student Affairs and
-                  Services
-                </div>
-                <div class="entry-meta mono">
-                  September 17–19, 2025<span class="meta-sep">·</span>Summit
-                  Galleria Cebu, Cebu City
-                </div>
-                <p class="entry-body">
-                  A national youth leadership forum that brought together
-                  student officers and leaders from schools across the
-                  Philippines to learn about leadership, good governance,
-                  accountability, and youth participation.
-                </p>
-                <div class="chip-row">
-                  <span class="chip mono">Leadership</span>
-                  <span class="chip mono">Good Governance</span>
-                  <span class="chip mono">Youth Development</span>
-                </div>
-              </div>
-            </li>
           </ol>
         </section>
 
-        <section id="projects" class="section reveal">
-          <div class="eyebrow">05 — PROJECTS</div>
-          <h2 class="section-title">Things I've built</h2>
-
-          <article class="project-card">
-            <div class="entry-head project-head">
-              <div>
-                <h3 class="entry-title">Digital Twin Platform</h3>
-                <div class="entry-meta mono">
-                  FULL-STACK<span class="meta-sep">·</span>INTERACTIVE
-                  PORTFOLIO<span class="meta-sep">·</span>AI-POWERED CHAT
-                </div>
-              </div>
-            </div>
-
-            <p class="entry-body">
-              A full-stack platform with an interactive portfolio and an
-              AI-powered chat.
-            </p>
-
-            <div class="card-label mono">TECH STACK</div>
-            <div class="tech-row">
-              <span class="tech mono"
-                ><i class="devicon-react-original"></i>React.js</span
-              >
-              <span class="tech mono"
-                ><i class="devicon-nextjs-plain"></i>Next.js</span
-              >
-              <span class="tech mono"
-                ><i class="devicon-nodejs-plain"></i>Node.js</span
-              >
-              <span class="tech mono"
-                ><span class="icon-generic"></span>AI</span
-              >
-            </div>
-
-            <a
-              href="https://grouptwodigitaltwin.vercel.app/"
-              target="_blank"
-              rel="noopener"
-              class="link-out mono"
-            >
-              VIEW LIVE SITE <span aria-hidden="true">↗</span>
-            </a>
-
-            <div class="project-carousel" data-carousel>
-              <div class="carousel-stack">
-                <div class="carousel-slide active" data-slide="0">
-                  <img
-                    src="./assets/images/projects/digital-twin-1.jpg"
-                    alt="Digital Twin Platform AI chat answering a question"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="carousel-slide" data-slide="1">
-                  <img
-                    src="./assets/images/projects/digital-twin-2.jpg"
-                    alt="Digital Twin Platform portfolio site"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div class="carousel-dots">
-                <button
-                  class="carousel-dot active"
-                  data-dot="0"
-                  aria-label="Screenshot 1"
-                ></button>
-                <button
-                  class="carousel-dot"
-                  data-dot="1"
-                  aria-label="Screenshot 2"
-                ></button>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="entry-head project-head">
-              <div>
-                <h3 class="entry-title">Reps — Workout Tracker</h3>
-                <div class="entry-meta mono">
-                  WEB APP<span class="meta-sep">·</span>OFFLINE-FIRST
-                  PWA<span class="meta-sep">·</span>NODE BACKEND
-                </div>
-              </div>
-            </div>
-
-            <p class="entry-body">
-              A workout tracker for planning exercises, customizing sets and
-              reps, and following your gym progress. It has a library of 99
-              movements, a weekly split planner, a set-by-set runner with a rest
-              timer, and it installs as an offline PWA.
-            </p>
-
-            <div class="card-label mono">TECH STACK</div>
-            <div class="tech-row">
-              <span class="tech mono"
-                ><i class="devicon-javascript-plain"></i
-                >JavaScript</span
-              >
-              <span class="tech mono"
-                ><i class="devicon-nodejs-plain"></i>Node.js</span
-              >
-              <span class="tech mono"
-                ><i class="devicon-sqlite-plain"></i>SQLite</span
-              >
-              <span class="tech mono"><span class="icon-generic"></span>PWA</span>
-            </div>
-
-            <a
-              href="https://reps-one-psi.vercel.app/"
-              target="_blank"
-              rel="noopener"
-              class="link-out mono"
-            >
-              VIEW LIVE SITE <span aria-hidden="true">↗</span>
-            </a>
-
-            <div class="project-carousel" data-carousel>
-              <div class="carousel-stack">
-                <div class="carousel-slide active" data-slide="0">
-                  <img
-                    src="./assets/images/projects/reps-1.jpg"
-                    alt="Reps workout builder with a Push session loaded"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="carousel-slide" data-slide="1">
-                  <img
-                    src="./assets/images/projects/reps-2.jpg"
-                    alt="Reps exercise library of 99 movements"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div class="carousel-dots">
-                <button
-                  class="carousel-dot active"
-                  data-dot="0"
-                  aria-label="Screenshot 1"
-                ></button>
-                <button
-                  class="carousel-dot"
-                  data-dot="1"
-                  aria-label="Screenshot 2"
-                ></button>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="entry-head project-head">
-              <div>
-                <h3 class="entry-title">CardenasDev — Key Visual</h3>
-                <div class="entry-meta mono">
-                  GRAPHIC DESIGN<span class="meta-sep">·</span>PORTFOLIO KEY
-                  VISUAL<span class="meta-sep">·</span>PHOTOSHOP
-                </div>
-              </div>
-            </div>
-
-            <p class="entry-body">
-              A key visual for my portfolio, inspired by The Creation of Adam,
-              representing the connection between ideas, technology, and my
-              journey exploring AI and full-stack development.
-            </p>
-
-            <div class="card-label mono">MADE WITH</div>
-            <div class="tech-row">
-              <span class="tech mono"
-                ><i class="devicon-photoshop-plain"></i>Adobe
-                Photoshop</span
-              >
-            </div>
-
-            <div class="project-carousel" data-carousel>
-              <div class="carousel-stack">
-                <div class="carousel-slide active" data-slide="0">
-                  <img
-                    src="./assets/images/projects/cardenasdev-1.jpg"
-                    alt="CardenasDev key visual: two halftone hands reaching toward a JSON profile window"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-          </article>
-        </section>
-
-        <section id="certifications" class="section reveal">
-          <div class="eyebrow">06 — CERTIFICATIONS</div>
-          <h2 class="section-title">Certifications</h2>
-
-          <div class="cert-grid">
-            <a
-              class="cert-card"
-              href="https://drive.google.com/file/d/1kaa25uQ6G0TsSBra3EwroDLtl43DO5Bb/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="--rot: -4deg; --ty: 6px"
-              aria-label="View the Certificate of Participation and Certificate of Appearance from the Philippine Association of Practitioners of Student Affairs and Services, Inc. (opens in a new tab)"
-            >
-              <span class="cert-mark">
-                <img src="./assets/certificates/logos/papsas.png?v=91" alt="Philippine Association of Practitioners of Student Affairs and Services, Inc." loading="lazy" />
-              </span>
-              <span class="cert-title">Certificate of Participation &amp; Appearance</span>
-              <span class="cert-issuer mono" title="Philippine Association of Practitioners of Student Affairs and Services, Inc.">PAPSAS</span>
-              <span class="cert-open mono"><svg class="cert-leaf" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg><span>VIEW</span><svg class="cert-leaf cert-leaf--flip" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg></span>
-            </a>
-            <a
-              class="cert-card"
-              href="https://www.credential.net/e6193529-ada5-4b33-ad90-61ec7595deaf"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="--rot: 3deg; --ty: -4px"
-              aria-label="Verify the Full Stack &amp; Agentic AI Internship from Employability Advantage (opens in a new tab)"
-            >
-              <span class="cert-mark">
-                <img src="./assets/certificates/logos/employability-advantage.png?v=91" alt="Employability Advantage" loading="lazy" />
-              </span>
-              <span class="cert-title">Full Stack &amp; Agentic AI Internship</span>
-              <span class="cert-issuer mono">Employability Advantage</span>
-              <span class="cert-open mono"><svg class="cert-leaf" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg><span>VERIFY</span><svg class="cert-leaf cert-leaf--flip" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg></span>
-            </a>
-            <a
-              class="cert-card"
-              href="https://www.codecred.dev/verify/c2aec721-8724-4413-b8d0-bbaf808f82b5"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="--rot: -2deg; --ty: 3px"
-              aria-label="Verify React Fundamentals from CodeCred (opens in a new tab)"
-            >
-              <span class="cert-mark">
-                <img src="./assets/certificates/logos/codecred.svg?v=91" alt="CodeCred" loading="lazy" />
-              </span>
-              <span class="cert-title">React Fundamentals</span>
-              <span class="cert-issuer mono">CodeCred</span>
-              <span class="cert-open mono"><svg class="cert-leaf" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg><span>VERIFY</span><svg class="cert-leaf cert-leaf--flip" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg></span>
-            </a>
-            <a
-              class="cert-card"
-              href="https://graphacademy.neo4j.com/c/b0d1cda4-c70e-427b-bf3e-634bce0bed1b/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="--rot: 4deg; --ty: -6px"
-              aria-label="Verify Neo4j Certified Professional from Neo4j GraphAcademy (opens in a new tab)"
-            >
-              <span class="cert-mark">
-                <img src="./assets/certificates/logos/neo4j.svg?v=91" alt="Neo4j GraphAcademy" loading="lazy" />
-              </span>
-              <span class="cert-title">Neo4j Certified Professional</span>
-              <span class="cert-issuer mono">Neo4j</span>
-              <span class="cert-open mono"><svg class="cert-leaf" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg><span>VERIFY</span><svg class="cert-leaf cert-leaf--flip" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg></span>
-            </a>
-            <a
-              class="cert-card"
-              href="https://graphacademy.neo4j.com/c/dfeb3224-af87-4ba7-88f1-4a9ad1df7aa9/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="--rot: -3deg; --ty: 4px"
-              aria-label="Verify Neo4j &amp; GenerativeAI Fundamentals from Neo4j GraphAcademy (opens in a new tab)"
-            >
-              <span class="cert-mark">
-                <img src="./assets/certificates/logos/neo4j.svg?v=91" alt="Neo4j GraphAcademy" loading="lazy" />
-              </span>
-              <span class="cert-title">Neo4j &amp; GenerativeAI Fundamentals</span>
-              <span class="cert-issuer mono">Neo4j</span>
-              <span class="cert-open mono"><svg class="cert-leaf" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg><span>VERIFY</span><svg class="cert-leaf cert-leaf--flip" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true"><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/><path d="M0 -4.3C2.3 -2.8 2.3 2.8 0 4.3C-2.3 2.8 -2.3 -2.8 0 -4.3Z" transform="translate(4.6 11) rotate(14)"/><path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 17) rotate(-30)"/></svg></span>
-            </a>
-          </div>
-
-          <h3 class="sub-title">Education</h3>
-          <div class="entry-card">
-            <div class="entry-head project-head">
-              <div class="edu-head-body">
-                <h3 class="entry-title">
-                  Bachelor of Science in Information Technology
-                </h3>
-                <div class="entry-meta mono">
-                  St. Paul University Philippines, Tuguegarao City
-                </div>
-                <div class="entry-meta mono">2022 — 2026</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section id="github" class="section reveal">
-          <div class="section-head">
-            <div class="eyebrow">07 — GITHUB</div>
-            <a
-              href="https://github.com/JakeCardenas"
-              target="_blank"
-              rel="noopener"
-              class="link-out mono gh-profile-link"
-            >
-              <i class="devicon-github-original" aria-hidden="true"></i>
-              @JAKECARDENAS <span aria-hidden="true">↗</span>
-            </a>
+          <div class="num-head">
+            <h2 class="num-title">07 — github</h2>
+            <a href="https://github.com/JakeCardenas" class="num-link mono">@JAKECARDENAS ↗</a>
           </div>
-
-          <div class="gh-panel">
+<div class="gh-panel">
             <a
               class="gh-graph-link"
               href="https://github.com/JakeCardenas"
@@ -805,16 +548,16 @@
             </div>
             <div class="gh-tip mono" id="ghTip" hidden></div>
           </div>
-
-          <div class="site-foot mono">
-            © 2026 JAKECARDENAS.COM — BUILT STATIC, HOSTED ANYWHERE.
-          </div>
         </section>
+
+        <div class="site-foot mono">
+          © 2026 JAKECARDENAS.COM — BUILT STATIC, HOSTED ANYWHERE.
+        </div>
       </main>
     </div>
 
-    <script src="./js/sound.js?v=91"></script>
-    <script src="./js/halftone-sources.js?v=91"></script>
-    <script src="./js/script.js?v=91"></script>
+    <script src="./js/sound.js?v=100"></script>
+    <script src="./js/halftone-sources.js?v=100"></script>
+    <script src="./js/script.js?v=100"></script>
   </body>
 </html>

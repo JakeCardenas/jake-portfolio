@@ -486,3 +486,18 @@ if (ghGraph) {
   })();
 }
 
+
+// ── project deck: clicking a side card brings it to the centre ──
+function activateCard(card) {
+  if (card.classList.contains("is-center")) return;
+  const deck = card.closest("[data-deck]");
+  if (!deck) return;
+  const center = deck.querySelector(".deck-card.is-center");
+  const slot = card.classList.contains("is-left") ? "is-left" : "is-right";
+  center.classList.remove("is-center");
+  center.classList.add(slot);
+  card.classList.remove("is-left", "is-right");
+  card.classList.add("is-center");
+  window.siteSound?.play("toggle");
+}
+window.activateCard = activateCard;

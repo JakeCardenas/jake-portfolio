@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog — Jake Cardenas</title>
+    <meta name="description" content="Notes on artificial intelligence, full-stack development, and the projects behind them." />
+    <link rel="icon" href="./assets/icons/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" href="./assets/icons/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <meta name="theme-color" content="#f4f4f2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c0c0f" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="Blog — Jake Cardenas" />
+    <meta property="og:description" content="Notes on artificial intelligence, full-stack development, and the projects behind them." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./assets/icons/icon-512.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@300..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/devicon@2.17.0/devicon.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
+    />
+    <link href="./css/style.css?v=100" rel="stylesheet" />
+  </head>
+  <body>
+    <div aria-hidden="true" class="page-halftone">
+      <span class="ht ht-tr"></span><span class="ht ht-bl"></span>
+    </div>
+
+    <div class="shell">
+      <aside class="sidebar">
+        <a href="./index.html" class="side-logo mono" data-nav-logo>jakecardenas.com</a>
+
+        <nav class="side-nav mono" id="siteNav" aria-label="Sections">
+          <div class="nav-group">
+            <a href="./blog.html" class="nav-link active" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>BLOG</a>
+            <a href="./gear.html" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 19h18M9.5 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>GEAR</a>
+            <a href="./projects.html" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7.5A1.5 1.5 0 015.5 6h4l2 2.5h7A1.5 1.5 0 0120 10v7.5A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5v-10z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>PROJECTS</a>
+            <a href="./certifications.html" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="5" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>CERTIFICATIONS</a>
+          </div>
+          <span class="nav-rule" aria-hidden="true"></span>
+          <div class="nav-group">
+            <a href="./index.html#experience" class="nav-link" data-nav>EXPERIENCE &amp; STACK</a>
+            <a href="./index.html#internships" class="nav-link" data-nav>INTERNSHIPS</a>
+            <a href="./index.html#github" class="nav-link" data-nav>GITHUB</a>
+          </div>
+        </nav>
+
+        <div class="side-foot">
+          <div class="control-pill">
+            <div class="theme-switch" role="group" aria-label="Theme">
+              <button class="ctl-btn" data-theme-btn="system" aria-label="Match system theme" title="System">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4" />
+                </svg>
+              </button>
+              <button class="ctl-btn" data-theme-btn="light" aria-label="Light mode" title="Light">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                </svg>
+              </button>
+              <button class="ctl-btn" data-theme-btn="dark" aria-label="Dark mode" title="Dark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+                </svg>
+              </button>
+            </div>
+
+            <span class="pill-divider" aria-hidden="true"></span>
+
+            <button id="soundToggle" class="ctl-btn sound-btn" data-sound-toggle
+                    aria-label="Enable interface sounds" aria-pressed="false" title="Sounds off">
+              <svg class="sound-icon-on" data-sound-on viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              </svg>
+              <svg class="sound-icon-off" data-sound-off viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            </button>
+          </div>
+
+          <a href="mailto:marijakee@gmail.com" class="side-email mono">marijakee@gmail.com</a>
+        </div>
+
+        <button id="menuBtn" class="menu-btn mono" aria-controls="siteNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="menu-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="menu-label">MENU</span>
+        </button>
+      </aside>
+
+      <main class="main">
+        <section class="section reveal">
+          <header class="page-head">
+            <div class="eyebrow">01 — BLOG</div>
+            <h1 class="page-title">blog</h1>
+            <p class="page-lede">Notes on what I'm learning — artificial intelligence, full-stack development, and the projects behind them.</p>
+          </header>
+          <div class="post-list" id="postList">
+            <p class="empty-note">
+              No posts published yet. This is where they'll appear.
+            </p>
+          </div>
+        </section>
+
+        <div class="site-foot mono">
+          © 2026 JAKECARDENAS.COM — BUILT STATIC, HOSTED ANYWHERE.
+        </div>
+      </main>
+    </div>
+
+    <script src="./js/sound.js?v=100"></script>
+    <script src="./js/script.js?v=100"></script>
+  </body>
+</html>

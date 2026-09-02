@@ -55,7 +55,8 @@
 
   --sidebar-w: 14rem;
   --measure-read: 42rem;
-  --content-w: 56rem;
+  --content-w: 42rem;
+  --content-w-wide: 56rem;
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -2612,3 +2613,440 @@ body.menu-open {
   line-height: 1.75;
 }
 
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MULTI-PAGE SHELL
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* pages that carry grids rather than prose get the wider measure */
+.main--wide {
+  max-width: calc(var(--content-w-wide) + 3rem);
+}
+
+/* ── page-wide halftone backdrop ─────────────────────────────────────────── */
+.page-halftone {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.ht {
+  position: absolute;
+  background-image: radial-gradient(
+    circle at center,
+    rgba(10, 10, 10, 0.9) 1px,
+    transparent 1.6px
+  );
+}
+.ht-tr {
+  top: 0;
+  right: 0;
+  width: 65vw;
+  height: 70vh;
+  background-size: 13px 13px;
+  opacity: 0.16;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 100% 0%, #000 0%, transparent 65%);
+  mask-image: radial-gradient(ellipse 80% 80% at 100% 0%, #000 0%, transparent 65%);
+}
+.ht-bl {
+  bottom: 0;
+  left: 0;
+  width: 55vw;
+  height: 60vh;
+  background-size: 9px 9px;
+  opacity: 0.13;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 0% 100%, #000 0%, transparent 65%);
+  mask-image: radial-gradient(ellipse 80% 80% at 0% 100%, #000 0%, transparent 65%);
+}
+.dark .ht {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(244, 244, 245, 0.42) 1px,
+    transparent 1.6px
+  );
+}
+.shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* a dot band, faded at both ends, standing in for a rule between sections */
+.ht-rule {
+  height: 1.5rem;
+  margin: 0.5rem 0;
+  background-image: radial-gradient(
+    circle at center,
+    rgba(10, 10, 10, 0.9) 1px,
+    transparent 1.6px
+  );
+  background-size: 13px 13px;
+  opacity: 0.18;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent);
+}
+.dark .ht-rule {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(244, 244, 245, 0.42) 1px,
+    transparent 1.6px
+  );
+}
+
+/* ── sidebar groups ──────────────────────────────────────────────────────── */
+.nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+}
+.nav-rule {
+  display: block;
+  height: 1px;
+  background: var(--border);
+}
+.nav-ico {
+  display: inline-flex;
+  width: 1.05em;
+  height: 1.05em;
+  margin-right: 0.55rem;
+  vertical-align: -0.15em;
+}
+.nav-ico svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── numbered section header ─────────────────────────────────────────────── */
+.num-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.num-title {
+  font-family: "Geist Pixel", "Geist Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  /* faint reads at 2.5:1 — these are real headings, so dim keeps them legible */
+  color: var(--fg-dim);
+}
+.num-link {
+  flex: none;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-dim);
+  transition: color 0.22s ease;
+}
+.num-link:hover {
+  color: var(--fg);
+}
+
+/* ── page header on the dedicated pages ──────────────────────────────────── */
+.page-head {
+  margin-bottom: 2.75rem;
+}
+.page-title {
+  margin-top: 0.85rem;
+  font-family: "Geist Pixel", "Geist Mono", ui-monospace, monospace;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: lowercase;
+}
+.page-lede {
+  max-width: var(--measure-read);
+  margin-top: 1.15rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+.sub-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 2.5rem 0 1.15rem;
+}
+.empty-note {
+  max-width: var(--measure-read);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--fg-dim);
+}
+
+/* ── stat row ────────────────────────────────────────────────────────────── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--border);
+}
+.stat-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 1.25rem 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+}
+.stat-cell:nth-child(2n) {
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--border);
+}
+.stat-row .stat-num {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.25rem;
+  font-family: "Geist Pixel", "Geist Mono", ui-monospace, monospace;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+.stat-arrow {
+  font-size: 0.7rem;
+  color: var(--fg-faint);
+  transition: color 0.22s ease, transform 0.22s var(--ease);
+}
+.stat-cell:hover .stat-arrow {
+  color: var(--fg);
+  transform: translate(2px, -2px);
+}
+.stat-row .stat-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-dim);
+  transition: color 0.22s ease;
+}
+.stat-cell:hover .stat-label {
+  color: var(--fg);
+}
+@media (min-width: 640px) {
+  .stat-row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .stat-cell {
+    padding: 1.5rem 1.25rem;
+    border-bottom: 0;
+  }
+  .stat-cell:first-child {
+    padding-left: 0;
+  }
+  .stat-cell:nth-child(2n) {
+    padding-left: 1.25rem;
+  }
+  .stat-cell + .stat-cell {
+    border-left: 1px solid var(--border);
+  }
+  .stat-row {
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+/* ── project deck: three cards, the centre one in focus ──────────────────── */
+.deck {
+  position: relative;
+  height: 27rem;
+  margin-inline: calc(50% - 50vw);
+  overflow-x: clip;
+  overflow-y: visible;
+}
+@supports not (overflow-x: clip) {
+  .deck {
+    overflow-x: hidden;
+  }
+}
+@media (min-width: 768px) {
+  .deck {
+    margin-inline: 0;
+    overflow: visible;
+    height: 25rem;
+  }
+}
+
+.deck-card {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  width: 18rem;
+  margin-left: -9rem;
+  padding: 1.15rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  transform-origin: center bottom;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+  will-change: transform;
+  outline: none;
+}
+@media (min-width: 640px) {
+  .deck-card {
+    width: 20.5rem;
+    margin-left: -10.25rem;
+  }
+}
+
+.deck-card.is-center {
+  transform: translateY(0) rotate(0deg) scale(1);
+  z-index: 30;
+  box-shadow: 0 26px 55px -22px rgba(10, 10, 10, 0.3);
+}
+.deck-card.is-left {
+  transform: translateX(-40%) translateY(14px) rotate(-16deg) scale(0.88);
+  z-index: 10;
+  box-shadow: 0 16px 32px -18px rgba(10, 10, 10, 0.25);
+  cursor: pointer;
+}
+.deck-card.is-right {
+  transform: translateX(40%) translateY(14px) rotate(16deg) scale(0.88);
+  z-index: 20;
+  box-shadow: 0 16px 32px -18px rgba(10, 10, 10, 0.25);
+  cursor: pointer;
+}
+
+/* the back cards sit behind a veil so the centre one reads first */
+.deck-card.is-left::after,
+.deck-card.is-right::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--bg) 40%, transparent);
+  transition: background 0.35s ease;
+  pointer-events: none;
+}
+.deck-card.is-left:hover::after,
+.deck-card.is-right:hover::after {
+  background: transparent;
+}
+
+.deck-card.is-center:hover {
+  transform: translateY(-7px) scale(1.015);
+  box-shadow: 0 34px 65px -22px rgba(10, 10, 10, 0.34);
+}
+.deck-card.is-left:hover {
+  transform: translateX(-45%) translateY(2px) rotate(-12deg) scale(0.92);
+  z-index: 25;
+}
+.deck-card.is-right:hover {
+  transform: translateX(45%) translateY(2px) rotate(12deg) scale(0.92);
+  z-index: 25;
+}
+/* only the focused card is actually clickable through to the live site */
+.deck-card:not(.is-center) a {
+  pointer-events: none;
+}
+
+.deck-shot {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+.deck-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.deck-title {
+  margin-top: 0.9rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.deck-meta {
+  margin-top: 0.3rem;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-faint);
+}
+.deck-body {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.deck-link {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--fg-dim);
+  transition: color 0.22s ease;
+}
+.deck-link:hover {
+  color: var(--fg);
+}
+
+/* ── gear preview strip on the homepage ──────────────────────────────────── */
+.gear-preview {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+@media (min-width: 640px) {
+  .gear-preview {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.gp-item {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.gp-shot {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  /* product shots are cut out on white, so the tile stays white in both themes */
+  background: #ffffff;
+  transition: border-color 0.25s ease, transform 0.42s var(--ease);
+}
+.gp-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 11%;
+}
+.gp-item:hover .gp-shot {
+  border-color: var(--border-strong);
+  transform: translateY(-3px);
+}
+.gp-name {
+  margin-top: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.gp-meta {
+  margin-top: 0.15rem;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-card,
+  .deck-card:hover,
+  .gp-item:hover .gp-shot {
+    transform: none;
+  }
+}
+
+/* components set their own display, which silently defeats the hidden attribute */
+[hidden] {
+  display: none !important;
+}
