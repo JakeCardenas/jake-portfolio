@@ -38,9 +38,9 @@ function drawHalftonePortrait(
   canvas,
   src,
   {
-    cell = 5,
+    cell = 1.7,
     minDot = 0,
-    maxDot = 0.9,
+    maxDot = 1.0,
     contrast = 1.75,
     dotColor = "#0a0a0a",
     invert = false,
@@ -159,11 +159,9 @@ function renderAllHalftones() {
       dotColor,
       invert,
       focusY: 0.18,
-      // a print halftone never drops to nothing — a floor dot keeps the
-      // bright midtones (the face) reading instead of blowing out to white
-      minDot: 0.15,
-      contrast: isDark ? 1.75 : 1.6,
-      shadowLift: isDark ? 1 : 0.5,
+      minDot: 0,
+      contrast: isDark ? 1.5 : 1.15,
+      shadowLift: isDark ? 1 : 0.85,
     });
   });
 }
