@@ -562,9 +562,29 @@ body::after {
   background: transparent;
   border-radius: 0;
   overflow: hidden;
-  /* the halftone fades out at the bottom rather than stopping on a hard edge */
-  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 42%);
-  mask-image: linear-gradient(to top, transparent 0%, #000 42%);
+}
+
+/* the reference dissolves the photo by painting page-coloured dots over its
+   lower edge — 1px dots on a 5px cell — rather than masking the image away */
+.halftone-white {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle at center,
+    #ffffff 1px,
+    transparent 1.5px
+  );
+  background-size: 5px 5px;
+  -webkit-mask-image: linear-gradient(to top, #000, transparent 80%);
+  mask-image: linear-gradient(to top, #000, transparent 80%);
+}
+.dark .halftone-white {
+  background-image: radial-gradient(
+    circle at center,
+    var(--bg) 1px,
+    transparent 1.5px
+  );
 }
 .halftone-canvas {
   position: absolute;

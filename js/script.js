@@ -38,9 +38,9 @@ function drawHalftonePortrait(
   canvas,
   src,
   {
-    cell = 3.6,
+    cell = 5,
     minDot = 0,
-    maxDot = 0.82,
+    maxDot = 0.9,
     contrast = 1.75,
     dotColor = "#0a0a0a",
     invert = false,
@@ -124,7 +124,10 @@ function drawHalftonePortrait(
         if (size <= 0.02) continue;
         const cx = x + cellPx / 2;
         const cy = y + cellPx / 2;
-        ctx.fillRect(cx - size / 2, cy - size / 2, size, size);
+        // round dots, matching the print-halftone motif the rest of the site uses
+        ctx.beginPath();
+        ctx.arc(cx, cy, size / 2, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
   };
@@ -156,9 +159,11 @@ function renderAllHalftones() {
       dotColor,
       invert,
       focusY: 0.18,
-      // bright photo, so light mode needs a softer curve and a lift
-      contrast: isDark ? 1.75 : 1.35,
-      shadowLift: isDark ? 1 : 0.6,
+      // a print halftone never drops to nothing — a floor dot keeps the
+      // bright midtones (the face) reading instead of blowing out to white
+      minDot: 0.15,
+      contrast: isDark ? 1.75 : 1.6,
+      shadowLift: isDark ? 1 : 0.5,
     });
   });
 }
