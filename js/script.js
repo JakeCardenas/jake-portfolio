@@ -38,9 +38,9 @@ function drawHalftonePortrait(
   canvas,
   src,
   {
-    cell = 2.0,
+    cell = 3.6,
     minDot = 0,
-    maxDot = 1.0,
+    maxDot = 0.82,
     contrast = 1.75,
     dotColor = "#0a0a0a",
     invert = false,

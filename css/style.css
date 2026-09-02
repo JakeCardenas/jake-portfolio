@@ -558,7 +558,7 @@ body::after {
 }
 .photo-frame {
   position: relative;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
   background: transparent;
   border-radius: 0;
   overflow: hidden;
@@ -1741,14 +1741,11 @@ body::after {
 
   .hero-grid {
     grid-template-columns: 18rem minmax(0, 1fr);
-    gap: 3.5rem;
+    gap: 2.5rem;
   }
   .section--hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4rem 0;
+    /* content-height, like the reference — not a full-viewport panel */
+    padding: 3rem 0 1rem;
   }
 
   .contact-card {
