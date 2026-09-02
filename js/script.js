@@ -399,25 +399,37 @@ if (ghGraph) {
     const weeks = [];
     for (let i = 0; i < cells.length; i += 7) weeks.push(cells.slice(i, i + 7));
 
-    ghGraph.innerHTML = weeks
-      .map(
-        (week) =>
-          `<div class="gh-week">` +
-          week
-            .map((d) =>
-              d === null
-                ? `<span class="gh-cell is-pad"></span>`
-                : `<span class="gh-cell" data-level="${d.level}" data-date="${d.date}" data-count="${d.count}"></span>`,
-            )
-            .join("") +
-          `</div>`,
+    // The reference draws its graph as an SVG halftone: one circle per day on a
+    // 13px pitch, where CONTRIBUTION COUNT DRIVES THE RADIUS rather than the
+    // colour. That size ramp is what makes it read as a print halftone.
+    const R = [1.1, 2.7, 3.8, 4.8, 5.7]; // r per level, 0 = empty
+    const PITCH = 13;
+    const OFFSET = 6.5;
+    const cols = weeks.length;
+    const w = cols * PITCH;
+    const h = 7 * PITCH;
+
+    const circles = weeks
+      .map((week, x) =>
+        week
+          .map((d, y) => {
+            if (d === null) return "";
+            const lvl = Math.max(0, Math.min(4, d.level | 0));
+            const cx = OFFSET + x * PITCH;
+            const cy = OFFSET + y * PITCH;
+            return (
+              `<circle cx="${cx}" cy="${cy}" r="${R[lvl]}" fill="currentColor"` +
+              ` opacity="${lvl === 0 ? 0.12 : 0.92}"` +
+              ` data-date="${d.date}" data-count="${d.count}"></circle>`
+            );
+          })
+          .join(""),
       )
       .join("");
 
-    // stagger the columns so the grid draws itself in
-    ghGraph.querySelectorAll(".gh-week").forEach((w, i) => {
-      w.style.animationDelay = Math.min(i * 12, 620) + "ms";
-    });
+    ghGraph.innerHTML =
+      `<svg viewBox="0 0 ${w} ${h}" class="gh-svg" preserveAspectRatio="xMidYMid meet"` +
+      ` aria-label="GitHub contribution graph, halftone style">${circles}</svg>`;
 
     const total = (data.total && data.total.lastYear) || 0;
     caption.textContent = `${total.toLocaleString()} CONTRIBUTION${total === 1 ? "" : "S"} IN THE LAST YEAR`;
@@ -441,7 +453,7 @@ if (ghGraph) {
   };
 
   ghGraph.addEventListener("mouseover", (e) => {
-    const cell = e.target.closest(".gh-cell[data-date]");
+    const cell = e.target.closest("[data-date]");
     if (!cell) return hideTip();
     const n = Number(cell.dataset.count);
     tip.textContent = `${n} contribution${n === 1 ? "" : "s"} · ${fmt(cell.dataset.date)}`;
