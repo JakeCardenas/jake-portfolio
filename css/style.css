@@ -419,9 +419,10 @@ body::after {
   /* auto margins centre the column in whatever space is left beside the rail */
   margin-inline: auto;
   padding: 3.5rem 1.5rem 4rem;
-  /* padding must sit outside the measure, or the reading column comes up short */
+  /* Measured off the live reference: max-w-2xl is border-box, so its 672px cap
+     INCLUDES the px-6 padding — the real reading measure is 672 - 48 = 624. */
   max-width: var(--content-w);
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 .sidebar {
@@ -1585,7 +1586,7 @@ body::after {
   }
 
   .main {
-    padding: 3.5rem 3rem 5rem;
+    padding: 3.5rem 1.5rem 5rem;   /* px-6 at every width, like the reference */
   }
 
   .hero-grid {
@@ -1610,7 +1611,7 @@ body::after {
     --sidebar-w: 14rem;
   }
   .main {
-    padding: 3.5rem 4rem 6rem;
+    padding: 3.5rem 1.5rem 6rem;   /* px-6 at every width, like the reference */
   }
 }
 
@@ -2795,7 +2796,7 @@ body.menu-open {
 }
 .row-item {
   display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   align-items: baseline;
   /* the reference: grid-cols-12 gap-3 py-2.5 */
   gap: 0.15rem 0.75rem;
@@ -2807,28 +2808,29 @@ body.menu-open {
   background: var(--g50);
 }
 .row-year {
+  grid-column: span 2;
   font-size: 11px;   /* text-[11px] */
   color: var(--fg-muted);
 }
 .row-title {
+  grid-column: span 10;
   font-size: 14px;   /* text-[14px] */
   font-weight: 500;
   line-height: 1.4;
   color: var(--fg);
 }
 .row-org {
-  grid-column: 2;
+  grid-column: span 12;
   font-size: 13px;   /* text-[13px] */
   line-height: 1.45;
   color: var(--fg-dim);
 }
 @media (min-width: 640px) {
-  /* the reference splits the row 2 / 6 / 4 of twelve */
-  .row-item {
-    grid-template-columns: 2fr 6fr 4fr;
-  }
+  /* the reference spans 2 / 6 / 4 of a twelve-column grid */
+  .row-year  { grid-column: span 2; }
+  .row-title { grid-column: span 6; }
   .row-org {
-    grid-column: 3;
+    grid-column: span 4;
     text-align: right;
   }
 }
