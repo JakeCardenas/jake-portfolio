@@ -1,4 +1,4 @@
-V = "?v=142"
+V = "?v=144"
 
 # the inline theme script must stay in <head>: it runs before first paint
 HEAD_FONTS = f"""    <link rel="preload" href="./fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -175,9 +175,6 @@ def page(*, title, desc, active, on_index, body, extra_scripts="", wide=False):
 
       <main class="main{main_mod}">
 {body}
-        <div class="site-foot mono">
-          © 2026 JAKECARDENAS.COM — BUILT STATIC, HOSTED ANYWHERE.
-        </div>
       </main>
     </div>
 
