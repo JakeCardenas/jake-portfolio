@@ -1,6 +1,6 @@
 """Shared page shell — one definition, five pages, so the nav can never drift apart."""
 
-V = "?v=121"
+V = "?v=122"
 
 # the four fonts, loaded exactly as the reference does
 HEAD_FONTS = f"""    <!-- fonts are self-hosted in ./fonts — no Google/jsDelivr dependency.
@@ -46,6 +46,10 @@ HEAD_FONTS = f"""    <!-- fonts are self-hosted in ./fonts — no Google/jsDeliv
 """
 
 ICON = {
+ "shop": '<svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 11a2 2 0 01-2 2H9a2 2 0 01-2-2L6 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 016 0V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+ "resources": '<svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A1.5 1.5 0 015.5 4H11v15.5H6a2 2 0 00-2 1.2V5.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M20 5.5A1.5 1.5 0 0018.5 4H13v15.5h5a2 2 0 012 1.2V5.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+ "collabs": '<svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M17 19c0-2.2-.8-3.8-2.1-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+ "opportunities": '<svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V5.5A1.5 1.5 0 019.5 4h5A1.5 1.5 0 0116 5.5V7M3 12.5h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
  "blog": '<svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
  "gear": '<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 19h18M9.5 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
  "projects": '<svg viewBox="0 0 24 24" fill="none"><path d="M4 7.5A1.5 1.5 0 015.5 6h4l2 2.5h7A1.5 1.5 0 0120 10v7.5A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5v-10z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
@@ -55,33 +59,34 @@ ICON = {
 }
 
 # page links first, then the sections that live on the homepage
-NAV_PAGES = [
-    ("blog",           "Blog",              "./blog.html"),
-    ("projects",       "Projects",          "./projects.html"),
-    ("experience",     "Experience",        "./experience.html"),
-    ("stack",          "Stack",             "./stack.html"),
-    ("certifications", "Certifications",    "./certifications.html"),
-    ("gear",           "Gear",              "./gear.html"),
+# The reference's rail is three groups: two icon groups, then a plain text
+# group with no icons at all. Two hairlines separate them.
+NAV_GROUP_1 = [
+    ("shop",      "Shop",      "./shop/"),
+    ("blog",      "Blog",      "./blog/"),
+    ("gear",      "Gear",      "./gear/"),
+    ("resources", "Resources", "./resources/"),
 ]
-NAV_ANCHORS = [
-    ("internships", "Internships", "internships"),
-    ("github",      "GitHub",      "github"),
+NAV_GROUP_2 = [
+    ("collabs",       "Collabs",       "./collabs/"),
+    ("opportunities", "Opportunities", "./opportunities/"),
+]
+NAV_GROUP_3 = [   # no icons here, exactly as the reference does it
+    ("projects",       "Projects",       "./projects/"),
+    ("experience",     "Experience",     "./experience/"),
+    ("stack",          "Stack",          "./stack/"),
+    ("certifications", "Certifications", "./certifications/"),
 ]
 
 def nav(active, on_index):
-    rows = []
-    for key, label, href in NAV_PAGES:
-        cls = "nav-link active" if key == active else "nav-link"
-        rows.append(f'            <a href="{href}" class="{cls}" data-nav>'
-                    f'<span class="nav-ico" aria-hidden="true">{ICON[key]}</span>{label}</a>')
-    group_a = "\n".join(rows)
-
-    rows = []
-    for key, label, anchor in NAV_ANCHORS:
-        href = f"#{anchor}" if on_index else f"./index.html#{anchor}"
-        rows.append(f'            <a href="{href}" class="nav-link" data-nav>{label}</a>')
-    group_b = "\n".join(rows)
-    return group_a, group_b
+    def rows(items, icons):
+        out = []
+        for key, label, href in items:
+            cls = "nav-link active" if key == active else "nav-link"
+            ico = f'<span class="nav-ico" aria-hidden="true">{ICON[key]}</span>' if icons else ""
+            out.append(f'            <a href="{href}" class="{cls}" data-nav>{ico}{label}</a>')
+        return "\n".join(out)
+    return rows(NAV_GROUP_1, True), rows(NAV_GROUP_2, True), rows(NAV_GROUP_3, False)
 
 CONTROLS = """          <div class="control-pill">
             <div class="theme-switch" role="group" aria-label="Theme">
@@ -119,7 +124,7 @@ CONTROLS = """          <div class="control-pill">
           <a href="mailto:marijakee@gmail.com" class="side-email mono">marijakee@gmail.com</a>"""
 
 def page(*, title, desc, active, on_index, body, extra_scripts="", wide=False):
-    group_a, group_b = nav(active, on_index)
+    group_a, group_b, group_c = nav(active, on_index)
     main_mod = ' main--wide' if wide else ''
     return f"""<!doctype html>
 <html lang="en">
@@ -157,6 +162,10 @@ def page(*, title, desc, active, on_index, body, extra_scripts="", wide=False):
           <span class="nav-rule" aria-hidden="true"></span>
           <div class="nav-group">
 {group_b}
+          </div>
+          <span class="nav-rule" aria-hidden="true"></span>
+          <div class="nav-group">
+{group_c}
           </div>
         </nav>
 

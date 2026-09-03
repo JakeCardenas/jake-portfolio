@@ -236,7 +236,7 @@ home_body = f'''        <section id="home" class="section section--hero reveal">
 
 # ── dedicated pages ───────────────────────────────────────────────────────────
 blog_body = f'''        <section class="section reveal">
-{page_head("01", "blog", "Notes on what I'm learning — artificial intelligence, full-stack development, and the projects behind them.")}
+{page_head("02", "blog", "Notes on what I'm learning — artificial intelligence, full-stack development, and the projects behind them.")}
           <div class="post-list" id="postList">
             <p class="empty-note">
               No posts published yet. This is where they'll appear.
@@ -246,13 +246,13 @@ blog_body = f'''        <section class="section reveal">
 '''
 
 projects_body = f'''        <section class="section reveal">
-{page_head("02", "projects", "Things I've built — full-stack apps, AI work, and design.")}
+{page_head("07", "projects", "Things I've built — full-stack apps, AI work, and design.")}
 {chr(10).join(C["projects"])}
         </section>
 '''
 
 experience_body = f'''        <section class="section reveal">
-{page_head("03", "experience", "Where I've been — the full entries, with what I worked on.")}
+{page_head("08", "experience", "Where I've been — the full entries, with what I worked on.")}
           <ol class="timeline stagger">
 {C["experience_psg"]}
 {C["experience"]}
@@ -262,13 +262,13 @@ experience_body = f'''        <section class="section reveal">
 '''
 
 stack_body = f'''        <section class="section reveal">
-{page_head("04", "stack", "The languages, frameworks and tools I work with, grouped by what they're for.")}
+{page_head("09", "stack", "The languages, frameworks and tools I work with, grouped by what they're for.")}
 {C["stack"]}
         </section>
 '''
 
 certs_body = f'''        <section class="section reveal">
-{page_head("05", "certifications", "Certificates I've earned, each one linked to its source.")}
+{page_head("10", "certifications", "Certificates I've earned, each one linked to its source.")}
           <div class="cert-grid">
 {chr(10).join(C["certs"])}
           </div>
@@ -276,8 +276,42 @@ certs_body = f'''        <section class="section reveal">
 '''
 
 gear_body = f'''        <section class="section reveal">
-{page_head("06", "gear", "The hardware I actually use day to day — desk setup, everyday carry, and the camera I shoot on.")}
+{page_head("03", "gear", "The hardware I actually use day to day — desk setup, everyday carry, and the camera I shoot on.")}
 {chr(10).join(C["gear_groups"])}
+        </section>
+'''
+
+
+shop_body = f'''        <section class="section reveal">
+{page_head("01", "shop", "Things I have made and put up for sale. Nothing listed just yet.")}
+          <p class="empty-note">
+            No items yet. This is where they'll appear.
+          </p>
+        </section>
+'''
+
+resources_body = f'''        <section class="section reveal">
+{page_head("04", "resources", "Notes, references and tools I keep coming back to.")}
+          <p class="empty-note">
+            Nothing collected here yet. This is where it'll appear.
+          </p>
+        </section>
+'''
+
+collabs_body = f'''        <section class="section reveal">
+{page_head("05", "collabs", "Projects I have built together with other people.")}
+          <p class="empty-note">
+            No collaborations listed yet. This is where they'll appear.
+          </p>
+        </section>
+'''
+
+opportunities_body = f'''        <section class="section reveal">
+{page_head("06", "opportunities", "What I am open to right now — internships, freelance work and team projects.")}
+          <p class="empty-note">
+            Open to internships, freelance work and joining a team. The quickest
+            way to reach me is the email in the sidebar.
+          </p>
         </section>
 '''
 
@@ -285,6 +319,18 @@ PAGES = [
  ("index.html",          "Jake Cardenas — Portfolio",
   "Jake Cardenas — BSIT (Artificial Intelligence) student at St. Paul University Philippines. Full-stack and AI developer.",
   None, True, home_body, '    <script src="./js/site-halftones.js%s"></script>\n' % V),
+ ("shop.html",           "Shop — Jake Cardenas",
+  "Things Jake Cardenas has made and put up for sale.",
+  "shop", False, shop_body, ""),
+ ("resources.html",      "Resources — Jake Cardenas",
+  "Notes, references and tools Jake Cardenas keeps coming back to.",
+  "resources", False, resources_body, ""),
+ ("collabs.html",        "Collabs — Jake Cardenas",
+  "Projects Jake Cardenas has built together with other people.",
+  "collabs", False, collabs_body, ""),
+ ("opportunities.html",  "Opportunities — Jake Cardenas",
+  "What Jake Cardenas is open to right now — internships, freelance work and team projects.",
+  "opportunities", False, opportunities_body, ""),
  ("blog.html",           "Blog — Jake Cardenas",
   "Notes on artificial intelligence, full-stack development, and the projects behind them.",
   "blog", False, blog_body, ""),
