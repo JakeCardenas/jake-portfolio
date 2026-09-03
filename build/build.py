@@ -296,20 +296,17 @@ SHOP_ITEMS = [
         "file":  "files/developer-resume-template.docx",
         "dl":    "files/developer-resume-template.docx",
         "shot":  "images/shop/developer-resume.png",
-        "desc":  [
+        "desc_intro": "A clean, <strong>ATS-friendly resume template</strong> for software developers &mdash; editable in Microsoft Word or Google Docs.",
+        "desc_sections": [
             ("<h2>What's inside</h2>",
-             "<p>A clean, single-page résumé template built for developers who "
-             "want their work to speak first. Sections are laid out so hiring "
-             "managers find what they need in seconds.</p>"),
-            ("<h2>Sections</h2>",
              "<ul>"
-             "<li>Header with name, title, contact links</li>"
-             "<li>Professional summary</li>"
-             "<li>Technical skills &amp; tools</li>"
-             "<li>Work experience / internships</li>"
-             "<li>Projects</li>"
-             "<li>Education &amp; certifications</li>"
+             "<li>A one-page <code>.docx</code> template with a professional, recruiter-friendly layout</li>"
+             "<li>Pre-filled <strong>example content for a developer</strong> &mdash; just swap in your own</li>"
+             "<li>Clear sections and sensible defaults that parse well in applicant tracking systems</li>"
              "</ul>"),
+            ("<h2>Sections</h2>",
+             "<p>Education &middot; Work Experience &middot; Projects &middot; Activities &middot; Skills &amp; Certifications</p>"
+             "<p>Just download, open in Word or Google Docs, and edit away &mdash; completely free.</p>"),
         ],
     },
 ]
@@ -371,8 +368,8 @@ def shop_detail(item):
         return None
     shot = (f'<img src="./{item["shot"]}" alt="{item["name"]}" loading="lazy" />'
             if os.path.exists(os.path.join(ROOT, item["shot"])) else DOC_GLYPH)
-    desc_html = "\n".join(
-        f'            {h}\n            {p}' for h, p in item["desc"]
+    sections_html = "\n".join(
+        f'            {h}\n            {p}' for h, p in item["desc_sections"]
     )
     return f'''        <section class="section reveal">
           <a href="./shop/" class="sd-back mono">{BACK_CHEVRON} shop</a>
@@ -383,16 +380,17 @@ def shop_detail(item):
             <div class="sd-info">
               <span class="sd-kind mono">{item["kind"]}</span>
               <h1 class="sd-title">{item["name"]}</h1>
-              <span class="sd-price">Free</span>
+              <p class="sd-price">Free</p>
               <a href="./{item["dl"]}" download class="sd-download">{DOWNLOAD_ARROW} Download free</a>
-              <span class="sd-delivery mono">
-                <svg viewBox="0 0 24 24" fill="none" class="sd-check" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <p class="sd-delivery mono">
+                <svg viewBox="0 0 24 24" fill="none" class="sd-check" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 Instant digital delivery
-              </span>
+              </p>
             </div>
           </div>
           <div class="sd-desc">
-{desc_html}
+            <p>{item["desc_intro"]}</p>
+{sections_html}
           </div>
         </section>
 '''
