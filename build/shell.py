@@ -1,4 +1,4 @@
-V = "?v=138"
+V = "?v=140"
 
 # the inline theme script must stay in <head>: it runs before first paint
 HEAD_FONTS = f"""    <link rel="preload" href="./fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -101,8 +101,6 @@ CONTROLS = """          <div class="control-pill">
               </button>
             </div>
 
-            <span class="pill-divider" aria-hidden="true"></span>
-
             <button id="soundToggle" class="ctl-btn sound-btn" data-sound-toggle
                     aria-label="Enable interface sounds" aria-pressed="false" title="Sounds off">
               <svg class="sound-icon-on" data-sound-on viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -114,7 +112,8 @@ CONTROLS = """          <div class="control-pill">
             </button>
           </div>
 
-          <a href="mailto:marijakee@gmail.com" class="side-email mono">marijakee@gmail.com</a>"""
+          <p class="side-note">For work, collabs and everything else, reach me at</p>
+          <a href="mailto:marijakee@gmail.com" class="side-email mono"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>marijakee@gmail.com</a>"""
 
 # script order is a dependency: applyTheme() calls renderAllHalftones()
 def page(*, title, desc, active, on_index, body, extra_scripts="", wide=False):

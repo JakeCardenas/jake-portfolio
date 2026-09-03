@@ -427,7 +427,10 @@
 .theme-switch {
   display: inline-flex;
   align-items: center;
-  gap: 0.15rem;
+  gap: 1px;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
 }
 .pill-divider {
   width: 1px;
@@ -462,8 +465,21 @@
 .sound-btn svg[hidden] {
   display: none;
 }
+.sound-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border);
+}
+.sound-btn:hover {
+  border-color: var(--border-strong);
+}
 .sound-btn[aria-pressed="false"] {
   opacity: 0.5;
+}
+.side-email svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
 }
 .section.section--hero {
   padding: 5rem 0 4rem;
