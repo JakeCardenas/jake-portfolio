@@ -403,6 +403,14 @@ body::after {
   flex-direction: column;
   gap: 1rem;   /* gap-4 between groups */
 }
+@media (min-width: 1024px) {
+  /* the reference gives its nav flex-1, which pushes the contact block to the
+     bottom of the rail instead of letting it float under the last link */
+  .side-nav {
+    flex: 1;
+    overflow-y: auto;
+  }
+}
 
 .nav-link {
   position: relative;
@@ -571,9 +579,6 @@ body::after {
   .hero-grid {
     grid-template-columns: 18rem minmax(0, 1fr);
     gap: 2.5rem;
-  }
-  .hero-name {
-    font-size: 2.6rem;
   }
 }
 
@@ -1539,6 +1544,10 @@ body::after {
   .section.section--hero {
     /* the reference: pt-28 pb-16 at this breakpoint */
     padding: 7rem 0 4rem;
+  }
+  .hero-name {
+    /* sm:text-[2.6rem] on the reference */
+    font-size: 2.6rem;
   }
 
 }
