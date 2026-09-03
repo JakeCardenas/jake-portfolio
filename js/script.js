@@ -54,7 +54,11 @@ function drawHalftonePortrait(
     const parent = canvas.parentElement;
     const displayW = canvas.clientWidth || parent.clientWidth || 288;
     const displayH = canvas.clientHeight || parent.clientHeight || 384;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // The reference's halftone is an 8px-cell raster at 1354px, downscaled to
+    // 288px on screen. Drawing straight at display size gives a 2px cell, which
+    // is all anti-aliased edge and no solid core — that is what read as washed
+    // out grey. Render at 4x and let the browser downsample instead.
+    const dpr = Math.max(4, Math.min(window.devicePixelRatio || 1, 2) * 2);
     const W = Math.round(displayW * dpr);
     const H = Math.round(displayH * dpr);
     canvas.width = W;
@@ -160,8 +164,10 @@ function renderAllHalftones() {
       invert,
       focusY: 0.18,
       minDot: 0,
-      contrast: isDark ? 1.5 : 1.15,
-      shadowLift: isDark ? 1 : 0.85,
+      // measured off the reference: 36% ink, 59% white, only 8% mid-grey.
+      // the old 1.15/0.85 left 58% mid-grey, which is what read as washed out.
+      contrast: isDark ? 2.2 : 2.4,
+      shadowLift: isDark ? 1.6 : 2.0,
     });
   });
 }

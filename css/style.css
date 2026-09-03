@@ -407,9 +407,11 @@ body::after {
 .nav-link {
   position: relative;
   padding-left: 1.35rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  color: var(--fg-muted);
+  /* the reference sets nav in plain 13px mono — no tracking, no small caps */
+  font-size: 13px;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--fg-dim);
   transition:
     color 0.22s ease,
     transform 0.22s var(--ease);
@@ -1538,7 +1540,8 @@ body::after {
 
 @media (min-width: 1280px) {
   :root {
-    --sidebar-w: 15rem;
+    /* the reference keeps its rail at w-56 (14rem) on every breakpoint */
+    --sidebar-w: 14rem;
   }
   .main {
     padding: 3.5rem 4rem 6rem;
