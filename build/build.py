@@ -15,9 +15,8 @@ def num_head(num, name, link_label=None, link_href=None):
             f'            <h2 class="num-title">{num} — {name}</h2>{right}\n'
             f'          </div>')
 
-def page_head(num, name, lede):
+def page_head(name, lede):
     return (f'          <header class="page-head">\n'
-            f'            <div class="eyebrow">{num} — {name.upper()}</div>\n'
             f'            <h1 class="page-title">{name}</h1>\n'
             f'            <p class="page-lede">{lede}</p>\n'
             f'          </header>')
@@ -237,7 +236,7 @@ home_body = f'''        <section id="home" class="section section--hero reveal">
 '''
 
 blog_body = f'''        <section class="section reveal">
-{page_head("02", "blog", "Notes on what I'm learning — artificial intelligence, full-stack development, and the projects behind them.")}
+{page_head("blog", "Notes on what I'm learning — artificial intelligence, full-stack development, and the projects behind them.")}
           <div class="post-list" id="postList">
             <p class="empty-note">
               No posts published yet. This is where they'll appear.
@@ -247,13 +246,13 @@ blog_body = f'''        <section class="section reveal">
 '''
 
 projects_body = f'''        <section class="section reveal">
-{page_head("07", "projects", "Things I've built — full-stack apps, AI work, and design.")}
+{page_head("projects", "Things I've built — full-stack apps, AI work, and design.")}
 {chr(10).join(C["projects"])}
         </section>
 '''
 
 experience_body = f'''        <section class="section reveal">
-{page_head("08", "experience", "Where I've been — the full entries, with what I worked on.")}
+{page_head("experience", "Where I've been — the full entries, with what I worked on.")}
           <ol class="timeline stagger">
 {C["experience_psg"]}
 {C["experience"]}
@@ -263,13 +262,13 @@ experience_body = f'''        <section class="section reveal">
 '''
 
 stack_body = f'''        <section class="section reveal">
-{page_head("09", "stack", "The languages, frameworks and tools I reach for — across the front end, back end, data, and AI.")}
+{page_head("stack", "The languages, frameworks and tools I reach for — across the front end, back end, data, and AI.")}
 {stack_page()}
         </section>
 '''
 
 certs_body = f'''        <section class="section reveal">
-{page_head("10", "certifications", "Certificates I've earned, each one linked to its source.")}
+{page_head("certifications", "Certificates I've earned, each one linked to its source.")}
           <div class="cert-grid">
 {chr(10).join(C["certs"])}
           </div>
@@ -277,7 +276,7 @@ certs_body = f'''        <section class="section reveal">
 '''
 
 gear_body = f'''        <section class="section reveal">
-{page_head("03", "gear", "The hardware I actually use day to day — desk setup, everyday carry, and the camera I shoot on.")}
+{page_head("gear", "The hardware I actually use day to day — desk setup, everyday carry, and the camera I shoot on.")}
 {chr(10).join(C["gear_groups"])}
         </section>
 '''
@@ -339,7 +338,7 @@ shop_inner = ('          <div class="shop-grid">\n' + "\n".join(_cards) + '\n   
               '          <p class="shop-empty mono">Nothing here yet.</p>')
 
 shop_body = f'''        <section class="section reveal">
-{page_head("01", "shop", "Things I have made and put up for download.")}
+{page_head("shop", "Things I have made and put up for download.")}
 {shop_inner}
         </section>
 '''
@@ -504,7 +503,7 @@ f'''          <section class="res-group reveal" style="animation-delay: {0.05 * 
     return "\n".join(out)
 
 resources_body = f'''        <section class="section reveal">
-{page_head("04", "resources", "A hand-picked list of the resources I keep coming back to — for learning to build software, getting into AI engineering, and staying current. Free or freemium, and genuinely worth your time.")}
+{page_head("resources", "A hand-picked list of the resources I keep coming back to — for learning to build software, getting into AI engineering, and staying current. Free or freemium, and genuinely worth your time.")}
 {resource_sections()}
           <p class="res-foot mono reveal" style="animation-delay: .4s">
             Missing something great? <a href="mailto:marijakee@gmail.com">Send me a link →</a>
@@ -513,7 +512,7 @@ resources_body = f'''        <section class="section reveal">
 '''
 
 collabs_body = f'''        <section class="section reveal">
-{page_head("05", "collabs", "Projects I have built together with other people.")}
+{page_head("collabs", "Projects I have built together with other people.")}
           <p class="empty-note">
             No collaborations listed yet. This is where they'll appear.
           </p>
@@ -521,7 +520,7 @@ collabs_body = f'''        <section class="section reveal">
 '''
 
 opportunities_body = f'''        <section class="section reveal">
-{page_head("06", "opportunities", "What I am open to right now — internships, freelance work and team projects.")}
+{page_head("opportunities", "What I am open to right now — internships, freelance work and team projects.")}
           <p class="empty-note">
             Open to internships, freelance work and joining a team. The quickest
             way to reach me is the email in the sidebar.

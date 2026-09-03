@@ -1,4 +1,4 @@
-V = "?v=140"
+V = "?v=142"
 
 # the inline theme script must stay in <head>: it runs before first paint
 HEAD_FONTS = f"""    <link rel="preload" href="./fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -146,7 +146,7 @@ def page(*, title, desc, active, on_index, body, extra_scripts="", wide=False):
 
     <div class="shell">
       <aside class="sidebar">
-        <a href="./index.html" class="side-logo" data-nav-logo>jakecardenas.com</a>
+        <a href="./index.html" class="side-logo" data-nav-logo>Jake Cardenas</a>
 
         <nav class="side-nav mono" id="siteNav" aria-label="Sections">
           <div class="nav-group">
