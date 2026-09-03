@@ -282,11 +282,118 @@ gear_body = f'''        <section class="section reveal">
 '''
 
 
+# ── shop ──────────────────────────────────────────────────────────────────────
+# The reference's shop is a 2/3-column card grid: a 4:3 preview well, a pill
+# badge, then a mono kind label and the product name. Cards appear only when the
+# file they point at actually exists, so a listing can never 404.
+SHOP_ITEMS = [
+    {
+        "slug":  "developer-resume-template",
+        "kind":  "Template",
+        "name":  "Developer Résumé Template",
+        "badge": "Free",
+        "href":  "./shop/developer-resume-template/",
+        "file":  "files/developer-resume-template.docx",
+        "dl":    "files/developer-resume-template.docx",
+        "shot":  "images/shop/developer-resume.png",
+        "desc":  [
+            ("<h2>What's inside</h2>",
+             "<p>A clean, single-page résumé template built for developers who "
+             "want their work to speak first. Sections are laid out so hiring "
+             "managers find what they need in seconds.</p>"),
+            ("<h2>Sections</h2>",
+             "<ul>"
+             "<li>Header with name, title, contact links</li>"
+             "<li>Professional summary</li>"
+             "<li>Technical skills &amp; tools</li>"
+             "<li>Work experience / internships</li>"
+             "<li>Projects</li>"
+             "<li>Education &amp; certifications</li>"
+             "</ul>"),
+        ],
+    },
+]
+
+DOC_GLYPH = (
+    '<svg class="shop-glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+    '<path d="M6 3h8l4 4v14a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z" '
+    'stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>'
+    '<path d="M14 3v4h4M8.5 12h7M8.5 15.5h7M8.5 19h4" stroke="currentColor" '
+    'stroke-width="1.4" stroke-linecap="round"/></svg>'
+)
+
+def shop_card(item, delay):
+    have_file = os.path.exists(os.path.join(ROOT, item["file"]))
+    if not have_file:
+        return None
+    shot = (f'<img src="./{item["shot"]}" alt="{item["name"]} preview" loading="lazy" />'
+            if os.path.exists(os.path.join(ROOT, item["shot"])) else DOC_GLYPH)
+    return f'''            <a class="shop-card reveal" href="{item["href"]}"
+               style="animation-delay: {delay}s">
+              <span class="shop-shot">
+                {shot}
+                <span class="shop-badge mono">{item["badge"]}</span>
+              </span>
+              <span class="shop-body">
+                <span class="shop-kind mono">{item["kind"]}</span>
+                <span class="shop-name">{item["name"]}</span>
+              </span>
+            </a>'''
+
+_cards = [c for c in (shop_card(it, 0.04 * (i + 1)) for i, it in enumerate(SHOP_ITEMS)) if c]
+shop_inner = ('          <div class="shop-grid">\n' + "\n".join(_cards) + '\n          </div>'
+              if _cards else
+              '          <p class="shop-empty mono">Nothing here yet.</p>')
+
 shop_body = f'''        <section class="section reveal">
-{page_head("01", "shop", "Things I have made and put up for sale. Nothing listed just yet.")}
-          <p class="empty-note">
-            No items yet. This is where they'll appear.
-          </p>
+{page_head("01", "shop", "Things I have made and put up for download.")}
+{shop_inner}
+        </section>
+'''
+
+DOWNLOAD_ARROW = (
+    '<svg class="dl-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+    '<path d="M12 3v13M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" '
+    'stroke-linecap="round" stroke-linejoin="round"/>'
+    '<path d="M5 21h14" stroke="currentColor" stroke-width="2" '
+    'stroke-linecap="round"/></svg>'
+)
+
+BACK_CHEVRON = (
+    '<svg class="back-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+    '<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" '
+    'stroke-linecap="round" stroke-linejoin="round"/></svg>'
+)
+
+def shop_detail(item):
+    have_file = os.path.exists(os.path.join(ROOT, item["file"]))
+    if not have_file:
+        return None
+    shot = (f'<img src="./{item["shot"]}" alt="{item["name"]}" loading="lazy" />'
+            if os.path.exists(os.path.join(ROOT, item["shot"])) else DOC_GLYPH)
+    desc_html = "\n".join(
+        f'            {h}\n            {p}' for h, p in item["desc"]
+    )
+    return f'''        <section class="section reveal">
+          <a href="./shop/" class="sd-back mono">{BACK_CHEVRON} shop</a>
+          <div class="sd-grid">
+            <div class="sd-image">
+              {shot}
+            </div>
+            <div class="sd-info">
+              <span class="sd-kind mono">{item["kind"]}</span>
+              <h1 class="sd-title">{item["name"]}</h1>
+              <span class="sd-price">Free</span>
+              <a href="./{item["dl"]}" download class="sd-download">{DOWNLOAD_ARROW} Download free</a>
+              <span class="sd-delivery mono">
+                <svg viewBox="0 0 24 24" fill="none" class="sd-check" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Instant digital delivery
+              </span>
+            </div>
+          </div>
+          <div class="sd-desc">
+{desc_html}
+          </div>
         </section>
 '''
 
@@ -320,8 +427,8 @@ PAGES = [
   "Jake Cardenas — BSIT (Artificial Intelligence) student at St. Paul University Philippines. Full-stack and AI developer.",
   None, True, home_body, '    <script src="./js/site-halftones.js%s"></script>\n' % V),
  ("shop.html",           "Shop — Jake Cardenas",
-  "Things Jake Cardenas has made and put up for sale.",
-  "shop", False, shop_body, ""),
+  "Things Jake Cardenas has made and put up for download.",
+  "shop", False, shop_body, "", True),
  ("resources.html",      "Resources — Jake Cardenas",
   "Notes, references and tools Jake Cardenas keeps coming back to.",
   "resources", False, resources_body, ""),
@@ -378,4 +485,29 @@ for fname, title, desc, active, on_index, body, extra, *w in PAGES:
     open(out, "w", encoding="utf-8").write(html)
     rel = os.path.relpath(out, ROOT)
     print(f"  {rel:<26} {len(html):>7,} bytes")
+
+# ── shop detail pages (depth 2: shop/<slug>/index.html) ──────────────────────
+for item in SHOP_ITEMS:
+    detail = shop_detail(item)
+    if detail is None:
+        continue
+    detail_html = page(
+        title=f'{item["name"]} — Jake Cardenas',
+        desc=f'{item["name"]} — free download from Jake Cardenas.',
+        active="shop", on_index=False, body=detail, extra_scripts="", wide=True,
+    )
+    detail_html = re.sub(r'\?v=\d+', V, detail_html)
+    slug = item["slug"]
+    detail_dir = os.path.join(ROOT, "shop", slug)
+    os.makedirs(detail_dir, exist_ok=True)
+    out = os.path.join(detail_dir, "index.html")
+    # depth-2: rewrite ./ to ../../
+    detail_html = detail_html.replace('href="./index.html#', 'href="./#')
+    detail_html = detail_html.replace('href="./index.html"', 'href="./"')
+    detail_html = re.sub(r'href="\./([a-z-]+)\.html"', r'href="./\1/"', detail_html)
+    detail_html = detail_html.replace('"./', '"../../').replace("'./", "'../../")
+    open(out, "w", encoding="utf-8").write(detail_html)
+    rel = os.path.relpath(out, ROOT)
+    print(f"  {rel:<36} {len(detail_html):>7,} bytes")
+
 print(f"\n  gear items carried over: {gear_count}")
