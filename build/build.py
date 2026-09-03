@@ -1,5 +1,5 @@
 import os, sys, json, re
-# resolve everything relative to this file, so moving the project never breaks the build
+# paths resolve from this file so the project can move
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 SP   = HERE
@@ -22,7 +22,6 @@ def page_head(num, name, lede):
             f'            <p class="page-lede">{lede}</p>\n'
             f'          </header>')
 
-# ── hero: drop the old stat strip, point the CTA at the projects page ──────────
 hero = C["hero_inner"]
 i = hero.index('<div class="stat-strip">')
 depth, end = 0, None
@@ -31,22 +30,16 @@ for m in re.finditer(r'<(/?)div\b[^>]*?(/?)>', hero[i:]):
     depth += -1 if m.group(1) else 1
     if depth == 0: end = i + m.end(); break
 hero = (hero[:i] + hero[end:]).replace('href="#projects"', 'href="./projects.html"')
-# the profile is the landing block, not a numbered section — 01 belongs to blog
 hero = re.sub(r'\s*<div class="eyebrow">01 — HOME</div>', "", hero)
 
-# the reference paints its dissolve over the photo instead of masking it out
 CLOSE = "</canvas>"
 OVERLAY = CLOSE + chr(10) + " " * 16 + '<span class="halftone-white" aria-hidden="true"></span>'
-# only after the last canvas in the frame
 i = hero.rindex(CLOSE)
 hero = hero[:i] + OVERLAY + hero[i + len(CLOSE):]
 
-# the reference paints its dissolve over the photo instead of masking it out
-# the reference sets the name on one line
 hero = hero.replace("<h1 class=\"hero-name\"><span>Jake</span><span>Cardenas</span></h1>",
                     "<h1 class=\"hero-name\">Jake Cardenas</h1>")
 
-# swap the chunky pill row for the reference's small lowercase mono links
 i = hero.index('<div class="info-row">')
 depth, end = 0, None
 for m in re.finditer(r'<(/?)div\b[^>]*?(/?)>', hero[i:]):
@@ -61,7 +54,6 @@ LINKS = """<div class="hero-links mono">
               </div>"""
 hero = hero[:i] + LINKS + hero[end:]
 
-# the reference has no solid button in the hero
 i = hero.index('<div class="btn-row">')
 depth, end = 0, None
 for m in re.finditer(r'<(/?)div\b[^>]*?(/?)>', hero[i:]):
@@ -70,7 +62,6 @@ for m in re.finditer(r'<(/?)div\b[^>]*?(/?)>', hero[i:]):
     if depth == 0: end = i + m.end(); break
 hero = hero[:i] + hero[end:]
 
-# counts are derived from what the site actually contains, not hard-coded guesses
 STATS = [
     ("3", "PROJECTS SHIPPED", "./projects.html"),
     ("5", "CERTIFICATES",     "./certifications.html"),
@@ -88,7 +79,6 @@ f'''            <a class="stat-cell" href="{href}">
         
     return '          <div class="stat-row">\n' + "\n".join(cells) + '\n          </div>'
 
-# ── project deck, built from the real project cards ───────────────────────────
 def deck():
     slots = ["is-left", "is-center", "is-right"]
     order = [1, 0, 2]                       # Reps left, Digital Twin centre, CardenasDev right
@@ -107,9 +97,7 @@ def deck():
                  if link else "")
         cards.append(
 f'''              <article class="deck-card {slot}" role="button" tabindex="0"
-                       aria-label="Show {re.sub(r'&amp;','and',title)}"
-                       onclick="activateCard(this)"
-                       onkeydown="if(event.key==='Enter'||event.key===' '){{event.preventDefault();activateCard(this);}}">
+                       aria-label="Show {re.sub(r'&amp;','and',title)}">
                 <div class="deck-shot"><img src="{img}{V}" alt="" loading="lazy" /></div>
                 <h3 class="deck-title">{title}</h3>
                 <div class="deck-meta mono">{meta}</div>
@@ -117,7 +105,6 @@ f'''              <article class="deck-card {slot}" role="button" tabindex="0"
               </article>''')
     return ('          <div class="deck" data-deck>\n' + "\n".join(cards) + '\n          </div>')
 
-# ── gear preview for the homepage: real items lifted from the gear page ───────
 def gear_preview():
     items = []
     for g in C["gear_groups"]:
@@ -141,7 +128,6 @@ f'''            <a class="gp-item" href="./gear.html">
 
 gp_html, gear_count = gear_preview()
 
-# a flat pill preview on the homepage; the full grouped list lives on stack.html
 def stack_preview(limit=12):
     items = re.findall(r'<span>([^<]+)</span>', C["stack"])
     shown = items[:limit]
@@ -152,9 +138,6 @@ def stack_preview(limit=12):
 
 sp_html, stack_total = stack_preview()
 
-
-
-# ── compact rows, built from the same timeline entries as the full page ───────
 def row(entry):
     year  = re.search(r'<div class="tl-year mono">(.*?)</div>', entry, re.S).group(1).strip()
     title = re.search(r'<h3 class="entry-title">(.*?)</h3>', entry, re.S).group(1)
@@ -171,7 +154,6 @@ def row_list(*entries):
     return ('          <div class="row-list">\n'
             + "\n".join(row(e) for e in entries) + '\n          </div>')
 
-# ── homepage ──────────────────────────────────────────────────────────────────
 home_body = f'''        <section id="home" class="section section--hero reveal">
 {hero}
         </section>
@@ -234,7 +216,6 @@ home_body = f'''        <section id="home" class="section section--hero reveal">
         <div class="ht-fade" aria-hidden="true"></div>
 '''
 
-# ── dedicated pages ───────────────────────────────────────────────────────────
 blog_body = f'''        <section class="section reveal">
 {page_head("02", "blog", "Notes on what I'm learning — artificial intelligence, full-stack development, and the projects behind them.")}
           <div class="post-list" id="postList">
@@ -281,11 +262,6 @@ gear_body = f'''        <section class="section reveal">
         </section>
 '''
 
-
-# ── shop ──────────────────────────────────────────────────────────────────────
-# The reference's shop is a 2/3-column card grid: a 4:3 preview well, a pill
-# badge, then a mono kind label and the product name. Cards appear only when the
-# file they point at actually exists, so a listing can never 404.
 SHOP_ITEMS = [
     {
         "slug":  "developer-resume-template",
@@ -293,8 +269,8 @@ SHOP_ITEMS = [
         "name":  "Developer Résumé Template",
         "badge": "Free",
         "href":  "./shop/developer-resume-template/",
-        "file":  "files/developer-resume-template.docx",
-        "dl":    "files/developer-resume-template.docx",
+        "file":  "downloads/developer-resume-template.docx",
+        "dl":    "downloads/developer-resume-template.docx",
         "shot":  "images/shop/developer-resume.png",
         "desc_intro": "A clean, <strong>ATS-friendly resume template</strong> for software developers &mdash; editable in Microsoft Word or Google Docs.",
         "desc_sections": [
@@ -395,7 +371,6 @@ def shop_detail(item):
         </section>
 '''
 
-# ── Resources: grouped link lists, matched to the reference's layout ──────────
 RES_ARROW = ('<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">'
              '<path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" '
              'stroke-linecap="round" stroke-linejoin="round"/></svg>')
@@ -537,7 +512,7 @@ opportunities_body = f'''        <section class="section reveal">
 PAGES = [
  ("index.html",          "Jake Cardenas — Portfolio",
   "Jake Cardenas — BSIT (Artificial Intelligence) student at St. Paul University Philippines. Full-stack and AI developer.",
-  None, True, home_body, '    <script src="./js/site-halftones.js%s"></script>\n' % V),
+  None, True, home_body, '    <script src="./js/halftone-data.js%s"></script>\n' % V),
  ("shop.html",           "Shop — Jake Cardenas",
   "Things Jake Cardenas has made and put up for download.",
   "shop", False, shop_body, "", True),
@@ -573,11 +548,8 @@ PAGES = [
 for fname, title, desc, active, on_index, body, extra, *w in PAGES:
     html = page(title=title, desc=desc, active=active, on_index=on_index,
                 body=body, extra_scripts=extra, wide=bool(w and w[0]))
-    # blocks lifted from the old pages carry their old cache buster
     html = re.sub(r'\?v=\d+', V, html)
-    # The reference serves /blog, /projects … with no .html. On a static host the
-    # equivalent is a directory index: blog/index.html is served at /blog.
-    # index.html stays at the root so / still works.
+    # directory index: blog/index.html is served at /blog
     if fname == "index.html":
         out, depth = os.path.join(ROOT, "index.html"), 0
     else:
@@ -585,7 +557,6 @@ for fname, title, desc, active, on_index, body, extra, *w in PAGES:
         os.makedirs(os.path.join(ROOT, slug), exist_ok=True)
         out, depth = os.path.join(ROOT, slug, "index.html"), 1
 
-    # .html links become directory links: ./blog.html -> ./blog/ , ./index.html -> ./
     html = html.replace('href="./index.html#', 'href="./#')
     html = html.replace('href="./index.html"', 'href="./"')
     html = re.sub(r'href="\./([a-z-]+)\.html"', r'href="./\1/"', html)
@@ -598,7 +569,6 @@ for fname, title, desc, active, on_index, body, extra, *w in PAGES:
     rel = os.path.relpath(out, ROOT)
     print(f"  {rel:<26} {len(html):>7,} bytes")
 
-# ── shop detail pages (depth 2: shop/<slug>/index.html) ──────────────────────
 for item in SHOP_ITEMS:
     detail = shop_detail(item)
     if detail is None:
@@ -613,7 +583,6 @@ for item in SHOP_ITEMS:
     detail_dir = os.path.join(ROOT, "shop", slug)
     os.makedirs(detail_dir, exist_ok=True)
     out = os.path.join(detail_dir, "index.html")
-    # depth-2: rewrite ./ to ../../
     detail_html = detail_html.replace('href="./index.html#', 'href="./#')
     detail_html = detail_html.replace('href="./index.html"', 'href="./"')
     detail_html = re.sub(r'href="\./([a-z-]+)\.html"', r'href="./\1/"', detail_html)

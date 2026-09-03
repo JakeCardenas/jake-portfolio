@@ -8,3 +8,14 @@ Thumbs.db
 node_modules/
 **/node_modules/
 *.log
+
+__pycache__/
+**/__pycache__/
+*.py[cod]
+
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json

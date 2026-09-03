@@ -3,50 +3,78 @@
 Personal portfolio for Jake Cardenas — BSIT student majoring in
 Artificial Intelligence at St. Paul University Philippines.
 
-Static site. No build step, no dependencies, no framework.
+Static output, no framework and no runtime dependencies. The HTML is
+**generated** by a small Python build so the nav, `<head>`, and page shell
+are defined once instead of being copy-pasted into a dozen files.
 
 ## Running it
 
-Any static server works:
-
-    python3 -m http.server 4173
+    python3 build/build.py       # regenerate every page
+    python3 -m http.server 4173  # serve
 
 Then open http://localhost:4173
 
-Opening `index.html` directly also works — `js/halftone-sources.js`
-carries the portraits as data URIs so the halftone effect survives
-`file://`, where reading canvas pixels from a relative path is blocked.
+## Important: the HTML is build output
+
+Every `index.html` in this repo is **generated**. `build/build.py` rewrites
+all of them on each run, so hand-editing one is lost on the next build.
+
+To change a page, edit the source instead:
+
+| To change… | Edit |
+|---|---|
+| Page shell, `<head>`, nav, script/style tags | `build/shell.py` |
+| Page list, layout, section markup | `build/build.py` |
+| Written content (projects, gear, certs, stack) | `build/content.json` |
 
 ## Structure
 
-    index.html              markup for every section
-    gear.html               the gear page, sharing index.html's shell
-    css/style.css           design tokens and all styling
+    index.html                  generated homepage
+    <page>/index.html           generated page, one folder per route
+
+    css/
+      main.css                  @font-face, design tokens, base elements, page shell
+      components.css            discrete UI pieces; each keeps its own media queries
+      responsive.css            breakpoints that restructure the shell itself
+
     js/
-      sound.js              Web Audio interaction sounds
-      halftone-sources.js   grayscale portrait data, for file:// only
-      script.js             halftone renderer, theme, nav, modal, GitHub graph
-    assets/
-      icons/                favicon set, generated from the profile photo
-      images/profile/       portrait photos, rendered to canvas as halftone
-      images/projects/      project screenshots
-      images/gear/          product shots for the gear page
-      certificates/         certificate scans shown in the modal
-      resume/               CV goes here (see the README inside)
+      main.js                   scroll reveal, portrait swap, carousels
+      theme.js                  light/dark/system + the circular reveal wipe
+      nav.js                    mobile menu and scroll-spy
+      cards.js                  project deck (event delegation, no inline handlers)
+      halftone.js               canvas halftone renderer
+      halftone-data.js          base64 portrait data, file:// fallback only
+      sounds.js                 Web Audio interaction sounds (synthesised, no files)
+      fetches/
+        github.js               public contribution graph
 
-## Notes
+    images/
+      profile/  projects/  certs/  gear/  shop/
 
-Cache busting is manual: both pages link CSS and JS with a `?v=` query.
-Bump it in `index.html` and `gear.html` together when editing either, or
-browsers may pair a new file with a stale one.
+    fonts/                      self-hosted woff2 — no CDN for text
+    downloads/                  files offered to visitors (résumé template)
+    build/                      the generator: shell.py, build.py, content.json
 
-`gear.html` reuses the same sidebar, controls, and stylesheet as the home
-page. It skips `halftone-sources.js`, which only the hero portraits need,
-and its section carries no `id` so the home page's scroll-spy cannot clear
-the active GEAR link.
+There is no `sounds/` folder: interaction sounds are synthesised at runtime
+with Web Audio oscillators, so there are no audio files to store.
 
-The GitHub section pulls live contribution data at runtime and caches
-it for six hours, so it stays current without being committed.
+### Script load order matters
 
-Sound is off-by-default-safe: no audio context exists until the first
-real interaction, and the toggle in the sidebar persists the choice.
+`shell.py` emits the scripts in dependency order, and it is a real
+constraint, not a preference:
+
+    halftone-data.js -> halftone.js -> theme.js
+
+`applyTheme()` calls `renderAllHalftones()` so the portraits repaint in the
+new palette when the theme flips.
+
+## Cache busting
+
+`V` in `build/shell.py` is the cache-buster. Bump it after editing any CSS
+or JS, then rebuild — every generated page picks it up automatically.
+
+## Secrets
+
+There are none, and none are needed: the site is fully static and calls only
+public endpoints. `.gitignore` already covers `.env`, `*.pem`, and `*.key` so
+that stays true if server-side APIs are added later.

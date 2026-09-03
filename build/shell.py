@@ -1,11 +1,7 @@
-"""Shared page shell — one definition, five pages, so the nav can never drift apart."""
+V = "?v=134"
 
-V = "?v=131"
-
-# the four fonts, loaded exactly as the reference does
-HEAD_FONTS = f"""    <!-- fonts are self-hosted in ./fonts — no Google/jsDelivr dependency.
-         the two the page opens with are preloaded so headings don't reflow -->
-    <link rel="preload" href="./fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
+# the inline theme script must stay in <head>: it runs before first paint
+HEAD_FONTS = f"""    <link rel="preload" href="./fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./fonts/GeistMono-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link
       rel="stylesheet"
@@ -15,9 +11,9 @@ HEAD_FONTS = f"""    <!-- fonts are self-hosted in ./fonts — no Google/jsDeliv
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
     />
-    <link href="./css/site.css{V}" rel="stylesheet" />
-    <!-- The reference applies the theme in <head>, before first paint, so the
-         page never flashes the wrong one. Ours only ran at the end of <body>. -->
+    <link href="./css/main.css{V}" rel="stylesheet" />
+    <link href="./css/components.css{V}" rel="stylesheet" />
+    <link href="./css/responsive.css{V}" rel="stylesheet" />
     <style>
       html {{ background-color: #ffffff; }}
       html.dark {{ background-color: #0c0c0f; }}
@@ -58,9 +54,6 @@ ICON = {
  "certifications": '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="5" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
 }
 
-# page links first, then the sections that live on the homepage
-# The reference's rail is three groups: two icon groups, then a plain text
-# group with no icons at all. Two hairlines separate them.
 NAV_GROUP_1 = [
     ("shop",      "Shop",      "./shop/"),
     ("blog",      "Blog",      "./blog/"),
@@ -71,7 +64,7 @@ NAV_GROUP_2 = [
     ("collabs",       "Collabs",       "./collabs/"),
     ("opportunities", "Opportunities", "./opportunities/"),
 ]
-NAV_GROUP_3 = [   # no icons here, exactly as the reference does it
+NAV_GROUP_3 = [
     ("projects",       "Projects",       "./projects/"),
     ("experience",     "Experience",     "./experience/"),
     ("stack",          "Stack",          "./stack/"),
@@ -123,6 +116,7 @@ CONTROLS = """          <div class="control-pill">
 
           <a href="mailto:marijakee@gmail.com" class="side-email mono">marijakee@gmail.com</a>"""
 
+# script order is a dependency: applyTheme() calls renderAllHalftones()
 def page(*, title, desc, active, on_index, body, extra_scripts="", wide=False):
     group_a, group_b, group_c = nav(active, on_index)
     main_mod = ' main--wide' if wide else ''
@@ -188,8 +182,13 @@ def page(*, title, desc, active, on_index, body, extra_scripts="", wide=False):
       </main>
     </div>
 
-    <script src="./js/site-sounds.js{V}"></script>
-{extra_scripts}    <script src="./js/site.js{V}"></script>
+    <script src="./js/sounds.js{V}"></script>
+{extra_scripts}    <script src="./js/halftone.js{V}"></script>
+    <script src="./js/theme.js{V}"></script>
+    <script src="./js/nav.js{V}"></script>
+    <script src="./js/cards.js{V}"></script>
+    <script src="./js/main.js{V}"></script>
+    <script src="./js/fetches/github.js{V}"></script>
   </body>
 </html>
 """
