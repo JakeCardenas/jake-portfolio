@@ -401,12 +401,17 @@ body::after {
 .side-nav {
   display: flex;
   flex-direction: column;
-  gap: 1.05rem;
+  gap: 1rem;   /* gap-4 between groups */
 }
 
 .nav-link {
   position: relative;
-  padding-left: 1.35rem;
+  /* the reference lays the icon out inline (inline-flex + gap-2.5) rather than
+     reserving space for it with padding */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: fit-content;
   /* the reference sets nav in plain 13px mono — no tracking, no small caps */
   font-size: 13px;
   letter-spacing: normal;
@@ -1503,13 +1508,13 @@ body::after {
     width: var(--sidebar-w);
     flex: none;
     height: 100vh;
-    padding: 1.9rem 1.6rem;
+    padding: 2rem 1.75rem;   /* py-8 px-7 */
     border-bottom: none;
     border-right: 1px solid var(--border);
   }
   .side-logo {
     margin-right: 0;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.25rem;   /* mt-9 on the nav below */
   }
   .side-nav {
     margin-bottom: auto;
@@ -2377,7 +2382,7 @@ body.menu-open {
 .nav-group {
   display: flex;
   flex-direction: column;
-  gap: 1.05rem;
+  gap: 0.625rem;   /* gap-2.5 between links */
 }
 .nav-rule {
   display: block;
@@ -2386,10 +2391,11 @@ body.menu-open {
 }
 .nav-ico {
   display: inline-flex;
-  width: 1.05em;
-  height: 1.05em;
-  margin-right: 0.55rem;
-  vertical-align: -0.15em;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 1.15em;   /* h-[1.15em] w-[1.15em] */
+  height: 1.15em;
 }
 .nav-ico svg {
   width: 100%;

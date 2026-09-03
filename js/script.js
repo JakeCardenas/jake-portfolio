@@ -162,12 +162,17 @@ function renderAllHalftones() {
     drawHalftonePortrait(canvas, src, {
       dotColor,
       invert,
-      focusY: 0.18,
+      // crop in to a head-and-shoulders bust so the subject fills the frame the
+      // way the reference's does, instead of floating with dead space beside it
+      focusY: 0.15,
+      zoom: 1.25,
       minDot: 0,
-      // measured off the reference: 36% ink, 59% white, only 8% mid-grey.
-      // the old 1.15/0.85 left 58% mid-grey, which is what read as washed out.
-      contrast: isDark ? 2.2 : 2.4,
-      shadowLift: isDark ? 1.6 : 2.0,
+      // Chasing the reference's global histogram (2.4 / 2.0) blew the face out
+      // to flat white — its features floated free of the head. This source is a
+      // backlit selfie, not a lit studio portrait, so it needs a gentler curve:
+      // side-by-side renders showed 1.8 / 1.0 keeps facial modelling AND dark hair.
+      contrast: isDark ? 2.0 : 1.8,
+      shadowLift: isDark ? 1.1 : 1.0,
     });
   });
 }
