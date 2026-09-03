@@ -28,7 +28,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
     />
-    <link href="../css/site.css?v=129" rel="stylesheet" />
+    <link href="../css/site.css?v=131" rel="stylesheet" />
     <!-- The reference applies the theme in <head>, before first paint, so the
          page never flashes the wrong one. Ours only ran at the end of <body>. -->
     <style>
@@ -132,15 +132,189 @@
         </button>
       </aside>
 
-      <main class="main">
+      <main class="main main--wide">
         <section class="section reveal">
           <header class="page-head">
             <div class="eyebrow">04 — RESOURCES</div>
             <h1 class="page-title">resources</h1>
-            <p class="page-lede">Notes, references and tools I keep coming back to.</p>
+            <p class="page-lede">A hand-picked list of the resources I keep coming back to — for learning to build software, getting into AI engineering, and staying current. Free or freemium, and genuinely worth your time.</p>
           </header>
-          <p class="empty-note">
-            Nothing collected here yet. This is where it'll appear.
+          <section class="res-group reveal" style="animation-delay: 0.05s">
+            <h2 class="res-head mono">Learn AI / ML</h2>
+            <div class="res-grid">
+              <a href="https://www.deeplearning.ai/courses/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">DeepLearning.AI<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Andrew Ng&#039;s specializations on ML, deep learning, and generative AI.</span>
+              </a>
+              <a href="https://course.fast.ai/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">fast.ai — Practical Deep Learning<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Top-down, code-first deep learning course for coders.</span>
+              </a>
+              <a href="https://huggingface.co/learn/llm-course/chapter1/1" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Hugging Face LLM Course<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Free hands-on course on transformers, NLP, and LLMs.</span>
+              </a>
+              <a href="https://developers.google.com/machine-learning/crash-course" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Google ML Crash Course<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Google&#039;s interactive intro to machine learning fundamentals.</span>
+              </a>
+              <a href="https://huggingface.co/learn/deep-rl-course/unit0/introduction" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Hugging Face Deep RL Course<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Free hands-on course on deep reinforcement learning.</span>
+              </a>
+              <a href="https://www.kaggle.com/learn" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Kaggle Learn<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Short practical micro-courses on Python, ML, and data.</span>
+              </a>
+            </div>
+          </section>
+          <section class="res-group reveal" style="animation-delay: 0.10s">
+            <h2 class="res-head mono">AI Engineering &amp; LLMs</h2>
+            <div class="res-grid">
+              <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Anthropic Prompt Engineering<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Official guide to prompting Claude effectively.</span>
+              </a>
+              <a href="https://github.com/anthropics/claude-cookbooks" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Anthropic Cookbook<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Code recipes for building with Claude: RAG, tools, agents.</span>
+              </a>
+              <a href="https://cookbook.openai.com/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">OpenAI Cookbook<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Practical code examples for building with OpenAI models.</span>
+              </a>
+              <a href="https://docs.langchain.com/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">LangChain Docs<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Framework docs for building LLM apps, agents, and RAG.</span>
+              </a>
+              <a href="https://www.oreilly.com/radar/what-we-learned-from-a-year-of-building-with-llms-part-i/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">A Year of Building with LLMs<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Hard-won tactical lessons on shipping LLM products.</span>
+              </a>
+              <a href="https://huyenchip.com/blog/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Chip Huyen&#039;s Blog<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Deep essays on AI systems, ML production, and engineering.</span>
+              </a>
+            </div>
+          </section>
+          <section class="res-group reveal" style="animation-delay: 0.15s">
+            <h2 class="res-head mono">Developer fundamentals / CS</h2>
+            <div class="res-grid">
+              <a href="https://www.theodinproject.com/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">The Odin Project<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Free full-stack web development curriculum with projects.</span>
+              </a>
+              <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">freeCodeCamp<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Free interactive coding curriculum with certifications.</span>
+              </a>
+              <a href="https://cs50.harvard.edu/x/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Harvard CS50x<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Harvard&#039;s renowned intro to computer science, free online.</span>
+              </a>
+              <a href="https://developer.mozilla.org/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">MDN Web Docs<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Authoritative reference for HTML, CSS, JavaScript, and web APIs.</span>
+              </a>
+              <a href="https://roadmap.sh/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">roadmap.sh<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Community-curated learning roadmaps for developer roles.</span>
+              </a>
+              <a href="https://teachyourselfcs.com/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Teach Yourself CS<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Curated core CS subjects with the best books and lectures.</span>
+              </a>
+              <a href="https://github.com/donnemartin/system-design-primer" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">System Design Primer<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Open-source guide to designing large-scale systems.</span>
+              </a>
+            </div>
+          </section>
+          <section class="res-group reveal" style="animation-delay: 0.20s">
+            <h2 class="res-head mono">Practice &amp; interview prep</h2>
+            <div class="res-grid">
+              <a href="https://leetcode.com/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">LeetCode<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Coding problems for technical and algorithm interview prep.</span>
+              </a>
+              <a href="https://neetcode.io/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">NeetCode<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Curated problem lists with clear video walkthroughs.</span>
+              </a>
+              <a href="https://exercism.org/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Exercism<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Free coding exercises with mentoring across 70+ languages.</span>
+              </a>
+              <a href="https://www.codewars.com/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Codewars<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Gamified coding kata to sharpen language fluency.</span>
+              </a>
+              <a href="https://www.frontendmentor.io/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Frontend Mentor<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Real-world frontend projects from professional designs.</span>
+              </a>
+            </div>
+          </section>
+          <section class="res-group reveal" style="animation-delay: 0.25s">
+            <h2 class="res-head mono">Stay current — newsletters &amp; blogs</h2>
+            <div class="res-grid">
+              <a href="https://www.deeplearning.ai/the-batch/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">The Batch<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Andrew Ng&#039;s weekly roundup of AI news and research.</span>
+              </a>
+              <a href="https://jack-clark.net/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Import AI<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Jack Clark&#039;s weekly newsletter on frontier AI and policy.</span>
+              </a>
+              <a href="https://www.latent.space/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Latent Space<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Newsletter and podcast for AI engineers in production.</span>
+              </a>
+              <a href="https://simonwillison.net/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Simon Willison&#039;s Blog<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Prolific, practical writing on LLMs and developer tooling.</span>
+              </a>
+              <a href="https://lilianweng.github.io/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Lil&#039;Log (Lilian Weng)<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Deep technical explainers on ML and LLM topics.</span>
+              </a>
+              <a href="https://tldr.tech/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">TLDR Newsletter<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Daily concise digest of tech, dev, and AI news.</span>
+              </a>
+              <a href="https://news.ycombinator.com/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Hacker News<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">High-signal community for tech, startups, and engineering.</span>
+              </a>
+            </div>
+          </section>
+          <section class="res-group reveal" style="animation-delay: 0.30s">
+            <h2 class="res-head mono">Tools &amp; references</h2>
+            <div class="res-grid">
+              <a href="https://huggingface.co/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Hugging Face<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Hub for open models, datasets, and ML demos.</span>
+              </a>
+              <a href="https://huggingface.co/papers" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Hugging Face Papers<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Trending ML papers with linked code and discussion.</span>
+              </a>
+              <a href="https://arxiv.org/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">arXiv<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Open-access preprint server for AI and CS research.</span>
+              </a>
+              <a href="https://www.kaggle.com/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">Kaggle<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Datasets, notebooks, and ML competitions community.</span>
+              </a>
+              <a href="https://devdocs.io/" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">DevDocs<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="res-desc">Fast unified API documentation browser, offline-capable.</span>
+              </a>
+            </div>
+          </section>
+          <p class="res-foot mono reveal" style="animation-delay: .4s">
+            Missing something great? <a href="mailto:marijakee@gmail.com">Send me a link →</a>
           </p>
         </section>
 
@@ -150,7 +324,7 @@
       </main>
     </div>
 
-    <script src="../js/site-sounds.js?v=129"></script>
-    <script src="../js/site.js?v=129"></script>
+    <script src="../js/site-sounds.js?v=131"></script>
+    <script src="../js/site.js?v=131"></script>
   </body>
 </html>

@@ -395,10 +395,124 @@ def shop_detail(item):
         </section>
 '''
 
+# ── Resources: grouped link lists, matched to the reference's layout ──────────
+RES_ARROW = ('<svg class="res-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+             '<path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" '
+             'stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+RESOURCE_SECTIONS = [
+    ("Learn AI / ML", [
+        ("DeepLearning.AI", "https://www.deeplearning.ai/courses/",
+         "Andrew Ng&#039;s specializations on ML, deep learning, and generative AI."),
+        ("fast.ai — Practical Deep Learning", "https://course.fast.ai/",
+         "Top-down, code-first deep learning course for coders."),
+        ("Hugging Face LLM Course", "https://huggingface.co/learn/llm-course/chapter1/1",
+         "Free hands-on course on transformers, NLP, and LLMs."),
+        ("Google ML Crash Course", "https://developers.google.com/machine-learning/crash-course",
+         "Google&#039;s interactive intro to machine learning fundamentals."),
+        ("Hugging Face Deep RL Course", "https://huggingface.co/learn/deep-rl-course/unit0/introduction",
+         "Free hands-on course on deep reinforcement learning."),
+        ("Kaggle Learn", "https://www.kaggle.com/learn",
+         "Short practical micro-courses on Python, ML, and data."),
+    ]),
+    ("AI Engineering &amp; LLMs", [
+        ("Anthropic Prompt Engineering",
+         "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview",
+         "Official guide to prompting Claude effectively."),
+        ("Anthropic Cookbook", "https://github.com/anthropics/claude-cookbooks",
+         "Code recipes for building with Claude: RAG, tools, agents."),
+        ("OpenAI Cookbook", "https://cookbook.openai.com/",
+         "Practical code examples for building with OpenAI models."),
+        ("LangChain Docs", "https://docs.langchain.com/",
+         "Framework docs for building LLM apps, agents, and RAG."),
+        ("A Year of Building with LLMs",
+         "https://www.oreilly.com/radar/what-we-learned-from-a-year-of-building-with-llms-part-i/",
+         "Hard-won tactical lessons on shipping LLM products."),
+        ("Chip Huyen&#039;s Blog", "https://huyenchip.com/blog/",
+         "Deep essays on AI systems, ML production, and engineering."),
+    ]),
+    ("Developer fundamentals / CS", [
+        ("The Odin Project", "https://www.theodinproject.com/",
+         "Free full-stack web development curriculum with projects."),
+        ("freeCodeCamp", "https://www.freecodecamp.org/",
+         "Free interactive coding curriculum with certifications."),
+        ("Harvard CS50x", "https://cs50.harvard.edu/x/",
+         "Harvard&#039;s renowned intro to computer science, free online."),
+        ("MDN Web Docs", "https://developer.mozilla.org/",
+         "Authoritative reference for HTML, CSS, JavaScript, and web APIs."),
+        ("roadmap.sh", "https://roadmap.sh/",
+         "Community-curated learning roadmaps for developer roles."),
+        ("Teach Yourself CS", "https://teachyourselfcs.com/",
+         "Curated core CS subjects with the best books and lectures."),
+        ("System Design Primer", "https://github.com/donnemartin/system-design-primer",
+         "Open-source guide to designing large-scale systems."),
+    ]),
+    ("Practice &amp; interview prep", [
+        ("LeetCode", "https://leetcode.com/",
+         "Coding problems for technical and algorithm interview prep."),
+        ("NeetCode", "https://neetcode.io/",
+         "Curated problem lists with clear video walkthroughs."),
+        ("Exercism", "https://exercism.org/",
+         "Free coding exercises with mentoring across 70+ languages."),
+        ("Codewars", "https://www.codewars.com/",
+         "Gamified coding kata to sharpen language fluency."),
+        ("Frontend Mentor", "https://www.frontendmentor.io/",
+         "Real-world frontend projects from professional designs."),
+    ]),
+    ("Stay current — newsletters &amp; blogs", [
+        ("The Batch", "https://www.deeplearning.ai/the-batch/",
+         "Andrew Ng&#039;s weekly roundup of AI news and research."),
+        ("Import AI", "https://jack-clark.net/",
+         "Jack Clark&#039;s weekly newsletter on frontier AI and policy."),
+        ("Latent Space", "https://www.latent.space/",
+         "Newsletter and podcast for AI engineers in production."),
+        ("Simon Willison&#039;s Blog", "https://simonwillison.net/",
+         "Prolific, practical writing on LLMs and developer tooling."),
+        ("Lil&#039;Log (Lilian Weng)", "https://lilianweng.github.io/",
+         "Deep technical explainers on ML and LLM topics."),
+        ("TLDR Newsletter", "https://tldr.tech/",
+         "Daily concise digest of tech, dev, and AI news."),
+        ("Hacker News", "https://news.ycombinator.com/",
+         "High-signal community for tech, startups, and engineering."),
+    ]),
+    ("Tools &amp; references", [
+        ("Hugging Face", "https://huggingface.co/",
+         "Hub for open models, datasets, and ML demos."),
+        ("Hugging Face Papers", "https://huggingface.co/papers",
+         "Trending ML papers with linked code and discussion."),
+        ("arXiv", "https://arxiv.org/",
+         "Open-access preprint server for AI and CS research."),
+        ("Kaggle", "https://www.kaggle.com/",
+         "Datasets, notebooks, and ML competitions community."),
+        ("DevDocs", "https://devdocs.io/",
+         "Fast unified API documentation browser, offline-capable."),
+    ]),
+]
+
+def resource_sections():
+    out = []
+    for i, (heading, links) in enumerate(RESOURCE_SECTIONS):
+        rows = []
+        for name, href, desc in links:
+            rows.append(
+f'''              <a href="{href}" target="_blank" rel="noopener" class="res-link">
+                <span class="res-name">{name}{RES_ARROW}</span>
+                <span class="res-desc">{desc}</span>
+              </a>''')
+        out.append(
+f'''          <section class="res-group reveal" style="animation-delay: {0.05 * (i + 1):.2f}s">
+            <h2 class="res-head mono">{heading}</h2>
+            <div class="res-grid">
+{chr(10).join(rows)}
+            </div>
+          </section>''')
+    return "\n".join(out)
+
 resources_body = f'''        <section class="section reveal">
-{page_head("04", "resources", "Notes, references and tools I keep coming back to.")}
-          <p class="empty-note">
-            Nothing collected here yet. This is where it'll appear.
+{page_head("04", "resources", "A hand-picked list of the resources I keep coming back to — for learning to build software, getting into AI engineering, and staying current. Free or freemium, and genuinely worth your time.")}
+{resource_sections()}
+          <p class="res-foot mono reveal" style="animation-delay: .4s">
+            Missing something great? <a href="mailto:marijakee@gmail.com">Send me a link →</a>
           </p>
         </section>
 '''
@@ -429,7 +543,7 @@ PAGES = [
   "shop", False, shop_body, "", True),
  ("resources.html",      "Resources — Jake Cardenas",
   "Notes, references and tools Jake Cardenas keeps coming back to.",
-  "resources", False, resources_body, ""),
+  "resources", False, resources_body, "", True),
  ("collabs.html",        "Collabs — Jake Cardenas",
   "Projects Jake Cardenas has built together with other people.",
   "collabs", False, collabs_body, ""),

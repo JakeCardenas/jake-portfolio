@@ -292,6 +292,83 @@ img {
   color: var(--fg-faint);
 }
 
+/* ── Resources: grouped link lists ───────────────────────────────────────────
+   The reference uses mb-11 sections, an 11px uppercase mono heading, and a
+   two-column grid whose rows are -mx-3 px-3 py-2.5 hit areas that tint on
+   hover (gap-x-8 gap-y-1). */
+.res-group {
+  margin-bottom: 2.75rem;
+}
+.res-head {
+  margin-bottom: 0.75rem;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.res-grid {
+  display: grid;
+  column-gap: 2rem;
+  row-gap: 0.25rem;
+}
+@media (min-width: 640px) {
+  .res-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.res-link {
+  display: flex;
+  flex-direction: column;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.res-link:hover {
+  background: var(--g50);
+}
+.res-name {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.375;
+  color: var(--fg);
+}
+.res-ico {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--border-strong);
+  transition: color 0.2s ease;
+}
+.res-link:hover .res-ico { color: var(--fg); }
+.res-desc {
+  margin-top: 0.125rem;
+  font-size: 12.5px;
+  line-height: 1.625;
+  /* the reference's descriptions sit on gray-500, a step lighter than the lede */
+  color: var(--fg-dim);
+}
+.res-foot {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--fg-faint);
+}
+.res-foot a {
+  color: var(--fg-muted);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+.res-foot a:hover {
+  color: var(--fg);
+  text-decoration: underline;
+}
+
 /* ── Shop detail page ──────────────────────────────────────────────────────── */
 .sd-back {
   position: relative;
