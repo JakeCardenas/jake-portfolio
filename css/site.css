@@ -2614,7 +2614,11 @@ body.menu-open {
 /* ── project deck: three cards, the centre one in focus ──────────────────── */
 .deck {
   position: relative;
-  height: 19rem;   /* the reference's base deck height */
+  /* The reference's deck is 19rem/17rem because its cards are icon + title +
+     one line. Ours carry a ~218px screenshot, so the cards run 370-410px and
+     that height clipped them straight into the experience rows. Sized to our
+     own content instead — matching his number here was the wrong call. */
+  height: 32rem;
   margin-inline: calc(50% - 50vw);
   overflow-x: clip;
   overflow-y: visible;
@@ -2632,9 +2636,9 @@ body.menu-open {
 }
 
 @media (min-width: 640px) {
-  /* the reference settles the deck to 17rem (272px) once there is room */
+  /* still generous enough for the tallest fanned card plus its rotation */
   .deck {
-    height: 17rem;
+    height: 30rem;
   }
 }
 
