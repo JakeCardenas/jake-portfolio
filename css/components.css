@@ -10,6 +10,7 @@
   --g400: #8a8a92;
   --g500: #a0a0a8;
   --g600: #b8b8c0;
+  --g700: #cecece;
 
   --card: var(--g50);
   --dot-color: rgba(244, 244, 245, 0.42);
@@ -471,7 +472,6 @@
   display: grid;
   gap: 2.25rem;
   align-items: start;
-  margin-top: 1.75rem;
 }
 @media (min-width: 640px) {
   .hero-grid {
@@ -680,8 +680,8 @@
 .section {
   padding: 3.5rem 0;
 }
-.section:first-child {
-  padding-top: 1rem;
+.section:first-child:not(.section--hero) {
+  padding-top: 3.5rem;
 }
 .eyebrow {
   font-family: var(--font-mono);
@@ -856,47 +856,38 @@
     transform: none;
   }
 }
-/* skills: a stack read as a record, not a wall of badges */
-.stack-list {
-  margin: 0;
-  border-top: 1px solid var(--border);
+.stack-group + .stack-group {
+  margin-top: 2.5rem;
 }
-.stack-row {
-  display: grid;
-  grid-template-columns: 12.5rem 1fr;
-  gap: 1.5rem;
-  padding: 1.05rem 0;
-  border-bottom: 1px solid var(--border);
-}
-.stack-label {
-  margin: 0;
-  padding-top: 0.2rem;
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
+.stack-head {
+  margin-bottom: 1rem;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--fg-dim);
-}
-.stack-items {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--fg);
-}
-.stack-items span:not(:last-child)::after {
-  content: "·";
-  margin: 0 0.55rem;
   color: var(--fg-faint);
 }
-@media (max-width: 640px) {
-  .stack-row {
-    grid-template-columns: 1fr;
-    gap: 0.45rem;
-    padding: 0.95rem 0;
-  }
-  .stack-label {
-    padding-top: 0;
-  }
+.stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
+.stack-tag {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  background: var(--bg);
+  font-size: 13px;
+  color: var(--g700);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+.stack-tag:hover {
+  border-color: var(--fg-faint);
+  color: var(--fg);
+}
+
 .chip {
   display: inline-flex;
   align-items: center;

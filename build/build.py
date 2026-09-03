@@ -128,8 +128,28 @@ f'''            <a class="gp-item" href="./gear.html">
 
 gp_html, gear_count = gear_preview()
 
+STACK_GROUPS = [
+    (m.group(1), re.findall(r'<span>([^<]+)</span>', m.group(2)))
+    for m in re.finditer(
+        r'<dt class="stack-label mono">(.*?)</dt>\s*<dd class="stack-items">(.*?)</dd>',
+        C["stack"], re.S)
+]
+
+def stack_page():
+    groups = []
+    for label, items in STACK_GROUPS:
+        tags = "\n".join(f'              <span class="stack-tag mono">{t}</span>' for t in items)
+        groups.append(
+f'''          <section class="stack-group reveal">
+            <h2 class="stack-head mono">{label}</h2>
+            <div class="stack-tags">
+{tags}
+            </div>
+          </section>''')
+    return "\n".join(groups)
+
 def stack_preview(limit=12):
-    items = re.findall(r'<span>([^<]+)</span>', C["stack"])
+    items = [t for _, group in STACK_GROUPS for t in group]
     shown = items[:limit]
     pills = "\n".join(f'            <span class="pill mono">{t}</span>' for t in shown)
     more = (f'\n            <a class="pill pill-more mono" href="./stack.html">+ {len(items)-len(shown)} more</a>'
@@ -243,8 +263,8 @@ experience_body = f'''        <section class="section reveal">
 '''
 
 stack_body = f'''        <section class="section reveal">
-{page_head("09", "stack", "The languages, frameworks and tools I work with, grouped by what they're for.")}
-{C["stack"]}
+{page_head("09", "stack", "The languages, frameworks and tools I reach for — across the front end, back end, data, and AI.")}
+{stack_page()}
         </section>
 '''
 

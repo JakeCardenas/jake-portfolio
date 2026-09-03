@@ -66,6 +66,7 @@
   --g400: #a3a3a3;
   --g500: #737373;
   --g600: #525252;
+  --g700: #404040;
 
   /* semantic roles map onto the ramp; dark mode only re-points these */
   --bg: var(--paper);
@@ -234,7 +235,7 @@ body::after {
   min-width: 0;
   /* auto margins centre the column in whatever space is left beside the rail */
   margin-inline: auto;
-  padding: 3.5rem 1.5rem 4rem;
+  padding: 0 1.5rem 4rem;
   /* border-box: the cap includes padding, so content is narrower than 672px */
   max-width: var(--content-w);
   box-sizing: border-box;
