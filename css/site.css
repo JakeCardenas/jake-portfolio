@@ -557,15 +557,15 @@ body::after {
 }
 
 .side-email {
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--fg-faint);
+  font-size: 13px;
+  letter-spacing: normal;
+  text-transform: none;   /* the reference keeps the address lowercase */
+  color: var(--fg);       /* his is text-ink, not a faint grey */
   word-break: break-all;
   transition: color 0.2s ease;
 }
 .side-email:hover {
-  color: var(--fg-muted);
+  color: var(--fg-dim);   /* his hover:text-gray-500 */
 }
 
 .menu-btn {
@@ -850,7 +850,7 @@ body::after {
 }
 
 .section {
-  padding: 3.5rem 0;
+  padding: 3.5rem 0;   /* py-14 = 56px, matches the reference */
 }
 .section:first-child {
   padding-top: 1rem;
@@ -2403,6 +2403,40 @@ body.menu-open {
 }
 
 /* a dot band, faded at both ends, standing in for a rule between sections */
+/* Two more decorative halftones the reference carries and we didn't:
+   a circular accent inside the blog section, and a wide fade before the foot. */
+.ht-accent {
+  position: absolute;
+  left: -2.5rem;
+  bottom: 1.5rem;
+  width: 8rem;
+  height: 8rem;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle at center,
+    var(--dot-color) 1px,
+    transparent 1.6px
+  );
+  background-size: 9px 9px;
+  opacity: 0.2;
+  -webkit-mask-image: radial-gradient(circle at center, #000 35%, transparent 70%);
+  mask-image: radial-gradient(circle at center, #000 35%, transparent 70%);
+}
+.ht-fade {
+  height: 2.5rem;
+  width: 100%;
+  margin: 0.5rem 0 4rem;
+  background-image: radial-gradient(
+    circle at center,
+    var(--dot-color) 1px,
+    transparent 1.6px
+  );
+  background-size: 13px 13px;
+  opacity: 0.15;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent);
+}
+
 .ht-rule {
   height: 1.5rem;
   margin: 0.5rem 0;
@@ -2569,10 +2603,18 @@ body.menu-open {
   }
 }
 
+@media (min-width: 640px) {
+  /* the reference is sm:divide-y-0 — once the stats sit on one row the
+     bottom rule is redundant and doubles up with the section below */
+  .stat-cell {
+    border-bottom: 0;
+  }
+}
+
 /* ── project deck: three cards, the centre one in focus ──────────────────── */
 .deck {
   position: relative;
-  height: 27rem;
+  height: 19rem;   /* the reference's base deck height */
   margin-inline: calc(50% - 50vw);
   overflow-x: clip;
   overflow-y: visible;
@@ -2586,17 +2628,24 @@ body.menu-open {
   .deck {
     margin-inline: 0;
     overflow: visible;
-    height: 25rem;
+  }
+}
+
+@media (min-width: 640px) {
+  /* the reference settles the deck to 17rem (272px) once there is room */
+  .deck {
+    height: 17rem;
   }
 }
 
 .deck-card {
+  /* the reference uses p-5 = 20px */
   position: absolute;
   top: 0.75rem;
   left: 50%;
   width: 18rem;
   margin-left: -9rem;
-  padding: 1.15rem;
+  padding: 1.25rem;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);

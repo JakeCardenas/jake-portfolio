@@ -1,6 +1,6 @@
 """Shared page shell — one definition, five pages, so the nav can never drift apart."""
 
-V = "?v=116"
+V = "?v=120"
 
 # the four fonts, loaded exactly as the reference does
 HEAD_FONTS = f"""    <!-- fonts are self-hosted in ./fonts — no Google/jsDelivr dependency.
@@ -15,7 +15,35 @@ HEAD_FONTS = f"""    <!-- fonts are self-hosted in ./fonts — no Google/jsDeliv
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
     />
-    <link href="./css/site.css{V}" rel="stylesheet" />"""
+    <link href="./css/site.css{V}" rel="stylesheet" />
+    <!-- The reference applies the theme in <head>, before first paint, so the
+         page never flashes the wrong one. Ours only ran at the end of <body>. -->
+    <style>
+      html {{ background-color: #ffffff; }}
+      html.dark {{ background-color: #0c0c0f; }}
+    </style>
+    <script>
+      (function () {{
+        var KEY = "theme-mode";
+        var root = document.documentElement;
+        var mq = window.matchMedia
+          ? window.matchMedia("(prefers-color-scheme: dark)")
+          : null;
+        function pref() {{
+          try {{
+            var v = localStorage.getItem(KEY);
+            return v === "dark" || v === "light" || v === "system" ? v : "system";
+          }} catch (e) {{
+            return "system";
+          }}
+        }}
+        function isDark(p) {{
+          return p === "dark" || (p === "system" && !!mq && mq.matches);
+        }}
+        root.classList.toggle("dark", isDark(pref()));
+      }})();
+    </script>
+"""
 
 ICON = {
  "blog": '<svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',

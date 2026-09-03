@@ -28,7 +28,35 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
     />
-    <link href="../css/site.css?v=116" rel="stylesheet" />
+    <link href="../css/site.css?v=120" rel="stylesheet" />
+    <!-- The reference applies the theme in <head>, before first paint, so the
+         page never flashes the wrong one. Ours only ran at the end of <body>. -->
+    <style>
+      html { background-color: #ffffff; }
+      html.dark { background-color: #0c0c0f; }
+    </style>
+    <script>
+      (function () {
+        var KEY = "theme-mode";
+        var root = document.documentElement;
+        var mq = window.matchMedia
+          ? window.matchMedia("(prefers-color-scheme: dark)")
+          : null;
+        function pref() {
+          try {
+            var v = localStorage.getItem(KEY);
+            return v === "dark" || v === "light" || v === "system" ? v : "system";
+          } catch (e) {
+            return "system";
+          }
+        }
+        function isDark(p) {
+          return p === "dark" || (p === "system" && !!mq && mq.matches);
+        }
+        root.classList.toggle("dark", isDark(pref()));
+      })();
+    </script>
+
   </head>
   <body>
     <div aria-hidden="true" class="page-halftone">
@@ -119,7 +147,7 @@
                   rel="noopener"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/macbook-air-m2.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/macbook-air-m2.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -151,7 +179,7 @@
                   rel="noopener"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/aoc-24g2sp.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/aoc-24g2sp.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -183,7 +211,7 @@
                   rel="noopener"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/aula-f75.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/aula-f75.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -215,7 +243,7 @@
                   rel="noopener"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/logitech-gpx-superlight.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/logitech-gpx-superlight.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -244,7 +272,7 @@
                   class="gear-item"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/xiaomi-light-bar.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/xiaomi-light-bar.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -275,7 +303,7 @@
                   rel="noopener"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/aful-explorer.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/aful-explorer.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -307,7 +335,7 @@
                   rel="noopener"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/sihoo-m57.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/sihoo-m57.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -346,7 +374,7 @@
                   rel="noopener"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/iphone-13.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/iphone-13.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -378,7 +406,7 @@
                   rel="noopener"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/airpods-pro-3.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/airpods-pro-3.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -410,7 +438,7 @@
                   rel="noopener"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/anker-165w.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/anker-165w.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -442,7 +470,7 @@
                   rel="noopener"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/fitbit-air.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/fitbit-air.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -481,7 +509,7 @@
                   rel="noopener"
                 >
                   <span class="gear-shot">
-                    <img src="../images/gear/kodak-fz55.jpg?v=116" alt="" loading="lazy" />
+                    <img src="../images/gear/kodak-fz55.jpg?v=120" alt="" loading="lazy" />
                     <span class="gear-icon">
                       <svg
                         viewBox="0 0 24 24"
@@ -515,7 +543,7 @@
       </main>
     </div>
 
-    <script src="../js/site-sounds.js?v=116"></script>
-    <script src="../js/site.js?v=116"></script>
+    <script src="../js/site-sounds.js?v=120"></script>
+    <script src="../js/site.js?v=120"></script>
   </body>
 </html>

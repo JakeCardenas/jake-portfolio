@@ -28,7 +28,35 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
     />
-    <link href="./css/site.css?v=116" rel="stylesheet" />
+    <link href="./css/site.css?v=120" rel="stylesheet" />
+    <!-- The reference applies the theme in <head>, before first paint, so the
+         page never flashes the wrong one. Ours only ran at the end of <body>. -->
+    <style>
+      html { background-color: #ffffff; }
+      html.dark { background-color: #0c0c0f; }
+    </style>
+    <script>
+      (function () {
+        var KEY = "theme-mode";
+        var root = document.documentElement;
+        var mq = window.matchMedia
+          ? window.matchMedia("(prefers-color-scheme: dark)")
+          : null;
+        function pref() {
+          try {
+            var v = localStorage.getItem(KEY);
+            return v === "dark" || v === "light" || v === "system" ? v : "system";
+          } catch (e) {
+            return "system";
+          }
+        }
+        function isDark(p) {
+          return p === "dark" || (p === "system" && !!mq && mq.matches);
+        }
+        root.classList.toggle("dark", isDark(pref()));
+      })();
+    </script>
+
   </head>
   <body>
     <div aria-hidden="true" class="page-halftone">
@@ -182,7 +210,8 @@
 
         <div class="ht-rule" aria-hidden="true"></div>
 
-        <section id="blog" class="section reveal">
+        <section id="blog" class="section reveal" style="position:relative">
+          <span class="ht-accent" aria-hidden="true"></span>
           <div class="num-head">
             <h2 class="num-title">01 — blog</h2>
             <a href="./blog/" class="num-link mono">ALL POSTS →</a>
@@ -203,7 +232,7 @@
                        aria-label="Show Reps — Workout Tracker"
                        onclick="activateCard(this)"
                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();activateCard(this);}">
-                <div class="deck-shot"><img src="./images/projects/reps-1.jpg?v=116" alt="" loading="lazy" /></div>
+                <div class="deck-shot"><img src="./images/projects/reps-1.jpg?v=120" alt="" loading="lazy" /></div>
                 <h3 class="deck-title">Reps — Workout Tracker</h3>
                 <div class="deck-meta mono">WEB APP · · · OFFLINE-FIRST PWA · · · NODE BACKEND</div>
                 <p class="deck-body">A workout tracker for planning exercises, customizing sets and reps, and following your gym progress. It has a library of 99 movements, a weekly split planner, a set-by-set runner with a rest timer, and it installs as an offline PWA.</p>
@@ -213,7 +242,7 @@
                        aria-label="Show Digital Twin Platform"
                        onclick="activateCard(this)"
                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();activateCard(this);}">
-                <div class="deck-shot"><img src="./images/projects/digital-twin-1.jpg?v=116" alt="" loading="lazy" /></div>
+                <div class="deck-shot"><img src="./images/projects/digital-twin-1.jpg?v=120" alt="" loading="lazy" /></div>
                 <h3 class="deck-title">Digital Twin Platform</h3>
                 <div class="deck-meta mono">FULL-STACK · · · INTERACTIVE PORTFOLIO · · · AI-POWERED CHAT</div>
                 <p class="deck-body">A full-stack platform with an interactive portfolio and an AI-powered chat.</p>
@@ -223,7 +252,7 @@
                        aria-label="Show CardenasDev — Key Visual"
                        onclick="activateCard(this)"
                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();activateCard(this);}">
-                <div class="deck-shot"><img src="./images/projects/cardenasdev-1.jpg?v=116" alt="" loading="lazy" /></div>
+                <div class="deck-shot"><img src="./images/projects/cardenasdev-1.jpg?v=120" alt="" loading="lazy" /></div>
                 <h3 class="deck-title">CardenasDev — Key Visual</h3>
                 <div class="deck-meta mono">GRAPHIC DESIGN · · · PORTFOLIO KEY VISUAL · · · PHOTOSHOP</div>
                 <p class="deck-body">A key visual for my portfolio, inspired by The Creation of Adam, representing the connection between ideas, technology, and my journey exploring AI and full-stack development.</p>
@@ -287,7 +316,7 @@
               aria-label="View the Certificate of Participation and Certificate of Appearance from the Philippine Association of Practitioners of Student Affairs and Services, Inc. (opens in a new tab)"
             >
               <span class="cert-mark">
-                <img src="./images/certs/logos/papsas.png?v=116" alt="Philippine Association of Practitioners of Student Affairs and Services, Inc." loading="lazy" />
+                <img src="./images/certs/logos/papsas.png?v=120" alt="Philippine Association of Practitioners of Student Affairs and Services, Inc." loading="lazy" />
               </span>
               <span class="cert-title">Certificate of Participation &amp; Appearance</span>
               <span class="cert-issuer mono" title="Philippine Association of Practitioners of Student Affairs and Services, Inc.">PAPSAS</span>
@@ -302,7 +331,7 @@
               aria-label="Verify the Full Stack &amp; Agentic AI Internship from Employability Advantage (opens in a new tab)"
             >
               <span class="cert-mark">
-                <img src="./images/certs/logos/employability-advantage.png?v=116" alt="Employability Advantage" loading="lazy" />
+                <img src="./images/certs/logos/employability-advantage.png?v=120" alt="Employability Advantage" loading="lazy" />
               </span>
               <span class="cert-title">Full Stack &amp; Agentic AI Internship</span>
               <span class="cert-issuer mono">Employability Advantage</span>
@@ -317,7 +346,7 @@
               aria-label="Verify React Fundamentals from CodeCred (opens in a new tab)"
             >
               <span class="cert-mark">
-                <img src="./images/certs/logos/codecred.svg?v=116" alt="CodeCred" loading="lazy" />
+                <img src="./images/certs/logos/codecred.svg?v=120" alt="CodeCred" loading="lazy" />
               </span>
               <span class="cert-title">React Fundamentals</span>
               <span class="cert-issuer mono">CodeCred</span>
@@ -371,14 +400,16 @@
           </div>
         </section>
 
+        <div class="ht-fade" aria-hidden="true"></div>
+
         <div class="site-foot mono">
           © 2026 JAKECARDENAS.COM — BUILT STATIC, HOSTED ANYWHERE.
         </div>
       </main>
     </div>
 
-    <script src="./js/site-sounds.js?v=116"></script>
-    <script src="./js/site-halftones.js?v=116"></script>
-    <script src="./js/site.js?v=116"></script>
+    <script src="./js/site-sounds.js?v=120"></script>
+    <script src="./js/site-halftones.js?v=120"></script>
+    <script src="./js/site.js?v=120"></script>
   </body>
 </html>

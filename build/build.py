@@ -180,7 +180,8 @@ home_body = f'''        <section id="home" class="section section--hero reveal">
 
         <div class="ht-rule" aria-hidden="true"></div>
 
-        <section id="blog" class="section reveal">
+        <section id="blog" class="section reveal" style="position:relative">
+          <span class="ht-accent" aria-hidden="true"></span>
 {num_head("01", "blog", "ALL POSTS →", "./blog.html")}
           <p class="empty-note">
             Notes on what I'm learning — AI, full-stack work, and the projects
@@ -229,6 +230,8 @@ home_body = f'''        <section id="home" class="section section--hero reveal">
 {num_head("07", "github", "@JAKECARDENAS ↗", "https://github.com/JakeCardenas")}
 {C["gh_panel"]}
         </section>
+
+        <div class="ht-fade" aria-hidden="true"></div>
 '''
 
 # ── dedicated pages ───────────────────────────────────────────────────────────
