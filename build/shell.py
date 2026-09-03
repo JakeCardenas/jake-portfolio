@@ -1,6 +1,6 @@
 """Shared page shell — one definition, five pages, so the nav can never drift apart."""
 
-V = "?v=128"
+V = "?v=129"
 
 # the four fonts, loaded exactly as the reference does
 HEAD_FONTS = f"""    <!-- fonts are self-hosted in ./fonts — no Google/jsDelivr dependency.
