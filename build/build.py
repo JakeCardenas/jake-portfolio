@@ -104,28 +104,6 @@ f'''              <article class="deck-card {slot}" role="button" tabindex="0"
               </article>''')
     return ('          <div class="deck" data-deck>\n' + "\n".join(cards) + '\n          </div>')
 
-def gear_preview():
-    items = []
-    for g in C["gear_groups"]:
-        for m in re.finditer(r'<li>\s*<a\s+class="gear-item"(.*?)</li>', g, re.S):
-            blk = m.group(0)
-            name = re.search(r'<span class="gear-name">(.*?)</span>', blk, re.S)
-            meta = re.search(r'<span class="gear-meta">(.*?)</span>', blk, re.S)
-            img  = re.search(r'<img\s+src="([^"]+)"', blk)
-            if name and img:
-                items.append((name.group(1).strip(),
-                              re.sub(r'\s+', ' ', meta.group(1)).strip() if meta else "",
-                              img.group(1).split("?")[0]))
-    picks = items[:4]
-    tiles = "\n".join(
-f'''            <a class="gp-item" href="./gear.html">
-              <span class="gp-shot"><img src="{img}{V}" alt="" loading="lazy" /></span>
-              <span class="gp-name">{name}</span>
-              <span class="gp-meta mono">{meta}</span>
-            </a>''' for name, meta, img in picks)
-    return '          <div class="gear-preview">\n' + tiles + '\n          </div>', len(items)
-
-gp_html, gear_count = gear_preview()
 
 STACK_GROUPS = [
     (m.group(1), re.findall(r'<span>([^<]+)</span>', m.group(2)))
@@ -275,12 +253,77 @@ certs_body = f'''        <section class="section reveal">
         </section>
 '''
 
+GEAR_GROUPS = [
+    ("Desk Setup", [
+        ("MacBook Air M2", "Laptop", "macbook-air-m2.webp",
+         "https://support.apple.com/en-ph/111867"),
+        ("AOC 24G2SP", "Monitor", "aoc-24g2sp.webp",
+         "https://www.aoc.com/us/gaming/monitors/24g2sp"),
+        ("Aula F75", "Keyboard", "aula-f75.webp",
+         "https://aulagear.com/products/aula-f75"),
+        ("Logitech G Pro X Superlight", "Mouse", "logitech-gpx-superlight.webp",
+         "https://www.logitechg.com/en-ph/shop/p/pro-x-superlight-wireless-mouse.910-005944"),
+        ("Xiaomi Monitor Light Bar", "Monitor light", "xiaomi-light-bar.webp", ""),
+        ("AFUL Explorer", "IEM", "aful-explorer.webp",
+         "https://afulaudio.com/products/aful-explorer"),
+        ("Sihoo M57", "Ergonomic chair", "sihoo-m57.webp",
+         "https://thingsweuse.ph/products/sihoo-m57-without-footrest"),
+    ]),
+    ("Everyday Carry", [
+        ("iPhone 13", "Phone \u00b7 128GB", "iphone-13.webp",
+         "https://www.apple.com/newsroom/2021/09/apple-introduces-iphone-13-and-iphone-13-mini/"),
+        ("AirPods Pro 3", "Earbuds", "airpods-pro-3.webp",
+         "https://www.apple.com/ph/airpods-pro/"),
+        ("Anker 165W", "Power bank", "anker-165w.webp",
+         "https://anker.ph/products/anker-25000mah-165w-laptop-power-bank"),
+        ("Google Fitbit Air", "Fitness tracker", "fitbit-air.webp",
+         "https://store.google.com/us/product/google_fitbit_air?hl=en-US"),
+    ]),
+    ("Creator", [
+        ("Kodak FZ55", "Camera", "kodak-fz55.webp",
+         "https://www.kodak.com/en/consumer/product/cameras/digital/fz55/"),
+    ]),
+]
+
+GEAR_ARROW = ('<svg class="gear-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+              '<path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.6" '
+              'stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+gear_count = sum(len(items) for _, items in GEAR_GROUPS)
+
+def gear_sections():
+    out = []
+    for i, (heading, items) in enumerate(GEAR_GROUPS):
+        cards = []
+        for name, meta, shot, href in items:
+            tag  = "a" if href else "div"
+            attr = f' href="{href}" target="_blank" rel="noopener"' if href else ""
+            cards.append(
+f'''              <{tag} class="gear-item"{attr}>
+                <span class="gear-shot">
+                  <img src="./images/gear/{shot}{V}" alt="{name}" loading="lazy" />
+                </span>
+                <span class="gear-body">
+                  <span class="gear-head">
+                    <span class="gear-name">{name}</span>{GEAR_ARROW if href else ""}
+                  </span>
+                  <span class="gear-meta">{meta}</span>
+                </span>
+              </{tag}>''')
+        out.append(
+f'''          <section class="gear-group reveal" style="animation-delay: {0.05 * (i + 1):.2f}s">
+            <h2 class="gear-group-head mono">{heading}</h2>
+            <div class="gear-grid">
+{chr(10).join(cards)}
+            </div>
+          </section>''')
+    return "\n".join(out)
+
 gear_body = f'''        <section class="section reveal">
-{page_head("gear", "The hardware I actually use day to day — desk setup, everyday carry, and the camera I shoot on.")}
-{chr(10).join(C["gear_groups"])}
+{page_head("gear", "The hardware I actually use day to day \u2014 desk setup, everyday carry, and the camera I shoot on.")}
+{gear_sections()}
         </section>
 '''
-
 SHOP_ITEMS = [
     {
         "slug":  "developer-resume-template",
