@@ -194,7 +194,6 @@ home_body = f'''        <section id="home" class="section section--hero reveal">
 {num_head("05", "certifications", "ALL CERTIFICATIONS →", "./certifications.html")}
           <div class="cert-grid cert-grid--flat">
 {chr(10).join(C["certs"][:3])}
-          </div>
         </section>
 
         <section id="internships" class="section reveal">
@@ -209,7 +208,6 @@ home_body = f'''        <section id="home" class="section section--hero reveal">
                 <span class="affil-role mono">2026 · Employability Advantage &times; AusBiz Consulting</span>
               </span>
             </a>
-          </div>
         </section>
 
         <section id="github" class="section reveal">
@@ -226,15 +224,12 @@ blog_body = f'''        <section class="section reveal">
             <p class="empty-note">
               No posts published yet. This is where they'll appear.
             </p>
-          </div>
         </section>
 '''
 
 projects_body = f'''        <section class="section reveal">
 {page_head("projects", "Things I've built — full-stack apps, AI work, and design.")}
-          <div class="project-stack">
 {chr(10).join(C["projects"])}
-          </div>
         </section>
 '''
 
@@ -258,7 +253,6 @@ certs_body = f'''        <section class="section reveal">
 {page_head("certifications", "Certificates I've earned, each one linked to its source.")}
           <div class="cert-grid">
 {chr(10).join(C["certs"])}
-          </div>
         </section>
 '''
 
@@ -438,7 +432,6 @@ def shop_detail(item):
           <div class="sd-desc">
             <p>{item["desc_intro"]}</p>
 {sections_html}
-          </div>
         </section>
 '''
 
