@@ -990,10 +990,32 @@
 .entry-card .card-label {
   margin-top: 0;
 }
+.edge-fade-divider {
+  position: relative;
+}
+.edge-fade-divider::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border) 18%,
+    var(--border) 82%,
+    transparent
+  );
+}
 .project-card {
+  overflow: hidden;
   padding: 0;
   border: 0;
-  background: none;
+  border-radius: 1rem;
+  background: linear-gradient(to bottom right, var(--g50), var(--bg));
   box-shadow: none;
 }
 .project-card:hover {
@@ -1001,17 +1023,54 @@
   transform: none;
 }
 .project-card + .project-card {
-  margin-top: 3.5rem;
-  padding-top: 3.5rem;
-  border-top: 1px solid var(--border);
+  margin-top: 1rem;
 }
-.project-card .entry-head {
-  margin-bottom: 1.1rem;
+.project-body {
+  padding: 1.5rem;
+}
+.project-card .entry-meta {
+  margin-top: 0;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.project-card .entry-title {
+  margin-top: 0.75rem;
+  padding-right: 0;
+  font-family: var(--font-pixel);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1;
+}
+.project-card .entry-body {
+  margin: 0.625rem 0 0;
+  max-width: 32rem;
+  font-size: 14px;
+  line-height: 1.625;
+}
+.project-card .card-label {
+  margin-top: 1.35rem;
+  margin-bottom: 0.7rem;
+}
+.project-card .link-out {
+  margin-top: 1rem;
+}
+.project-card .link-out--soft {
+  margin-top: 0.55rem;
 }
 .project-carousel {
-  margin-top: 2.25rem;
+  margin-top: 1.6rem;
   padding: 0;
   position: relative;
+}
+/* inside a card the media is full-bleed, so it drops the float treatment */
+.project-card .project-carousel {
+  margin-top: 0;
+}
+.project-card .carousel-slide {
+  border-radius: 0;
+  box-shadow: none;
 }
 .carousel-stack {
   position: relative;
@@ -1442,6 +1501,11 @@
 .tl-card .entry-body {
   margin-top: 0.9rem;
   margin-bottom: 1.25rem;
+}
+@media (min-width: 640px) {
+  .project-body {
+    padding: 1.75rem;
+  }
 }
 @media (max-width: 640px) {
   .tl-item {

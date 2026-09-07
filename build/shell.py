@@ -1,4 +1,4 @@
-V = "?v=151"
+V = "?v=152"
 
 # the inline theme script must stay in <head>: it runs before first paint
 HEAD_FONTS = f"""    <link rel="preload" href="./fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
