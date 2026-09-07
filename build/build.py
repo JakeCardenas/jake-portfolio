@@ -78,6 +78,13 @@ f'''            <a class="stat-cell" href="{href}">
         
     return '          <div class="stat-row">\n' + "\n".join(cells) + '\n          </div>'
 
+# the projects page is a text stack now, so the deck keeps its own shots
+PROJECT_SHOTS = {
+    "Digital Twin Platform":        "./images/projects/digital-twin-1.jpg",
+    "Reps — Workout Tracker":       "./images/projects/reps-1.jpg",
+    "Starbyte — Space Shooter Game": "./images/projects/starbyte-1.jpg",
+}
+
 def deck():
     slots = ["is-left", "is-center", "is-right"]
     order = [1, 0, 2]                       # Reps left, Digital Twin centre, CardenasDev right
@@ -89,7 +96,7 @@ def deck():
         meta  = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' · ', meta)).strip(' ·· ')
         body  = re.search(r'<p class="entry-body">(.*?)</p>', art, re.S).group(1).strip()
         body  = re.sub(r'\s+', ' ', body)
-        img   = re.search(r'<img\s+src="([^"]+)"', art).group(1)
+        img   = PROJECT_SHOTS[title]
         link  = re.search(r'href="(https://[^"]+)"', art)
         live  = (f'\n                <a href="{link.group(1)}" target="_blank" rel="noopener" '
                  f'class="deck-link mono">VIEW LIVE SITE <span aria-hidden="true">↗</span></a>'
@@ -225,7 +232,9 @@ blog_body = f'''        <section class="section reveal">
 
 projects_body = f'''        <section class="section reveal">
 {page_head("projects", "Things I've built — full-stack apps, AI work, and design.")}
+          <div class="project-stack">
 {chr(10).join(C["projects"])}
+          </div>
         </section>
 '''
 
