@@ -62,8 +62,8 @@ for m in re.finditer(r'<(/?)div\b[^>]*?(/?)>', hero[i:]):
 hero = hero[:i] + hero[end:]
 
 STATS = [
-    ("3", "PROJECTS SHIPPED", "./projects.html"),
-    ("5", "CERTIFICATES",     "./certifications.html"),
+    (str(len(C["projects"])), "PROJECTS SHIPPED", "./projects.html"),
+    (str(len(C["certs"])),    "CERTIFICATES",     "./certifications.html"),
     ("6", "STACK",            "./stack.html"),
     ("1", "INTERNSHIP",       "#internships"),
 ]

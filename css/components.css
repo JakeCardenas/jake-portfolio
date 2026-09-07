@@ -928,6 +928,16 @@
 .link-out:hover span {
   transform: translate(2px, -2px);
 }
+.link-out--soft {
+  display: flex;
+  width: fit-content;
+  margin-top: 0.55rem;
+  font-size: 0.66rem;
+  color: var(--fg-faint);
+}
+.link-out--soft:hover {
+  color: var(--fg-dim);
+}
 .entry-card.is-hidden {
   display: none;
 }
