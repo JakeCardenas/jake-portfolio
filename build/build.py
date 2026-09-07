@@ -65,7 +65,7 @@ STATS = [
     (str(len(C["projects"])), "PROJECTS SHIPPED", "./projects.html"),
     (str(len(C["certs"])),    "CERTIFICATES",     "./certifications.html"),
     ("6", "STACK",            "./stack.html"),
-    ("1", "INTERNSHIP",       "#internships"),
+    ("1", "INTERNSHIP",       "./experience.html"),
 ]
 def stat_row():
     cells = []
@@ -77,6 +77,34 @@ f'''            <a class="stat-cell" href="{href}">
             </a>''')
         
     return '          <div class="stat-row">\n' + "\n".join(cells) + '\n          </div>'
+
+AFFILIATIONS = [
+    ("Red Fools Studio", "Game Development Program",
+     "./images/affiliations/red-fools-studio.png",
+     "https://www.redfoolsstudio.com/participant-page/3f85f6d1-d913-48d7-bf19-1b50ce06ac1c"
+     "?programId=3f85f6d1-d913-48d7-bf19-1b50ce06ac1c"),
+    ("AWS &times; Kiro", "Student Builder Group",
+     "./images/affiliations/kiro.svg", None),
+]
+
+def affil_row():
+    items = []
+    for name, role, logo, href in AFFILIATIONS:
+        head = (f'<a class="affil-item" href="{href}" target="_blank" rel="noopener"'
+                if href else '<div class="affil-item"')
+        tail = "</a>" if href else "</div>"
+        items.append(
+f"""            {head}>
+              <span class="affil-mark" aria-hidden="true">
+                <img src="{logo}{V}" alt="" loading="lazy" />
+              </span>
+              <span>
+                <span class="affil-name">{name}</span>
+                <span class="affil-role mono">{role}</span>
+              </span>
+            {tail}""")
+    return ('          <div class="affil-row">\n'
+            + "\n".join(items) + '\n          </div>')
 
 # the projects page is a text stack now, so the deck keeps its own shots
 PROJECT_SHOTS = {
@@ -196,18 +224,9 @@ home_body = f'''        <section id="home" class="section section--hero reveal">
 {chr(10).join(C["certs"][:3])}
         </section>
 
-        <section id="internships" class="section reveal">
-{num_head("06", "internships", "FULL HISTORY →", "./experience.html")}
-          <div class="affil-row">
-            <a class="affil-item" href="./experience.html">
-              <span class="affil-mark" aria-hidden="true">
-                <img src="./images/certs/logos/employability-advantage.png" alt="" loading="lazy" />
-              </span>
-              <span>
-                <span class="affil-name">Full Stack &amp; Agentic AI Developer Intern</span>
-                <span class="affil-role mono">2026 · Employability Advantage &times; AusBiz Consulting</span>
-              </span>
-            </a>
+        <section id="affiliations" class="section reveal">
+{num_head("06", "affiliations")}
+{affil_row()}
         </section>
 
         <section id="github" class="section reveal">
