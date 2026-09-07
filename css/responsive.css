@@ -129,8 +129,8 @@
   .section {
     padding: 3.5rem 0;
   }
-  .entry-card,
-  .project-card {
+  /* .project-card holds no padding now — .project-body does */
+  .entry-card {
     padding: 1.35rem 1.25rem;
   }
   .entry-title {
@@ -138,6 +138,9 @@
   }
   .project-carousel {
     padding: 1rem 1rem 0.75rem;
+  }
+  .project-card .project-carousel {
+    padding: 0;
   }
 }
 @media (max-width: 1023.98px) {

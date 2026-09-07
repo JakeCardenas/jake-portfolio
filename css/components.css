@@ -1072,6 +1072,30 @@
   border-radius: 0;
   box-shadow: none;
 }
+/* the flush media reads as one block, so slides cross-fade instead of
+   fanning out — the stacked tilt would poke past the card edge */
+.project-card .carousel-slide:not(.active),
+.project-card .project-carousel:hover .carousel-slide:not(.active) {
+  transform: none;
+  opacity: 0;
+  box-shadow: none;
+  filter: none;
+  pointer-events: none;
+}
+.project-card .carousel-dots {
+  position: absolute;
+  right: 0;
+  bottom: 0.85rem;
+  left: 0;
+  margin-top: 0;
+}
+.project-card .carousel-dot {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 3px rgba(10, 10, 10, 0.45);
+}
+.project-card .carousel-dot.active {
+  background: #ffffff;
+}
 .carousel-stack {
   position: relative;
 
@@ -1702,7 +1726,6 @@
     max-width: 16rem;
   }
   .entry-card,
-  .project-card,
   .tl-card {
     padding: 1.15rem 1.05rem;
   }
