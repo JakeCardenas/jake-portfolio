@@ -186,6 +186,41 @@ def row_list(*entries):
     return ('          <div class="row-list">\n'
             + "\n".join(row(e) for e in entries) + '\n          </div>')
 
+VIEW_ICONS = {
+    "list": '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+            '<path d="M8 6h12M8 12h12M8 18h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>'
+            '<circle cx="4" cy="6" r="1.1" fill="currentColor"/><circle cx="4" cy="12" r="1.1" fill="currentColor"/>'
+            '<circle cx="4" cy="18" r="1.1" fill="currentColor"/></svg>',
+    "grid": '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+            '<rect x="4" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/>'
+            '<rect x="13" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/>'
+            '<rect x="4" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/>'
+            '<rect x="13" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg>',
+}
+
+def post_cards(home=False):
+    h = "h3" if home else "h2"
+    cards = []
+    for p in C["posts"]:
+        cards.append(
+f'''            <a href="./posts/{p["slug"]}/" class="post-card">
+              <span class="post-thumb">
+                <img src="{p["image"]}{V}" alt="" loading="lazy" />
+              </span>
+              <span class="post-body">
+                <time class="post-date mono">{p["date"]}</time>
+                <{h} class="post-title">{p["title"]}</{h}>
+                <p class="post-excerpt">{p["excerpt"]}</p>
+                <span class="post-meta mono">
+                  <span class="post-meta-read">Read</span>
+                  <span class="post-meta-sep">·</span>
+                  <span>{p["read"]}</span>
+                </span>
+              </span>
+            </a>''')
+    box = 'class="view-list"' if home else 'id="postsContainer" class="view-list"'
+    return f'          <div {box}>\n' + "\n".join(cards) + '\n          </div>'
+
 home_body = f'''        <section id="home" class="section section--hero reveal">
 {hero}
         </section>
@@ -197,10 +232,7 @@ home_body = f'''        <section id="home" class="section section--hero reveal">
         <section id="blog" class="section reveal" style="position:relative">
           <span class="ht-accent" aria-hidden="true"></span>
 {num_head("01", "blog", "ALL POSTS →", "./blog.html")}
-          <p class="empty-note">
-            Notes on what I'm learning — AI, full-stack work, and the projects
-            behind them. First posts are on the way.
-          </p>
+{post_cards(home=True)}
         </section>
 
         <section id="projects" class="section reveal">
@@ -237,12 +269,84 @@ home_body = f'''        <section id="home" class="section section--hero reveal">
         <div class="ht-fade" aria-hidden="true"></div>
 '''
 
+BLOG_VIEW_JS = """
+    <script>
+      (function () {
+        const box = document.getElementById("postsContainer");
+        if (!box) return;
+        const btns = document.querySelectorAll(".view-btn");
+        const cards = Array.from(box.querySelectorAll(".post-card"));
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let current = null;
+
+        function paint(v) {
+          btns.forEach((b) => b.classList.toggle("is-active", b.dataset.view === v));
+        }
+        function apply(v) {
+          box.classList.remove("view-list", "view-grid");
+          box.classList.add("view-" + v);
+        }
+        function setView(v, animate) {
+          v = v === "grid" ? "grid" : "list";
+          paint(v);
+          if (v === current) return;
+          try { localStorage.setItem("blogView", v); } catch (e) {}
+          if (!animate || reduce) { apply(v); current = v; return; }
+
+          box.classList.add("switching");
+          setTimeout(() => {
+            apply(v);
+            current = v;
+            cards.forEach((c) => c.classList.add("card-enter"));
+            box.classList.remove("switching");
+            requestAnimationFrame(() =>
+              requestAnimationFrame(() => {
+                cards.forEach((c, i) => {
+                  c.style.transitionDelay = Math.min(i * 25, 280) + "ms";
+                  c.classList.remove("card-enter");
+                });
+              })
+            );
+            setTimeout(() => cards.forEach((c) => (c.style.transitionDelay = "")), 800);
+          }, 200);
+        }
+
+        let saved = "list";
+        try { saved = localStorage.getItem("blogView") || "list"; } catch (e) {}
+        setView(saved, false);
+        btns.forEach((b) => b.addEventListener("click", () => setView(b.dataset.view, true)));
+      })();
+    </script>"""
+
 blog_body = f'''        <section class="section reveal">
-{page_head("blog", "Notes on what I'm learning — artificial intelligence, full-stack development, and the projects behind them.")}
-          <div class="post-list" id="postList">
-            <p class="empty-note">
-              No posts published yet. This is where they'll appear.
-            </p>
+          <div class="blog-head">
+{page_head("blog", "Notes on what I am learning — building projects, working with AI, and the lessons that come out of both.")}
+            <div class="view-toggle" role="group" aria-label="Layout">
+              <button type="button" class="view-btn" data-view="list" title="List view" aria-label="List view">{VIEW_ICONS["list"]}</button>
+              <button type="button" class="view-btn" data-view="grid" title="Grid view" aria-label="Grid view">{VIEW_ICONS["grid"]}</button>
+            </div>
+          </div>
+{post_cards()}
+        </section>
+'''
+
+def article_body(p):
+    return f'''        <section class="section reveal">
+          <a href="./blog.html" class="article-back mono">← back to blog</a>
+          <header class="article-head">
+            <div class="article-meta mono">
+              <span>{p["date"]}</span>
+              <span class="post-meta-sep">·</span>
+              <span>{p["read"]}</span>
+            </div>
+            <h1 class="article-title">{p["title"]}</h1>
+          </header>
+          <div class="article-cover">
+            <img src="{p["image"]}{V}" alt="" />
+          </div>
+          <div class="prose">
+{p["body"]}
+          </div>
         </section>
 '''
 
@@ -714,7 +818,7 @@ PAGES = [
   "opportunities", False, services_body, "", "roomy"),
  ("blog.html",           "Blog — Jake Cardenas",
   "Notes on artificial intelligence, full-stack development, and the projects behind them.",
-  "blog", False, blog_body, ""),
+  "blog", False, blog_body, BLOG_VIEW_JS, True),
  ("projects.html",       "Projects — Jake Cardenas",
   "Full-stack apps, AI work, and design projects built by Jake Cardenas.",
   "projects", False, projects_body, "", True),
@@ -755,6 +859,21 @@ for fname, title, desc, active, on_index, body, extra, *w in PAGES:
     open(out, "w", encoding="utf-8").write(html)
     rel = os.path.relpath(out, ROOT)
     print(f"  {rel:<26} {len(html):>7,} bytes")
+
+for p in C["posts"]:
+    art = page(title=f'{p["title"]} — Jake Cardenas',
+               desc=p["excerpt"], active="blog", on_index=False,
+               body=article_body(p), extra_scripts="")
+    art = re.sub(r'\?v=\d+', V, art)
+    out_dir = os.path.join(ROOT, "posts", p["slug"])
+    os.makedirs(out_dir, exist_ok=True)
+    art = art.replace('href="./index.html#', 'href="./#')
+    art = art.replace('href="./index.html"', 'href="./"')
+    art = re.sub(r'href="\./([a-z-]+)\.html"', r'href="./\1/"', art)
+    art = art.replace('"./', '"../../').replace("'./", "'../../")
+    out = os.path.join(out_dir, "index.html")
+    open(out, "w", encoding="utf-8").write(art)
+    print(f'  {os.path.relpath(out, ROOT):<52} {len(art):>7,} bytes')
 
 for item in SHOP_ITEMS:
     detail = shop_detail(item)

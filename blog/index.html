@@ -26,9 +26,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
     />
-    <link href="../css/main.css?v=173" rel="stylesheet" />
-    <link href="../css/components.css?v=173" rel="stylesheet" />
-    <link href="../css/responsive.css?v=173" rel="stylesheet" />
+    <link href="../css/main.css?v=177" rel="stylesheet" />
+    <link href="../css/components.css?v=177" rel="stylesheet" />
+    <link href="../css/responsive.css?v=177" rel="stylesheet" />
     <style>
       html { background-color: #ffffff; }
       html.dark { background-color: #0c0c0f; }
@@ -129,27 +129,123 @@
         </button>
       </aside>
 
-      <main class="main">
+      <main class="main main--wide">
         <section class="section reveal">
+          <div class="blog-head">
           <header class="page-head">
             <h1 class="page-title">blog</h1>
-            <p class="page-lede">Notes on what I'm learning — artificial intelligence, full-stack development, and the projects behind them.</p>
+            <p class="page-lede">Notes on what I am learning — building projects, working with AI, and the lessons that come out of both.</p>
           </header>
-          <div class="post-list" id="postList">
-            <p class="empty-note">
-              No posts published yet. This is where they'll appear.
-            </p>
+            <div class="view-toggle" role="group" aria-label="Layout">
+              <button type="button" class="view-btn" data-view="list" title="List view" aria-label="List view"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="4" cy="6" r="1.1" fill="currentColor"/><circle cx="4" cy="12" r="1.1" fill="currentColor"/><circle cx="4" cy="18" r="1.1" fill="currentColor"/></svg></button>
+              <button type="button" class="view-btn" data-view="grid" title="Grid view" aria-label="Grid view"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            </div>
+          </div>
+          <div id="postsContainer" class="view-list">
+            <a href="../posts/building-projects-taught-me-more-than-just-writing-code/" class="post-card">
+              <span class="post-thumb">
+                <img src="../images/blog/dither-study.jpg?v=177" alt="" loading="lazy" />
+              </span>
+              <span class="post-body">
+                <time class="post-date mono">Sep 2026</time>
+                <h2 class="post-title">Building Projects Taught Me More Than Just Writing Code</h2>
+                <p class="post-excerpt">The past few months have taught me something I did not fully understand when I first started learning how to code. Building a project and learning how to code are not...</p>
+                <span class="post-meta mono">
+                  <span class="post-meta-read">Read</span>
+                  <span class="post-meta-sep">·</span>
+                  <span>3 min</span>
+                </span>
+              </span>
+            </a>
+            <a href="../posts/ai-can-write-code-but-it-cannot-build-your-experience/" class="post-card">
+              <span class="post-thumb">
+                <img src="../images/blog/ai-and-human.jpg?v=177" alt="" loading="lazy" />
+              </span>
+              <span class="post-body">
+                <time class="post-date mono">Sep 2026</time>
+                <h2 class="post-title">AI Can Write Code, But It Cannot Build Your Experience</h2>
+                <p class="post-excerpt">AI has changed the way I build. I can ask questions faster. I can understand unfamiliar code more easily. I can generate a starting point for an idea that might have...</p>
+                <span class="post-meta mono">
+                  <span class="post-meta-read">Read</span>
+                  <span class="post-meta-sep">·</span>
+                  <span>2 min</span>
+                </span>
+              </span>
+            </a>
+            <a href="../posts/why-im-building-before-i-feel-ready/" class="post-card">
+              <span class="post-thumb">
+                <img src="../images/blog/tesla-coil.jpg?v=177" alt="" loading="lazy" />
+              </span>
+              <span class="post-body">
+                <time class="post-date mono">Sep 2026</time>
+                <h2 class="post-title">Why I'm Building Before I Feel Ready</h2>
+                <p class="post-excerpt">There are still many things I do not know. Sometimes I look at projects made by experienced developers and immediately see how far I still have to go.</p>
+                <span class="post-meta mono">
+                  <span class="post-meta-read">Read</span>
+                  <span class="post-meta-sep">·</span>
+                  <span>3 min</span>
+                </span>
+              </span>
+            </a>
+          </div>
         </section>
 
       </main>
     </div>
 
-    <script src="../js/sounds.js?v=173"></script>
-    <script src="../js/halftone.js?v=173"></script>
-    <script src="../js/theme.js?v=173"></script>
-    <script src="../js/nav.js?v=173"></script>
-    <script src="../js/cards.js?v=173"></script>
-    <script src="../js/main.js?v=173"></script>
-    <script src="../js/fetches/github.js?v=173"></script>
+    <script src="../js/sounds.js?v=177"></script>
+
+    <script>
+      (function () {
+        const box = document.getElementById("postsContainer");
+        if (!box) return;
+        const btns = document.querySelectorAll(".view-btn");
+        const cards = Array.from(box.querySelectorAll(".post-card"));
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let current = null;
+
+        function paint(v) {
+          btns.forEach((b) => b.classList.toggle("is-active", b.dataset.view === v));
+        }
+        function apply(v) {
+          box.classList.remove("view-list", "view-grid");
+          box.classList.add("view-" + v);
+        }
+        function setView(v, animate) {
+          v = v === "grid" ? "grid" : "list";
+          paint(v);
+          if (v === current) return;
+          try { localStorage.setItem("blogView", v); } catch (e) {}
+          if (!animate || reduce) { apply(v); current = v; return; }
+
+          box.classList.add("switching");
+          setTimeout(() => {
+            apply(v);
+            current = v;
+            cards.forEach((c) => c.classList.add("card-enter"));
+            box.classList.remove("switching");
+            requestAnimationFrame(() =>
+              requestAnimationFrame(() => {
+                cards.forEach((c, i) => {
+                  c.style.transitionDelay = Math.min(i * 25, 280) + "ms";
+                  c.classList.remove("card-enter");
+                });
+              })
+            );
+            setTimeout(() => cards.forEach((c) => (c.style.transitionDelay = "")), 800);
+          }, 200);
+        }
+
+        let saved = "list";
+        try { saved = localStorage.getItem("blogView") || "list"; } catch (e) {}
+        setView(saved, false);
+        btns.forEach((b) => b.addEventListener("click", () => setView(b.dataset.view, true)));
+      })();
+    </script>    <script src="../js/halftone.js?v=177"></script>
+    <script src="../js/theme.js?v=177"></script>
+    <script src="../js/nav.js?v=177"></script>
+    <script src="../js/cards.js?v=177"></script>
+    <script src="../js/main.js?v=177"></script>
+    <script src="../js/fetches/github.js?v=177"></script>
   </body>
 </html>
