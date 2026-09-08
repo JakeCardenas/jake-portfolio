@@ -576,24 +576,18 @@ resources_body = f'''        <section class="section reveal">
 '''
 
 COLLABS = [
-    ("St. Paul University Philippines", "./images/collabs/spup.png",   1.0),
-    ("Apple",                           "./images/collabs/apple.svg",  0.82),
-    ("TikTok",                          "./images/collabs/tiktok.svg", 0.86),
-    ("AWS",                             "./images/collabs/aws.svg",    0.88),
-    ("Kiro",                            "./images/collabs/kiro.svg",   0.9),
-    ("TESDA",                           "./images/collabs/tesda.png",  1.0),
-    ("Roblox",                          "./images/collabs/roblox.svg", 1.0),
+    ("St. Paul University Philippines", "./images/collabs/spup.png"),
+    ("Apple",                           "./images/collabs/apple.svg"),
+    ("TikTok",                          "./images/collabs/tiktok.svg"),
+    ("AWS",                             "./images/collabs/aws.png"),
+    ("Kiro",                            "./images/collabs/kiro.svg"),
+    ("Roblox",                          "./images/collabs/roblox.svg"),
 ]
 
 def collab_row():
     logos = "\n".join(
-f'''            <img
-              class="collab-logo"
-              style="--s: {scale}"
-              src="{src}{V}"
-              alt="{name}"
-              loading="lazy"
-            />''' for name, src, scale in COLLABS)
+f'''            <img class="collab-logo" src="{src}{V}" alt="{name}" loading="lazy" />'''
+        for name, src in COLLABS)
     return '          <div class="collab-row">\n' + logos + '\n          </div>'
 
 MAIL_ICON = ('<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">'
@@ -644,7 +638,7 @@ PAGES = [
   "resources", False, resources_body, "", True),
  ("collabs.html",        "Collabs — Jake Cardenas",
   "Projects Jake Cardenas has built together with other people.",
-  "collabs", False, collabs_body, ""),
+  "collabs", False, collabs_body, "", "roomy"),
  ("opportunities.html",  "Opportunities — Jake Cardenas",
   "What Jake Cardenas is open to right now — internships, freelance work and team projects.",
   "opportunities", False, opportunities_body, ""),
@@ -670,7 +664,7 @@ PAGES = [
 
 for fname, title, desc, active, on_index, body, extra, *w in PAGES:
     html = page(title=title, desc=desc, active=active, on_index=on_index,
-                body=body, extra_scripts=extra, wide=bool(w and w[0]))
+                body=body, extra_scripts=extra, wide=(w[0] if w else False))
     html = re.sub(r'\?v=\d+', V, html)
     # directory index: blog/index.html is served at /blog
     if fname == "index.html":

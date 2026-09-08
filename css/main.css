@@ -459,6 +459,9 @@ body.menu-open {
 }
 
 /* pages that carry grids rather than prose get the wider measure */
+.main--roomy {
+  max-width: 48rem;
+}
 .main--wide {
   max-width: var(--content-w-wide);
 }

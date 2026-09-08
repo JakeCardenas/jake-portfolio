@@ -1,4 +1,4 @@
-V = "?v=171"
+V = "?v=172"
 
 # the inline theme script must stay in <head>: it runs before first paint
 HEAD_FONTS = f"""    <link rel="preload" href="./fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -118,7 +118,7 @@ CONTROLS = """          <div class="control-pill">
 # script order is a dependency: applyTheme() calls renderAllHalftones()
 def page(*, title, desc, active, on_index, body, extra_scripts="", wide=False):
     group_a, group_b, group_c = nav(active, on_index)
-    main_mod = ' main--wide' if wide else ''
+    main_mod = f' main--{wide}' if isinstance(wide, str) else (' main--wide' if wide else '')
     return f"""<!doctype html>
 <html lang="en">
   <head>
