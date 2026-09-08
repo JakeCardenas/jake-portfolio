@@ -576,32 +576,50 @@ resources_body = f'''        <section class="section reveal">
 '''
 
 COLLABS = [
-    ("St. Paul University Philippines", "./images/collabs/spup.png",   1.1),
-    ("Apple",                           "./images/collabs/apple.svg",  0.92),
-    ("TikTok",                          "./images/collabs/tiktok.svg", 0.95),
-    ("AWS",                             "./images/collabs/aws.svg",    0.95),
+    ("St. Paul University Philippines", "./images/collabs/spup.png",   1.0),
+    ("Apple",                           "./images/collabs/apple.svg",  0.82),
+    ("TikTok",                          "./images/collabs/tiktok.svg", 0.86),
+    ("AWS",                             "./images/collabs/aws.svg",    0.88),
+    ("Kiro",                            "./images/collabs/kiro.svg",   0.9),
     ("TESDA",                           "./images/collabs/tesda.png",  1.0),
     ("Roblox",                          "./images/collabs/roblox.svg", 1.0),
 ]
 
-def collab_grid():
-    cells = []
-    for name, src, scale in COLLABS:
-        cells.append(
+def collab_row():
+    logos = "\n".join(
 f'''            <img
               class="collab-logo"
               style="--s: {scale}"
               src="{src}{V}"
               alt="{name}"
               loading="lazy"
-            />''')
-    return '          <div class="collab-grid">\n' + "\n".join(cells) + '\n          </div>'
+            />''' for name, src, scale in COLLABS)
+    return '          <div class="collab-row">\n' + logos + '\n          </div>'
+
+MAIL_ICON = ('<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+             '<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>'
+             '<path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 
 collabs_body = f'''        <section class="section reveal">
 {page_head("collabs", "I have collaborated, created, learned and built across organizations, platforms and communities throughout my journey in technology and creativity.")}
-{collab_grid()}
+{collab_row()}
           <div class="collab-map" aria-hidden="true"></div>
           <p class="collab-map-note mono">Learning and building from the Philippines</p>
+
+          <div class="collab-cta">
+            <div>
+              <h2 class="collab-cta-title">let's work together</h2>
+              <p class="collab-cta-body">
+                Open to internships, freelance work and joining a team. If you
+                have something you'd like to build, the quickest way to reach me
+                is email.
+              </p>
+            </div>
+            <div class="collab-cta-actions">
+              <a href="mailto:marijakee@gmail.com?subject=Collaboration" class="collab-cta-btn">{MAIL_ICON}Get in touch</a>
+              <a href="mailto:marijakee@gmail.com" class="collab-cta-mail mono">marijakee@gmail.com</a>
+            </div>
+          </div>
         </section>
 '''
 

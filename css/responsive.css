@@ -100,9 +100,8 @@
   }
 }
 @media (max-width: 560px) {
-  .collab-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.25rem 1rem;
+  .collab-row {
+    gap: 1.75rem 2.25rem;
   }
 }
 @media (max-width: 520px) {
