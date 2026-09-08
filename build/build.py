@@ -575,11 +575,33 @@ resources_body = f'''        <section class="section reveal">
         </section>
 '''
 
+COLLABS = [
+    ("St. Paul University Philippines", "./images/collabs/spup.png",   1.1),
+    ("Apple",                           "./images/collabs/apple.svg",  0.92),
+    ("TikTok",                          "./images/collabs/tiktok.svg", 0.95),
+    ("AWS",                             "./images/collabs/aws.svg",    0.95),
+    ("TESDA",                           "./images/collabs/tesda.png",  1.0),
+    ("Roblox",                          "./images/collabs/roblox.svg", 1.0),
+]
+
+def collab_grid():
+    cells = []
+    for name, src, scale in COLLABS:
+        cells.append(
+f'''            <img
+              class="collab-logo"
+              style="--s: {scale}"
+              src="{src}{V}"
+              alt="{name}"
+              loading="lazy"
+            />''')
+    return '          <div class="collab-grid">\n' + "\n".join(cells) + '\n          </div>'
+
 collabs_body = f'''        <section class="section reveal">
-{page_head("collabs", "Projects I have built together with other people.")}
-          <p class="empty-note">
-            No collaborations listed yet. This is where they'll appear.
-          </p>
+{page_head("collabs", "I have collaborated, created, learned and built across organizations, platforms and communities throughout my journey in technology and creativity.")}
+{collab_grid()}
+          <div class="collab-map" aria-hidden="true"></div>
+          <p class="collab-map-note mono">Learning and building from the Philippines</p>
         </section>
 '''
 

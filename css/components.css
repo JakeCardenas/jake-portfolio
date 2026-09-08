@@ -374,6 +374,67 @@ a.affil-item:hover .affil-name {
   text-transform: uppercase;
   color: var(--fg-faint);
 }
+.collab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  gap: 2.75rem 1.5rem;
+  margin-top: 2.75rem;
+}
+.collab-logo {
+  width: 100%;
+  max-width: 9.5rem;
+  /* --s optically balances marks whose aspect ratios differ wildly */
+  height: calc(3rem * var(--s, 1));
+  object-fit: contain;
+  opacity: 0.5;
+  filter: grayscale(100%);
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+}
+.collab-logo:hover {
+  opacity: 1;
+  filter: grayscale(0);
+  transform: scale(1.05);
+}
+/* greyed marks are mostly dark, so lift them off the dark ground until hover reveals the brand colour */
+.dark .collab-logo {
+  filter: grayscale(100%) invert(1);
+}
+.dark .collab-logo:hover {
+  filter: none;
+}
+.collab-map {
+  margin-top: 4.5rem;
+  aspect-ratio: 150 / 70;
+  background: var(--fg);
+  opacity: 0.85;
+  -webkit-mask-image: url("../images/collabs/worldmap.svg"),
+    linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  -webkit-mask-size: contain, 100% 100%;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-position: center, center;
+  -webkit-mask-composite: source-in;
+  mask-image: url("../images/collabs/worldmap.svg"),
+    linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  mask-size: contain, 100% 100%;
+  mask-repeat: no-repeat, no-repeat;
+  mask-position: center, center;
+  mask-composite: intersect;
+}
+.collab-map-note {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+@media (prefers-reduced-motion: reduce) {
+  .collab-logo:hover {
+    transform: none;
+  }
+}
 /* long-form editorial voice */
 .serif {
   font-family: var(--font-serif);
