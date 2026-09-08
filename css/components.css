@@ -495,6 +495,204 @@ a.affil-item:hover .affil-name {
     padding: 2rem;
   }
 }
+.svc-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+.svc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  transition:
+    transform 0.3s var(--ease),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.svc-card:hover {
+  transform: translateY(-0.25rem);
+  border-color: var(--border-strong);
+  box-shadow: 0 16px 44px -20px rgba(0, 0, 0, 0.28);
+}
+.svc-dither {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6rem;
+  height: 6rem;
+  pointer-events: none;
+  background: var(--fg);
+  opacity: 0.18;
+  transition: opacity 0.3s ease;
+  -webkit-mask: url("../images/services/dither-corner.svg") top right / contain no-repeat;
+  mask: url("../images/services/dither-corner.svg") top right / contain no-repeat;
+}
+.svc-card:hover .svc-dither {
+  opacity: 0.3;
+}
+.svc-mark {
+  position: absolute;
+  right: -1rem;
+  bottom: -1.25rem;
+  width: 7rem;
+  height: 7rem;
+  pointer-events: none;
+  color: var(--g100);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.svc-card:hover .svc-mark {
+  color: var(--g200);
+  transform: rotate(-6deg);
+}
+.svc-mark svg {
+  width: 100%;
+  height: 100%;
+}
+.svc-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.svc-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.svc-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+.svc-tag {
+  flex: none;
+  white-space: nowrap;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  background: var(--g50);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-faint);
+}
+.svc-desc {
+  flex: 1;
+  margin-top: 0.625rem;
+  font-size: 13.5px;
+  line-height: 1.625;
+  color: var(--fg-muted);
+}
+.svc-rule {
+  width: 100%;
+  height: 1px;
+  margin-top: 1.25rem;
+  background: var(--g100);
+}
+.svc-list {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.svc-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+.svc-list svg {
+  flex: none;
+  width: 0.875rem;
+  height: 0.875rem;
+  color: var(--fg);
+}
+.svc-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+  margin-top: 2.5rem;
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--fg);
+  color: var(--bg);
+}
+.svc-cta-title {
+  font-family: var(--font-pixel);
+  font-size: 1.125rem;
+  line-height: 1;
+}
+.svc-cta-body {
+  max-width: 28rem;
+  margin-top: 0.75rem;
+  font-size: 14px;
+  line-height: 1.625;
+  /* on the inverted panel the ramp reads backwards, so step toward the panel colour */
+  color: var(--g300);
+}
+.svc-cta-actions {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+.svc-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.svc-cta-btn:hover {
+  background: var(--g200);
+}
+.svc-cta-btn svg {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+}
+.svc-cta-mail {
+  font-size: 12px;
+  color: var(--g400);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.svc-cta-mail:hover {
+  color: var(--bg);
+}
+@media (min-width: 640px) {
+  .svc-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .svc-cta {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.25rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc-card:hover {
+    transform: none;
+  }
+  .svc-card:hover .svc-mark {
+    transform: none;
+  }
+}
 /* long-form editorial voice */
 .serif {
   font-family: var(--font-serif);

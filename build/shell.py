@@ -1,4 +1,4 @@
-V = "?v=172"
+V = "?v=173"
 
 # the inline theme script must stay in <head>: it runs before first paint
 HEAD_FONTS = f"""    <link rel="preload" href="./fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -62,7 +62,7 @@ NAV_GROUP_1 = [
 ]
 NAV_GROUP_2 = [
     ("collabs",       "Collabs",       "./collabs/"),
-    ("opportunities", "Opportunities", "./opportunities/"),
+    ("opportunities", "Services",      "./opportunities/"),
 ]
 NAV_GROUP_3 = [
     ("projects",       "Projects",       "./projects/"),

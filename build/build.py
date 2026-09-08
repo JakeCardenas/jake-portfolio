@@ -617,12 +617,82 @@ collabs_body = f'''        <section class="section reveal">
         </section>
 '''
 
-opportunities_body = f'''        <section class="section reveal">
-{page_head("opportunities", "What I am open to right now — internships, freelance work and team projects.")}
-          <p class="empty-note">
-            Open to internships, freelance work and joining a team. The quickest
-            way to reach me is the email in the sidebar.
-          </p>
+SVC_ICONS = {
+    "browser": '<path d="M3 6h18v13H3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>'
+               '<path d="M3 10h18M6 8h.01M8.5 8h.01M11 8h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>',
+    "code":    '<path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13.5 7l-3 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+    "case":    '<rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>'
+               '<path d="M8 7V5.5A1.5 1.5 0 019.5 4h5A1.5 1.5 0 0116 5.5V7M3 12.5h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>',
+    "pen":     '<path d="M12 3l3.5 6.5L12 21l-3.5-11.5L12 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>'
+               '<path d="M8.5 9.5h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>',
+    "play":    '<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>'
+               '<path d="M10.5 9.5l4.5 2.5-4.5 2.5v-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>',
+}
+
+SERVICES = [
+    ("Custom Websites", "Custom", "browser",
+     "Modern, responsive websites designed around your brand, business, or idea.",
+     ["Responsive design", "Custom development", "Modern user experience"]),
+    ("Web Applications", "Custom", "code",
+     "Functional web applications and digital systems built to solve real-world problems.",
+     ["Full-stack development", "Custom functionality", "Scalable solutions"]),
+    ("Portfolio Websites", "Personal", "case",
+     "Personal portfolio websites designed to showcase your work, skills, projects, "
+     "and professional identity.",
+     ["Personal branding", "Project showcase", "Mobile responsive"]),
+    ("Graphic &amp; Digital Design", "Creative", "pen",
+     "Creative digital visuals designed for brands, projects, presentations, and online content.",
+     ["Social media graphics", "Digital visuals", "Modern visual design"]),
+    ("Video Editing", "Creative", "play",
+     "Engaging and polished videos for creators, brands, social media, and digital storytelling.",
+     ["Short-form content", "Promotional videos", "Creative editing"]),
+]
+
+CHECK = ('<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">'
+         '<path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2" '
+         'stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+def service_grid():
+    cards = []
+    for title, tag, icon, desc, feats in SERVICES:
+        items = "\n".join(f"                  <li>{CHECK}{f}</li>" for f in feats)
+        cards.append(
+f'''            <article class="svc-card reveal">
+              <span class="svc-dither" aria-hidden="true"></span>
+              <span class="svc-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">{SVC_ICONS[icon]}</svg>
+              </span>
+              <div class="svc-body">
+                <div class="svc-head">
+                  <h2 class="svc-title">{title}</h2>
+                  <span class="svc-tag mono">{tag}</span>
+                </div>
+                <p class="svc-desc">{desc}</p>
+                <div class="svc-rule"></div>
+                <ul class="svc-list">
+{items}
+                </ul>
+              </div>
+            </article>''')
+    return '          <div class="svc-grid">\n' + "\n".join(cards) + '\n          </div>'
+
+services_body = f'''        <section class="section reveal">
+{page_head("services", "I help individuals, creators, and businesses bring ideas to life through modern web development, creative design, and engaging digital experiences.")}
+{service_grid()}
+
+          <div class="svc-cta">
+            <div>
+              <h2 class="svc-cta-title">let's work together</h2>
+              <p class="svc-cta-body">
+                Tell me about your project, brand, or idea and I'll come back with
+                how I can help and a simple way to start.
+              </p>
+            </div>
+            <div class="svc-cta-actions">
+              <a href="mailto:marijakee@gmail.com?subject=Project%20inquiry" class="svc-cta-btn">{MAIL_ICON}Get in touch</a>
+              <a href="mailto:marijakee@gmail.com" class="svc-cta-mail mono">marijakee@gmail.com</a>
+            </div>
+          </div>
         </section>
 '''
 
@@ -639,9 +709,9 @@ PAGES = [
  ("collabs.html",        "Collabs — Jake Cardenas",
   "Projects Jake Cardenas has built together with other people.",
   "collabs", False, collabs_body, "", "roomy"),
- ("opportunities.html",  "Opportunities — Jake Cardenas",
-  "What Jake Cardenas is open to right now — internships, freelance work and team projects.",
-  "opportunities", False, opportunities_body, ""),
+ ("opportunities.html",  "Services — Jake Cardenas",
+  "Freelance services from Jake Cardenas — websites, web apps, portfolios, design and video editing.",
+  "opportunities", False, services_body, "", "roomy"),
  ("blog.html",           "Blog — Jake Cardenas",
   "Notes on artificial intelligence, full-stack development, and the projects behind them.",
   "blog", False, blog_body, ""),
