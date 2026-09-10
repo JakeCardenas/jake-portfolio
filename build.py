@@ -52,6 +52,7 @@ STYLESHEETS = [
     "overlay.css",
     "palette.css",
     "typing.css",
+    "playground.css",
     "responsive.css",
 ]
 
@@ -68,6 +69,7 @@ SCRIPTS = [
     "github.js",
     "palette.js",
     "typing.js",
+    "playground.js",
     "modal.js",
 ]
 

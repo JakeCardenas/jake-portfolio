@@ -82,6 +82,21 @@
             Typing test
             <span class="keys" data-shortcut-label></span>
           </button>
+          <button type="button" class="rail-action" data-playground-open data-shortcut="/">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="7" cy="7" r="1.6" fill="currentColor" />
+              <circle cx="12" cy="7" r="1" fill="currentColor" />
+              <circle cx="17" cy="7" r="1.6" fill="currentColor" />
+              <circle cx="7" cy="12" r="1" fill="currentColor" />
+              <circle cx="12" cy="12" r="2.2" fill="currentColor" />
+              <circle cx="17" cy="12" r="1" fill="currentColor" />
+              <circle cx="7" cy="17" r="1.6" fill="currentColor" />
+              <circle cx="12" cy="17" r="1" fill="currentColor" />
+              <circle cx="17" cy="17" r="1.6" fill="currentColor" />
+            </svg>
+            Halftone field
+            <span class="keys" data-shortcut-label></span>
+          </button>
         </div>
 
         <nav class="side-nav mono" id="siteNav" aria-label="Sections">
@@ -242,6 +257,52 @@
           <div class="tt-foot mono">
             <span><kbd>tab</kbd> restart</span>
             <span><kbd>esc</kbd> close</span>
+          </div>
+        </div>
+      </div>
+      <div class="overlay" id="playground" role="dialog" aria-modal="true"
+           aria-labelledby="playgroundTitle" tabindex="-1" hidden>
+        <div class="overlay-panel pg-panel" data-overlay-panel>
+          <div class="pg-head">
+            <h2 class="pg-title" id="playgroundTitle">Halftone field</h2>
+            <button type="button" class="pg-clear mono" data-pg-clear>Clear</button>
+            <button type="button" class="modal-close" data-modal-close aria-label="Close">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div class="pg-stage">
+            <canvas id="pgCanvas" aria-label="Interactive halftone dot field"
+                    role="img"></canvas>
+            <span class="pg-hint mono">Move to disturb · click to ripple</span>
+          </div>
+          <div class="pg-controls">
+            <label class="pg-slider mono" for="pgCell">
+              Cell
+              <input type="range" id="pgCell" min="8" max="26" step="2" value="14" />
+            </label>
+            <span class="pg-readout mono" id="pgReadout"></span>
+          </div>
+        </div>
+      </div>
+      <div class="overlay" id="shortcuts" role="dialog" aria-modal="true"
+           aria-labelledby="shortcutsTitle" hidden>
+        <div class="overlay-panel modal-panel" data-overlay-panel>
+          <div class="modal-head">
+            <h2 class="modal-title" id="shortcutsTitle">Shortcuts</h2>
+            <button type="button" class="modal-close" data-modal-close aria-label="Close">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div class="keys-list mono">
+            <div class="keys-row"><span>Search everything</span><span class="keys-combo" data-shortcut="k"><kbd data-shortcut-label></kbd></span></div>
+            <div class="keys-row"><span>Typing test</span><span class="keys-combo" data-shortcut="j"><kbd data-shortcut-label></kbd></span></div>
+            <div class="keys-row"><span>Halftone field</span><span class="keys-combo" data-shortcut="/"><kbd data-shortcut-label></kbd></span></div>
           </div>
         </div>
       </div>

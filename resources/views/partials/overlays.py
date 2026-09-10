@@ -127,5 +127,65 @@ def typing():
       </div>"""
 
 
+def playground():
+    return """      <div class="overlay" id="playground" role="dialog" aria-modal="true"
+           aria-labelledby="playgroundTitle" tabindex="-1" hidden>
+        <div class="overlay-panel pg-panel" data-overlay-panel>
+          <div class="pg-head">
+            <h2 class="pg-title" id="playgroundTitle">Halftone field</h2>
+            <button type="button" class="pg-clear mono" data-pg-clear>Clear</button>
+            <button type="button" class="modal-close" data-modal-close aria-label="Close">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div class="pg-stage">
+            <canvas id="pgCanvas" aria-label="Interactive halftone dot field"
+                    role="img"></canvas>
+            <span class="pg-hint mono">Move to disturb · click to ripple</span>
+          </div>
+          <div class="pg-controls">
+            <label class="pg-slider mono" for="pgCell">
+              Cell
+              <input type="range" id="pgCell" min="8" max="26" step="2" value="14" />
+            </label>
+            <span class="pg-readout mono" id="pgReadout"></span>
+          </div>
+        </div>
+      </div>"""
+
+
+def shortcuts():
+    rows = "\n".join(
+        f'            <div class="keys-row"><span>{label}</span>'
+        f'<span class="keys-combo" data-shortcut="{key}">'
+        f"<kbd data-shortcut-label></kbd></span></div>"
+        for key, label in (
+            ("k", "Search everything"),
+            ("j", "Typing test"),
+            ("/", "Halftone field"),
+        )
+    )
+    return f"""      <div class="overlay" id="shortcuts" role="dialog" aria-modal="true"
+           aria-labelledby="shortcutsTitle" hidden>
+        <div class="overlay-panel modal-panel" data-overlay-panel>
+          <div class="modal-head">
+            <h2 class="modal-title" id="shortcutsTitle">Shortcuts</h2>
+            <button type="button" class="modal-close" data-modal-close aria-label="Close">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div class="keys-list mono">
+{rows}
+          </div>
+        </div>
+      </div>"""
+
+
 def render():
-    return "\n".join([palette(), typing(), contact()])
+    return "\n".join([palette(), typing(), playground(), shortcuts(), contact()])

@@ -52,6 +52,21 @@ ACTIONS = """        <div class="rail-actions">
             Typing test
             <span class="keys" data-shortcut-label></span>
           </button>
+          <button type="button" class="rail-action" data-playground-open data-shortcut="/">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="7" cy="7" r="1.6" fill="currentColor" />
+              <circle cx="12" cy="7" r="1" fill="currentColor" />
+              <circle cx="17" cy="7" r="1.6" fill="currentColor" />
+              <circle cx="7" cy="12" r="1" fill="currentColor" />
+              <circle cx="12" cy="12" r="2.2" fill="currentColor" />
+              <circle cx="17" cy="12" r="1" fill="currentColor" />
+              <circle cx="7" cy="17" r="1.6" fill="currentColor" />
+              <circle cx="12" cy="17" r="1" fill="currentColor" />
+              <circle cx="17" cy="17" r="1.6" fill="currentColor" />
+            </svg>
+            Halftone field
+            <span class="keys" data-shortcut-label></span>
+          </button>
         </div>"""
 
 
