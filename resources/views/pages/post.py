@@ -1,7 +1,24 @@
 from config import site
-from resources.views.components import media
+from resources import content
+from resources.views.components import cards, media
 
 COVER_SIZES = "(min-width: 1024px) 622px, calc(100vw - 2.5rem)"
+RELATED = 2
+
+
+def related(current):
+    others = [p for p in content.load("posts") if p["slug"] != current["slug"]]
+    if not others:
+        return ""
+    return f"""
+        <section class="section article-related reveal">
+          <div class="num-head">
+            <h2 class="num-title">keep reading</h2>
+            <a href="{site.url('blog')}" class="num-link mono">ALL POSTS →</a>
+          </div>
+{cards.posts(others[:RELATED], heading="h3")}
+        </section>
+"""
 
 
 def render(post):
@@ -22,4 +39,4 @@ def render(post):
 {post['body']}
           </div>
         </section>
-"""
+{related(post)}"""

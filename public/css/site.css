@@ -2214,6 +2214,15 @@ a.affil-item:hover .affil-name {
   line-height: 1.625;
   font-size: 1rem;
 }
+.article-related {
+  border-top: 1px solid var(--border);
+}
+.article-related .num-head {
+  margin-bottom: 1.75rem;
+}
+.article-related .num-title {
+  color: var(--fg-faint);
+}
 .gear-group {
   margin-bottom: 3rem;
 }
