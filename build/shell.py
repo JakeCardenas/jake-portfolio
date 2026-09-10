@@ -113,7 +113,7 @@ CONTROLS = """          <div class="control-pill">
           </div>
 
           <p class="side-note">For work, collabs and everything else, reach me at</p>
-          <a href="mailto:marijakee@gmail.com" class="side-email mono"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>marijakee@gmail.com</a>"""
+          <a href="mailto:jakez.cardenas@gmail.com" class="side-email mono"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>jakez.cardenas@gmail.com</a>"""
 
 # script order is a dependency: applyTheme() calls renderAllHalftones()
 def page(*, title, desc, active, on_index, body, extra_scripts="", wide=False):

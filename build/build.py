@@ -49,7 +49,7 @@ LINKS = """<div class="hero-links mono">
                 <a href="https://github.com/JakeCardenas" target="_blank" rel="noopener">github <span aria-hidden="true">↗</span></a>
                 <a href="https://www.linkedin.com/in/jake-cardenas-710076410/" target="_blank" rel="noopener">linkedin <span aria-hidden="true">↗</span></a>
                 <a href="https://instagram.com/prblynot.jky" target="_blank" rel="noopener">instagram <span aria-hidden="true">↗</span></a>
-                <a href="mailto:marijakee@gmail.com">email <span aria-hidden="true">↗</span></a>
+                <a href="mailto:jakez.cardenas@gmail.com">email <span aria-hidden="true">↗</span></a>
               </div>"""
 hero = hero[:i] + LINKS + hero[end:]
 
@@ -674,7 +674,7 @@ resources_body = f'''        <section class="section reveal">
 {page_head("resources", "A hand-picked list of the resources I keep coming back to — for learning to build software, getting into AI engineering, and staying current. Free or freemium, and genuinely worth your time.")}
 {resource_sections()}
           <p class="res-foot mono reveal" style="animation-delay: .4s">
-            Missing something great? <a href="mailto:marijakee@gmail.com">Send me a link →</a>
+            Missing something great? <a href="mailto:jakez.cardenas@gmail.com">Send me a link →</a>
           </p>
         </section>
 '''
@@ -714,8 +714,8 @@ collabs_body = f'''        <section class="section reveal">
               </p>
             </div>
             <div class="collab-cta-actions">
-              <a href="mailto:marijakee@gmail.com?subject=Collaboration" class="collab-cta-btn">{MAIL_ICON}Get in touch</a>
-              <a href="mailto:marijakee@gmail.com" class="collab-cta-mail mono">marijakee@gmail.com</a>
+              <a href="mailto:jakez.cardenas@gmail.com?subject=Collaboration" class="collab-cta-btn">{MAIL_ICON}Get in touch</a>
+              <a href="mailto:jakez.cardenas@gmail.com" class="collab-cta-mail mono">jakez.cardenas@gmail.com</a>
             </div>
           </div>
         </section>
@@ -793,8 +793,8 @@ services_body = f'''        <section class="section reveal">
               </p>
             </div>
             <div class="svc-cta-actions">
-              <a href="mailto:marijakee@gmail.com?subject=Project%20inquiry" class="svc-cta-btn">{MAIL_ICON}Get in touch</a>
-              <a href="mailto:marijakee@gmail.com" class="svc-cta-mail mono">marijakee@gmail.com</a>
+              <a href="mailto:jakez.cardenas@gmail.com?subject=Project%20inquiry" class="svc-cta-btn">{MAIL_ICON}Get in touch</a>
+              <a href="mailto:jakez.cardenas@gmail.com" class="svc-cta-mail mono">jakez.cardenas@gmail.com</a>
             </div>
           </div>
         </section>
