@@ -2,13 +2,20 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-lg);
   padding: 1.1rem 1.5rem;
   border-bottom: 1px solid var(--border);
-  background: var(--bg);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   position: sticky;
   top: 0;
   z-index: 40;
+}
+@supports not (backdrop-filter: blur(20px)) {
+  .sidebar {
+    background: var(--bg);
+  }
 }
 .side-logo {
   font-family: var(--font-pixel);
@@ -116,8 +123,20 @@
 .control-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-sm);
   width: fit-content;
+  padding: 0.3rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-highlight);
+}
+@supports not (backdrop-filter: blur(12px)) {
+  .control-pill {
+    background: var(--bg-soft);
+  }
 }
 .side-note {
   margin-top: 1rem;
@@ -252,8 +271,10 @@ body.menu-open {
   justify-content: center;
   color: var(--fg-faint);
   transition:
-    background 0.22s ease,
-    color 0.22s ease;
+    background 0.3s var(--ease-out),
+    color 0.3s ease,
+    transform 0.2s var(--ease-out),
+    box-shadow 0.3s ease;
 }
 .ctl-btn svg {
   width: 14px;
@@ -261,10 +282,15 @@ body.menu-open {
 }
 .ctl-btn:hover {
   color: var(--fg);
+  transform: translateY(-1px);
+}
+.ctl-btn:active {
+  transform: translateY(0);
 }
 .ctl-btn.active {
   background: var(--fg);
   color: var(--bg);
+  box-shadow: 0 2px 8px -2px rgba(from var(--fg) r g b / 0.3);
 }
 /* cuelume toggles [hidden] on the two icons; dim the control when off */
 .sound-btn svg[hidden] {

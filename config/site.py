@@ -16,7 +16,7 @@ BG_LIGHT = "#ffffff"
 BG_DARK = "#0c0c0f"
 
 # bump after editing anything under resources/css or resources/js
-ASSET_VERSION = "?v=178"
+ASSET_VERSION = "?v=200"
 
 LINKS = {
     "github": "https://github.com/JakeCardenas",

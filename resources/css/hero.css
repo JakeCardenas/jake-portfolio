@@ -62,8 +62,10 @@
   position: relative;
   aspect-ratio: 1354 / 1410;
   background: transparent;
-  border-radius: 0;
+  border-radius: var(--r-sm);
   overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--glass-border);
 }
 .halftone-white {
   position: absolute;
@@ -174,16 +176,17 @@
   animation: pulse 2.8s ease-out infinite;
 }
 .hero-name {
-  font-size: 1.875rem;
-  line-height: 1;
-  letter-spacing: normal;
-  margin-bottom: 1.6rem;
+  font-size: clamp(1.875rem, 4vw + 1rem, 2.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin-bottom: var(--space-xl);
 }
 .hero-lede {
   color: var(--fg-muted);
-    font-size: 15px;
-  line-height: 1.625;
-  margin: 1.5rem 0 0;
+  font-size: clamp(14px, 2vw + 12px, 15px);
+  line-height: 1.65;
+  margin: var(--space-xl) 0 0;
 }
 .hero-lede + .hero-lede {
   margin-top: 1.25rem;
@@ -258,28 +261,28 @@
 }
 @media (max-width: 640px) {
   .main {
-    padding: 0 1.25rem 3rem;
+    padding: 0 1.25rem var(--space-3xl);
   }
   .section {
-    padding: 3.25rem 0;
+    padding: var(--space-3xl) 0;
   }
   .section.section--hero {
-    padding: 3.5rem 0 3rem;
+    padding: var(--space-4xl) 0 var(--space-3xl);
   }
   .photo-swap {
     max-width: 17.5rem;
     margin-inline: auto;
   }
   .hero-grid {
-    gap: 1.5rem;
+    gap: var(--space-xl);
     margin-top: 0;
   }
-  /* 11.5vw put this above the desktop size on a phone */
   .hero-name {
     font-size: clamp(1.9rem, 8.6vw, 2.35rem);
+    letter-spacing: -0.015em;
   }
   .hero-lede {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-xl);
   }
 }
 @media (max-width: 400px) {
@@ -321,10 +324,33 @@
 .stat-cell {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.5rem 1.25rem;
+  gap: var(--space-sm);
+  padding: var(--space-xl) 1.25rem;
   border-bottom: 1px solid var(--border);
   text-decoration: none;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  transition:
+    background 0.3s var(--ease-out),
+    transform 0.25s var(--ease-out),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+@supports not (backdrop-filter: blur(8px)) {
+  .stat-cell {
+    background: var(--bg);
+  }
+}
+.stat-cell:hover {
+  background: var(--glass-highlight);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+.stat-cell:active {
+  transform: translateY(-1px);
+  transition-duration: 0.1s;
 }
 .stat-cell:nth-child(2n) {
   padding-left: 1.25rem;
@@ -341,11 +367,13 @@
 .stat-arrow {
   font-size: 0.7rem;
   color: var(--fg-faint);
-  transition: color 0.22s ease, transform 0.22s var(--ease);
+  transition:
+    color 0.25s ease,
+    transform 0.3s var(--ease-spring);
 }
 .stat-cell:hover .stat-arrow {
   color: var(--fg);
-  transform: translate(2px, -2px);
+  transform: translate(3px, -3px);
 }
 .stat-row .stat-label {
   font-size: 11px;

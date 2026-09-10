@@ -161,13 +161,24 @@
   width: 18rem;
   margin-left: -9rem;
   padding: 1.25rem;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-xl);
+  box-shadow: 0 1px 0 var(--glass-highlight) inset, var(--shadow-sm);
   transform-origin: center bottom;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+  transition:
+    transform 0.6s var(--ease),
+    box-shadow 0.4s ease,
+    border-color 0.3s ease;
   will-change: transform;
   outline: none;
+}
+@supports not (backdrop-filter: blur(20px)) {
+  .deck-card {
+    background: var(--bg);
+  }
 }
 @media (min-width: 640px) {
   .deck-card {
@@ -178,18 +189,19 @@
 .deck-card.is-center {
   transform: translateY(0) rotate(0deg) scale(1);
   z-index: 30;
-  box-shadow: 0 26px 55px -22px rgba(10, 10, 10, 0.3);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--border-strong);
 }
 .deck-card.is-left {
   transform: translateX(-40%) translateY(14px) rotate(-16deg) scale(0.88);
   z-index: 10;
-  box-shadow: 0 16px 32px -18px rgba(10, 10, 10, 0.25);
+  box-shadow: var(--shadow-lg);
   cursor: pointer;
 }
 .deck-card.is-right {
   transform: translateX(40%) translateY(14px) rotate(16deg) scale(0.88);
   z-index: 20;
-  box-shadow: 0 16px 32px -18px rgba(10, 10, 10, 0.25);
+  box-shadow: var(--shadow-lg);
   cursor: pointer;
 }
 /* the back cards sit behind a veil so the centre one reads first */
@@ -208,16 +220,18 @@
   background: transparent;
 }
 .deck-card.is-center:hover {
-  transform: translateY(-7px) scale(1.015);
-  box-shadow: 0 34px 65px -22px rgba(10, 10, 10, 0.34);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: var(--shadow-xl), 0 20px 40px -10px var(--glass-shadow);
 }
 .deck-card.is-left:hover {
-  transform: translateX(-45%) translateY(2px) rotate(-12deg) scale(0.92);
+  transform: translateX(-42%) translateY(8px) rotate(-14deg) scale(0.92);
   z-index: 25;
+  box-shadow: var(--shadow-lg);
 }
 .deck-card.is-right:hover {
-  transform: translateX(45%) translateY(2px) rotate(12deg) scale(0.92);
+  transform: translateX(42%) translateY(8px) rotate(14deg) scale(0.92);
   z-index: 25;
+  box-shadow: var(--shadow-lg);
 }
 /* only the focused card is actually clickable through to the live site */
 .deck-card:not(.is-center) a {

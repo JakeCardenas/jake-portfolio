@@ -51,39 +51,40 @@
     width: var(--sidebar-w);
     flex: none;
     height: 100vh;
-    padding: 2rem 1.75rem;
+    padding: var(--space-2xl) 1.75rem;
     border-bottom: none;
-    border-right: 1px solid var(--border);
+    border-right: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-sm);
   }
   .side-logo {
     margin-right: 0;
-    margin-bottom: 2.25rem;
+    margin-bottom: var(--space-2xl);
   }
   .side-nav {
     margin-bottom: auto;
   }
   .side-foot {
-    padding-top: 1.4rem;
+    padding-top: var(--space-xl);
     border-top: 1px solid var(--border);
   }
   .menu-btn {
     display: none;
   }
   .main {
-    padding: 0 1.5rem 5rem;
+    padding: 0 var(--space-xl) var(--space-5xl);
   }
   .hero-grid {
     grid-template-columns: 18rem minmax(0, 1fr);
-    gap: 2.5rem;
+    gap: var(--space-3xl);
   }
   .section.section--hero {
-    padding: 7rem 0 4rem;
+    padding: var(--space-5xl) 0 var(--space-4xl);
   }
   .section:first-child:not(.section--hero) {
-    padding-top: 5rem;
+    padding-top: var(--space-5xl);
   }
   .hero-name {
-    font-size: 2.6rem;
+    font-size: clamp(2.2rem, 3vw + 1.2rem, 2.8rem);
   }
 }
 @media (min-width: 1280px) {
