@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Jake Cardenas — Blog</title>
+    <link>https://jakecardenas.vercel.app</link>
+    <description>Jake Cardenas — BSIT (Artificial Intelligence) student at St. Paul University Philippines. Full-stack and AI developer.</description>
+    <language>en</language>
+    <item>
+      <title>Building Projects Taught Me More Than Just Writing Code</title>
+      <link>https://jakecardenas.vercel.app/posts/building-projects-taught-me-more-than-just-writing-code/</link>
+      <guid isPermaLink="true">https://jakecardenas.vercel.app/posts/building-projects-taught-me-more-than-just-writing-code/</guid>
+      <description>The past few months have taught me something I did not fully understand when I first started learning how to code. Building a project and learning how to code are not...</description>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>AI Can Write Code, But It Cannot Build Your Experience</title>
+      <link>https://jakecardenas.vercel.app/posts/ai-can-write-code-but-it-cannot-build-your-experience/</link>
+      <guid isPermaLink="true">https://jakecardenas.vercel.app/posts/ai-can-write-code-but-it-cannot-build-your-experience/</guid>
+      <description>AI has changed the way I build. I can ask questions faster. I can understand unfamiliar code more easily. I can generate a starting point for an idea that might have...</description>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Why I'm Building Before I Feel Ready</title>
+      <link>https://jakecardenas.vercel.app/posts/why-im-building-before-i-feel-ready/</link>
+      <guid isPermaLink="true">https://jakecardenas.vercel.app/posts/why-im-building-before-i-feel-ready/</guid>
+      <description>There are still many things I do not know. Sometimes I look at projects made by experienced developers and immediately see how far I still have to go.</description>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

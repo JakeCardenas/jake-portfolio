@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog — Jake Cardenas</title>
+    <meta name="description" content="Notes on artificial intelligence, full-stack development, and the projects behind them." />
+    <link rel="canonical" href="https://jakecardenas.vercel.app/blog/" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/feed+json" title="Jake Cardenas — Blog (JSON Feed)" href="/feed.json" />
+    <link rel="alternate" type="application/rss+xml" title="Jake Cardenas — Blog (RSS)" href="/feed.xml" />
+    <meta name="theme-color" content="#f4f4f2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c0c0f" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="Blog — Jake Cardenas" />
+    <meta property="og:description" content="Notes on artificial intelligence, full-stack development, and the projects behind them." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jakecardenas.vercel.app/blog/" />
+    <meta property="og:image" content="/icon-512.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="preload" href="/fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/GeistMono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/css/site.css?v=178" />
+    <style>
+      html { background-color: #ffffff; }
+      html.dark { background-color: #0c0c0f; }
+    </style>
+    <script>
+      (function () {
+        var KEY = "theme-mode";
+        var root = document.documentElement;
+        var mq = window.matchMedia
+          ? window.matchMedia("(prefers-color-scheme: dark)")
+          : null;
+        function pref() {
+          try {
+            var v = localStorage.getItem(KEY);
+            return v === "dark" || v === "light" || v === "system" ? v : "system";
+          } catch (e) {
+            return "system";
+          }
+        }
+        function isDark(p) {
+          return p === "dark" || (p === "system" && !!mq && mq.matches);
+        }
+        root.classList.toggle("dark", isDark(pref()));
+      })();
+    </script>
+  </head>
+  <body>
+    <div aria-hidden="true" class="page-halftone">
+      <span class="ht ht-tr"></span><span class="ht ht-bl"></span>
+    </div>
+
+    <div class="shell">
+      <aside class="sidebar">
+        <a href="/" class="side-logo" data-nav-logo>Jake Cardenas</a>
+
+        <nav class="side-nav mono" id="siteNav" aria-label="Sections">
+          <div class="nav-group">
+            <a href="/shop/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 11a2 2 0 01-2 2H9a2 2 0 01-2-2L6 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 016 0V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Shop</a>
+            <a href="/blog/" class="nav-link active" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Blog</a>
+            <a href="/gear/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 19h18M9.5 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Gear</a>
+            <a href="/resources/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A1.5 1.5 0 015.5 4H11v15.5H6a2 2 0 00-2 1.2V5.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M20 5.5A1.5 1.5 0 0018.5 4H13v15.5h5a2 2 0 012 1.2V5.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>Resources</a>
+          </div>
+          <span class="nav-rule" aria-hidden="true"></span>
+          <div class="nav-group">
+            <a href="/collabs/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M17 19c0-2.2-.8-3.8-2.1-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Collabs</a>
+            <a href="/opportunities/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V5.5A1.5 1.5 0 019.5 4h5A1.5 1.5 0 0116 5.5V7M3 12.5h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Services</a>
+          </div>
+          <span class="nav-rule" aria-hidden="true"></span>
+          <div class="nav-group">
+            <a href="/projects/" class="nav-link" data-nav>Projects</a>
+            <a href="/experience/" class="nav-link" data-nav>Experience</a>
+            <a href="/stack/" class="nav-link" data-nav>Stack</a>
+            <a href="/certifications/" class="nav-link" data-nav>Certifications</a>
+          </div>
+        </nav>
+
+        <div class="side-foot">
+          <div class="control-pill">
+            <div class="theme-switch" role="group" aria-label="Theme">
+              <button class="ctl-btn" data-theme-btn="system" aria-label="Match system theme" title="System">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4" />
+                </svg>
+              </button>
+              <button class="ctl-btn" data-theme-btn="light" aria-label="Light mode" title="Light">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                </svg>
+              </button>
+              <button class="ctl-btn" data-theme-btn="dark" aria-label="Dark mode" title="Dark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+                </svg>
+              </button>
+            </div>
+
+            <button id="soundToggle" class="ctl-btn sound-btn" data-sound-toggle
+                    aria-label="Enable interface sounds" aria-pressed="false" title="Sounds off">
+              <svg class="sound-icon-on" data-sound-on viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              </svg>
+              <svg class="sound-icon-off" data-sound-off viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            </button>
+          </div>
+
+          <p class="side-note">For work, collabs and everything else, reach me at</p>
+          <a href="mailto:jakez.cardenas@gmail.com" class="side-email mono"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>jakez.cardenas@gmail.com</a>
+        </div>
+
+        <button id="menuBtn" class="menu-btn mono" aria-controls="siteNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="menu-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="menu-label">MENU</span>
+        </button>
+      </aside>
+
+      <main class="main main--wide">
+        <section class="section reveal">
+          <div class="blog-head">
+          <header class="page-head">
+            <h1 class="page-title">blog</h1>
+            <p class="page-lede">Notes on what I am learning — building projects, working with AI, and the lessons that come out of both.</p>
+          </header>
+            <div class="view-toggle" role="group" aria-label="Layout">
+              <button type="button" class="view-btn is-active" data-view="list" title="List view" aria-label="List view"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="4" cy="6" r="1.1" fill="currentColor"/><circle cx="4" cy="12" r="1.1" fill="currentColor"/><circle cx="4" cy="18" r="1.1" fill="currentColor"/></svg></button>
+              <button type="button" class="view-btn" data-view="grid" title="Grid view" aria-label="Grid view"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            </div>
+          </div>
+          <div id="postsContainer" class="view-list">
+            <a href="/posts/building-projects-taught-me-more-than-just-writing-code/" class="post-card">
+              <span class="post-thumb">
+                <img src="/images/blog/dither-study.webp?v=178" alt="" loading="lazy" />
+              </span>
+              <span class="post-body">
+                <time class="post-date mono">Sep 2026</time>
+                <h2 class="post-title">Building Projects Taught Me More Than Just Writing Code</h2>
+                <p class="post-excerpt">The past few months have taught me something I did not fully understand when I first started learning how to code. Building a project and learning how to code are not...</p>
+                <span class="post-meta mono">
+                  <span class="post-meta-read">Read</span>
+                  <span class="post-meta-sep">·</span>
+                  <span>3 min</span>
+                </span>
+              </span>
+            </a>
+            <a href="/posts/ai-can-write-code-but-it-cannot-build-your-experience/" class="post-card">
+              <span class="post-thumb">
+                <img src="/images/blog/ai-and-human.webp?v=178" alt="" loading="lazy" />
+              </span>
+              <span class="post-body">
+                <time class="post-date mono">Sep 2026</time>
+                <h2 class="post-title">AI Can Write Code, But It Cannot Build Your Experience</h2>
+                <p class="post-excerpt">AI has changed the way I build. I can ask questions faster. I can understand unfamiliar code more easily. I can generate a starting point for an idea that might have...</p>
+                <span class="post-meta mono">
+                  <span class="post-meta-read">Read</span>
+                  <span class="post-meta-sep">·</span>
+                  <span>2 min</span>
+                </span>
+              </span>
+            </a>
+            <a href="/posts/why-im-building-before-i-feel-ready/" class="post-card">
+              <span class="post-thumb">
+                <img src="/images/blog/tesla-coil.webp?v=178" alt="" loading="lazy" />
+              </span>
+              <span class="post-body">
+                <time class="post-date mono">Sep 2026</time>
+                <h2 class="post-title">Why I'm Building Before I Feel Ready</h2>
+                <p class="post-excerpt">There are still many things I do not know. Sometimes I look at projects made by experienced developers and immediately see how far I still have to go.</p>
+                <span class="post-meta mono">
+                  <span class="post-meta-read">Read</span>
+                  <span class="post-meta-sep">·</span>
+                  <span>3 min</span>
+                </span>
+              </span>
+            </a>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <script src="/js/site-sounds.js?v=178"></script>
+    <script>
+      (function () {
+        const box = document.getElementById("postsContainer");
+        if (!box) return;
+        const btns = document.querySelectorAll(".view-btn");
+        const cards = Array.from(box.querySelectorAll(".post-card"));
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let current = null;
+
+        function paint(v) {
+          btns.forEach((b) => b.classList.toggle("is-active", b.dataset.view === v));
+        }
+        function apply(v) {
+          box.classList.remove("view-list", "view-grid");
+          box.classList.add("view-" + v);
+        }
+        function setView(v, animate) {
+          v = v === "grid" ? "grid" : "list";
+          paint(v);
+          if (v === current) return;
+          try { localStorage.setItem("blogView", v); } catch (e) {}
+          if (!animate || reduce) { apply(v); current = v; return; }
+
+          box.classList.add("switching");
+          setTimeout(() => {
+            apply(v);
+            current = v;
+            cards.forEach((c) => c.classList.add("card-enter"));
+            box.classList.remove("switching");
+            requestAnimationFrame(() =>
+              requestAnimationFrame(() => {
+                cards.forEach((c, i) => {
+                  c.style.transitionDelay = Math.min(i * 25, 280) + "ms";
+                  c.classList.remove("card-enter");
+                });
+              })
+            );
+            setTimeout(() => cards.forEach((c) => (c.style.transitionDelay = "")), 800);
+          }, 200);
+        }
+
+        let saved = "list";
+        try { saved = localStorage.getItem("blogView") || "list"; } catch (e) {}
+        setView(saved, false);
+        btns.forEach((b) => b.addEventListener("click", () => setView(b.dataset.view, true)));
+      })();
+    </script>
+    <script src="/js/site.js?v=178"></script>
+  </body>
+</html>

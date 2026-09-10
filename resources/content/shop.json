@@ -1,0 +1,21 @@
+[
+  {
+    "slug": "developer-resume-template",
+    "kind": "Template",
+    "name": "Developer Résumé Template",
+    "badge": "Free",
+    "file": "downloads/developer-resume-template.docx",
+    "shot": "images/shop/developer-resume.png",
+    "desc_intro": "A clean, <strong>ATS-friendly resume template</strong> for software developers &mdash; editable in Microsoft Word or Google Docs.",
+    "desc_sections": [
+      {
+        "heading": "<h2>What's inside</h2>",
+        "body": "<ul><li>A one-page <code>.docx</code> template with a professional, recruiter-friendly layout</li><li>Pre-filled <strong>example content for a developer</strong> &mdash; just swap in your own</li><li>Clear sections and sensible defaults that parse well in applicant tracking systems</li></ul>"
+      },
+      {
+        "heading": "<h2>Sections</h2>",
+        "body": "<p>Education &middot; Work Experience &middot; Projects &middot; Activities &middot; Skills &amp; Certifications</p><p>Just download, open in Word or Google Docs, and edit away &mdash; completely free.</p>"
+      }
+    ]
+  }
+]

@@ -1,0 +1,131 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main {
+  flex: 1;
+  min-width: 0;
+  /* auto margins centre the column in whatever space is left beside the rail */
+  margin-inline: auto;
+  padding: 0 1.5rem 4rem;
+  /* border-box: the cap includes padding, so content is narrower than 672px */
+  max-width: var(--content-w);
+  box-sizing: border-box;
+}
+/* pages that carry grids rather than prose get the wider measure */
+.main--roomy {
+  max-width: 48rem;
+}
+.main--wide {
+  max-width: var(--content-w-wide);
+}
+.shell {
+  position: relative;
+  z-index: 1;
+}
+.section {
+  position: relative;
+}
+.section + .section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1.75rem;
+  pointer-events: none;
+  background-size: var(--dot-size-wide) var(--dot-size-wide);
+  opacity: 0.28;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 30%,
+    #000 70%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 30%,
+    #000 70%,
+    transparent
+  );
+}
+.section {
+  padding: 3.5rem 0;
+}
+.section:first-child:not(.section--hero) {
+  padding-top: 3.5rem;
+}
+.link-out {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.733rem;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.22s ease,
+    border-color 0.22s ease,
+    gap 0.22s var(--ease);
+}
+.link-out span {
+  transition: transform 0.22s var(--ease);
+}
+.link-out:hover {
+  color: var(--fg);
+  border-bottom-color: var(--border-strong);
+  gap: 0.65rem;
+}
+.link-out:hover span {
+  transform: translate(2px, -2px);
+}
+.num-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.num-title {
+  font-family: var(--font-pixel);
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--fg-faint);
+}
+.num-link {
+  flex: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--fg-dim);
+  transition: color 0.22s ease;
+}
+.num-link:hover {
+  color: var(--fg);
+}
+.page-head {
+  margin-bottom: 2.75rem;
+}
+.page-title {
+  margin-top: 0.5rem;
+  font-family: var(--font-pixel);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: lowercase;
+}
+.page-lede {
+  max-width: var(--measure-read);
+  margin-top: 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.625;
+  color: var(--fg-muted);
+}

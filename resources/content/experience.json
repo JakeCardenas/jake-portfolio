@@ -1,0 +1,40 @@
+[
+  {
+    "year": "2025 — 2026",
+    "title": "Councilor — PSG Officer",
+    "org": "Department of Information Technology &amp; Engineering",
+    "home": true
+  },
+  {
+    "year": "2025",
+    "title": "Midyear Interactive Youth Forum",
+    "org": "Philippine Association of Practitioners of Student Affairs and Services",
+    "home": true,
+    "meta": [
+      "September 17–19, 2025",
+      "Summit Galleria Cebu, Cebu City"
+    ],
+    "body": "A national youth leadership forum that brought together student officers and leaders from schools across the Philippines to learn about leadership, good governance, accountability, and youth participation.",
+    "chips": [
+      "Leadership",
+      "Good Governance",
+      "Youth Development"
+    ]
+  },
+  {
+    "year": "2026",
+    "title": "Full Stack &amp; Agentic AI Developer Intern",
+    "org": "Employability Advantage <span class=\"meta-sep\">×</span> AusBiz Consulting Pty Ltd",
+    "home": false,
+    "meta": [
+      "February 17 – May 5, 2026",
+      "10-week industry engagement"
+    ],
+    "body": "Successfully completed a 10-week industry project internship focused on full-stack development and agentic AI, with hands-on experience building projects and guidance from experts at AusBiz Consulting Pty Ltd.",
+    "chips": [
+      "Full-Stack Development",
+      "Agentic AI",
+      "Code Review"
+    ]
+  }
+]

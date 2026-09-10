@@ -1,0 +1,26 @@
+[
+  {
+    "name": "St. Paul University Philippines",
+    "logo": "images/collabs/spup.png"
+  },
+  {
+    "name": "Apple",
+    "logo": "images/collabs/apple.svg"
+  },
+  {
+    "name": "TikTok",
+    "logo": "images/collabs/tiktok.svg"
+  },
+  {
+    "name": "AWS",
+    "logo": "images/collabs/aws.png"
+  },
+  {
+    "name": "Kiro",
+    "logo": "images/collabs/kiro.svg"
+  },
+  {
+    "name": "Roblox",
+    "logo": "images/collabs/roblox.svg"
+  }
+]

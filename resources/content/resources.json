@@ -1,0 +1,212 @@
+[
+  {
+    "heading": "Learn AI / ML",
+    "links": [
+      {
+        "name": "DeepLearning.AI",
+        "href": "https://www.deeplearning.ai/courses/",
+        "description": "Andrew Ng&#039;s specializations on ML, deep learning, and generative AI."
+      },
+      {
+        "name": "fast.ai — Practical Deep Learning",
+        "href": "https://course.fast.ai/",
+        "description": "Top-down, code-first deep learning course for coders."
+      },
+      {
+        "name": "Hugging Face LLM Course",
+        "href": "https://huggingface.co/learn/llm-course/chapter1/1",
+        "description": "Free hands-on course on transformers, NLP, and LLMs."
+      },
+      {
+        "name": "Google ML Crash Course",
+        "href": "https://developers.google.com/machine-learning/crash-course",
+        "description": "Google&#039;s interactive intro to machine learning fundamentals."
+      },
+      {
+        "name": "Hugging Face Deep RL Course",
+        "href": "https://huggingface.co/learn/deep-rl-course/unit0/introduction",
+        "description": "Free hands-on course on deep reinforcement learning."
+      },
+      {
+        "name": "Kaggle Learn",
+        "href": "https://www.kaggle.com/learn",
+        "description": "Short practical micro-courses on Python, ML, and data."
+      }
+    ]
+  },
+  {
+    "heading": "AI Engineering &amp; LLMs",
+    "links": [
+      {
+        "name": "Anthropic Prompt Engineering",
+        "href": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview",
+        "description": "Official guide to prompting Claude effectively."
+      },
+      {
+        "name": "Anthropic Cookbook",
+        "href": "https://github.com/anthropics/claude-cookbooks",
+        "description": "Code recipes for building with Claude: RAG, tools, agents."
+      },
+      {
+        "name": "OpenAI Cookbook",
+        "href": "https://cookbook.openai.com/",
+        "description": "Practical code examples for building with OpenAI models."
+      },
+      {
+        "name": "LangChain Docs",
+        "href": "https://docs.langchain.com/",
+        "description": "Framework docs for building LLM apps, agents, and RAG."
+      },
+      {
+        "name": "A Year of Building with LLMs",
+        "href": "https://www.oreilly.com/radar/what-we-learned-from-a-year-of-building-with-llms-part-i/",
+        "description": "Hard-won tactical lessons on shipping LLM products."
+      },
+      {
+        "name": "Chip Huyen&#039;s Blog",
+        "href": "https://huyenchip.com/blog/",
+        "description": "Deep essays on AI systems, ML production, and engineering."
+      }
+    ]
+  },
+  {
+    "heading": "Developer fundamentals / CS",
+    "links": [
+      {
+        "name": "The Odin Project",
+        "href": "https://www.theodinproject.com/",
+        "description": "Free full-stack web development curriculum with projects."
+      },
+      {
+        "name": "freeCodeCamp",
+        "href": "https://www.freecodecamp.org/",
+        "description": "Free interactive coding curriculum with certifications."
+      },
+      {
+        "name": "Harvard CS50x",
+        "href": "https://cs50.harvard.edu/x/",
+        "description": "Harvard&#039;s renowned intro to computer science, free online."
+      },
+      {
+        "name": "MDN Web Docs",
+        "href": "https://developer.mozilla.org/",
+        "description": "Authoritative reference for HTML, CSS, JavaScript, and web APIs."
+      },
+      {
+        "name": "roadmap.sh",
+        "href": "https://roadmap.sh/",
+        "description": "Community-curated learning roadmaps for developer roles."
+      },
+      {
+        "name": "Teach Yourself CS",
+        "href": "https://teachyourselfcs.com/",
+        "description": "Curated core CS subjects with the best books and lectures."
+      },
+      {
+        "name": "System Design Primer",
+        "href": "https://github.com/donnemartin/system-design-primer",
+        "description": "Open-source guide to designing large-scale systems."
+      }
+    ]
+  },
+  {
+    "heading": "Practice &amp; interview prep",
+    "links": [
+      {
+        "name": "LeetCode",
+        "href": "https://leetcode.com/",
+        "description": "Coding problems for technical and algorithm interview prep."
+      },
+      {
+        "name": "NeetCode",
+        "href": "https://neetcode.io/",
+        "description": "Curated problem lists with clear video walkthroughs."
+      },
+      {
+        "name": "Exercism",
+        "href": "https://exercism.org/",
+        "description": "Free coding exercises with mentoring across 70+ languages."
+      },
+      {
+        "name": "Codewars",
+        "href": "https://www.codewars.com/",
+        "description": "Gamified coding kata to sharpen language fluency."
+      },
+      {
+        "name": "Frontend Mentor",
+        "href": "https://www.frontendmentor.io/",
+        "description": "Real-world frontend projects from professional designs."
+      }
+    ]
+  },
+  {
+    "heading": "Stay current — newsletters &amp; blogs",
+    "links": [
+      {
+        "name": "The Batch",
+        "href": "https://www.deeplearning.ai/the-batch/",
+        "description": "Andrew Ng&#039;s weekly roundup of AI news and research."
+      },
+      {
+        "name": "Import AI",
+        "href": "https://jack-clark.net/",
+        "description": "Jack Clark&#039;s weekly newsletter on frontier AI and policy."
+      },
+      {
+        "name": "Latent Space",
+        "href": "https://www.latent.space/",
+        "description": "Newsletter and podcast for AI engineers in production."
+      },
+      {
+        "name": "Simon Willison&#039;s Blog",
+        "href": "https://simonwillison.net/",
+        "description": "Prolific, practical writing on LLMs and developer tooling."
+      },
+      {
+        "name": "Lil&#039;Log (Lilian Weng)",
+        "href": "https://lilianweng.github.io/",
+        "description": "Deep technical explainers on ML and LLM topics."
+      },
+      {
+        "name": "TLDR Newsletter",
+        "href": "https://tldr.tech/",
+        "description": "Daily concise digest of tech, dev, and AI news."
+      },
+      {
+        "name": "Hacker News",
+        "href": "https://news.ycombinator.com/",
+        "description": "High-signal community for tech, startups, and engineering."
+      }
+    ]
+  },
+  {
+    "heading": "Tools &amp; references",
+    "links": [
+      {
+        "name": "Hugging Face",
+        "href": "https://huggingface.co/",
+        "description": "Hub for open models, datasets, and ML demos."
+      },
+      {
+        "name": "Hugging Face Papers",
+        "href": "https://huggingface.co/papers",
+        "description": "Trending ML papers with linked code and discussion."
+      },
+      {
+        "name": "arXiv",
+        "href": "https://arxiv.org/",
+        "description": "Open-access preprint server for AI and CS research."
+      },
+      {
+        "name": "Kaggle",
+        "href": "https://www.kaggle.com/",
+        "description": "Datasets, notebooks, and ML competitions community."
+      },
+      {
+        "name": "DevDocs",
+        "href": "https://devdocs.io/",
+        "description": "Fast unified API documentation browser, offline-capable."
+      }
+    ]
+  }
+]

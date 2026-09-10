@@ -1,0 +1,27 @@
+# Jake Cardenas
+> Jake Cardenas — BSIT (Artificial Intelligence) student at St. Paul University Philippines. Full-stack and AI developer.
+
+## Primary pages
+- [Home](https://jakecardenas.vercel.app/): Profile, selected work, and recent writing
+- [Projects](https://jakecardenas.vercel.app/projects/): Things I have designed and built
+- [Experience](https://jakecardenas.vercel.app/experience/): Where I have been, in full
+- [Stack](https://jakecardenas.vercel.app/stack/): Languages, frameworks and tools I work with
+- [Certifications](https://jakecardenas.vercel.app/certifications/): Certificates, each linked to its source
+- [Blog](https://jakecardenas.vercel.app/blog/): Notes on AI, engineering, and building projects
+
+## Writing
+- [Building Projects Taught Me More Than Just Writing Code](https://jakecardenas.vercel.app/posts/building-projects-taught-me-more-than-just-writing-code/): The past few months have taught me something I did not fully understand when I first started learning how to code. Building a project and learning how to code are not...
+- [AI Can Write Code, But It Cannot Build Your Experience](https://jakecardenas.vercel.app/posts/ai-can-write-code-but-it-cannot-build-your-experience/): AI has changed the way I build. I can ask questions faster. I can understand unfamiliar code more easily. I can generate a starting point for an idea that might have...
+- [Why I'm Building Before I Feel Ready](https://jakecardenas.vercel.app/posts/why-im-building-before-i-feel-ready/): There are still many things I do not know. Sometimes I look at projects made by experienced developers and immediately see how far I still have to go.
+
+## Machine-readable resources
+- [JSON Feed](https://jakecardenas.vercel.app/feed.json): Articles using JSON Feed 1.1
+- [RSS Feed](https://jakecardenas.vercel.app/feed.xml): Articles using RSS 2.0
+- [XML sitemap](https://jakecardenas.vercel.app/sitemap.xml): Canonical public URLs
+
+## Optional
+- [Services](https://jakecardenas.vercel.app/opportunities/): Freelance web, design and video work
+- [Collabs](https://jakecardenas.vercel.app/collabs/): Organizations and communities I have built with
+- [Gear](https://jakecardenas.vercel.app/gear/): Hardware I use day to day
+- [Resources](https://jakecardenas.vercel.app/resources/): Learning resources for software and AI
+- [Shop](https://jakecardenas.vercel.app/shop/): Free downloads

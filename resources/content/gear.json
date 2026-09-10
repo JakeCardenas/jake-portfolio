@@ -1,0 +1,89 @@
+[
+  {
+    "heading": "Desk Setup",
+    "items": [
+      {
+        "name": "MacBook Air M2",
+        "meta": "Laptop",
+        "image": "images/gear/macbook-air-m2.webp",
+        "href": "https://support.apple.com/en-ph/111867"
+      },
+      {
+        "name": "AOC 24G2SP",
+        "meta": "Monitor",
+        "image": "images/gear/aoc-24g2sp.webp",
+        "href": "https://www.aoc.com/us/gaming/monitors/24g2sp"
+      },
+      {
+        "name": "Aula F75",
+        "meta": "Keyboard",
+        "image": "images/gear/aula-f75.webp",
+        "href": "https://aulagear.com/products/aula-f75"
+      },
+      {
+        "name": "Logitech G Pro X Superlight",
+        "meta": "Mouse",
+        "image": "images/gear/logitech-gpx-superlight.webp",
+        "href": "https://www.logitechg.com/en-ph/shop/p/pro-x-superlight-wireless-mouse.910-005944"
+      },
+      {
+        "name": "Xiaomi Monitor Light Bar",
+        "meta": "Monitor light",
+        "image": "images/gear/xiaomi-light-bar.webp",
+        "href": ""
+      },
+      {
+        "name": "AFUL Explorer",
+        "meta": "IEM",
+        "image": "images/gear/aful-explorer.webp",
+        "href": "https://afulaudio.com/products/aful-explorer"
+      },
+      {
+        "name": "Sihoo M57",
+        "meta": "Ergonomic chair",
+        "image": "images/gear/sihoo-m57.webp",
+        "href": "https://thingsweuse.ph/products/sihoo-m57-without-footrest"
+      }
+    ]
+  },
+  {
+    "heading": "Everyday Carry",
+    "items": [
+      {
+        "name": "iPhone 13",
+        "meta": "Phone · 128GB",
+        "image": "images/gear/iphone-13.webp",
+        "href": "https://www.apple.com/newsroom/2021/09/apple-introduces-iphone-13-and-iphone-13-mini/"
+      },
+      {
+        "name": "AirPods Pro 3",
+        "meta": "Earbuds",
+        "image": "images/gear/airpods-pro-3.webp",
+        "href": "https://www.apple.com/ph/airpods-pro/"
+      },
+      {
+        "name": "Anker 165W",
+        "meta": "Power bank",
+        "image": "images/gear/anker-165w.webp",
+        "href": "https://anker.ph/products/anker-25000mah-165w-laptop-power-bank"
+      },
+      {
+        "name": "Google Fitbit Air",
+        "meta": "Fitness tracker",
+        "image": "images/gear/fitbit-air.webp",
+        "href": "https://store.google.com/us/product/google_fitbit_air?hl=en-US"
+      }
+    ]
+  },
+  {
+    "heading": "Creator",
+    "items": [
+      {
+        "name": "Kodak FZ55",
+        "meta": "Camera",
+        "image": "images/gear/kodak-fz55.webp",
+        "href": "https://www.kodak.com/en/consumer/product/cameras/digital/fz55/"
+      }
+    ]
+  }
+]

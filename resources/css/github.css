@@ -1,0 +1,120 @@
+.gh-panel {
+  position: relative;
+}
+.gh-graph {
+  --gh-gap: 5px;
+  display: flex;
+  gap: var(--gh-gap, 4px);
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  scrollbar-width: none;
+}
+/* the graph is one SVG now, scaling to the column instead of scrolling */
+.gh-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--fg);
+}
+.gh-svg circle {
+  transition: opacity 0.25s ease;
+}
+.gh-graph::-webkit-scrollbar {
+  display: none;
+}
+.gh-graph.is-unavailable {
+  display: none;
+}
+.gh-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.1rem;
+}
+.gh-caption {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--fg-faint);
+}
+.gh-tip {
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, -100%);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--r-sm);
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--shadow-card);
+}
+.gh-tip[hidden] {
+  display: none;
+}
+@media (max-width: 1200px) {
+  .gh-graph {
+    --gh-gap: 4px;
+  }
+}
+@media (max-width: 900px) {
+  .gh-graph {
+    --gh-gap: 3px;
+  }
+}
+@media (max-width: 560px) {
+  .gh-foot {
+    gap: 0.6rem;
+  }
+}
+.gh-graph-link {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  border-radius: var(--r-sm);
+}
+.gh-graph-hint {
+  position: absolute;
+  top: -1.85rem;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--fg-dim);
+  opacity: 0;
+  transform: translateY(3px);
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s var(--ease);
+}
+.gh-graph-link:hover .gh-graph-hint,
+.gh-graph-link:focus-visible .gh-graph-hint {
+  opacity: 1;
+  transform: none;
+}
+.gh-graph-link:hover .gh-graph-hint span {
+  transform: translate(2px, -2px);
+}
+.gh-graph-hint span {
+  transition: transform 0.25s var(--ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .gh-graph-hint {
+    transition: none;
+  }
+}
+/* belt and braces: the panel never contributes page-level overflow */
+.gh-panel {
+  overflow: hidden;
+}
+@media (hover: none) {
+  .gh-graph {
+    pointer-events: auto;
+  }
+}

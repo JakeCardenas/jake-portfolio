@@ -1,0 +1,121 @@
+.collab-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem 3rem;
+  margin-top: 2.5rem;
+}
+.collab-logo {
+  height: 3rem;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.5;
+  filter: grayscale(100%);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+.collab-logo:hover {
+  opacity: 1;
+  filter: grayscale(0);
+}
+/* greyed marks are mostly dark, so lift them off the dark ground until hover reveals the brand colour */
+.dark .collab-logo {
+  filter: grayscale(100%) invert(1);
+}
+.dark .collab-logo:hover {
+  filter: none;
+}
+.collab-map {
+  margin-top: 3.5rem;
+  aspect-ratio: 146 / 67;
+  background: var(--fg);
+  opacity: 0.85;
+  -webkit-mask-image: url("../images/collabs/worldmap.svg"),
+    linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  -webkit-mask-size: contain, 100% 100%;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-position: center, center;
+  -webkit-mask-composite: source-in;
+  mask-image: url("../images/collabs/worldmap.svg"),
+    linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  mask-size: contain, 100% 100%;
+  mask-repeat: no-repeat, no-repeat;
+  mask-position: center, center;
+  mask-composite: intersect;
+}
+.collab-map-note {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.collab-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  background: linear-gradient(to bottom right, var(--g50), var(--bg));
+}
+.collab-cta-title {
+  font-family: var(--font-pixel);
+  font-size: 1.125rem;
+  line-height: 1;
+}
+.collab-cta-body {
+  margin-top: 0.75rem;
+  max-width: 28rem;
+  font-size: 14px;
+  line-height: 1.625;
+  color: var(--fg-muted);
+}
+.collab-cta-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex: none;
+}
+.collab-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.collab-cta-btn:hover {
+  background: var(--fg-muted);
+}
+.collab-cta-btn svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+.collab-cta-mail {
+  font-size: 12px;
+  color: var(--fg-faint);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.collab-cta-mail:hover {
+  color: var(--fg);
+}
+@media (min-width: 640px) {
+  .collab-logo {
+    height: 3.5rem;
+  }
+  .collab-cta {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+}

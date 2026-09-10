@@ -1,0 +1,137 @@
+.section::before,
+body::before,
+body::after {
+  background-image: radial-gradient(
+    circle,
+    var(--dot-color) 1px,
+    transparent 1.6px
+  );
+  background-size: var(--dot-size) var(--dot-size);
+}
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+}
+body::before {
+  top: 0;
+  right: 0;
+  width: 46vw;
+  height: 64vh;
+  background-size: var(--dot-size-wide) var(--dot-size-wide);
+  opacity: 0.26;
+  -webkit-mask-image: radial-gradient(
+    80% 80% at 100% 0%,
+    #000 0%,
+    transparent 65%
+  );
+  mask-image: radial-gradient(80% 80% at 100% 0%, #000 0%, transparent 65%);
+}
+body::after {
+  bottom: 0;
+  left: 0;
+  width: 40vw;
+  height: 56vh;
+  opacity: 0.22;
+  -webkit-mask-image: radial-gradient(
+    80% 80% at 0% 100%,
+    #000 0%,
+    transparent 65%
+  );
+  mask-image: radial-gradient(80% 80% at 0% 100%, #000 0%, transparent 65%);
+}
+.page-halftone {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.ht {
+  position: absolute;
+  background-image: radial-gradient(
+    circle at center,
+    rgba(10, 10, 10, 0.9) 1px,
+    transparent 1.6px
+  );
+}
+.ht-tr {
+  top: 0;
+  right: 0;
+  width: 65vw;
+  height: 70vh;
+  background-size: 13px 13px;
+  opacity: 0.16;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 100% 0%, #000 0%, transparent 65%);
+  mask-image: radial-gradient(ellipse 80% 80% at 100% 0%, #000 0%, transparent 65%);
+}
+.ht-bl {
+  bottom: 0;
+  left: 0;
+  width: 55vw;
+  height: 60vh;
+  background-size: 9px 9px;
+  opacity: 0.13;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 0% 100%, #000 0%, transparent 65%);
+  mask-image: radial-gradient(ellipse 80% 80% at 0% 100%, #000 0%, transparent 65%);
+}
+.dark .ht {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(244, 244, 245, 0.42) 1px,
+    transparent 1.6px
+  );
+}
+/* a dot band, faded at both ends, standing in for a rule between sections */
+.ht-accent {
+  position: absolute;
+  left: -2.5rem;
+  bottom: 1.5rem;
+  width: 8rem;
+  height: 8rem;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle at center,
+    var(--dot-color) 1px,
+    transparent 1.6px
+  );
+  background-size: 9px 9px;
+  opacity: 0.2;
+  -webkit-mask-image: radial-gradient(circle at center, #000 35%, transparent 70%);
+  mask-image: radial-gradient(circle at center, #000 35%, transparent 70%);
+}
+.ht-fade {
+  height: 2.5rem;
+  width: 100%;
+  margin: 0.5rem 0 4rem;
+  background-image: radial-gradient(
+    circle at center,
+    var(--dot-color) 1px,
+    transparent 1.6px
+  );
+  background-size: 13px 13px;
+  opacity: 0.15;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent);
+}
+.ht-rule {
+  height: 1.5rem;
+  margin: 0.5rem 0;
+  background-image: radial-gradient(
+    circle at center,
+    rgba(10, 10, 10, 0.9) 1px,
+    transparent 1.6px
+  );
+  background-size: 13px 13px;
+  opacity: 0.18;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent);
+}
+.dark .ht-rule {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(244, 244, 245, 0.42) 1px,
+    transparent 1.6px
+  );
+}

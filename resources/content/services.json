@@ -1,0 +1,57 @@
+[
+  {
+    "title": "Custom Websites",
+    "tag": "Custom",
+    "icon": "browser",
+    "description": "Modern, responsive websites designed around your brand, business, or idea.",
+    "features": [
+      "Responsive design",
+      "Custom development",
+      "Modern user experience"
+    ]
+  },
+  {
+    "title": "Web Applications",
+    "tag": "Custom",
+    "icon": "code",
+    "description": "Functional web applications and digital systems built to solve real-world problems.",
+    "features": [
+      "Full-stack development",
+      "Custom functionality",
+      "Scalable solutions"
+    ]
+  },
+  {
+    "title": "Portfolio Websites",
+    "tag": "Personal",
+    "icon": "case",
+    "description": "Personal portfolio websites designed to showcase your work, skills, projects, and professional identity.",
+    "features": [
+      "Personal branding",
+      "Project showcase",
+      "Mobile responsive"
+    ]
+  },
+  {
+    "title": "Graphic &amp; Digital Design",
+    "tag": "Creative",
+    "icon": "pen",
+    "description": "Creative digital visuals designed for brands, projects, presentations, and online content.",
+    "features": [
+      "Social media graphics",
+      "Digital visuals",
+      "Modern visual design"
+    ]
+  },
+  {
+    "title": "Video Editing",
+    "tag": "Creative",
+    "icon": "play",
+    "description": "Engaging and polished videos for creators, brands, social media, and digital storytelling.",
+    "features": [
+      "Short-form content",
+      "Promotional videos",
+      "Creative editing"
+    ]
+  }
+]

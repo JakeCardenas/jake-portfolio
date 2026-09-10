@@ -1,0 +1,54 @@
+[
+  {
+    "title": "Digital Twin Platform",
+    "meta": [
+      "FULL-STACK",
+      "INTERACTIVE PORTFOLIO",
+      "AI-POWERED CHAT"
+    ],
+    "body": "A full-stack platform with an interactive portfolio and an AI-powered chat.",
+    "link": {
+      "href": "https://grouptwodigitaltwin.vercel.app/",
+      "label": "VIEW LIVE SITE"
+    }
+  },
+  {
+    "title": "Reps — Workout Tracker",
+    "meta": [
+      "WEB APP",
+      "OFFLINE-FIRST PWA",
+      "NODE BACKEND"
+    ],
+    "body": "A workout tracker for planning exercises and following your gym progress.",
+    "link": {
+      "href": "https://reps-six-theta.vercel.app/",
+      "label": "VIEW LIVE SITE"
+    },
+    "icon": {
+      "src": "images/projects/icons/reps.png",
+      "alt": "Reps app icon"
+    }
+  },
+  {
+    "title": "Starbyte — Space Shooter Game",
+    "meta": [
+      "GODOT",
+      "GDSCRIPT",
+      "GAME DEVELOPMENT"
+    ],
+    "body": "A browser space shooter built with the Godot game engine.",
+    "link": {
+      "href": "https://starbyte.vercel.app/",
+      "label": "PLAY GAME"
+    },
+    "icon": {
+      "src": "images/projects/icons/starbyte.png",
+      "alt": "Starbyte app icon"
+    },
+    "note": {
+      "label": "Built through",
+      "href": "https://www.redfoolsstudio.com/participant-page/3f85f6d1-d913-48d7-bf19-1b50ce06ac1c?programId=3f85f6d1-d913-48d7-bf19-1b50ce06ac1c",
+      "text": "Red Fools Studio"
+    }
+  }
+]

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop — Jake Cardenas</title>
+    <meta name="description" content="Things Jake Cardenas has made and put up for download." />
+    <link rel="canonical" href="https://jakecardenas.vercel.app/shop/" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/feed+json" title="Jake Cardenas — Blog (JSON Feed)" href="/feed.json" />
+    <link rel="alternate" type="application/rss+xml" title="Jake Cardenas — Blog (RSS)" href="/feed.xml" />
+    <meta name="theme-color" content="#f4f4f2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c0c0f" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="Shop — Jake Cardenas" />
+    <meta property="og:description" content="Things Jake Cardenas has made and put up for download." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jakecardenas.vercel.app/shop/" />
+    <meta property="og:image" content="/icon-512.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="preload" href="/fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/GeistMono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/css/site.css?v=178" />
+    <style>
+      html { background-color: #ffffff; }
+      html.dark { background-color: #0c0c0f; }
+    </style>
+    <script>
+      (function () {
+        var KEY = "theme-mode";
+        var root = document.documentElement;
+        var mq = window.matchMedia
+          ? window.matchMedia("(prefers-color-scheme: dark)")
+          : null;
+        function pref() {
+          try {
+            var v = localStorage.getItem(KEY);
+            return v === "dark" || v === "light" || v === "system" ? v : "system";
+          } catch (e) {
+            return "system";
+          }
+        }
+        function isDark(p) {
+          return p === "dark" || (p === "system" && !!mq && mq.matches);
+        }
+        root.classList.toggle("dark", isDark(pref()));
+      })();
+    </script>
+  </head>
+  <body>
+    <div aria-hidden="true" class="page-halftone">
+      <span class="ht ht-tr"></span><span class="ht ht-bl"></span>
+    </div>
+
+    <div class="shell">
+      <aside class="sidebar">
+        <a href="/" class="side-logo" data-nav-logo>Jake Cardenas</a>
+
+        <nav class="side-nav mono" id="siteNav" aria-label="Sections">
+          <div class="nav-group">
+            <a href="/shop/" class="nav-link active" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 11a2 2 0 01-2 2H9a2 2 0 01-2-2L6 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 016 0V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Shop</a>
+            <a href="/blog/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Blog</a>
+            <a href="/gear/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 19h18M9.5 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Gear</a>
+            <a href="/resources/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A1.5 1.5 0 015.5 4H11v15.5H6a2 2 0 00-2 1.2V5.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M20 5.5A1.5 1.5 0 0018.5 4H13v15.5h5a2 2 0 012 1.2V5.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>Resources</a>
+          </div>
+          <span class="nav-rule" aria-hidden="true"></span>
+          <div class="nav-group">
+            <a href="/collabs/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M17 19c0-2.2-.8-3.8-2.1-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Collabs</a>
+            <a href="/opportunities/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V5.5A1.5 1.5 0 019.5 4h5A1.5 1.5 0 0116 5.5V7M3 12.5h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Services</a>
+          </div>
+          <span class="nav-rule" aria-hidden="true"></span>
+          <div class="nav-group">
+            <a href="/projects/" class="nav-link" data-nav>Projects</a>
+            <a href="/experience/" class="nav-link" data-nav>Experience</a>
+            <a href="/stack/" class="nav-link" data-nav>Stack</a>
+            <a href="/certifications/" class="nav-link" data-nav>Certifications</a>
+          </div>
+        </nav>
+
+        <div class="side-foot">
+          <div class="control-pill">
+            <div class="theme-switch" role="group" aria-label="Theme">
+              <button class="ctl-btn" data-theme-btn="system" aria-label="Match system theme" title="System">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4" />
+                </svg>
+              </button>
+              <button class="ctl-btn" data-theme-btn="light" aria-label="Light mode" title="Light">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                </svg>
+              </button>
+              <button class="ctl-btn" data-theme-btn="dark" aria-label="Dark mode" title="Dark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+                </svg>
+              </button>
+            </div>
+
+            <button id="soundToggle" class="ctl-btn sound-btn" data-sound-toggle
+                    aria-label="Enable interface sounds" aria-pressed="false" title="Sounds off">
+              <svg class="sound-icon-on" data-sound-on viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              </svg>
+              <svg class="sound-icon-off" data-sound-off viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            </button>
+          </div>
+
+          <p class="side-note">For work, collabs and everything else, reach me at</p>
+          <a href="mailto:jakez.cardenas@gmail.com" class="side-email mono"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>jakez.cardenas@gmail.com</a>
+        </div>
+
+        <button id="menuBtn" class="menu-btn mono" aria-controls="siteNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="menu-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="menu-label">MENU</span>
+        </button>
+      </aside>
+
+      <main class="main main--wide">
+        <section class="section reveal">
+          <header class="page-head">
+            <h1 class="page-title">shop</h1>
+            <p class="page-lede">Things I have made and put up for download.</p>
+          </header>
+          <div class="shop-grid">
+            <a class="shop-card reveal" href="/shop/developer-resume-template/"
+               style="animation-delay: 0.04s">
+              <span class="shop-shot">
+                <img src="/images/shop/developer-resume.png?v=178" alt="Developer Résumé Template preview" loading="lazy" />
+                <span class="shop-badge mono">Free</span>
+              </span>
+              <span class="shop-body">
+                <span class="shop-kind mono">Template</span>
+                <span class="shop-name">Developer Résumé Template</span>
+              </span>
+            </a>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <script src="/js/site-sounds.js?v=178"></script>
+    <script src="/js/site.js?v=178"></script>
+  </body>
+</html>

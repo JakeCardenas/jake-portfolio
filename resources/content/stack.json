@@ -1,0 +1,67 @@
+[
+  {
+    "label": "PROGRAMMING LANGUAGES",
+    "items": [
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Java",
+      "PHP",
+      "C++"
+    ]
+  },
+  {
+    "label": "FRONTEND",
+    "items": [
+      "HTML5",
+      "CSS3",
+      "React",
+      "Next.js",
+      "Tailwind CSS"
+    ]
+  },
+  {
+    "label": "BACKEND",
+    "items": [
+      "Node.js",
+      "Laravel"
+    ]
+  },
+  {
+    "label": "DATABASE",
+    "items": [
+      "MySQL",
+      "PostgreSQL",
+      "Firebase"
+    ]
+  },
+  {
+    "label": "TOOLS &amp; ENVIRONMENT",
+    "items": [
+      "Git",
+      "GitHub",
+      "VS Code",
+      "Vercel",
+      "XAMPP",
+      "Figma"
+    ]
+  },
+  {
+    "label": "AI &amp; MACHINE LEARNING",
+    "items": [
+      "OpenAI",
+      "Claude",
+      "Gemini"
+    ]
+  },
+  {
+    "label": "CREATIVE &amp; EDITING",
+    "items": [
+      "CapCut",
+      "DaVinci Resolve",
+      "Photoshop",
+      "Canva",
+      "Blender"
+    ]
+  }
+]

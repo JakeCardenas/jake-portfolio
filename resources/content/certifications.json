@@ -1,0 +1,110 @@
+[
+  {
+    "title": "Certificate of Participation &amp; Appearance",
+    "issuer": "PAPSAS",
+    "issuer_full": "Philippine Association of Practitioners of Student Affairs and Services, Inc.",
+    "href": "https://drive.google.com/file/d/1kaa25uQ6G0TsSBra3EwroDLtl43DO5Bb/view?usp=sharing",
+    "logo": "images/certs/logos/papsas.png",
+    "logo_alt": "Philippine Association of Practitioners of Student Affairs and Services, Inc.",
+    "action": "VIEW",
+    "aria_label": "View the Certificate of Participation and Certificate of Appearance from the Philippine Association of Practitioners of Student Affairs and Services, Inc. (opens in a new tab)",
+    "rot": "-4deg",
+    "ty": "6px"
+  },
+  {
+    "title": "Full Stack &amp; Agentic AI Internship",
+    "issuer": "Employability Advantage",
+    "issuer_full": "",
+    "href": "https://www.credential.net/e6193529-ada5-4b33-ad90-61ec7595deaf",
+    "logo": "images/certs/logos/employability-advantage.png",
+    "logo_alt": "Employability Advantage",
+    "action": "VERIFY",
+    "aria_label": "Verify the Full Stack &amp; Agentic AI Internship from Employability Advantage (opens in a new tab)",
+    "rot": "3deg",
+    "ty": "-4px"
+  },
+  {
+    "title": "React Fundamentals",
+    "issuer": "CodeCred",
+    "issuer_full": "",
+    "href": "https://www.codecred.dev/verify/c2aec721-8724-4413-b8d0-bbaf808f82b5",
+    "logo": "images/certs/logos/codecred.svg",
+    "logo_alt": "CodeCred",
+    "action": "VERIFY",
+    "aria_label": "Verify React Fundamentals from CodeCred (opens in a new tab)",
+    "rot": "-2deg",
+    "ty": "3px"
+  },
+  {
+    "title": "Neo4j Certified Professional",
+    "issuer": "Neo4j",
+    "issuer_full": "",
+    "href": "https://graphacademy.neo4j.com/c/b0d1cda4-c70e-427b-bf3e-634bce0bed1b/",
+    "logo": "images/certs/logos/neo4j.svg",
+    "logo_alt": "Neo4j GraphAcademy",
+    "action": "VERIFY",
+    "aria_label": "Verify Neo4j Certified Professional from Neo4j GraphAcademy (opens in a new tab)",
+    "rot": "4deg",
+    "ty": "-6px"
+  },
+  {
+    "title": "Neo4j &amp; GenerativeAI Fundamentals",
+    "issuer": "Neo4j",
+    "issuer_full": "",
+    "href": "https://graphacademy.neo4j.com/c/dfeb3224-af87-4ba7-88f1-4a9ad1df7aa9/",
+    "logo": "images/certs/logos/neo4j.svg",
+    "logo_alt": "Neo4j GraphAcademy",
+    "action": "VERIFY",
+    "aria_label": "Verify Neo4j &amp; GenerativeAI Fundamentals from Neo4j GraphAcademy (opens in a new tab)",
+    "rot": "-3deg",
+    "ty": "4px"
+  },
+  {
+    "title": "Building RAG Apps Using MongoDB",
+    "issuer": "MongoDB",
+    "issuer_full": "",
+    "href": "https://www.credly.com/badges/2934b009-8990-408a-bad3-2bc8efb0419d",
+    "logo": "images/certs/logos/mongodb.png",
+    "logo_alt": "MongoDB",
+    "action": "VERIFY",
+    "aria_label": "Verify Building RAG Apps Using MongoDB from MongoDB (opens in a new tab)",
+    "rot": "2deg",
+    "ty": "-3px"
+  },
+  {
+    "title": "Getting Started with Generative AI",
+    "issuer": "IBM",
+    "issuer_full": "",
+    "href": "https://skills.yourlearning.ibm.com/certificate/PLAN-BAEFCCAAD520",
+    "logo": "images/certs/logos/ibm.svg",
+    "logo_alt": "IBM",
+    "action": "VERIFY",
+    "aria_label": "Verify Getting Started with Generative AI from IBM (opens in a new tab)",
+    "rot": "-4deg",
+    "ty": "5px"
+  },
+  {
+    "title": "Adopt a Pixel",
+    "issuer": "NASA",
+    "issuer_full": "",
+    "href": "https://drive.google.com/file/d/1YxXeMFGo0sNt1wS5AAXxQbb3hSn5nRVx/view",
+    "logo": "images/certs/logos/nasa.svg",
+    "logo_alt": "NASA",
+    "action": "VERIFY",
+    "aria_label": "View Adopt a Pixel from NASA (opens in a new tab)",
+    "rot": "3deg",
+    "ty": "-5px"
+  },
+  {
+    "title": "Microsoft Azure AI Fundamentals",
+    "issuer": "TESDA",
+    "issuer_full": "",
+    "href": "https://drive.google.com/file/d/1QT2n9ATSFpBHjSSe7C95xNtx_hxDWp8g/view",
+    "logo": "images/certs/logos/tesda.png",
+    "logo_alt": "TESDA",
+    "action": "VERIFY",
+    "aria_label": "Verify Microsoft Azure AI Fundamentals from TESDA (opens in a new tab)",
+    "rot": "-3deg",
+    "ty": "4px"
+  }
+]
