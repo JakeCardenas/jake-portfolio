@@ -1,16 +1,19 @@
 from config import site
 from resources import content
-from resources.views.components import headings, icons
+from resources.views.components import headings, icons, media
 
 LEDE = (
     "I have collaborated, created, learned and built across organizations, "
     "platforms and communities throughout my journey in technology and creativity."
 )
 
+LOGO_SIZES = "(min-width: 641px) 56px, 48px"
+
 
 def render():
     logos = "\n".join(
-        f'            <img class="collab-logo" src="{site.asset(c["logo"])}" alt="{c["name"]}" loading="lazy" />'
+        "            "
+        + media.img(c["logo"], sizes=LOGO_SIZES, alt=c["name"], cls="collab-logo")
         for c in content.load("collabs")
     )
     return f"""        <section class="section reveal">

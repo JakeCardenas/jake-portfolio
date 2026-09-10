@@ -1,11 +1,12 @@
-from config import site
 from resources import content
-from resources.views.components import headings, icons
+from resources.views.components import headings, icons, media
 
 LEDE = (
     "The hardware I actually use day to day — desk setup, everyday carry, "
     "and the camera I shoot on."
 )
+
+SHOT_SIZES = "(min-width: 641px) 222px, 172px"
 
 
 def item(entry):
@@ -14,7 +15,7 @@ def item(entry):
     arrow = icons.ARROW_OUT if entry["href"] else ""
     return f"""              <{tag} class="gear-item"{attrs}>
                 <span class="gear-shot">
-                  <img src="{site.asset(entry['image'])}" alt="{entry['name']}" loading="lazy" />
+                  {media.img(entry['image'], sizes=SHOT_SIZES, alt=entry['name'])}
                 </span>
                 <span class="gear-body">
                   <span class="gear-head">

@@ -2,10 +2,12 @@ import re
 
 from config import site
 from resources import content
-from resources.views.components import cards, headings
+from resources.views.components import cards, headings, media
 
 DECK_SLOTS = (("is-left", 1), ("is-center", 0), ("is-right", 2))
 STACK_PREVIEW = 12
+
+DECK_SIZES = "(min-width: 641px) 284px, 244px"
 
 
 def hero():
@@ -81,7 +83,7 @@ def deck():
         entries.append(
             f"""            <article class="deck-card {slot}" role="button" tabindex="0"
                      aria-label="Show {project['title']}">
-              <div class="deck-shot"><img src="{site.asset(featured[project['title']])}" alt="" loading="lazy" /></div>
+              <div class="deck-shot">{media.img(featured[project['title']], sizes=DECK_SIZES)}</div>
               <h3 class="deck-title">{project['title']}</h3>
               <div class="deck-meta mono">{meta}</div>
               <p class="deck-body">{project['body']}</p>
@@ -128,7 +130,7 @@ def affiliations():
         entries.append(
             f"""            {open_tag}>
               <span class="affil-mark" aria-hidden="true">
-                <img src="{site.asset(item['logo'])}" alt="" loading="lazy" />
+                {media.img(item['logo'], sizes="40px")}
               </span>
               <span>
                 <span class="affil-name">{item['name']}</span>

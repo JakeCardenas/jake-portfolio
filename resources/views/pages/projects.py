@@ -1,6 +1,5 @@
-from config import site
 from resources import content
-from resources.views.components import headings
+from resources.views.components import headings, media
 
 LEDE = "Things I've built — full-stack apps, AI work, and design."
 
@@ -10,13 +9,13 @@ SEPARATOR = '<span class="meta-sep">·</span>'
 def card(item):
     icon = ""
     if item.get("icon"):
-        icon = f"""              <img
-                class="spot-icon"
-                src="{site.asset(item['icon']['src'])}"
-                alt="{item['icon']['alt']}"
-                loading="lazy"
-              />
-"""
+        glyph = media.img(
+            item["icon"]["src"],
+            sizes="64px",
+            alt=item["icon"]["alt"],
+            cls="spot-icon",
+        )
+        icon = f"              {glyph}\n"
     note = ""
     if item.get("note"):
         n = item["note"]

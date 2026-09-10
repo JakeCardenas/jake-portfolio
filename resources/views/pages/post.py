@@ -1,4 +1,7 @@
 from config import site
+from resources.views.components import media
+
+COVER_SIZES = "(min-width: 1024px) 622px, calc(100vw - 2.5rem)"
 
 
 def render(post):
@@ -13,7 +16,7 @@ def render(post):
             <h1 class="article-title">{post['title']}</h1>
           </header>
           <div class="article-cover">
-            <img src="{site.asset(post['image'])}" alt="" />
+            {media.img(post['image'], sizes=COVER_SIZES, priority=True)}
           </div>
           <div class="prose">
 {post['body']}

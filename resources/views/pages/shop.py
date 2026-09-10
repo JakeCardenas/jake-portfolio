@@ -2,9 +2,11 @@ import os
 
 from config import site
 from resources import content
-from resources.views.components import headings, icons
+from resources.views.components import headings, icons, media
 
 LEDE = "Things I have made and put up for download."
+
+SHOT_SIZES = "(min-width: 641px) 270px, 220px"
 
 PUBLIC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../public")
 
@@ -15,8 +17,8 @@ def available(item):
 
 def card(item, delay):
     shot = (
-        f'<img src="{site.asset(item["shot"])}" alt="{item["name"]} preview" loading="lazy" />'
-        if os.path.exists(os.path.join(PUBLIC, item["shot"]))
+        media.img(item["shot"], sizes=SHOT_SIZES, alt=f'{item["name"]} preview')
+        if item["shot"] in media.DERIVATIVES
         else icons.DOC
     )
     return f"""            <a class="shop-card reveal" href="{site.url('shop/' + item['slug'])}"

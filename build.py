@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 """Renders resources/ into public/. Run after editing anything under resources/."""
+import glob
+import hashlib
 import json
 import os
 import re
+import struct
+import shutil
+import subprocess
 import sys
 from email.utils import format_datetime
 
@@ -11,6 +16,7 @@ sys.path.insert(0, ROOT)
 
 from config import site
 from resources import content
+from resources.views.components import media
 from resources.views.layouts import base
 from resources.views.partials import schema
 from routes import web
@@ -57,12 +63,140 @@ SCRIPTS = [
 
 
 
+OPTIMIZED = "images/optimized"
+
+# widths generated per directory; the profile portraits are excluded because the
+# halftone renderer samples their pixels directly and resizing shifts the dots
+IMAGE_LADDERS = {
+    "images/blog": [320, 640, 1200],
+    "images/projects/icons": [64, 128],
+    "images/projects": [320, 640],
+    "images/gear": [256, 512],
+    "images/certs/logos": [56, 112],
+    "images/collabs": [56, 112],
+    "images/affiliations": [64, 128],
+    "images/shop": [320, 640, 1024],
+}
+
+# the blog art is dithered, so it needs headroom before the dots start to smear
+IMAGE_QUALITY = {"images/blog": "92"}
+DEFAULT_QUALITY = "86"
+
+
 def write(path, text):
     full = os.path.join(PUBLIC, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, "w", encoding="utf-8") as f:
         f.write(text)
     return len(text)
+
+
+def source_width(path):
+    with open(path, "rb") as f:
+        head = f.read(32)
+        if head[:8] == b"\x89PNG\r\n\x1a\n":
+            return struct.unpack(">I", head[16:20])[0]
+        if head[:4] == b"RIFF" and head[8:12] == b"WEBP":
+            if head[12:16] == b"VP8X":
+                return int.from_bytes(head[24:27], "little") + 1
+            if head[12:16] == b"VP8 ":
+                return struct.unpack("<H", head[26:28])[0] & 0x3FFF
+            f.seek(0)
+            out = subprocess.run(
+                ["cwebp", "-quiet", "-print_psnr", path, "-o", os.devnull],
+                capture_output=True,
+                text=True,
+            )
+            return 10**6 if out.returncode == 0 else 0
+        if head[:2] == b"\xff\xd8":
+            f.seek(2)
+            while True:
+                byte = f.read(1)
+                while byte and byte != b"\xff":
+                    byte = f.read(1)
+                marker = f.read(1)
+                while marker == b"\xff":
+                    marker = f.read(1)
+                if not marker:
+                    return 0
+                if marker[0] in (0xC0, 0xC1, 0xC2):
+                    f.read(3)
+                    _h, w = struct.unpack(">HH", f.read(4))
+                    return w
+                length = struct.unpack(">H", f.read(2))[0]
+                f.read(length - 2)
+    return 0
+
+
+def lookup(table, relative, fallback=None):
+    directory = os.path.dirname(relative)
+    while directory:
+        if directory in table:
+            return table[directory]
+        directory = os.path.dirname(directory)
+    return fallback
+
+
+def ladder_for(relative):
+    return lookup(IMAGE_LADDERS, relative)
+
+
+def optimise_images():
+    """resources/images -> public/images: derivatives where a ladder applies,
+    a straight copy for everything served as-is (svg, halftone sources)"""
+    source_root = os.path.join(ROOT, "resources/images")
+    out_dir = os.path.join(PUBLIC, OPTIMIZED)
+    os.makedirs(out_dir, exist_ok=True)
+    keep, made, saved, copied = set(), 0, 0, 0
+
+    for path in sorted(glob.glob(os.path.join(source_root, "**/*"), recursive=True)):
+        if not os.path.isfile(path):
+            continue
+        relative = os.path.join("images", os.path.relpath(path, source_root))
+        ladder = (
+            ladder_for(relative)
+            if relative.rsplit(".", 1)[-1].lower() in ("png", "jpg", "jpeg", "webp")
+            else None
+        )
+        if not ladder:
+            destination = os.path.join(PUBLIC, relative)
+            os.makedirs(os.path.dirname(destination), exist_ok=True)
+            if not os.path.exists(destination) or os.path.getmtime(
+                path
+            ) > os.path.getmtime(destination):
+                shutil.copy2(path, destination)
+            copied += 1
+            continue
+
+        digest = hashlib.sha256(open(path, "rb").read()).hexdigest()[:12]
+        native = source_width(path) or max(ladder)
+        widths = [w for w in ladder if w <= native] or [min(native, min(ladder))]
+        stem = os.path.basename(relative).rsplit(".", 1)[0]
+
+        for width in widths:
+            name = f"{stem}-{digest}-{width}.webp"
+            keep.add(name)
+            target_path = os.path.join(out_dir, name)
+            if os.path.exists(target_path):
+                continue
+            subprocess.run(
+                ["cwebp", "-quiet", "-q",
+                 lookup(IMAGE_QUALITY, relative, DEFAULT_QUALITY),
+                 "-sharp_yuv", "-metadata", "none",
+                 "-resize", str(width), "0", path, "-o", target_path],
+                check=True,
+            )
+            made += 1
+        media.register(relative, digest, widths)
+        saved += os.path.getsize(path) - os.path.getsize(
+            os.path.join(out_dir, f"{stem}-{digest}-{widths[-1]}.webp")
+        )
+
+    for stale in os.listdir(out_dir):
+        if stale not in keep:
+            os.remove(os.path.join(out_dir, stale))
+
+    return len(media.DERIVATIVES), made, saved, copied
 
 
 def bundle(kind, names, out):
@@ -248,6 +382,10 @@ def discovery(urls):
 
 
 def main():
+    sources, made, saved, copied = optimise_images()
+    print(f"  images: {sources} optimised ({made} derivatives written), "
+          f"{copied} copied as-is, {saved / 1024:,.0f} KB saved\n")
+
     urls = []
     for route, item in pages():
         out, html, canonical = render_page(route, item)

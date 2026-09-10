@@ -1,4 +1,5 @@
 from config import site
+from resources.views.components import media
 
 
 def posts(entries, *, heading="h2", container_id=""):
@@ -8,7 +9,7 @@ def posts(entries, *, heading="h2", container_id=""):
     cards = "\n".join(
         f"""            <a href="{site.url('posts/' + p['slug'])}" class="post-card">
               <span class="post-thumb">
-                <img src="{site.asset(p['image'])}" alt="" loading="lazy" />
+                {media.img(p['image'], sizes="134px")}
               </span>
               <span class="post-body">
                 <time class="post-date mono">{p['date']}</time>
@@ -37,7 +38,7 @@ def certificates(entries):
               aria-label="{c['aria_label']}"
             >
               <span class="cert-mark">
-                <img src="{site.asset(c['logo'])}" alt="{c['logo_alt']}" loading="lazy" />
+                {media.img(c['logo'], sizes="28px", alt=c['logo_alt'])}
               </span>
               <span class="cert-title">{c['title']}</span>
               <span class="cert-issuer mono"{f' title="{c["issuer_full"]}"' if c['issuer_full'] else ''}>{c['issuer']}</span>

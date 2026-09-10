@@ -1,14 +1,16 @@
 import os
 
 from config import site
-from resources.views.components import icons
+from resources.views.components import icons, media
 from resources.views.pages.shop import PUBLIC
+
+SHOT_SIZES = "(min-width: 1024px) 406px, calc(100vw - 2.5rem)"
 
 
 def render(item):
     shot = (
-        f'<img src="{site.asset(item["shot"])}" alt="{item["name"]}" loading="lazy" />'
-        if os.path.exists(os.path.join(PUBLIC, item["shot"]))
+        media.img(item["shot"], sizes=SHOT_SIZES, alt=item["name"], priority=True)
+        if item["shot"] in media.DERIVATIVES
         else icons.DOC
     )
     sections = "\n".join(
