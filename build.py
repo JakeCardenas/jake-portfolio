@@ -44,6 +44,8 @@ STYLESHEETS = [
     "stack.css",
     "projects.css",
     "certifications.css",
+    "presentations.css",
+    "recommendations.css",
     "experience.css",
     "github.css",
     "responsive.css",

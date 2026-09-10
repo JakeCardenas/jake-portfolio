@@ -1,0 +1,48 @@
+.pres-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.pres-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.pres-card:first-child {
+  border-top: 1px solid var(--border);
+}
+.pres-head {
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+.pres-head .entry-title {
+  margin-top: 0.4rem;
+  font-size: 1.0625rem;
+}
+.pres-head .entry-body {
+  margin-top: 0.5rem;
+}
+.pres-project {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.pres-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+}
+.pres-pending {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}

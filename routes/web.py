@@ -11,7 +11,9 @@ from resources.views.pages import (
     home,
     not_found,
     post,
+    presentations,
     projects,
+    recommendations,
     resources,
     services,
     shop,
@@ -143,6 +145,26 @@ ROUTES = [
         layout="wide",
     ),
     Route(
+        name="presentations",
+        path="presentations",
+        view=presentations,
+        title=f"Presentations — {site.NAME}",
+        description=(
+            f"Slide decks, capstone material and project walkthroughs by {site.NAME}."
+        ),
+        label="Presentations",
+        nav="presentations",
+    ),
+    Route(
+        name="recommendations",
+        path="recommendations",
+        view=recommendations,
+        title=f"Recommendations — {site.NAME}",
+        description=f"What people {site.NAME} has studied and built with have to say.",
+        label="Recommendations",
+        nav="recommendations",
+    ),
+    Route(
         name="gear",
         path="gear",
         view=gear,
@@ -188,7 +210,17 @@ ROUTES = [
 NAV_GROUPS = [
     {"icons": True, "routes": ("shop", "blog", "gear", "resources")},
     {"icons": True, "routes": ("collabs", "opportunities")},
-    {"icons": False, "routes": ("projects", "experience", "stack", "certifications")},
+    {
+        "icons": False,
+        "routes": (
+            "projects",
+            "experience",
+            "stack",
+            "certifications",
+            "presentations",
+            "recommendations",
+        ),
+    },
 ]
 
 BY_NAME = {r.name: r for r in ROUTES}

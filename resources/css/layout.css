@@ -121,6 +121,23 @@
   line-height: 1;
   text-transform: lowercase;
 }
+.section-empty {
+  max-width: 34rem;
+  padding: 1.25rem 0;
+  font-size: 0.75rem;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  color: var(--fg-dim);
+}
+.section-empty a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 2px;
+}
+.section-empty a:hover {
+  text-decoration-color: currentColor;
+}
 .page-lede {
   max-width: var(--measure-read);
   margin-top: 1.25rem;
