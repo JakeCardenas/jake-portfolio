@@ -80,11 +80,11 @@
   --border-strong: var(--g300);
   --card: var(--g50);
 
-  /* glass materials */
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-highlight: rgba(255, 255, 255, 0.6);
-  --glass-shadow: rgba(10, 10, 10, 0.1);
+  /* glass materials — iOS-style frosted glass with color tint */
+  --glass-bg: rgba(248, 250, 255, 0.45);
+  --glass-border: rgba(10, 10, 10, 0.18);
+  --glass-highlight: rgba(255, 255, 255, 1);
+  --glass-shadow: rgba(10, 10, 10, 0.25);
 
   --dot-color: rgba(10, 10, 10, 0.9);
   --dot-size: 9px;
@@ -145,10 +145,10 @@
   --dot-color: rgba(244, 244, 245, 0.42);
 
   /* glass materials for dark mode */
-  --glass-bg: rgba(18, 18, 27, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-highlight: rgba(255, 255, 255, 0.05);
-  --glass-shadow: rgba(0, 0, 0, 0.5);
+  --glass-bg: rgba(18, 18, 27, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-highlight: rgba(255, 255, 255, 0.1);
+  --glass-shadow: rgba(0, 0, 0, 0.6);
 
   /* shadows softer but still present */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -536,15 +536,18 @@ body::after {
   align-items: center;
   gap: var(--space-lg);
   padding: 1.1rem 1.5rem;
-  border-bottom: 1px solid var(--border);
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(10, 10, 10, 0.18);
+  background: rgba(248, 250, 255, 0.4);
+  backdrop-filter: blur(50px) saturate(200%);
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  box-shadow: 
+    0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+    0 8px 32px rgba(10, 10, 10, 0.12);
   position: sticky;
   top: 0;
   z-index: 40;
 }
-@supports not (backdrop-filter: blur(20px)) {
+@supports not (backdrop-filter: blur(50px)) {
   .sidebar {
     background: var(--bg);
   }
@@ -658,14 +661,16 @@ body::after {
   gap: var(--space-sm);
   width: fit-content;
   padding: 0.3rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid var(--glass-border);
+  background: rgba(248, 250, 255, 0.5);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(10, 10, 10, 0.15);
   border-radius: 999px;
-  box-shadow: var(--shadow-sm), inset 0 1px 0 var(--glass-highlight);
+  box-shadow: 
+    0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+    0 4px 12px rgba(10, 10, 10, 0.08);
 }
-@supports not (backdrop-filter: blur(12px)) {
+@supports not (backdrop-filter: blur(24px)) {
   .control-pill {
     background: var(--bg-soft);
   }
@@ -1303,25 +1308,29 @@ body.menu-open {
   padding: var(--space-xl) 1.25rem;
   border-bottom: 1px solid var(--border);
   text-decoration: none;
-  background: var(--glass-bg);
-  backdrop-filter: blur(8px) saturate(120%);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  background: rgba(248, 250, 255, 0.5);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(10, 10, 10, 0.1);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.8) inset;
   transition:
     background 0.3s var(--ease-out),
     transform 0.25s var(--ease-out),
     box-shadow 0.3s ease,
     border-color 0.3s ease;
 }
-@supports not (backdrop-filter: blur(8px)) {
+@supports not (backdrop-filter: blur(20px)) {
   .stat-cell {
     background: var(--bg);
   }
 }
 .stat-cell:hover {
-  background: var(--glass-highlight);
+  background: rgba(248, 250, 255, 0.7);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--border-strong);
+  box-shadow: 
+    0 1px 0 0 rgba(255, 255, 255, 1) inset,
+    0 8px 24px rgba(10, 10, 10, 0.15);
+  border-color: rgba(10, 10, 10, 0.18);
 }
 .stat-cell:active {
   transform: translateY(-1px);
@@ -2679,12 +2688,14 @@ a.affil-item:hover .affil-name {
   width: 18rem;
   margin-left: -9rem;
   padding: 1.25rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid var(--glass-border);
+  background: rgba(248, 250, 255, 0.45);
+  backdrop-filter: blur(50px) saturate(200%);
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  border: 1px solid rgba(10, 10, 10, 0.18);
   border-radius: var(--r-xl);
-  box-shadow: 0 1px 0 var(--glass-highlight) inset, var(--shadow-sm);
+  box-shadow: 
+    0 1px 0 0 rgba(255, 255, 255, 1) inset,
+    0 12px 40px -8px rgba(10, 10, 10, 0.2);
   transform-origin: center bottom;
   transition:
     transform 0.6s var(--ease),
@@ -2693,7 +2704,7 @@ a.affil-item:hover .affil-name {
   will-change: transform;
   outline: none;
 }
-@supports not (backdrop-filter: blur(20px)) {
+@supports not (backdrop-filter: blur(50px)) {
   .deck-card {
     background: var(--bg);
   }
@@ -3384,19 +3395,21 @@ body.overlay-open {
 }
 .overlay-panel {
   width: 100%;
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(10, 10, 10, 0.18);
   border-radius: var(--r-xl);
-  background: var(--glass-bg);
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-  box-shadow: var(--shadow-xl), inset 0 1px 0 var(--glass-highlight);
+  background: rgba(248, 250, 255, 0.5);
+  backdrop-filter: blur(60px) saturate(200%);
+  -webkit-backdrop-filter: blur(60px) saturate(200%);
+  box-shadow: 
+    0 1px 0 0 rgba(255, 255, 255, 1) inset,
+    0 20px 60px -10px rgba(10, 10, 10, 0.3);
   transform: translateY(20px) scale(0.96);
   transition:
     transform 0.35s var(--ease),
     opacity 0.3s ease;
   opacity: 0;
 }
-@supports not (backdrop-filter: blur(40px)) {
+@supports not (backdrop-filter: blur(60px)) {
   .overlay-panel {
     background: var(--bg);
   }
@@ -3529,14 +3542,16 @@ body.overlay-open {
   gap: 1.7rem;
   max-width: 880px;
   padding: var(--space-2xl);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(10, 10, 10, 0.18);
   border-radius: var(--r-xl);
-  background: var(--glass-bg);
-  backdrop-filter: blur(40px) saturate(180%);
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-  box-shadow: var(--shadow-xl), inset 0 1px 0 var(--glass-highlight);
+  background: rgba(248, 250, 255, 0.5);
+  backdrop-filter: blur(60px) saturate(200%);
+  -webkit-backdrop-filter: blur(60px) saturate(200%);
+  box-shadow: 
+    0 1px 0 0 rgba(255, 255, 255, 1) inset,
+    0 20px 60px -10px rgba(10, 10, 10, 0.3);
 }
-@supports not (backdrop-filter: blur(40px)) {
+@supports not (backdrop-filter: blur(60px)) {
   .tt-panel {
     background: var(--bg);
   }

@@ -30,11 +30,11 @@
   --border-strong: var(--g300);
   --card: var(--g50);
 
-  /* glass materials */
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-highlight: rgba(255, 255, 255, 0.6);
-  --glass-shadow: rgba(10, 10, 10, 0.1);
+  /* glass materials — iOS-style frosted glass with color tint */
+  --glass-bg: rgba(248, 250, 255, 0.45);
+  --glass-border: rgba(10, 10, 10, 0.18);
+  --glass-highlight: rgba(255, 255, 255, 1);
+  --glass-shadow: rgba(10, 10, 10, 0.25);
 
   --dot-color: rgba(10, 10, 10, 0.9);
   --dot-size: 9px;
@@ -95,10 +95,10 @@
   --dot-color: rgba(244, 244, 245, 0.42);
 
   /* glass materials for dark mode */
-  --glass-bg: rgba(18, 18, 27, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-highlight: rgba(255, 255, 255, 0.05);
-  --glass-shadow: rgba(0, 0, 0, 0.5);
+  --glass-bg: rgba(18, 18, 27, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-highlight: rgba(255, 255, 255, 0.1);
+  --glass-shadow: rgba(0, 0, 0, 0.6);
 
   /* shadows softer but still present */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
