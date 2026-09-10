@@ -2,33 +2,6 @@ from config import site
 from resources.views.components import icons
 
 
-def palette():
-    return """      <div class="overlay" id="palette" role="dialog" aria-modal="true"
-           aria-labelledby="paletteTitle" hidden>
-        <div class="overlay-panel pal-panel" data-overlay-panel>
-          <h2 class="visually-hidden" id="paletteTitle">Search this site</h2>
-          <div class="pal-field">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.6" />
-              <path d="M16 16l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-            </svg>
-            <input id="paletteInput" type="text" role="combobox" autocomplete="off"
-                   aria-expanded="true" aria-controls="paletteList" aria-autocomplete="list"
-                   placeholder="Search pages, projects, skills, writing…" />
-            <button type="button" class="pal-esc mono" data-modal-close>ESC</button>
-          </div>
-          <ul class="pal-list" id="paletteList" role="listbox" aria-labelledby="paletteTitle"></ul>
-          <p class="pal-empty mono" id="paletteEmpty" hidden>Nothing matches that yet.</p>
-          <p class="visually-hidden" id="paletteStatus" role="status" aria-live="polite"></p>
-          <div class="pal-foot mono">
-            <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
-            <span><kbd>↵</kbd> open</span>
-            <span><kbd>esc</kbd> close</span>
-          </div>
-        </div>
-      </div>"""
-
-
 def contact():
     return f"""      <div class="overlay" id="contactModal" role="dialog" aria-modal="true"
            aria-labelledby="contactTitle" hidden>
@@ -60,132 +33,68 @@ def contact():
       </div>"""
 
 
-DURATIONS = (15, 30, 60)
+LIVE_STATS = (("wpm", "wpm", ""), ("acc", "acc", "%"), ("time", "time", "s"))
 
-RESULTS = (
-    ("wpm", "WPM"),
-    ("accuracy", "ACCURACY"),
-    ("raw", "RAW"),
-    ("errors", "ERRORS"),
-    ("characters", "CHARACTERS"),
-)
+RESULT_STATS = (("Acc", "accuracy", "%"), ("Raw", "raw", ""), ("Time", "time", "s"))
 
 
 def typing():
-    durations = "\n".join(
-        f'            <button type="button" class="tt-chip mono'
-        f'{" is-active" if seconds == 30 else ""}" data-tt-duration="{seconds}">'
-        f"{seconds}s</button>"
-        for seconds in DURATIONS
+    live = "\n".join(
+        f'            <div class="tt-stat"><span class="tt-stat-val">'
+        f'<span class="tt-num" id="tt{key.capitalize()}">'
+        f'{"100" if key == "acc" else "0"}</span>'
+        f'{f"<i>{unit}</i>" if unit else ""}</span>'
+        f'<span class="tt-stat-label">{label}</span></div>'
+        for key, label, unit in LIVE_STATS
     )
-    cells = "\n".join(
-        f'              <div class="tt-cell"><span class="tt-value" '
-        f'data-tt-result="{key}">0</span>'
-        f'<span class="tt-label mono">{label}</span></div>'
-        for key, label in RESULTS
+    grid = "\n".join(
+        f'              <div><b><span id="ttRes{key}">0</span>'
+        f'{f"<i>{unit}</i>" if unit else ""}</b>'
+        f"<label>{label}</label></div>"
+        for key, label, unit in RESULT_STATS
     )
-    return f"""      <div class="overlay" id="typing" role="dialog" aria-modal="true"
-           aria-labelledby="typingTitle" tabindex="-1" hidden>
+    return f"""      <div class="overlay tt-overlay" id="typing" role="dialog" aria-modal="true"
+           aria-labelledby="typingTitle" tabindex="-1" data-overlay-keys="self" hidden>
         <div class="overlay-panel tt-panel" data-overlay-panel>
-          <div class="tt-head">
-            <h2 class="tt-title" id="typingTitle">Typing test</h2>
-            <div class="tt-chips">
-{durations}
-            </div>
-            <button type="button" class="modal-close" data-modal-close aria-label="Close">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6"
-                      stroke-linecap="round" />
-              </svg>
-            </button>
+          <h2 class="visually-hidden" id="typingTitle">Typing test</h2>
+          <div class="tt-stats mono">
+{live}
           </div>
-          <div class="tt-meters mono">
-            <span><b id="ttTime">30</b> left</span>
-            <span><b id="ttWpm">0</b> wpm</span>
-            <span><b id="ttAcc">100</b>% accuracy</span>
+
+          <div class="tt-words-wrap">
+            <div class="tt-words" id="ttWords" aria-hidden="true"></div>
           </div>
-          <div class="tt-stage">
-            <div class="tt-stream" id="ttStream" aria-hidden="true"></div>
-            <span class="tt-caret" id="ttCaret" aria-hidden="true"></span>
-            <div class="tt-results" id="ttResults" hidden>
-              <div class="tt-grid">
-{cells}
-              </div>
-              <button type="button" class="tt-again mono" data-tt-restart>
-                Run it again
-              </button>
-            </div>
-          </div>
-          <label class="visually-hidden" for="ttField">Type the words shown</label>
-          <input class="tt-field" id="ttField" autocomplete="off" autocapitalize="off"
-                 autocorrect="off" spellcheck="false" inputmode="text" />
-          <div class="tt-foot mono">
+
+          <div class="tt-keyboard" id="ttKeyboard" aria-hidden="true"></div>
+
+          <div class="tt-hint mono">
             <span><kbd>tab</kbd> restart</span>
             <span><kbd>esc</kbd> close</span>
           </div>
-        </div>
-      </div>"""
+          <div class="tt-confirm mono" id="ttConfirm">
+            restart test? <kbd>&crarr;</kbd> to confirm &middot; <kbd>esc</kbd> cancel
+          </div>
 
-
-def playground():
-    return """      <div class="overlay" id="playground" role="dialog" aria-modal="true"
-           aria-labelledby="playgroundTitle" tabindex="-1" hidden>
-        <div class="overlay-panel pg-panel" data-overlay-panel>
-          <div class="pg-head">
-            <h2 class="pg-title" id="playgroundTitle">Halftone field</h2>
-            <button type="button" class="pg-clear mono" data-pg-clear>Clear</button>
-            <button type="button" class="modal-close" data-modal-close aria-label="Close">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6"
-                      stroke-linecap="round" />
-              </svg>
+          <div class="tt-results">
+            <div class="tt-res-main">
+              <span class="tt-res-wpm" id="ttResWpm">0</span>
+              <span class="tt-res-cap mono">words per minute</span>
+            </div>
+            <div class="tt-res-grid mono">
+{grid}
+            </div>
+            <p class="tt-verdict mono" id="ttVerdict" role="status" aria-live="polite"></p>
+            <button type="button" class="tt-restart mono" data-tt-restart>
+              <span aria-hidden="true">&#8635;</span> try again
             </button>
           </div>
-          <div class="pg-stage">
-            <canvas id="pgCanvas" aria-label="Interactive halftone dot field"
-                    role="img"></canvas>
-            <span class="pg-hint mono">Move to disturb · click to ripple</span>
-          </div>
-          <div class="pg-controls">
-            <label class="pg-slider mono" for="pgCell">
-              Cell
-              <input type="range" id="pgCell" min="8" max="26" step="2" value="14" />
-            </label>
-            <span class="pg-readout mono" id="pgReadout"></span>
-          </div>
-        </div>
-      </div>"""
 
-
-def shortcuts():
-    rows = "\n".join(
-        f'            <div class="keys-row"><span>{label}</span>'
-        f'<span class="keys-combo" data-shortcut="{key}">'
-        f"<kbd data-shortcut-label></kbd></span></div>"
-        for key, label in (
-            ("k", "Search everything"),
-            ("j", "Typing test"),
-            ("/", "Halftone field"),
-        )
-    )
-    return f"""      <div class="overlay" id="shortcuts" role="dialog" aria-modal="true"
-           aria-labelledby="shortcutsTitle" hidden>
-        <div class="overlay-panel modal-panel" data-overlay-panel>
-          <div class="modal-head">
-            <h2 class="modal-title" id="shortcutsTitle">Shortcuts</h2>
-            <button type="button" class="modal-close" data-modal-close aria-label="Close">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6"
-                      stroke-linecap="round" />
-              </svg>
-            </button>
-          </div>
-          <div class="keys-list mono">
-{rows}
-          </div>
+          <label class="visually-hidden" for="ttField">Type the words shown</label>
+          <input class="tt-field" id="ttField" autocomplete="off" autocapitalize="off"
+                 autocorrect="off" spellcheck="false" inputmode="text" />
         </div>
       </div>"""
 
 
 def render():
-    return "\n".join([palette(), typing(), playground(), shortcuts(), contact()])
+    return "\n".join([typing(), contact()])

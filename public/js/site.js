@@ -1,12 +1,9 @@
 const shortcuts = new Map();
 const MAC = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+const MOD = MAC ? "⌘" : "Alt";
 
-function label(key) {
-  return MAC ? `⌘${key.toUpperCase()}` : `Alt+${key.toUpperCase()}`;
-}
-
-function register(key, handler, description) {
-  shortcuts.set(key.toLowerCase(), { handler, description, label: label(key) });
+function register(key, handler) {
+  shortcuts.set(key.toLowerCase(), handler);
 }
 
 function typingInto(target) {
@@ -18,18 +15,26 @@ function typingInto(target) {
 }
 
 document.addEventListener("keydown", (e) => {
-  const entry = shortcuts.get(e.key.toLowerCase());
-  if (!entry) return;
+  const handler = shortcuts.get(e.key.toLowerCase());
+  if (!handler) return;
   if (!(e.metaKey || e.altKey) || e.ctrlKey || e.shiftKey) return;
   if (typingInto(e.target) && !overlays.current) return;
   e.preventDefault();
-  entry.handler();
+  handler();
 });
 
 document.querySelectorAll("[data-shortcut]").forEach((el) => {
-  const key = el.dataset.shortcut;
   const slot = el.querySelector("[data-shortcut-label]");
-  if (slot) slot.textContent = label(key);
+  if (!slot) return;
+  slot.innerHTML = "";
+  const mod = document.createElement("kbd");
+  mod.textContent = MOD;
+  const plus = document.createElement("span");
+  plus.textContent = "+";
+  plus.setAttribute("aria-hidden", "true");
+  const key = document.createElement("kbd");
+  key.textContent = el.dataset.shortcut.toUpperCase();
+  slot.append(mod, plus, key);
 });
 
 const overlays = {
@@ -43,9 +48,14 @@ const overlays = {
     node.hidden = false;
     document.body.classList.add("overlay-open");
     requestAnimationFrame(() => node.classList.add("is-open"));
-    const focusable = node.querySelector(
-      "input, textarea, button, [href], [tabindex]:not([tabindex='-1'])",
-    );
+    // an overlay carrying its own tabindex takes focus itself; the rest hand it
+    // to their first control
+    const focusable =
+      node.getAttribute("tabindex") === "-1"
+        ? node
+        : node.querySelector(
+            "input, textarea, button, [href], [tabindex]:not([tabindex='-1'])",
+          );
     (focusable || node).focus({ preventScroll: true });
   },
 
@@ -69,6 +79,8 @@ const overlays = {
 document.addEventListener("keydown", (e) => {
   const node = overlays.current;
   if (!node) return;
+  // the typing test binds esc and tab to its own confirm/restart flow
+  if (node.dataset.overlayKeys === "self") return;
   if (e.key === "Escape") {
     e.preventDefault();
     overlays.close();
@@ -369,7 +381,7 @@ document.addEventListener("keydown", (e) => {
 
 document.addEventListener("click", (e) => {
   if (!siteNav.classList.contains("open")) return;
-  if (e.target.closest(".sidebar")) return;
+  if (!(e.target instanceof Element) || e.target.closest(".sidebar")) return;
   setMenuOpen(false);
 });
 
@@ -414,14 +426,20 @@ function activateCard(card) {
   window.siteSound?.play("toggle");
 }
 
+function deckCard(target) {
+  return target instanceof Element
+    ? target.closest("[data-deck] .deck-card")
+    : null;
+}
+
 document.addEventListener("click", (e) => {
-  const card = e.target.closest("[data-deck] .deck-card");
+  const card = deckCard(e.target);
   if (card) activateCard(card);
 });
 
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Enter" && e.key !== " ") return;
-  const card = e.target.closest("[data-deck] .deck-card");
+  const card = deckCard(e.target);
   if (!card) return;
   e.preventDefault();
   activateCard(card);
@@ -584,510 +602,394 @@ if (ghGraph) {
     }
   })();
 }
-const paletteNode = document.getElementById("palette");
-
-if (paletteNode) {
-  const input = document.getElementById("paletteInput");
-  const list = document.getElementById("paletteList");
-  const status = document.getElementById("paletteStatus");
-  const empty = document.getElementById("paletteEmpty");
-
-  let index = [];
-  let matches = [];
-  let active = 0;
-  let loaded = null;
-
-  const RECENT_KEY = "palette-recent";
-  const LIMIT = 40;
-
-  function recent() {
-    try {
-      return JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
-    } catch (e) {
-      return [];
-    }
-  }
-
-  function remember(item) {
-    const kept = [item.url, ...recent().filter((u) => u !== item.url)].slice(0, 5);
-    try {
-      localStorage.setItem(RECENT_KEY, JSON.stringify(kept));
-    } catch (e) {}
-  }
-
-  function load() {
-    if (loaded) return loaded;
-    loaded = fetch("/search-index.json")
-      .then((r) => r.json())
-      .then((data) => {
-        index = data;
-      })
-      .catch(() => {
-        index = [];
-      });
-    return loaded;
-  }
-
-  function score(item, query) {
-    const label = item.label.toLowerCase();
-    if (label === query) return 0;
-    if (label.startsWith(query)) return 1;
-    const word = label.split(/\s+/).some((w) => w.startsWith(query));
-    if (word) return 2;
-    if (label.includes(query)) return 3;
-    if ((item.meta || "").toLowerCase().includes(query)) return 4;
-    if ((item.terms || "").toLowerCase().includes(query)) return 5;
-    return -1;
-  }
-
-  function search(query) {
-    query = query.trim().toLowerCase();
-    if (!query) {
-      const saved = recent();
-      const first = saved
-        .map((url) => index.find((i) => i.url === url))
-        .filter(Boolean);
-      const pages = index.filter((i) => i.kind === "Page" && !saved.includes(i.url));
-      return [...first, ...pages].slice(0, LIMIT);
-    }
-    return index
-      .map((item) => ({ item, rank: score(item, query) }))
-      .filter((r) => r.rank >= 0)
-      .sort((a, b) => a.rank - b.rank || a.item.label.length - b.item.label.length)
-      .slice(0, LIMIT)
-      .map((r) => r.item);
-  }
-
-  function highlight(text, query) {
-    const safe = text.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
-    if (!query) return safe;
-    const at = safe.toLowerCase().indexOf(query.toLowerCase());
-    if (at < 0) return safe;
-    return (
-      safe.slice(0, at) +
-      "<mark>" +
-      safe.slice(at, at + query.length) +
-      "</mark>" +
-      safe.slice(at + query.length)
-    );
-  }
-
-  function paint() {
-    const query = input.value.trim();
-    list.innerHTML = matches
-      .map(
-        (item, n) =>
-          `<li role="option" id="pal-${n}" aria-selected="${n === active}" class="pal-item${
-            n === active ? " is-active" : ""
-          }"><a href="${item.url}" tabindex="-1"><span class="pal-kind mono">${
-            item.kind
-          }</span><span class="pal-label">${highlight(item.label, query)}</span>${
-            item.meta ? `<span class="pal-meta">${highlight(item.meta, query)}</span>` : ""
-          }</a></li>`,
-      )
-      .join("");
-    empty.hidden = matches.length > 0;
-    status.textContent = matches.length
-      ? `${matches.length} result${matches.length === 1 ? "" : "s"}`
-      : "No results";
-    const node = list.children[active];
-    if (node) node.scrollIntoView({ block: "nearest" });
-    input.setAttribute("aria-activedescendant", node ? node.id : "");
-  }
-
-  function refresh() {
-    matches = search(input.value);
-    active = 0;
-    paint();
-  }
-
-  function choose(item) {
-    if (!item) return;
-    remember(item);
-    overlays.close();
-    if (/^https?:/.test(item.url)) window.open(item.url, "_blank", "noopener");
-    else window.location.href = item.url;
-  }
-
-  function open() {
-    overlays.open(paletteNode);
-    input.value = "";
-    load().then(refresh);
-  }
-
-  register("k", open, "Search");
-
-  document.querySelectorAll("[data-palette-open]").forEach((el) =>
-    el.addEventListener("click", (e) => {
-      e.preventDefault();
-      open();
-    }),
-  );
-
-  input.addEventListener("input", refresh);
-
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-      e.preventDefault();
-      if (!matches.length) return;
-      active = (active + (e.key === "ArrowDown" ? 1 : -1) + matches.length) % matches.length;
-      paint();
-    } else if (e.key === "Enter") {
-      e.preventDefault();
-      choose(matches[active]);
-    } else if (e.key === "Home" || e.key === "End") {
-      e.preventDefault();
-      active = e.key === "Home" ? 0 : matches.length - 1;
-      paint();
-    }
-  });
-
-  list.addEventListener("click", (e) => {
-    const li = e.target instanceof Element && e.target.closest(".pal-item");
-    if (!li) return;
-    e.preventDefault();
-    choose(matches[[...list.children].indexOf(li)]);
-  });
-
-  list.addEventListener("pointermove", (e) => {
-    const li = e.target instanceof Element && e.target.closest(".pal-item");
-    if (!li) return;
-    const n = [...list.children].indexOf(li);
-    if (n !== active) {
-      active = n;
-      paint();
-    }
-  });
-}
 const typingNode = document.getElementById("typing");
 
 if (typingNode) {
-  const stream = document.getElementById("ttStream");
-  const caret = document.getElementById("ttCaret");
-  const results = document.getElementById("ttResults");
+  const wordsEl = document.getElementById("ttWords");
+  const kbEl = document.getElementById("ttKeyboard");
   const field = document.getElementById("ttField");
+  const verdictEl = document.getElementById("ttVerdict");
   const liveWpm = document.getElementById("ttWpm");
   const liveAcc = document.getElementById("ttAcc");
   const liveTime = document.getElementById("ttTime");
-  const durationButtons = [...typingNode.querySelectorAll("[data-tt-duration]")];
+  const resWpm = document.getElementById("ttResWpm");
+  const resAcc = document.getElementById("ttResAcc");
+  const resRaw = document.getElementById("ttResRaw");
+  const resTime = document.getElementById("ttResTime");
 
-  const WORDS = `the of and to in is you that it he for was on are as with his they at
-  be this have from one had by word but not what all were we when your can said there
-  use an each which she do how their if will up other about out many then them these so
-  some her would make like him into time has look two more write go see number no way
-  could people my than first water been call who oil now find long down day did get come
-  made may part over new sound take only little work know place year live me back give
-  most very after thing our just name good sentence man think say great where help
-  through much before line right too mean old any same tell boy follow came want show
-  also around form three small set put end does another well large must big even such
-  because turn here why ask went men read need land different home us move try kind hand
-  picture again change off play spell air away animal house point page letter mother
-  answer found study still learn should world build code system design data model random
-  screen keyboard editor project search value simple result active border`
+  const WORDS = `the and for that with have this from they what were when your said
+  each their which will other about many then them these some would into time look
+  more write like him two has number way could people than first water been call who
+  its now find long down day did get come made may part over new sound take only
+  little work know place year live back give most very after thing our just name good
+  man think say great where help through much before line right too mean old any same
+  tell boy follow came want show also around form three small set put end does another
+  well large must big even such because turn here why ask went men read need land
+  different home us move try kind hand picture again change off play spell air away
+  animal house point page letter mother answer found study still learn should world
+  build code system design data model screen keyboard editor project search value
+  simple result active border`
     .split(/\s+/)
     .filter(Boolean);
 
-  let duration = 30;
-  let target = [];
-  let typed = [];
-  let started = null;
-  let ticker = null;
+  const KB_ROWS = ["qwertyuiop", "asdfghjkl", "zxcvbnm"];
+  const COUNT = 26;
+  const MAX_EXTRA = 8;
+  const BEST_KEY = "tt-best-wpm";
+
+  let words = [];
+  let cells = [];
+  let wi = 0;
+  let ci = 0;
+  let started = false;
   let finished = false;
+  let startTime = 0;
+  let frame = null;
+  let raw = 0;
+  let correct = 0;
+  let showWpm = 0;
+  let showAcc = 100;
+  let showTime = 0;
+  let lastWrite = 0;
+  let confirming = false;
 
-  function sample(count) {
-    const out = [];
-    for (let i = 0; i < count; i++) {
-      out.push(WORDS[Math.floor(Math.random() * WORDS.length)]);
-    }
-    return out.join(" ").split("");
+  const caret = document.createElement("span");
+  caret.className = "tt-caret";
+
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
+  function best() {
+    const stored = Number(localStorage.getItem(BEST_KEY));
+    return Number.isFinite(stored) && stored > 0 ? stored : 0;
   }
 
-  function reset() {
-    clearInterval(ticker);
-    ticker = null;
-    started = null;
-    finished = false;
-    typed = [];
-    target = sample(90);
-    results.hidden = true;
-    stream.hidden = false;
-    liveWpm.textContent = "0";
-    liveAcc.textContent = "100";
-    liveTime.textContent = String(duration);
-    paint();
+  function setConfirm(on) {
+    confirming = on;
+    typingNode.classList.toggle("is-confirming", on);
   }
 
-  function correctCount() {
-    return typed.reduce((n, ch, i) => n + (ch === target[i] ? 1 : 0), 0);
-  }
-
-  function stats() {
-    const elapsed = started ? Math.max((Date.now() - started) / 1000, 1) : duration;
-    const correct = correctCount();
-    return {
-      wpm: Math.round(correct / 5 / (elapsed / 60)),
-      raw: Math.round(typed.length / 5 / (elapsed / 60)),
-      accuracy: typed.length ? Math.round((correct / typed.length) * 100) : 100,
-      errors: typed.length - correct,
-      characters: typed.length,
+  function buildKeyboard() {
+    kbEl.textContent = "";
+    let i = 0;
+    const row = (keys, extra) => {
+      const r = document.createElement("div");
+      r.className = "tt-krow";
+      keys.forEach((ch) => {
+        const k = document.createElement("span");
+        k.className = extra ? `tt-key ${extra}` : "tt-key";
+        k.dataset.key = ch;
+        k.textContent = extra ? "space" : ch;
+        k.style.animationDelay = `${i * 7}ms`;
+        r.appendChild(k);
+        i += 1;
+      });
+      kbEl.appendChild(r);
     };
+    KB_ROWS.forEach((keys) => row([...keys]));
+    row([" "], "space");
   }
 
-  function paint() {
-    const window_ = 240;
-    const from = Math.max(0, Math.floor(typed.length / 60) * 60);
-    stream.innerHTML = target
-      .slice(from, from + window_)
-      .map((ch, offset) => {
-        const i = from + offset;
-        let cls = "tt-char";
-        if (i < typed.length) cls += typed[i] === ch ? " is-hit" : " is-miss";
-        else if (i === typed.length) cls += " is-next";
-        const glyph = ch === " " ? "&nbsp;" : ch;
-        return `<span class="${cls}">${glyph}</span>`;
-      })
-      .join("");
-    const next = stream.querySelector(".is-next");
-    if (next && caret) {
-      caret.style.transform = `translate(${next.offsetLeft}px, ${next.offsetTop}px)`;
+  function keyFor(ch) {
+    return kbEl.querySelector(`.tt-key[data-key="${ch === " " ? " " : ch}"]`);
+  }
+
+  function flash(ch) {
+    const k = keyFor(ch);
+    if (!k) return;
+    k.classList.add("is-down");
+    setTimeout(() => k.classList.remove("is-down"), 110);
+  }
+
+  function markNext() {
+    kbEl.querySelectorAll(".tt-key.is-next").forEach((k) =>
+      k.classList.remove("is-next"),
+    );
+    if (finished) return;
+    const cell = cells[wi];
+    const ch =
+      ci < cell.word.length
+        ? cell.word[ci]
+        : wi < words.length - 1
+          ? " "
+          : null;
+    if (ch) keyFor(ch)?.classList.add("is-next");
+  }
+
+  function buildText() {
+    wordsEl.textContent = "";
+    cells = words.map((word) => {
+      const el = document.createElement("span");
+      el.className = "tt-word";
+      const chars = [...word].map((ch) => {
+        const c = document.createElement("span");
+        c.className = "tt-char";
+        c.textContent = ch;
+        el.appendChild(c);
+        return c;
+      });
+      wordsEl.appendChild(el);
+      return { el, chars, word };
+    });
+    wordsEl.appendChild(caret);
+  }
+
+  function moveCaret() {
+    const cell = cells[wi];
+    const at = Math.min(ci, cell.chars.length - 1);
+    const el = cell.chars[at];
+    if (!el) return;
+    const past = ci >= cell.chars.length;
+    caret.style.left = `${el.offsetLeft + (past ? el.offsetWidth : 0)}px`;
+    caret.style.top = `${el.offsetTop}px`;
+  }
+
+  function loop(now) {
+    const elapsed = started ? (Date.now() - startTime) / 1000 : 0;
+    const targetWpm =
+      started && elapsed > 0.5 ? correct / 5 / (elapsed / 60) : 0;
+    const targetAcc = raw ? (correct / raw) * 100 : 100;
+
+    showWpm += (targetWpm - showWpm) * 0.16;
+    showAcc += (targetAcc - showAcc) * 0.16;
+    showTime += (elapsed - showTime) * 0.4;
+    if (Math.abs(targetWpm - showWpm) < 0.5) showWpm = targetWpm;
+    if (Math.abs(targetAcc - showAcc) < 0.5) showAcc = targetAcc;
+
+    if (now - lastWrite >= 240) {
+      lastWrite = now;
+      liveWpm.textContent = String(Math.round(showWpm));
+      liveAcc.textContent = String(Math.round(showAcc));
+      liveTime.textContent = String(Math.floor(showTime + 1e-4));
+    }
+    if (overlays.current === typingNode && !finished) {
+      frame = requestAnimationFrame(loop);
     }
   }
 
-  function tick() {
-    const left = duration - Math.round((Date.now() - started) / 1000);
-    liveTime.textContent = String(Math.max(left, 0));
-    const s = stats();
-    liveWpm.textContent = String(s.wpm);
-    liveAcc.textContent = String(s.accuracy);
-    if (left <= 0) finish();
+  function start() {
+    started = true;
+    startTime = Date.now();
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(loop);
+  }
+
+  function countUp(el, value, ms) {
+    if (reduced.matches) {
+      el.textContent = String(value);
+      return;
+    }
+    // anchored to the first frame's own timestamp: rAF reports the frame start,
+    // which can precede performance.now() and drive progress negative
+    let from = null;
+    const step = (now) => {
+      if (from === null) from = now;
+      const p = Math.min(1, Math.max(0, (now - from) / ms));
+      el.textContent = String(Math.round(value * (1 - (1 - p) ** 3)));
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = String(value);
+    };
+    requestAnimationFrame(step);
+  }
+
+  function verdict(wpm) {
+    const previous = best();
+    const beat = wpm > previous;
+    if (beat) localStorage.setItem(BEST_KEY, String(wpm));
+    const mark = beat
+      ? '<svg class="tt-vicon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      : '<svg class="tt-vicon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
+    const text = beat
+      ? previous
+        ? `new personal best · beat ${previous} wpm`
+        : "new personal best"
+      : `personal best · ${previous} wpm`;
+    verdictEl.className = `tt-verdict mono${beat ? " is-best" : ""}`;
+    verdictEl.innerHTML = `${mark}<span>${text}</span>`;
   }
 
   function finish() {
-    clearInterval(ticker);
-    ticker = null;
+    if (finished) return;
     finished = true;
-    const s = stats();
-    stream.hidden = true;
-    results.hidden = false;
-    results.querySelector("[data-tt-result='wpm']").textContent = String(s.wpm);
-    results.querySelector("[data-tt-result='accuracy']").textContent = `${s.accuracy}%`;
-    results.querySelector("[data-tt-result='raw']").textContent = String(s.raw);
-    results.querySelector("[data-tt-result='errors']").textContent = String(s.errors);
-    results.querySelector("[data-tt-result='characters']").textContent = String(s.characters);
+    cancelAnimationFrame(frame);
+    const elapsed = Math.max(0.001, (Date.now() - startTime) / 1000);
+    const wpm = Math.round(correct / 5 / (elapsed / 60));
+    resAcc.textContent = String(raw ? Math.round((correct / raw) * 100) : 100);
+    resRaw.textContent = String(Math.round(raw / 5 / (elapsed / 60)));
+    resTime.textContent = elapsed.toFixed(1);
+    verdict(wpm);
+    typingNode.classList.add("show-results");
+    countUp(resWpm, wpm, 750);
   }
 
-  function handle(key) {
+  function afterInput() {
+    moveCaret();
+    markNext();
+    if (wi === words.length - 1 && ci >= cells[wi].word.length) finish();
+  }
+
+  function typeChar(ch) {
     if (finished) return;
-    if (key === "Backspace") {
-      typed.pop();
-    } else if (key.length === 1) {
-      if (!started) {
-        started = Date.now();
-        ticker = setInterval(tick, 200);
-      }
-      typed.push(key);
-      if (typed.length >= target.length) finish();
-    } else {
+    if (!started) start();
+    const cell = cells[wi];
+    if (ci < cell.word.length) {
+      const hit = ch === cell.word[ci];
+      cell.chars[ci].classList.add(hit ? "is-hit" : "is-miss");
+      raw += 1;
+      if (hit) correct += 1;
+      ci += 1;
+    } else if (cell.chars.length - cell.word.length < MAX_EXTRA) {
+      const extra = document.createElement("span");
+      extra.className = "tt-char is-extra";
+      extra.textContent = ch;
+      cell.el.appendChild(extra);
+      cell.chars.push(extra);
+      raw += 1;
+      ci += 1;
+    }
+    afterInput();
+  }
+
+  function typeSpace() {
+    if (finished || !started || wi >= words.length - 1) return;
+    wi += 1;
+    ci = 0;
+    afterInput();
+  }
+
+  function backspace() {
+    if (finished) return;
+    if (ci > 0) {
+      ci -= 1;
+      const cell = cells[wi];
+      if (ci >= cell.word.length) cell.chars.pop()?.remove();
+      else cell.chars[ci].classList.remove("is-hit", "is-miss");
+    } else if (wi > 0) {
+      wi -= 1;
+      ci = cells[wi].chars.length;
+    }
+    moveCaret();
+    markNext();
+  }
+
+  function reset() {
+    cancelAnimationFrame(frame);
+    started = false;
+    finished = false;
+    startTime = 0;
+    wi = 0;
+    ci = 0;
+    raw = 0;
+    correct = 0;
+    showWpm = 0;
+    showAcc = 100;
+    showTime = 0;
+    lastWrite = 0;
+    typingNode.classList.remove("show-results");
+    setConfirm(false);
+    liveWpm.textContent = "0";
+    liveAcc.textContent = "100";
+    liveTime.textContent = "0";
+    words = Array.from(
+      { length: COUNT },
+      () => WORDS[Math.floor(Math.random() * WORDS.length)],
+    );
+    buildText();
+    requestAnimationFrame(() => {
+      moveCaret();
+      markNext();
+    });
+  }
+
+  function open() {
+    reset();
+    overlays.open(typingNode);
+    if (matchMedia("(pointer: coarse)").matches) {
+      field.focus({ preventScroll: true });
+    }
+  }
+
+  buildKeyboard();
+
+  document.addEventListener("keydown", (e) => {
+    if (overlays.current !== typingNode) return;
+    if (e.key === "Escape") {
+      e.preventDefault();
+      if (confirming) setConfirm(false);
+      else overlays.close();
       return;
     }
-    paint();
-    if (started) tick();
-  }
-
-  typingNode.addEventListener("keydown", (e) => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (e.key === "Tab") {
       e.preventDefault();
-      reset();
+      if (started && !finished) setConfirm(true);
+      else reset();
       return;
     }
-    if (e.key === "Escape") return;
-    if (e.key === "Backspace" || e.key.length === 1) {
-      e.preventDefault();
-      handle(e.key);
+    if (e.key === "Enter") {
+      if (confirming || finished) {
+        e.preventDefault();
+        reset();
+      }
+      return;
     }
+    if (confirming) return;
+    if (e.key === "Backspace") {
+      e.preventDefault();
+      backspace();
+      return;
+    }
+    if (e.key === " ") {
+      e.preventDefault();
+      flash(" ");
+      if (finished) reset();
+      else typeSpace();
+      return;
+    }
+    if (e.key.length !== 1) return;
+    const ch = e.key.toLowerCase();
+    if (!/[a-z]/.test(ch)) return;
+    e.preventDefault();
+    flash(ch);
+    typeChar(ch);
   });
 
-  // mobile keyboards emit input events rather than usable keydown values
+  // touch keyboards fire input events without usable keydown values
   field.addEventListener("input", () => {
     const value = field.value;
     field.value = "";
-    [...value].forEach((ch) => handle(ch));
+    [...value].forEach((ch) => {
+      const lower = ch.toLowerCase();
+      if (ch === " ") {
+        flash(" ");
+        typeSpace();
+      } else if (/[a-z]/.test(lower)) {
+        flash(lower);
+        typeChar(lower);
+      }
+    });
   });
 
-  durationButtons.forEach((button) =>
-    button.addEventListener("click", () => {
-      duration = Number(button.dataset.ttDuration);
-      durationButtons.forEach((b) =>
-        b.classList.toggle("is-active", b === button),
-      );
-      reset();
-    }),
-  );
+  field.addEventListener("keydown", (e) => {
+    if (e.key !== "Backspace") return;
+    e.preventDefault();
+    backspace();
+  });
 
-  typingNode.querySelectorAll("[data-tt-restart]").forEach((b) =>
-    b.addEventListener("click", () => {
-      reset();
-      field.focus({ preventScroll: true });
-    }),
-  );
+  typingNode
+    .querySelector("[data-tt-restart]")
+    .addEventListener("click", reset);
 
   register("j", () => {
-    reset();
-    overlays.open(typingNode);
-    field.focus({ preventScroll: true });
-  }, "Typing test");
+    if (overlays.current === typingNode) overlays.close();
+    else open();
+  });
 
   document.querySelectorAll("[data-typing-open]").forEach((el) =>
     el.addEventListener("click", (e) => {
       e.preventDefault();
-      reset();
-      overlays.open(typingNode);
-      field.focus({ preventScroll: true });
-    }),
-  );
-}
-const playNode = document.getElementById("playground");
-
-if (playNode) {
-  const canvas = document.getElementById("pgCanvas");
-  const context = canvas.getContext("2d");
-  const cellInput = document.getElementById("pgCell");
-  const readout = document.getElementById("pgReadout");
-
-  const pointer = { x: -999, y: -999, inside: false };
-  const drops = [];
-  let cell = Number(cellInput.value);
-  let frame = null;
-  let width = 0;
-  let height = 0;
-  let ratio = 1;
-  let ink = "#0a0a0a";
-
-  const REACH = 118;
-  const DROP_LIFE = 2600;
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-
-  function measure() {
-    const box = canvas.getBoundingClientRect();
-    ratio = Math.min(window.devicePixelRatio || 1, 2);
-    width = Math.round(box.width);
-    height = Math.round(box.height);
-    canvas.width = Math.round(width * ratio);
-    canvas.height = Math.round(height * ratio);
-    context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    ink = getComputedStyle(document.documentElement)
-      .getPropertyValue("--fg")
-      .trim() || "#0a0a0a";
-  }
-
-  function influence(x, y, now) {
-    let value = 0;
-    if (pointer.inside) {
-      const distance = Math.hypot(x - pointer.x, y - pointer.y);
-      if (distance < REACH) value += 1 - distance / REACH;
-    }
-    for (const drop of drops) {
-      const age = (now - drop.at) / DROP_LIFE;
-      if (age >= 1) continue;
-      const radius = 30 + age * 210;
-      const band = Math.abs(Math.hypot(x - drop.x, y - drop.y) - radius);
-      if (band < 34) value += (1 - band / 34) * (1 - age) * 1.15;
-    }
-    return Math.min(value, 1);
-  }
-
-  function draw() {
-    const now = performance.now();
-    context.clearRect(0, 0, width, height);
-    context.fillStyle = ink;
-    const half = cell / 2;
-    for (let y = half; y < height; y += cell) {
-      for (let x = half; x < width; x += cell) {
-        const lift = influence(x, y, now);
-        const size = cell * (0.1 + lift * 0.78);
-        if (size < 0.4) continue;
-        context.globalAlpha = 0.22 + lift * 0.78;
-        context.beginPath();
-        context.arc(x, y, size / 2, 0, Math.PI * 2);
-        context.fill();
-      }
-    }
-    context.globalAlpha = 1;
-
-    while (drops.length && now - drops[0].at > DROP_LIFE) drops.shift();
-    if (readout) {
-      readout.textContent = `${Math.floor(width / cell)}×${Math.floor(height / cell)} cells`;
-    }
-    frame = requestAnimationFrame(draw);
-  }
-
-  function start() {
-    measure();
-    if (frame === null) frame = requestAnimationFrame(draw);
-  }
-
-  function stop() {
-    if (frame !== null) cancelAnimationFrame(frame);
-    frame = null;
-  }
-
-  function locate(event) {
-    const box = canvas.getBoundingClientRect();
-    pointer.x = event.clientX - box.left;
-    pointer.y = event.clientY - box.top;
-    pointer.inside = true;
-  }
-
-  canvas.addEventListener("pointermove", locate);
-  canvas.addEventListener("pointerdown", (event) => {
-    locate(event);
-    drops.push({ x: pointer.x, y: pointer.y, at: performance.now() });
-    if (drops.length > 12) drops.shift();
-    window.siteSound?.play("droplet");
-  });
-  canvas.addEventListener("pointerleave", () => {
-    pointer.inside = false;
-  });
-
-  cellInput.addEventListener("input", () => {
-    cell = Number(cellInput.value);
-  });
-
-  playNode.querySelectorAll("[data-pg-clear]").forEach((button) =>
-    button.addEventListener("click", () => {
-      drops.length = 0;
-      pointer.inside = false;
-    }),
-  );
-
-  window.addEventListener("resize", () => {
-    if (frame !== null) measure();
-  });
-
-  function open() {
-    overlays.open(playNode);
-    start();
-    if (reduced.matches) {
-      stop();
-      measure();
-      draw();
-      stop();
-    }
-  }
-
-  register("/", open, "Playground");
-
-  document.querySelectorAll("[data-playground-open]").forEach((el) =>
-    el.addEventListener("click", (event) => {
-      event.preventDefault();
       open();
     }),
   );
-
-  new MutationObserver(() => {
-    if (playNode.hidden) stop();
-  }).observe(playNode, { attributes: true, attributeFilter: ["hidden"] });
 }
 document.querySelectorAll("[data-modal-open]").forEach((trigger) =>
   trigger.addEventListener("click", (e) => {

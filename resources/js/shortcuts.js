@@ -1,12 +1,9 @@
 const shortcuts = new Map();
 const MAC = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+const MOD = MAC ? "⌘" : "Alt";
 
-function label(key) {
-  return MAC ? `⌘${key.toUpperCase()}` : `Alt+${key.toUpperCase()}`;
-}
-
-function register(key, handler, description) {
-  shortcuts.set(key.toLowerCase(), { handler, description, label: label(key) });
+function register(key, handler) {
+  shortcuts.set(key.toLowerCase(), handler);
 }
 
 function typingInto(target) {
@@ -18,18 +15,26 @@ function typingInto(target) {
 }
 
 document.addEventListener("keydown", (e) => {
-  const entry = shortcuts.get(e.key.toLowerCase());
-  if (!entry) return;
+  const handler = shortcuts.get(e.key.toLowerCase());
+  if (!handler) return;
   if (!(e.metaKey || e.altKey) || e.ctrlKey || e.shiftKey) return;
   if (typingInto(e.target) && !overlays.current) return;
   e.preventDefault();
-  entry.handler();
+  handler();
 });
 
 document.querySelectorAll("[data-shortcut]").forEach((el) => {
-  const key = el.dataset.shortcut;
   const slot = el.querySelector("[data-shortcut-label]");
-  if (slot) slot.textContent = label(key);
+  if (!slot) return;
+  slot.innerHTML = "";
+  const mod = document.createElement("kbd");
+  mod.textContent = MOD;
+  const plus = document.createElement("span");
+  plus.textContent = "+";
+  plus.setAttribute("aria-hidden", "true");
+  const key = document.createElement("kbd");
+  key.textContent = el.dataset.shortcut.toUpperCase();
+  slot.append(mod, plus, key);
 });
 
 const overlays = {
@@ -43,9 +48,14 @@ const overlays = {
     node.hidden = false;
     document.body.classList.add("overlay-open");
     requestAnimationFrame(() => node.classList.add("is-open"));
-    const focusable = node.querySelector(
-      "input, textarea, button, [href], [tabindex]:not([tabindex='-1'])",
-    );
+    // an overlay carrying its own tabindex takes focus itself; the rest hand it
+    // to their first control
+    const focusable =
+      node.getAttribute("tabindex") === "-1"
+        ? node
+        : node.querySelector(
+            "input, textarea, button, [href], [tabindex]:not([tabindex='-1'])",
+          );
     (focusable || node).focus({ preventScroll: true });
   },
 
@@ -69,6 +79,8 @@ const overlays = {
 document.addEventListener("keydown", (e) => {
   const node = overlays.current;
   if (!node) return;
+  // the typing test binds esc and tab to its own confirm/restart flow
+  if (node.dataset.overlayKeys === "self") return;
   if (e.key === "Escape") {
     e.preventDefault();
     overlays.close();

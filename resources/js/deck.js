@@ -11,14 +11,20 @@ function activateCard(card) {
   window.siteSound?.play("toggle");
 }
 
+function deckCard(target) {
+  return target instanceof Element
+    ? target.closest("[data-deck] .deck-card")
+    : null;
+}
+
 document.addEventListener("click", (e) => {
-  const card = e.target.closest("[data-deck] .deck-card");
+  const card = deckCard(e.target);
   if (card) activateCard(card);
 });
 
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Enter" && e.key !== " ") return;
-  const card = e.target.closest("[data-deck] .deck-card");
+  const card = deckCard(e.target);
   if (!card) return;
   e.preventDefault();
   activateCard(card);

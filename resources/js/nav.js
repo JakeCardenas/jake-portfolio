@@ -19,7 +19,7 @@ document.addEventListener("keydown", (e) => {
 
 document.addEventListener("click", (e) => {
   if (!siteNav.classList.contains("open")) return;
-  if (e.target.closest(".sidebar")) return;
+  if (!(e.target instanceof Element) || e.target.closest(".sidebar")) return;
   setMenuOpen(false);
 });
 
