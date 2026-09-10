@@ -50,8 +50,12 @@ def render(title, description, canonical, schema=""):
     <meta property="og:description" content="{description}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{canonical}" />
-    <meta property="og:image" content="/icon-512.png" />
-    <meta name="twitter:card" content="summary" />{structured_data}
+    <meta property="og:image" content="{site.URL}/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="{site.NAME} — {site.JOB_LABEL}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="{site.URL}/og-image.png" />{structured_data}
 {preloads}
     <link rel="stylesheet" href="{site.asset('css/site.css')}" />
     <style>

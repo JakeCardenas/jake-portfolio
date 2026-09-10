@@ -383,7 +383,46 @@ def discovery(urls):
     write("llms.txt", "\n".join(lines) + "\n")
 
 
+CHROME = (
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+)
+
+
+def generate_og():
+    """screenshots the og template through the site's own stylesheet;
+    run with --og after changing the template, the png is committed"""
+    from resources.views import og
+
+    scratch = "_og.html"
+    write(scratch, og.render())
+    server = subprocess.Popen(
+        [sys.executable, "-m", "http.server", "8791", "--directory", PUBLIC],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    try:
+        import time
+
+        time.sleep(1.5)
+        subprocess.run(
+            [CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars",
+             "--force-device-scale-factor=1", "--virtual-time-budget=5000",
+             f"--window-size={og.WIDTH},{og.HEIGHT}",
+             f"--screenshot={os.path.join(PUBLIC, 'og-image.png')}",
+             "http://localhost:8791/_og.html"],
+            check=True,
+            capture_output=True,
+        )
+    finally:
+        server.terminate()
+        os.remove(os.path.join(PUBLIC, scratch))
+    size = os.path.getsize(os.path.join(PUBLIC, "og-image.png"))
+    print(f"  og-image.png {og.WIDTH}x{og.HEIGHT}, {size / 1024:,.0f} KB\n")
+
+
 def main():
+    if "--og" in sys.argv:
+        generate_og()
     sources, made, saved, copied = optimise_images()
     print(f"  images: {sources} optimised ({made} derivatives written), "
           f"{copied} copied as-is, {saved / 1024:,.0f} KB saved\n")

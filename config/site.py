@@ -7,6 +7,7 @@ DESCRIPTION = (
     "University Philippines. Full-stack and AI developer."
 )
 EMAIL = "jakez.cardenas@gmail.com"
+JOB_LABEL = "Full-stack & AI Developer"
 
 # browser chrome colour, and the pre-paint page background (these differ)
 THEME_LIGHT = "#f4f4f2"
