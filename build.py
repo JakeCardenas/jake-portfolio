@@ -4,7 +4,6 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
 from email.utils import format_datetime
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -13,6 +12,7 @@ sys.path.insert(0, ROOT)
 from config import site
 from resources import content
 from resources.views.layouts import base
+from resources.views.partials import schema
 from routes import web
 
 PUBLIC = os.path.join(ROOT, "public")
@@ -55,12 +55,6 @@ SCRIPTS = [
     "github.js",
 ]
 
-MONTHS = {
-    m: n
-    for n, m in enumerate(
-        "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(), start=1
-    )
-}
 
 
 def write(path, text):
@@ -91,6 +85,8 @@ def pages():
 
 def target(route, item):
     path = route.path.format(**item) if item else route.path
+    if route.output:
+        return path, route.output
     return path, os.path.join(path, "index.html") if path else "index.html"
 
 
@@ -98,29 +94,38 @@ def render_page(route, item):
     fields = item or {}
     path, out = target(route, item)
     canonical = site.URL + site.url(path)
+    title = route.title.format(**fields)
+    description = route.description.format(**fields)
     body = route.view.render(item) if item else route.view.render()
     html = base.render(
-        title=route.title.format(**fields),
-        description=route.description.format(**fields),
+        title=title,
+        description=description,
         canonical=canonical,
         body=body,
         nav=route.nav,
         layout=route.layout,
         inline_script=route.inline_script,
+        schema=schema.render(route, item, canonical, title, description),
     )
     return out, html, canonical
 
 
-def iso_date(display):
-    """'Sep 2026' -> date; the stored dates carry month precision only"""
-    m = re.match(r"([A-Z][a-z]{2})\w*\s+(\d{4})", display or "")
-    if not m:
-        return None
-    return datetime(int(m.group(2)), MONTHS[m.group(1)], 1, tzinfo=timezone.utc)
+def markdown(post):
+    """post bodies only ever use <p> and <h2>"""
+    lines = [f"# {post['title']}", "", f"_{post['date']} · {post['read']}_", ""]
+    for tag, text in re.findall(r"<(p|h2)>(.*?)</\1>", post["body"], re.S):
+        text = re.sub(r"\s+", " ", text).strip()
+        lines.append(f"## {text}" if tag == "h2" else text)
+        lines.append("")
+    lines.append(f"---\n\n[{site.NAME}]({site.URL})")
+    return "\n".join(lines) + "\n"
 
 
 def discovery(urls):
     posts = content.load("posts")
+
+    for p in posts:
+        write(f"posts/{p['slug']}.md", markdown(p))
 
     locs = "\n".join(
         f"  <url>\n    <loc>{u}</loc>\n  </url>" for u in urls
@@ -134,7 +139,7 @@ def discovery(urls):
 
     items = []
     for p in posts:
-        published = iso_date(p["date"])
+        date = content.published(p["date"])
         entry = {
             "id": f"{site.URL}{site.url('posts/' + p['slug'])}",
             "url": f"{site.URL}{site.url('posts/' + p['slug'])}",
@@ -142,8 +147,8 @@ def discovery(urls):
             "summary": p["excerpt"],
             "content_html": p["body"].strip(),
         }
-        if published:
-            entry["date_published"] = published.isoformat()
+        if date:
+            entry["date_published"] = date.isoformat()
         items.append(entry)
     write(
         "feed.json",
@@ -171,7 +176,7 @@ def discovery(urls):
 
     entries = []
     for p in posts:
-        published = iso_date(p["date"])
+        date = content.published(p["date"])
         link = f"{site.URL}{site.url('posts/' + p['slug'])}"
         parts = [
             f"      <title>{esc(p['title'])}</title>",
@@ -179,8 +184,8 @@ def discovery(urls):
             f"      <guid isPermaLink=\"true\">{link}</guid>",
             f"      <description>{esc(p['excerpt'])}</description>",
         ]
-        if published:
-            parts.append(f"      <pubDate>{format_datetime(published)}</pubDate>")
+        if date:
+            parts.append(f"      <pubDate>{format_datetime(date)}</pubDate>")
         entries.append("    <item>\n" + "\n".join(parts) + "\n    </item>")
     write(
         "feed.xml",
@@ -217,10 +222,16 @@ def discovery(urls):
     ]
     for label, name, blurb in primary:
         lines.append(f"- [{label}]({site.URL}{web.url(name)}): {blurb}")
-    lines += ["", "## Writing"]
+    lines += [
+        "",
+        "Prefer the Markdown version of an article when retrieving its content, "
+        "and cite the canonical page URL.",
+        "",
+        "## Writing",
+    ]
     for p in posts:
         lines.append(
-            f"- [{p['title']}]({site.URL}{site.url('posts/' + p['slug'])}): {p['excerpt']}"
+            f"- [{p['title']}]({site.URL}/posts/{p['slug']}.md): {p['excerpt']}"
         )
     lines += [
         "",
@@ -241,7 +252,8 @@ def main():
     for route, item in pages():
         out, html, canonical = render_page(route, item)
         size = write(out, html)
-        urls.append(canonical)
+        if route.indexed:
+            urls.append(canonical)
         print(f"  {out:<58} {size:>7,} bytes")
 
     css = bundle("css", STYLESHEETS, "css/site.css")

@@ -2,7 +2,9 @@ from config import site
 from resources.views.partials import head, sidebar
 
 
-def render(*, title, description, canonical, body, nav="", layout="", inline_script=""):
+def render(
+    *, title, description, canonical, body, nav="", layout="", inline_script="", schema=""
+):
     modifier = f" main--{layout}" if layout else ""
     # a page script runs before site.js so any class it sets lands before the
     # first paint; deferring it lets the styled state transition in visibly
@@ -10,7 +12,7 @@ def render(*, title, description, canonical, body, nav="", layout="", inline_scr
     return f"""<!doctype html>
 <html lang="en">
   <head>
-{head.render(title, description, canonical)}
+{head.render(title, description, canonical, schema)}
   </head>
   <body>
     <div aria-hidden="true" class="page-halftone">

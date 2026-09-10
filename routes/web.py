@@ -9,6 +9,7 @@ from resources.views.pages import (
     experience,
     gear,
     home,
+    not_found,
     post,
     projects,
     resources,
@@ -31,6 +32,8 @@ class Route:
     layout: str = ""
     collection: str = ""
     inline_script: str = ""
+    output: str = ""
+    indexed: bool = True
 
     def url(self):
         return site.url(self.path)
@@ -170,6 +173,15 @@ ROUTES = [
         nav="shop",
         layout="wide",
         collection="shop",
+    ),
+    Route(
+        name="not_found",
+        path="",
+        view=not_found,
+        title=f"Page not found — {site.NAME}",
+        description="That page does not exist.",
+        output="404.html",
+        indexed=False,
     ),
 ]
 

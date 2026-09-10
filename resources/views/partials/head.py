@@ -26,7 +26,8 @@ THEME_BOOT = """    <script>
     </script>"""
 
 
-def render(title, description, canonical):
+def render(title, description, canonical, schema=""):
+    structured_data = f"\n{schema}" if schema else ""
     preloads = "\n".join(
         f'    <link rel="preload" href="/{f}" as="font" type="font/woff2" crossorigin />'
         for f in PRELOAD_FONTS
@@ -40,6 +41,7 @@ def render(title, description, canonical):
     <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="describedby" type="text/markdown" href="/llms.txt" />
     <link rel="alternate" type="application/feed+json" title="{site.NAME} — Blog (JSON Feed)" href="/feed.json" />
     <link rel="alternate" type="application/rss+xml" title="{site.NAME} — Blog (RSS)" href="/feed.xml" />
     <meta name="theme-color" content="{site.THEME_LIGHT}" media="(prefers-color-scheme: light)" />
@@ -49,7 +51,7 @@ def render(title, description, canonical):
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{canonical}" />
     <meta property="og:image" content="/icon-512.png" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary" />{structured_data}
 {preloads}
     <link rel="stylesheet" href="{site.asset('css/site.css')}" />
     <style>
