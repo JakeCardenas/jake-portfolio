@@ -328,12 +328,15 @@ body::after {
   align-items: center;
   gap: 0.375rem;
   margin-top: 0.375rem;
-  /* 12.5px, not 13: this address is two characters longer than the rail fits */
-  font-size: 12.5px;
+  /* 10px: the 24-character address needs 144px of the rail's 167px, so it
+     stays on one line instead of breaking mid-domain */
+  font-size: 10px;
   letter-spacing: normal;
   text-transform: none;
   color: var(--fg);
-  word-break: break-all;
+  /* nowrap over break-all: a wrapped address split the icon off its own line */
+  white-space: nowrap;
+  word-break: normal;
   transition: color 0.2s ease;
 }
 .side-email:hover {
