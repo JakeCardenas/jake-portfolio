@@ -1032,10 +1032,9 @@ a.affil-item:hover .affil-name {
 .sound-btn[aria-pressed="false"] {
   opacity: 0.5;
 }
-/* 1.25em, not 1.15em: keeps the glyph in proportion at the smaller text size */
 .side-email svg {
-  width: 1.25em;
-  height: 1.25em;
+  width: 1.15em;
+  height: 1.15em;
   flex: none;
 }
 .section.section--hero {
