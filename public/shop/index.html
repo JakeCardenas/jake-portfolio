@@ -64,6 +64,26 @@
       <aside class="sidebar">
         <a href="/" class="side-logo" data-nav-logo>Jake Cardenas</a>
 
+        <div class="rail-actions">
+          <button type="button" class="rail-action" data-palette-open data-shortcut="k">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.6" />
+              <path d="M16 16l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+            Search
+            <span class="keys" data-shortcut-label></span>
+          </button>
+          <button type="button" class="rail-action" data-typing-open data-shortcut="j">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2.5" y="6.5" width="19" height="11" rx="2" stroke="currentColor" stroke-width="1.5" />
+              <path d="M7 10h.01M10 10h.01M13 10h.01M16 10h.01M8 14h8" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+            Typing test
+            <span class="keys" data-shortcut-label></span>
+          </button>
+        </div>
+
         <nav class="side-nav mono" id="siteNav" aria-label="Sections">
           <div class="nav-group">
             <a href="/shop/" class="nav-link active" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 11a2 2 0 01-2 2H9a2 2 0 01-2-2L6 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 016 0V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Shop</a>
@@ -153,6 +173,106 @@
 
       </main>
     </div>
+
+      <div class="overlay" id="palette" role="dialog" aria-modal="true"
+           aria-labelledby="paletteTitle" hidden>
+        <div class="overlay-panel pal-panel" data-overlay-panel>
+          <h2 class="visually-hidden" id="paletteTitle">Search this site</h2>
+          <div class="pal-field">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.6" />
+              <path d="M16 16l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+            <input id="paletteInput" type="text" role="combobox" autocomplete="off"
+                   aria-expanded="true" aria-controls="paletteList" aria-autocomplete="list"
+                   placeholder="Search pages, projects, skills, writing…" />
+            <button type="button" class="pal-esc mono" data-modal-close>ESC</button>
+          </div>
+          <ul class="pal-list" id="paletteList" role="listbox" aria-labelledby="paletteTitle"></ul>
+          <p class="pal-empty mono" id="paletteEmpty" hidden>Nothing matches that yet.</p>
+          <p class="visually-hidden" id="paletteStatus" role="status" aria-live="polite"></p>
+          <div class="pal-foot mono">
+            <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+            <span><kbd>↵</kbd> open</span>
+            <span><kbd>esc</kbd> close</span>
+          </div>
+        </div>
+      </div>
+      <div class="overlay" id="typing" role="dialog" aria-modal="true"
+           aria-labelledby="typingTitle" tabindex="-1" hidden>
+        <div class="overlay-panel tt-panel" data-overlay-panel>
+          <div class="tt-head">
+            <h2 class="tt-title" id="typingTitle">Typing test</h2>
+            <div class="tt-chips">
+            <button type="button" class="tt-chip mono" data-tt-duration="15">15s</button>
+            <button type="button" class="tt-chip mono is-active" data-tt-duration="30">30s</button>
+            <button type="button" class="tt-chip mono" data-tt-duration="60">60s</button>
+            </div>
+            <button type="button" class="modal-close" data-modal-close aria-label="Close">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div class="tt-meters mono">
+            <span><b id="ttTime">30</b> left</span>
+            <span><b id="ttWpm">0</b> wpm</span>
+            <span><b id="ttAcc">100</b>% accuracy</span>
+          </div>
+          <div class="tt-stage">
+            <div class="tt-stream" id="ttStream" aria-hidden="true"></div>
+            <span class="tt-caret" id="ttCaret" aria-hidden="true"></span>
+            <div class="tt-results" id="ttResults" hidden>
+              <div class="tt-grid">
+              <div class="tt-cell"><span class="tt-value" data-tt-result="wpm">0</span><span class="tt-label mono">WPM</span></div>
+              <div class="tt-cell"><span class="tt-value" data-tt-result="accuracy">0</span><span class="tt-label mono">ACCURACY</span></div>
+              <div class="tt-cell"><span class="tt-value" data-tt-result="raw">0</span><span class="tt-label mono">RAW</span></div>
+              <div class="tt-cell"><span class="tt-value" data-tt-result="errors">0</span><span class="tt-label mono">ERRORS</span></div>
+              <div class="tt-cell"><span class="tt-value" data-tt-result="characters">0</span><span class="tt-label mono">CHARACTERS</span></div>
+              </div>
+              <button type="button" class="tt-again mono" data-tt-restart>
+                Run it again
+              </button>
+            </div>
+          </div>
+          <label class="visually-hidden" for="ttField">Type the words shown</label>
+          <input class="tt-field" id="ttField" autocomplete="off" autocapitalize="off"
+                 autocorrect="off" spellcheck="false" inputmode="text" />
+          <div class="tt-foot mono">
+            <span><kbd>tab</kbd> restart</span>
+            <span><kbd>esc</kbd> close</span>
+          </div>
+        </div>
+      </div>
+      <div class="overlay" id="contactModal" role="dialog" aria-modal="true"
+           aria-labelledby="contactTitle" hidden>
+        <div class="overlay-panel modal-panel" data-overlay-panel>
+          <div class="modal-head">
+            <h2 class="modal-title" id="contactTitle">Get in touch</h2>
+            <button type="button" class="modal-close" data-modal-close aria-label="Close">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <p class="modal-body">
+            Open to internships, freelance work and joining a team. Email is the
+            quickest way to reach me.
+          </p>
+          <button type="button" class="modal-copy" data-copy="jakez.cardenas@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="modal-copy-value mono">jakez.cardenas@gmail.com</span>
+            <span class="modal-copy-hint mono" data-copy-feedback>Copy</span>
+          </button>
+          <div class="modal-links mono">
+            <a href="mailto:jakez.cardenas@gmail.com">Open mail app <span aria-hidden="true">↗</span></a>
+            <a href="https://www.linkedin.com/in/jake-cardenas-710076410/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/JakeCardenas" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
 
     <script src="/js/site-sounds.js?v=178"></script>
     <script src="/js/site.js?v=178"></script>

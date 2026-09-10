@@ -1,5 +1,5 @@
 from config import site
-from resources.views.partials import head, sidebar
+from resources.views.partials import head, overlays, sidebar
 
 
 def render(
@@ -26,6 +26,8 @@ def render(
 {body}
       </main>
     </div>
+
+{overlays.render()}
 
     <script src="{site.asset('js/site-sounds.js')}"></script>
 {page_script}    <script src="{site.asset('js/site.js')}"></script>

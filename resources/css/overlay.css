@@ -1,0 +1,163 @@
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px
+  ;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+body.overlay-open {
+  overflow: hidden;
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem;
+  background: rgb(10 10 10 / 0.32);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.overlay[hidden] {
+  display: none;
+}
+.overlay.is-open {
+  opacity: 1;
+}
+.overlay-panel {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--bg);
+  box-shadow: 0 40px 90px -20px rgb(0 0 0 / 0.35);
+  transform: translateY(-6px) scale(0.985);
+  transition:
+    transform 0.2s var(--ease),
+    opacity 0.18s ease;
+  opacity: 0;
+}
+.overlay.is-open .overlay-panel {
+  transform: none;
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .overlay-panel {
+    transition: none;
+  }
+}
+.modal-panel {
+  max-width: 24rem;
+  margin-top: 12vh;
+  padding: 1.5rem;
+}
+.modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.modal-title {
+  font-family: var(--font-pixel);
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+.modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  flex: none;
+  border-radius: 999px;
+  color: var(--fg-faint);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+.modal-close svg {
+  width: 15px;
+  height: 15px;
+}
+.modal-close:hover {
+  color: var(--fg);
+  background: var(--bg-soft);
+}
+.modal-body {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--fg-muted);
+}
+.modal-copy {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  margin-top: 1.15rem;
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--card);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+.modal-copy svg {
+  width: 1.05em;
+  height: 1.05em;
+  flex: none;
+  color: var(--fg-faint);
+}
+.modal-copy:hover {
+  border-color: var(--border-strong);
+}
+.modal-copy.is-copied {
+  border-color: var(--fg);
+}
+.modal-copy-value {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--fg);
+}
+.modal-copy-hint {
+  flex: none;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.modal-copy.is-copied .modal-copy-hint {
+  color: var(--fg);
+}
+.modal-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 1.15rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+.modal-links a {
+  color: var(--fg-dim);
+  transition: color 0.2s ease;
+  width: fit-content;
+}
+.modal-links a:hover {
+  color: var(--fg);
+}

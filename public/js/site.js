@@ -1,3 +1,101 @@
+const shortcuts = new Map();
+const MAC = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+
+function label(key) {
+  return MAC ? `⌘${key.toUpperCase()}` : `Alt+${key.toUpperCase()}`;
+}
+
+function register(key, handler, description) {
+  shortcuts.set(key.toLowerCase(), { handler, description, label: label(key) });
+}
+
+function typingInto(target) {
+  return (
+    target instanceof HTMLElement &&
+    (target.isContentEditable ||
+      ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName))
+  );
+}
+
+document.addEventListener("keydown", (e) => {
+  const entry = shortcuts.get(e.key.toLowerCase());
+  if (!entry) return;
+  if (!(e.metaKey || e.altKey) || e.ctrlKey || e.shiftKey) return;
+  if (typingInto(e.target) && !overlays.current) return;
+  e.preventDefault();
+  entry.handler();
+});
+
+document.querySelectorAll("[data-shortcut]").forEach((el) => {
+  const key = el.dataset.shortcut;
+  const slot = el.querySelector("[data-shortcut-label]");
+  if (slot) slot.textContent = label(key);
+});
+
+const overlays = {
+  current: null,
+  lastFocus: null,
+
+  open(node) {
+    if (this.current) this.close();
+    this.lastFocus = document.activeElement;
+    this.current = node;
+    node.hidden = false;
+    document.body.classList.add("overlay-open");
+    requestAnimationFrame(() => node.classList.add("is-open"));
+    const focusable = node.querySelector(
+      "input, textarea, button, [href], [tabindex]:not([tabindex='-1'])",
+    );
+    (focusable || node).focus({ preventScroll: true });
+  },
+
+  close() {
+    const node = this.current;
+    if (!node) return;
+    this.current = null;
+    node.classList.remove("is-open");
+    document.body.classList.remove("overlay-open");
+    const done = () => {
+      node.hidden = true;
+    };
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) done();
+    else setTimeout(done, 180);
+    if (this.lastFocus instanceof HTMLElement) {
+      this.lastFocus.focus({ preventScroll: true });
+    }
+  },
+};
+
+document.addEventListener("keydown", (e) => {
+  const node = overlays.current;
+  if (!node) return;
+  if (e.key === "Escape") {
+    e.preventDefault();
+    overlays.close();
+    return;
+  }
+  if (e.key !== "Tab") return;
+  const items = [...node.querySelectorAll(
+    "input, textarea, button:not([disabled]), [href], [tabindex]:not([tabindex='-1'])",
+  )].filter((el) => el.offsetParent !== null);
+  if (!items.length) return;
+  const first = items[0];
+  const last = items[items.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+});
+
+document.addEventListener("pointerdown", (e) => {
+  const node = overlays.current;
+  if (node && e.target instanceof Element && e.target.closest("[data-overlay-panel]") === null) {
+    overlays.close();
+  }
+});
 function computeAutoLevels(data, cutoff = 0.01) {
   const hist = new Array(256).fill(0);
   let counted = 0;
@@ -486,3 +584,413 @@ if (ghGraph) {
     }
   })();
 }
+const paletteNode = document.getElementById("palette");
+
+if (paletteNode) {
+  const input = document.getElementById("paletteInput");
+  const list = document.getElementById("paletteList");
+  const status = document.getElementById("paletteStatus");
+  const empty = document.getElementById("paletteEmpty");
+
+  let index = [];
+  let matches = [];
+  let active = 0;
+  let loaded = null;
+
+  const RECENT_KEY = "palette-recent";
+  const LIMIT = 40;
+
+  function recent() {
+    try {
+      return JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function remember(item) {
+    const kept = [item.url, ...recent().filter((u) => u !== item.url)].slice(0, 5);
+    try {
+      localStorage.setItem(RECENT_KEY, JSON.stringify(kept));
+    } catch (e) {}
+  }
+
+  function load() {
+    if (loaded) return loaded;
+    loaded = fetch("/search-index.json")
+      .then((r) => r.json())
+      .then((data) => {
+        index = data;
+      })
+      .catch(() => {
+        index = [];
+      });
+    return loaded;
+  }
+
+  function score(item, query) {
+    const label = item.label.toLowerCase();
+    if (label === query) return 0;
+    if (label.startsWith(query)) return 1;
+    const word = label.split(/\s+/).some((w) => w.startsWith(query));
+    if (word) return 2;
+    if (label.includes(query)) return 3;
+    if ((item.meta || "").toLowerCase().includes(query)) return 4;
+    if ((item.terms || "").toLowerCase().includes(query)) return 5;
+    return -1;
+  }
+
+  function search(query) {
+    query = query.trim().toLowerCase();
+    if (!query) {
+      const saved = recent();
+      const first = saved
+        .map((url) => index.find((i) => i.url === url))
+        .filter(Boolean);
+      const pages = index.filter((i) => i.kind === "Page" && !saved.includes(i.url));
+      return [...first, ...pages].slice(0, LIMIT);
+    }
+    return index
+      .map((item) => ({ item, rank: score(item, query) }))
+      .filter((r) => r.rank >= 0)
+      .sort((a, b) => a.rank - b.rank || a.item.label.length - b.item.label.length)
+      .slice(0, LIMIT)
+      .map((r) => r.item);
+  }
+
+  function highlight(text, query) {
+    const safe = text.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+    if (!query) return safe;
+    const at = safe.toLowerCase().indexOf(query.toLowerCase());
+    if (at < 0) return safe;
+    return (
+      safe.slice(0, at) +
+      "<mark>" +
+      safe.slice(at, at + query.length) +
+      "</mark>" +
+      safe.slice(at + query.length)
+    );
+  }
+
+  function paint() {
+    const query = input.value.trim();
+    list.innerHTML = matches
+      .map(
+        (item, n) =>
+          `<li role="option" id="pal-${n}" aria-selected="${n === active}" class="pal-item${
+            n === active ? " is-active" : ""
+          }"><a href="${item.url}" tabindex="-1"><span class="pal-kind mono">${
+            item.kind
+          }</span><span class="pal-label">${highlight(item.label, query)}</span>${
+            item.meta ? `<span class="pal-meta">${highlight(item.meta, query)}</span>` : ""
+          }</a></li>`,
+      )
+      .join("");
+    empty.hidden = matches.length > 0;
+    status.textContent = matches.length
+      ? `${matches.length} result${matches.length === 1 ? "" : "s"}`
+      : "No results";
+    const node = list.children[active];
+    if (node) node.scrollIntoView({ block: "nearest" });
+    input.setAttribute("aria-activedescendant", node ? node.id : "");
+  }
+
+  function refresh() {
+    matches = search(input.value);
+    active = 0;
+    paint();
+  }
+
+  function choose(item) {
+    if (!item) return;
+    remember(item);
+    overlays.close();
+    if (/^https?:/.test(item.url)) window.open(item.url, "_blank", "noopener");
+    else window.location.href = item.url;
+  }
+
+  function open() {
+    overlays.open(paletteNode);
+    input.value = "";
+    load().then(refresh);
+  }
+
+  register("k", open, "Search");
+
+  document.querySelectorAll("[data-palette-open]").forEach((el) =>
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      open();
+    }),
+  );
+
+  input.addEventListener("input", refresh);
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      if (!matches.length) return;
+      active = (active + (e.key === "ArrowDown" ? 1 : -1) + matches.length) % matches.length;
+      paint();
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      choose(matches[active]);
+    } else if (e.key === "Home" || e.key === "End") {
+      e.preventDefault();
+      active = e.key === "Home" ? 0 : matches.length - 1;
+      paint();
+    }
+  });
+
+  list.addEventListener("click", (e) => {
+    const li = e.target instanceof Element && e.target.closest(".pal-item");
+    if (!li) return;
+    e.preventDefault();
+    choose(matches[[...list.children].indexOf(li)]);
+  });
+
+  list.addEventListener("pointermove", (e) => {
+    const li = e.target instanceof Element && e.target.closest(".pal-item");
+    if (!li) return;
+    const n = [...list.children].indexOf(li);
+    if (n !== active) {
+      active = n;
+      paint();
+    }
+  });
+}
+const typingNode = document.getElementById("typing");
+
+if (typingNode) {
+  const stream = document.getElementById("ttStream");
+  const caret = document.getElementById("ttCaret");
+  const results = document.getElementById("ttResults");
+  const field = document.getElementById("ttField");
+  const liveWpm = document.getElementById("ttWpm");
+  const liveAcc = document.getElementById("ttAcc");
+  const liveTime = document.getElementById("ttTime");
+  const durationButtons = [...typingNode.querySelectorAll("[data-tt-duration]")];
+
+  const WORDS = `the of and to in is you that it he for was on are as with his they at
+  be this have from one had by word but not what all were we when your can said there
+  use an each which she do how their if will up other about out many then them these so
+  some her would make like him into time has look two more write go see number no way
+  could people my than first water been call who oil now find long down day did get come
+  made may part over new sound take only little work know place year live me back give
+  most very after thing our just name good sentence man think say great where help
+  through much before line right too mean old any same tell boy follow came want show
+  also around form three small set put end does another well large must big even such
+  because turn here why ask went men read need land different home us move try kind hand
+  picture again change off play spell air away animal house point page letter mother
+  answer found study still learn should world build code system design data model random
+  screen keyboard editor project search value simple result active border`
+    .split(/\s+/)
+    .filter(Boolean);
+
+  let duration = 30;
+  let target = [];
+  let typed = [];
+  let started = null;
+  let ticker = null;
+  let finished = false;
+
+  function sample(count) {
+    const out = [];
+    for (let i = 0; i < count; i++) {
+      out.push(WORDS[Math.floor(Math.random() * WORDS.length)]);
+    }
+    return out.join(" ").split("");
+  }
+
+  function reset() {
+    clearInterval(ticker);
+    ticker = null;
+    started = null;
+    finished = false;
+    typed = [];
+    target = sample(90);
+    results.hidden = true;
+    stream.hidden = false;
+    liveWpm.textContent = "0";
+    liveAcc.textContent = "100";
+    liveTime.textContent = String(duration);
+    paint();
+  }
+
+  function correctCount() {
+    return typed.reduce((n, ch, i) => n + (ch === target[i] ? 1 : 0), 0);
+  }
+
+  function stats() {
+    const elapsed = started ? Math.max((Date.now() - started) / 1000, 1) : duration;
+    const correct = correctCount();
+    return {
+      wpm: Math.round(correct / 5 / (elapsed / 60)),
+      raw: Math.round(typed.length / 5 / (elapsed / 60)),
+      accuracy: typed.length ? Math.round((correct / typed.length) * 100) : 100,
+      errors: typed.length - correct,
+      characters: typed.length,
+    };
+  }
+
+  function paint() {
+    const window_ = 240;
+    const from = Math.max(0, Math.floor(typed.length / 60) * 60);
+    stream.innerHTML = target
+      .slice(from, from + window_)
+      .map((ch, offset) => {
+        const i = from + offset;
+        let cls = "tt-char";
+        if (i < typed.length) cls += typed[i] === ch ? " is-hit" : " is-miss";
+        else if (i === typed.length) cls += " is-next";
+        const glyph = ch === " " ? "&nbsp;" : ch;
+        return `<span class="${cls}">${glyph}</span>`;
+      })
+      .join("");
+    const next = stream.querySelector(".is-next");
+    if (next && caret) {
+      caret.style.transform = `translate(${next.offsetLeft}px, ${next.offsetTop}px)`;
+    }
+  }
+
+  function tick() {
+    const left = duration - Math.round((Date.now() - started) / 1000);
+    liveTime.textContent = String(Math.max(left, 0));
+    const s = stats();
+    liveWpm.textContent = String(s.wpm);
+    liveAcc.textContent = String(s.accuracy);
+    if (left <= 0) finish();
+  }
+
+  function finish() {
+    clearInterval(ticker);
+    ticker = null;
+    finished = true;
+    const s = stats();
+    stream.hidden = true;
+    results.hidden = false;
+    results.querySelector("[data-tt-result='wpm']").textContent = String(s.wpm);
+    results.querySelector("[data-tt-result='accuracy']").textContent = `${s.accuracy}%`;
+    results.querySelector("[data-tt-result='raw']").textContent = String(s.raw);
+    results.querySelector("[data-tt-result='errors']").textContent = String(s.errors);
+    results.querySelector("[data-tt-result='characters']").textContent = String(s.characters);
+  }
+
+  function handle(key) {
+    if (finished) return;
+    if (key === "Backspace") {
+      typed.pop();
+    } else if (key.length === 1) {
+      if (!started) {
+        started = Date.now();
+        ticker = setInterval(tick, 200);
+      }
+      typed.push(key);
+      if (typed.length >= target.length) finish();
+    } else {
+      return;
+    }
+    paint();
+    if (started) tick();
+  }
+
+  typingNode.addEventListener("keydown", (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === "Tab") {
+      e.preventDefault();
+      reset();
+      return;
+    }
+    if (e.key === "Escape") return;
+    if (e.key === "Backspace" || e.key.length === 1) {
+      e.preventDefault();
+      handle(e.key);
+    }
+  });
+
+  // mobile keyboards emit input events rather than usable keydown values
+  field.addEventListener("input", () => {
+    const value = field.value;
+    field.value = "";
+    [...value].forEach((ch) => handle(ch));
+  });
+
+  durationButtons.forEach((button) =>
+    button.addEventListener("click", () => {
+      duration = Number(button.dataset.ttDuration);
+      durationButtons.forEach((b) =>
+        b.classList.toggle("is-active", b === button),
+      );
+      reset();
+    }),
+  );
+
+  typingNode.querySelectorAll("[data-tt-restart]").forEach((b) =>
+    b.addEventListener("click", () => {
+      reset();
+      field.focus({ preventScroll: true });
+    }),
+  );
+
+  register("j", () => {
+    reset();
+    overlays.open(typingNode);
+    field.focus({ preventScroll: true });
+  }, "Typing test");
+
+  document.querySelectorAll("[data-typing-open]").forEach((el) =>
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      reset();
+      overlays.open(typingNode);
+      field.focus({ preventScroll: true });
+    }),
+  );
+}
+document.querySelectorAll("[data-modal-open]").forEach((trigger) =>
+  trigger.addEventListener("click", (e) => {
+    const node = document.getElementById(trigger.dataset.modalOpen);
+    if (!node) return;
+    e.preventDefault();
+    overlays.open(node);
+  }),
+);
+
+document.querySelectorAll("[data-modal-close]").forEach((button) =>
+  button.addEventListener("click", () => overlays.close()),
+);
+
+async function copy(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (e) {
+    const field = document.createElement("textarea");
+    field.value = text;
+    field.setAttribute("readonly", "");
+    field.style.cssText = "position:fixed;opacity:0";
+    document.body.appendChild(field);
+    field.select();
+    const ok = document.execCommand && document.execCommand("copy");
+    field.remove();
+    return !!ok;
+  }
+}
+
+document.querySelectorAll("[data-copy]").forEach((button) => {
+  const feedback = button.querySelector("[data-copy-feedback]");
+  const original = feedback ? feedback.textContent : "";
+  let timer;
+
+  button.addEventListener("click", async () => {
+    const ok = await copy(button.dataset.copy);
+    if (!feedback) return;
+    feedback.textContent = ok ? "Copied" : "Press ⌘C";
+    button.classList.add("is-copied");
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      feedback.textContent = original;
+      button.classList.remove("is-copied");
+    }, 1600);
+  });
+});

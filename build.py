@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 from email.utils import format_datetime
+from html import unescape
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)
@@ -48,11 +49,15 @@ STYLESHEETS = [
     "recommendations.css",
     "experience.css",
     "github.css",
+    "overlay.css",
+    "palette.css",
+    "typing.css",
     "responsive.css",
 ]
 
 # theme.js calls renderAllHalftones(), so halftone.js has to come first
 SCRIPTS = [
+    "shortcuts.js",
     "halftone.js",
     "theme.js",
     "nav.js",
@@ -61,6 +66,9 @@ SCRIPTS = [
     "hero.js",
     "gear.js",
     "github.js",
+    "palette.js",
+    "typing.js",
+    "modal.js",
 ]
 
 
@@ -257,6 +265,59 @@ def markdown(post):
     return "\n".join(lines) + "\n"
 
 
+def search_index():
+    """flat, weighted index consumed by the command palette on first open"""
+    items = []
+
+    def add(kind, label, url, meta="", terms=""):
+        # content carries html entities; the palette renders as text
+        items.append(
+            {
+                "kind": kind,
+                "label": unescape(label),
+                "url": url,
+                "meta": unescape(meta),
+                "terms": unescape(terms),
+            }
+        )
+
+    for route in web.ROUTES:
+        if route.collection or not route.indexed or route.name == "home":
+            continue
+        add("Page", route.label or route.name.title(), route.url(), route.description)
+    add("Page", "Home", site.url(), site.DESCRIPTION)
+
+    for p in content.load("projects"):
+        add(
+            "Project",
+            p["title"],
+            site.url("projects"),
+            " · ".join(p["meta"]),
+            f"{p['body']} {p['link']['href']}",
+        )
+    for p in content.load("posts"):
+        add("Post", p["title"], site.url(f"posts/{p['slug']}"), p["date"], p["excerpt"])
+    for group in content.load("stack"):
+        for tag in group["items"]:
+            add("Skill", tag, site.url("stack"), group["label"])
+    for c in content.load("certifications"):
+        add("Certificate", c["title"], site.url("certifications"), c["issuer"], c["href"])
+    for e in content.load("experience"):
+        add("Experience", e["title"], site.url("experience"), f"{e['year']} · {e['org']}")
+    for group in content.load("resources"):
+        for link in group["links"]:
+            add("Resource", link["name"], link["href"], group["heading"],
+                link["description"])
+    for group in content.load("gear"):
+        for item in group["items"]:
+            add("Gear", item["name"], site.url("gear"), f"{group['heading']} · {item['meta']}")
+    for item in content.load("shop"):
+        add("Download", item["name"], site.url(f"shop/{item['slug']}"), item["kind"])
+
+    write("search-index.json", json.dumps(items, separators=(",", ":"), ensure_ascii=False))
+    return len(items)
+
+
 def discovery(urls):
     posts = content.load("posts")
 
@@ -427,6 +488,8 @@ def main():
     print(f"  images: {sources} optimised ({made} derivatives written), "
           f"{copied} copied as-is, {saved / 1024:,.0f} KB saved\n")
 
+    indexed = search_index()
+
     urls = []
     for route, item in pages():
         out, html, canonical = render_page(route, item)
@@ -441,7 +504,8 @@ def main():
     print(f"  js/site.js{'':<48} {js:>7,} bytes")
 
     discovery(urls)
-    print(f"\n  {len(urls)} pages, sitemap.xml, llms.txt, feed.json, feed.xml")
+    print(f"\n  {len(urls)} pages, {indexed} search entries, "
+          f"sitemap.xml, llms.txt, feed.json, feed.xml")
 
 
 if __name__ == "__main__":

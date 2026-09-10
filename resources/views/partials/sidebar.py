@@ -34,6 +34,27 @@ CONTROLS = """          <div class="control-pill">
           </div>"""
 
 
+ACTIONS = """        <div class="rail-actions">
+          <button type="button" class="rail-action" data-palette-open data-shortcut="k">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.6" />
+              <path d="M16 16l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+            Search
+            <span class="keys" data-shortcut-label></span>
+          </button>
+          <button type="button" class="rail-action" data-typing-open data-shortcut="j">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2.5" y="6.5" width="19" height="11" rx="2" stroke="currentColor" stroke-width="1.5" />
+              <path d="M7 10h.01M10 10h.01M13 10h.01M16 10h.01M8 14h8" stroke="currentColor"
+                    stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+            Typing test
+            <span class="keys" data-shortcut-label></span>
+          </button>
+        </div>"""
+
+
 def nav_group(group, active):
     rows = []
     for name in group["routes"]:
@@ -62,6 +83,8 @@ def render(active):
     )
     return f"""      <aside class="sidebar">
         <a href="{site.url()}" class="side-logo" data-nav-logo>{site.NAME}</a>
+
+{ACTIONS}
 
         <nav class="side-nav mono" id="siteNav" aria-label="Sections">
           <div class="nav-group">
