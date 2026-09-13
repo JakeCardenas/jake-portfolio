@@ -40,7 +40,7 @@ def card(item):
                 rel="noopener"
                 class="link-out mono"
               >
-                {item['link']['label']} <span aria-hidden="true">↗</span>
+                {item['link']['label']} ↗
               </a>
             </div>{note}
           </article>"""
@@ -49,7 +49,7 @@ def card(item):
 def render():
     cards = "\n".join(card(p) for p in content.load("projects"))
     return f"""        <section class="section reveal">
-{headings.page("projects", LEDE)}
+{headings.page("projects", LEDE, lede_gap="3rem")}
 {cards}
         </section>
 """

@@ -5,10 +5,11 @@
 }
 .main {
   flex: 1;
+  width: 100%;
   min-width: 0;
   /* auto margins centre the column in whatever space is left beside the rail */
   margin-inline: auto;
-  padding: 0 1.5rem 4rem;
+  padding: 0 1.5rem;
   /* border-box: the cap includes padding, so content is narrower than 672px */
   max-width: var(--content-w);
   box-sizing: border-box;
@@ -27,63 +28,25 @@
 .section {
   position: relative;
 }
-.section + .section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1.75rem;
-  pointer-events: none;
-  background-size: var(--dot-size-wide) var(--dot-size-wide);
-  opacity: 0.28;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 30%,
-    #000 70%,
-    transparent
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 30%,
-    #000 70%,
-    transparent
-  );
-}
 .section {
-  padding: var(--space-4xl) 0;
+  padding: 3.5rem 0;
 }
-.section:first-child:not(.section--hero) {
-  padding-top: var(--space-4xl);
+@media (min-width: 640px) {
+  .section:first-child:not(.section--hero) {
+    padding: 5rem 0;
+  }
 }
 .link-out {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  font-size: 0.733rem;
+  font-size: 11px;
   line-height: 1.5;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--fg-dim);
-  padding-bottom: 3px;
-  border-bottom: 1px solid transparent;
-  transition:
-    color 0.25s ease,
-    border-color 0.25s ease,
-    gap 0.3s var(--ease-spring);
-}
-.link-out span {
-  transition: transform 0.3s var(--ease-spring);
 }
 .link-out:hover {
   color: var(--fg);
-  border-bottom-color: var(--border-strong);
-  gap: var(--space-md);
-}
-.link-out:hover span {
-  transform: translate(3px, -3px);
 }
 .num-head {
   display: flex;
@@ -96,25 +59,29 @@
   font-family: var(--font-pixel);
   font-size: 0.875rem;
   font-weight: 400;
+  line-height: 1.25rem;
   letter-spacing: 0;
   color: var(--fg-faint);
+}
+#experience .num-head,
+#github .num-head {
+  margin-bottom: 1.5rem;
+}
+#affiliations .num-head {
+  margin-bottom: 1.75rem;
 }
 .num-link {
   flex: none;
   font-size: 11px;
+  line-height: 1.5;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--fg-dim);
-  transition: color 0.22s ease;
 }
 .num-link:hover {
   color: var(--fg);
 }
-.page-head {
-  margin-bottom: 2.75rem;
-}
 .page-title {
-  margin-top: 0.5rem;
   font-family: var(--font-pixel);
   font-size: 24px;
   font-weight: 400;
@@ -139,10 +106,13 @@
   text-decoration-color: currentColor;
 }
 .page-lede {
-  max-width: var(--measure-read);
+  max-width: 36rem;
   margin-top: 1.25rem;
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.625;
   color: var(--fg-muted);
+}
+.page-lede--block {
+  margin-top: 0;
 }

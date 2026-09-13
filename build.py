@@ -54,15 +54,12 @@ STYLESHEETS = [
     "responsive.css",
 ]
 
-# theme.js calls renderAllHalftones(), so halftone.js has to come first
 SCRIPTS = [
     "shortcuts.js",
-    "halftone.js",
     "theme.js",
     "nav.js",
     "deck.js",
     "reveal.js",
-    "hero.js",
     "gear.js",
     "github.js",
     "typing.js",
@@ -73,8 +70,7 @@ SCRIPTS = [
 
 OPTIMIZED = "images/optimized"
 
-# widths generated per directory; the profile portraits are excluded because the
-# halftone renderer samples their pixels directly and resizing shifts the dots
+# widths generated per directory; anything outside these is copied as-is
 IMAGE_LADDERS = {
     "images/blog": [320, 640, 1200],
     "images/projects/icons": [64, 128],
@@ -352,6 +348,7 @@ def discovery(urls):
     optional = [
         ("Services", "opportunities", "Freelance web, design and video work"),
         ("Collabs", "collabs", "Organizations and communities I have built with"),
+        ("Affiliations", "affiliations", "Programs and communities I am part of"),
         ("Gear", "gear", "Hardware I use day to day"),
         ("Resources", "resources", "Learning resources for software and AI"),
         ("Shop", "shop", "Free downloads"),

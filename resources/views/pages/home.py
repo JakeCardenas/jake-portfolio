@@ -4,53 +4,42 @@ from config import site
 from resources import content
 from resources.views.components import cards, headings, media
 
-DECK_SLOTS = (("is-left", 1), ("is-center", 0), ("is-right", 2))
+DECK_SLOTS = (("is-center", 0), ("is-left", 1), ("is-right", 2))
 STACK_PREVIEW = 12
 
-DECK_SIZES = "(min-width: 641px) 284px, 244px"
+ARROW = (
+    '<svg class="stat-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">'
+    '<path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" stroke-width="1.5" '
+    'stroke-linecap="round" stroke-linejoin="round"/></svg>'
+)
 
 
 def hero():
     profile = content.load("profile")
-    photos = "\n".join(
-        f"""                <canvas
-                  class="photo-{n} halftone-canvas"
-                  data-src="{site.asset(p['src'])}"
-                  aria-label="{p['alt']}"
-                ></canvas>"""
-        for n, p in enumerate(profile["photos"], start=1)
-    )
     lede = "\n".join(
         f'              <p class="hero-lede">{text}</p>' for text in profile["lede"]
     )
     links = "\n".join(
-        f'                <a href="{href}" target="_blank" rel="noopener">{name} <span aria-hidden="true">↗</span></a>'
+        f'                <a href="{href}" target="_blank" rel="noopener">{name} ↗</a>'
         for name, href in site.LINKS.items()
     )
+    photo = media.img(
+        profile["photo"]["src"],
+        alt=profile["photo"]["alt"],
+        cls="hero-photo",
+        priority=True,
+        extra='width="469" height="469" draggable="false"',
+    )
     return f"""          <div class="hero-grid">
-            <div
-              class="photo-swap"
-              role="button"
-              tabindex="0"
-              aria-label="Toggle profile photo"
-            >
-              <div class="photo-frame">
-{photos}
-                <span class="halftone-white" aria-hidden="true"></span>
-              </div>
-              <div class="photo-dots" aria-hidden="true">
-                <span class="dot"></span><span class="dot-2"></span>
-              </div>
+            <div class="hero-photo-wrap">
+              {photo}
             </div>
             <div class="hero-body">
-              <div class="status mono">
-                <span class="status-dot" aria-hidden="true"></span> {profile['status']}
-              </div>
               <h1 class="hero-name">{site.NAME}</h1>
 {lede}
               <div class="hero-links mono">
 {links}
-                <a href="mailto:{site.EMAIL}">email <span aria-hidden="true">↗</span></a>
+                <a href="mailto:{site.EMAIL}">email ↗</a>
               </div>
             </div>
           </div>"""
@@ -58,36 +47,50 @@ def hero():
 
 def stat_row():
     stats = (
-        (len(content.load("projects")), "PROJECTS SHIPPED", "projects"),
-        (len(content.load("certifications")), "CERTIFICATES", "certifications"),
-        (6, "STACK", "stack"),
-        (1, "INTERNSHIP", "experience"),
+        (len(content.load("projects")), "projects shipped", "projects"),
+        (len(content.load("certifications")), "certificates", "certifications"),
+        (6, "stack", "stack"),
+        (1, "internship", "experience"),
     )
     cells = "\n".join(
-        f"""            <a class="stat-cell" href="{site.url(route)}">
-              <span class="stat-num">{value}<span class="stat-arrow" aria-hidden="true">↗</span></span>
-              <span class="stat-label mono">{label}</span>
-            </a>"""
+        f"""            <div class="stat-cell">
+              <a class="stat-link" href="{site.url(route)}">
+                <span class="stat-top"><span class="stat-num">{value}</span>{ARROW}</span>
+                <span class="stat-label mono">{label}</span>
+              </a>
+            </div>"""
         for value, label, route in stats
     )
-    return f'          <div class="stat-row">\n{cells}\n          </div>'
+    return f'        <section class="stat-row">\n{cells}\n        </section>'
 
 
 def deck():
     projects = content.load("projects")
-    featured = content.load("featured")
     entries = []
     for slot, index in DECK_SLOTS:
         project = projects[index]
-        meta = " · ".join(project["meta"])
+        tags = "\n".join(
+            f'                <span class="deck-tag mono">{tag}</span>' for tag in project["meta"]
+        )
+        icon = (
+            media.img(project["icon"]["src"], sizes="48px", alt=project["icon"]["alt"], cls="deck-icon")
+            if project.get("icon")
+            else ""
+        )
         entries.append(
             f"""            <article class="deck-card {slot}" role="button" tabindex="0"
                      aria-label="Show {project['title']}">
-              <div class="deck-shot">{media.img(featured[project['title']], sizes=DECK_SIZES)}</div>
-              <h3 class="deck-title">{project['title']}</h3>
-              <div class="deck-meta mono">{meta}</div>
+              <div class="deck-tags">
+{tags}
+              </div>
+              <div class="deck-head">
+                {icon}
+                <h3 class="deck-title">{project['title']}</h3>
+              </div>
               <p class="deck-body">{project['body']}</p>
-              <a href="{project['link']['href']}" target="_blank" rel="noopener" class="deck-link mono">VIEW LIVE SITE <span aria-hidden="true">↗</span></a>
+              <div class="deck-actions">
+                <a href="{project['link']['href']}" target="_blank" rel="noopener" class="deck-link mono">{project['link']['label']} ↗</a>
+              </div>
             </article>"""
         )
     return '          <div class="deck" data-deck>\n' + "\n".join(entries) + "\n          </div>"
@@ -96,9 +99,9 @@ def deck():
 def experience_rows():
     rows = "\n".join(
         f"""            <div class="row-item">
-              <span class="row-year mono">{item['year']}</span>
-              <span class="row-title">{item['title']}</span>
-              <span class="row-org">{re.sub(r'\\s+', ' ', re.sub(r'<[^>]+>', ' ', item['org'])).strip()}</span>
+              <div class="row-year mono">{item['year']}</div>
+              <div class="row-title">{item['title']}</div>
+              <div class="row-org">{re.sub(r'\\s+', ' ', re.sub(r'<[^>]+>', ' ', item['org'])).strip()}</div>
             </div>"""
         for item in content.load("experience")
         if item["home"]
@@ -108,14 +111,18 @@ def experience_rows():
 
 def stack_pills():
     items = [tag for group in content.load("stack") for tag in group["items"]]
-    shown = items[:STACK_PREVIEW]
-    pills = "\n".join(f'            <span class="pill mono">{t}</span>' for t in shown)
-    if len(items) > len(shown):
-        pills += (
-            f'\n            <a class="pill pill-more mono" href="{site.url("stack")}">'
-            f"+ {len(items) - len(shown)} more</a>"
-        )
-    return f'          <div class="pill-row">\n{pills}\n          </div>'
+    pills = "\n".join(f'              <span class="pill mono">{t}</span>' for t in items[:STACK_PREVIEW])
+    if len(items) > STACK_PREVIEW:
+        pills += f'\n              <a class="pill pill-more mono" href="{site.url("stack")}">+ more</a>'
+    return f"""          <div class="stack-preview">
+            <div class="stack-preview-head">
+              <h3 class="stack-preview-title mono">Stack</h3>
+              <a href="{site.url('stack')}" class="num-link mono">view all →</a>
+            </div>
+            <div class="pill-row">
+{pills}
+            </div>
+          </div>"""
 
 
 def affiliations():
@@ -130,7 +137,7 @@ def affiliations():
         entries.append(
             f"""            {open_tag}>
               <span class="affil-mark" aria-hidden="true">
-                {media.img(item['logo'], sizes="40px")}
+                {media.img(item['logo'], sizes="36px")}
               </span>
               <span>
                 <span class="affil-name">{item['name']}</span>
@@ -151,13 +158,10 @@ def github_panel():
               aria-label="View {site.GITHUB_USER} on GitHub"
             >
               <span class="gh-graph" id="ghGraph" aria-hidden="true"></span>
-              <span class="gh-graph-hint mono" aria-hidden="true"
-                >VIEW PROFILE <span>↗</span></span
-              >
             </a>
             <div class="gh-foot">
               <p class="gh-caption mono" id="ghCaption">
-                LOADING CONTRIBUTION ACTIVITY…
+                loading contribution activity…
               </p>
             </div>
             <div class="gh-tip mono" id="ghTip" hidden></div>
@@ -166,7 +170,7 @@ def github_panel():
 
 def render():
     certs = cards.certificates(content.load("certifications")[:3])
-    return f"""        <section id="home" class="section section--hero reveal">
+    return f"""        <section id="home" class="section section--hero">
 {hero()}
         </section>
 
@@ -174,41 +178,37 @@ def render():
 
         <div class="ht-rule" aria-hidden="true"></div>
 
-        <section id="blog" class="section reveal" style="position:relative">
+        <section id="blog" class="section">
           <span class="ht-accent" aria-hidden="true"></span>
-{headings.numbered("01", "blog", "ALL POSTS →", site.url("blog"))}
-{cards.posts(content.load("posts"), heading="h3")}
+{headings.numbered("01", "blog", "all posts →", site.url("blog"))}
+{cards.post_rows(content.load("posts"))}
         </section>
 
-        <section id="projects" class="section reveal">
-{headings.numbered("02", "projects", "ALL PROJECTS →", site.url("projects"))}
+        <section id="projects" class="section">
+{headings.numbered("02", "projects", "all projects →", site.url("projects"))}
 {deck()}
         </section>
 
-        <section id="experience" class="section reveal">
-{headings.numbered("03", "experience", "FULL HISTORY →", site.url("experience"))}
+        <section id="experience" class="section">
+{headings.numbered("03", "experience", "full history →", site.url("experience"))}
 {experience_rows()}
-        </section>
-
-        <section id="stack" class="section reveal">
-{headings.numbered("04", "stack", "VIEW ALL →", site.url("stack"))}
 {stack_pills()}
         </section>
 
-        <section id="certifications" class="section reveal">
-{headings.numbered("05", "certifications", "ALL CERTIFICATIONS →", site.url("certifications"))}
+        <section id="certifications" class="section">
+{headings.numbered("04", "certifications", "all certifications →", site.url("certifications"))}
           <div class="cert-grid cert-grid--flat">
 {certs}
           </div>
         </section>
 
-        <section id="affiliations" class="section reveal">
-{headings.numbered("06", "affiliations")}
+        <section id="affiliations" class="section">
+{headings.numbered("05", "affiliations", "all affiliations →", site.url("affiliations"))}
 {affiliations()}
         </section>
 
-        <section id="github" class="section reveal">
-{headings.numbered("07", "github", f"@{site.GITHUB_USER.upper()} ↗", site.LINKS["github"])}
+        <section id="github" class="section">
+{headings.numbered("06", "github", f"@{site.GITHUB_USER} ↗", site.LINKS["github"])}
 {github_panel()}
         </section>
 

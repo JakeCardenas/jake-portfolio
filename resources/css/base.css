@@ -13,9 +13,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
+  text-rendering: optimizeLegibility;
 }
 h1,
 h2,
@@ -25,6 +23,13 @@ dl,
 dd,
 figure {
   margin: 0;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-size: inherit;
+  font-weight: inherit;
 }
 a {
   color: inherit;
@@ -38,49 +43,47 @@ button {
   padding: 0;
   cursor: pointer;
 }
+a,
+button {
+  transition:
+    color 0.2s,
+    background-color 0.2s,
+    border-color 0.2s,
+    opacity 0.2s,
+    transform 0.2s;
+}
 img {
   max-width: 100%;
   display: block;
 }
-/* emphasis by inversion — the spec's one loud move */
 ::selection {
   background: var(--fg);
   color: var(--bg);
 }
-/* slim scrollbars that follow the theme */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--g300) transparent;
-}
-*::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-*::-webkit-scrollbar-thumb {
-  background: var(--g300);
-  border-radius: 999px;
-}
-:focus-visible {
-  outline: 2px solid var(--fg);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
 .mono {
   font-family: var(--font-mono);
 }
-::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
+/* only while a theme switch runs, so it never fights hover transitions */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition:
+    background-color 0.5s ease,
+    border-color 0.5s ease,
+    color 0.5s ease,
+    fill 0.5s ease,
+    stroke 0.5s ease,
+    box-shadow 0.5s ease,
+    outline-color 0.5s ease !important;
 }
-::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
-  border-radius: 999px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
+@media (prefers-reduced-motion: reduce) {
+  html.theme-anim,
+  html.theme-anim *,
+  html.theme-anim *::before,
+  html.theme-anim *::after {
+    transition: none !important;
+  }
 }
 /* components set their own display, which silently defeats the hidden attribute */
 [hidden] {

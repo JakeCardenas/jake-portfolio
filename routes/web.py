@@ -3,6 +3,7 @@ from typing import Callable
 
 from config import site
 from resources.views.pages import (
+    affiliations,
     blog,
     certifications,
     collabs,
@@ -114,7 +115,6 @@ ROUTES = [
         description=f"Full-stack apps, AI work, and design projects built by {site.NAME}.",
         label="Projects",
         nav="projects",
-        layout="wide",
     ),
     Route(
         name="experience",
@@ -133,6 +133,7 @@ ROUTES = [
         description=f"The languages, frameworks and tools {site.NAME} works with.",
         label="Stack",
         nav="stack",
+        layout="roomy",
     ),
     Route(
         name="certifications",
@@ -163,6 +164,16 @@ ROUTES = [
         description=f"What people {site.NAME} has studied and built with have to say.",
         label="Recommendations",
         nav="recommendations",
+        layout="wide",
+    ),
+    Route(
+        name="affiliations",
+        path="affiliations",
+        view=affiliations,
+        title=f"Affiliations — {site.NAME}",
+        description=f"Programs and communities {site.NAME} is part of.",
+        label="Affiliations",
+        nav="affiliations",
     ),
     Route(
         name="gear",
@@ -193,7 +204,7 @@ ROUTES = [
         title="{name} — " + site.NAME,
         description="{name} — free download from " + site.NAME + ".",
         nav="shop",
-        layout="wide",
+        layout="roomy",
         collection="shop",
     ),
     Route(
@@ -219,6 +230,7 @@ NAV_GROUPS = [
             "certifications",
             "presentations",
             "recommendations",
+            "affiliations",
         ),
     },
 ]

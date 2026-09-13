@@ -41,7 +41,7 @@ def render():
         group(g, i) for i, g in enumerate(content.load("gear"), start=1)
     )
     return f"""        <section class="section reveal">
-{headings.page("gear", LEDE)}
+{headings.page("gear", LEDE, head_gap="2.5rem")}
 {groups}
         </section>
 """

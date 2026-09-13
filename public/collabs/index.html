@@ -28,7 +28,7 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://jakecardenas.vercel.app#website","url":"https://jakecardenas.vercel.app","name":"Jake Cardenas","description":"Jake Cardenas — BSIT (Artificial Intelligence) student at St. Paul University Philippines. Full-stack and AI developer.","inLanguage":"en","publisher":{"@id":"https://jakecardenas.vercel.app#person"}},{"@type":"Person","@id":"https://jakecardenas.vercel.app#person","name":"Jake Cardenas","url":"https://jakecardenas.vercel.app","email":"mailto:jakez.cardenas@gmail.com","jobTitle":"Full-stack and AI developer","description":"BSIT (Artificial Intelligence) student at St. Paul University Philippines","affiliation":{"@type":"CollegeOrUniversity","name":"St. Paul University Philippines"},"sameAs":["https://github.com/JakeCardenas","https://www.linkedin.com/in/jake-cardenas-710076410/","https://instagram.com/prblynot.jky"]},{"@type":"WebPage","@id":"https://jakecardenas.vercel.app/collabs/#page","url":"https://jakecardenas.vercel.app/collabs/","name":"Collabs — Jake Cardenas","description":"Projects Jake Cardenas has built together with other people.","isPartOf":{"@id":"https://jakecardenas.vercel.app#website"},"about":{"@id":"https://jakecardenas.vercel.app#person"}}]}</script>
     <link rel="preload" href="/fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/GeistMono-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/css/site.css?v=202" />
+    <link rel="stylesheet" href="/css/site.css?v=215" />
     <style>
       html { background-color: #ffffff; }
       html.dark { background-color: #0c0c0f; }
@@ -73,7 +73,7 @@
           </div>
           <span class="nav-rule" aria-hidden="true"></span>
           <div class="nav-group">
-            <a href="/collabs/" class="nav-link active" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M17 19c0-2.2-.8-3.8-2.1-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Collabs</a>
+            <a href="/collabs/" class="nav-link active" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M17 19c0-2.2-.8-3.8-2.1-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Collabs<svg class="nav-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             <a href="/opportunities/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V5.5A1.5 1.5 0 019.5 4h5A1.5 1.5 0 0116 5.5V7M3 12.5h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Services</a>
           </div>
           <span class="nav-rule" aria-hidden="true"></span>
@@ -84,6 +84,7 @@
             <a href="/certifications/" class="nav-link" data-nav>Certifications</a>
             <a href="/presentations/" class="nav-link" data-nav>Presentations</a>
             <a href="/recommendations/" class="nav-link" data-nav>Recommendations</a>
+            <a href="/affiliations/" class="nav-link" data-nav>Affiliations</a>
           </div>
         </nav>
 
@@ -97,59 +98,102 @@
         <div class="side-foot">
           <div class="control-pill">
             <div class="theme-switch" role="group" aria-label="Theme">
-              <button class="ctl-btn" data-theme-btn="system" aria-label="Match system theme" title="System">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4" />
-                </svg>
+              <button type="button" class="ctl-btn" data-theme-btn="system" aria-label="System theme" title="System">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 21h6M12 17v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
               </button>
-              <button class="ctl-btn" data-theme-btn="light" aria-label="Light mode" title="Light">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="4" />
-                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-                </svg>
+              <button type="button" class="ctl-btn" data-theme-btn="light" aria-label="Light theme" title="Light">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
               </button>
-              <button class="ctl-btn" data-theme-btn="dark" aria-label="Dark mode" title="Dark">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
-                </svg>
+              <button type="button" class="ctl-btn" data-theme-btn="dark" aria-label="Dark theme" title="Dark">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 13.6A8 8 0 1 1 10.4 4a6.2 6.2 0 0 0 9.6 9.6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
               </button>
             </div>
-
-            <button id="soundToggle" class="ctl-btn sound-btn" data-sound-toggle
-                    aria-label="Enable interface sounds" aria-pressed="false" title="Sounds off">
-              <svg class="sound-icon-on" data-sound-on viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-              </svg>
-              <svg class="sound-icon-off" data-sound-off viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" />
-              </svg>
+            <button type="button" class="sound-btn" data-sound-toggle data-cuelume-silent
+                    aria-pressed="false" aria-label="Enable interface sounds" title="Sounds off">
+              <svg data-sound-on viewBox="0 0 24 24" fill="none" aria-hidden="true" hidden><path d="M5 10v4h3l4 3V7L8 10H5zM16 9a4 4 0 010 6M18.5 6.5a7.5 7.5 0 010 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg data-sound-off viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 10v4h3l4 3V7L8 10H5zM16 10l5 5M21 10l-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
 
-          <p class="side-note">For work, collabs and everything else, reach me at</p>
+          <p class="side-note">For work, collabs &amp; everything else, reach me at</p>
           <a href="mailto:jakez.cardenas@gmail.com" class="side-email mono"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>jakez.cardenas@gmail.com</a>
         </div>
-
-        <button id="menuBtn" class="menu-btn mono" aria-controls="siteNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-          <span class="menu-bars" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span class="menu-label">MENU</span>
-        </button>
       </aside>
+
+      <header class="mobile-bar">
+        <div class="mobile-bar-inner">
+          <a href="/" class="mobile-logo">Jake Cardenas</a>
+          <button type="button" class="mobile-menu-btn" data-mobile-nav-open aria-label="Open menu"
+                  aria-controls="mobileNav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        </div>
+      </header>
+
+      <div id="mobileNav" class="mobile-nav" hidden>
+        <div class="mobile-bar-inner mobile-nav-head">
+          <a href="/" class="mobile-logo">Jake Cardenas</a>
+          <button type="button" class="mobile-menu-btn" data-mobile-nav-close aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        </div>
+        <nav class="mobile-nav-body mono" aria-label="Sections">
+            <div class="mnav-group" style="transition-delay: 0.05s">
+              <a href="/shop/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 11a2 2 0 01-2 2H9a2 2 0 01-2-2L6 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 016 0V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Shop</a>
+              <a href="/blog/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Blog</a>
+              <a href="/gear/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 19h18M9.5 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Gear</a>
+              <a href="/resources/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A1.5 1.5 0 015.5 4H11v15.5H6a2 2 0 00-2 1.2V5.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M20 5.5A1.5 1.5 0 0018.5 4H13v15.5h5a2 2 0 012 1.2V5.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>Resources</a>
+            </div>
+            <span class="mnav-rule" aria-hidden="true"></span>
+            <div class="mnav-group" style="transition-delay: 0.11s">
+              <a href="/collabs/" class="nav-link active" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M17 19c0-2.2-.8-3.8-2.1-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Collabs<svg class="nav-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a href="/opportunities/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V5.5A1.5 1.5 0 019.5 4h5A1.5 1.5 0 0116 5.5V7M3 12.5h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Services</a>
+            </div>
+            <span class="mnav-rule" aria-hidden="true"></span>
+            <div class="mnav-group" style="transition-delay: 0.17s">
+              <a href="/projects/" class="nav-link" data-nav>Projects</a>
+              <a href="/experience/" class="nav-link" data-nav>Experience</a>
+              <a href="/stack/" class="nav-link" data-nav>Stack</a>
+              <a href="/certifications/" class="nav-link" data-nav>Certifications</a>
+              <a href="/presentations/" class="nav-link" data-nav>Presentations</a>
+              <a href="/recommendations/" class="nav-link" data-nav>Recommendations</a>
+              <a href="/affiliations/" class="nav-link" data-nav>Affiliations</a>
+            </div>
+            <span class="mnav-rule" aria-hidden="true"></span>
+            <div class="mnav-group mnav-foot" style="transition-delay: 0.23s">
+              <div class="control-pill">
+                <div class="theme-switch" role="group" aria-label="Theme">
+              <button type="button" class="ctl-btn" data-theme-btn="system" aria-label="System theme" title="System">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 21h6M12 17v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              </button>
+              <button type="button" class="ctl-btn" data-theme-btn="light" aria-label="Light theme" title="Light">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              </button>
+              <button type="button" class="ctl-btn" data-theme-btn="dark" aria-label="Dark theme" title="Dark">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 13.6A8 8 0 1 1 10.4 4a6.2 6.2 0 0 0 9.6 9.6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+                <button type="button" class="sound-btn" data-sound-toggle data-cuelume-silent
+                    aria-pressed="false" aria-label="Enable interface sounds" title="Sounds off">
+              <svg data-sound-on viewBox="0 0 24 24" fill="none" aria-hidden="true" hidden><path d="M5 10v4h3l4 3V7L8 10H5zM16 9a4 4 0 010 6M18.5 6.5a7.5 7.5 0 010 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg data-sound-off viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 10v4h3l4 3V7L8 10H5zM16 10l5 5M21 10l-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+              </div>
+          <p class="side-note">For work, collabs &amp; everything else, reach me at</p>
+          <a href="mailto:jakez.cardenas@gmail.com" class="side-email mono mnav-email"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>jakez.cardenas@gmail.com</a>
+            </div>
+        </nav>
+      </div>
 
       <main class="main main--roomy">
         <section class="section reveal">
-          <header class="page-head">
+          <header class="page-head" style="margin-bottom: 1.5rem">
             <h1 class="page-title">collabs</h1>
-            <p class="page-lede">I have collaborated, created, learned and built across organizations, platforms and communities throughout my journey in technology and creativity.</p>
           </header>
+          <p class="page-lede page-lede--block" style="margin-bottom: 2.5rem">I have collaborated, created, learned and built across organizations, platforms and communities throughout my journey in technology and creativity.</p>
           <div class="collab-row">
             <img class="collab-logo" src="/images/optimized/spup-bfba78c8dc77-112.webp" srcset="/images/optimized/spup-bfba78c8dc77-56.webp 56w, /images/optimized/spup-bfba78c8dc77-112.webp 112w" sizes="(min-width: 641px) 56px, 48px" alt="St. Paul University Philippines" loading="lazy" decoding="async" />
-            <img class="collab-logo" src="/images/collabs/apple.svg?v=202" alt="Apple" loading="lazy" decoding="async" />
-            <img class="collab-logo" src="/images/collabs/tiktok.svg?v=202" alt="TikTok" loading="lazy" decoding="async" />
+            <img class="collab-logo" src="/images/collabs/apple.svg?v=215" alt="Apple" loading="lazy" decoding="async" />
+            <img class="collab-logo" src="/images/collabs/tiktok.svg?v=215" alt="TikTok" loading="lazy" decoding="async" />
             <img class="collab-logo" src="/images/optimized/aws-0d2843c11465-112.webp" srcset="/images/optimized/aws-0d2843c11465-56.webp 56w, /images/optimized/aws-0d2843c11465-112.webp 112w" sizes="(min-width: 641px) 56px, 48px" alt="AWS" loading="lazy" decoding="async" />
-            <img class="collab-logo" src="/images/collabs/kiro.svg?v=202" alt="Kiro" loading="lazy" decoding="async" />
-            <img class="collab-logo" src="/images/collabs/roblox.svg?v=202" alt="Roblox" loading="lazy" decoding="async" />
+            <img class="collab-logo" src="/images/collabs/kiro.svg?v=215" alt="Kiro" loading="lazy" decoding="async" />
+            <img class="collab-logo" src="/images/collabs/roblox.svg?v=215" alt="Roblox" loading="lazy" decoding="async" />
           </div>
           <div class="collab-map" aria-hidden="true"></div>
           <p class="collab-map-note mono">Learning and building from the Philippines</p>
@@ -247,7 +291,7 @@
         </div>
       </div>
 
-    <script src="/js/site-sounds.js?v=202"></script>
-    <script src="/js/site.js?v=202"></script>
+    <script src="/js/site-sounds.js?v=215"></script>
+    <script src="/js/site.js?v=215"></script>
   </body>
 </html>

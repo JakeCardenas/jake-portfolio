@@ -24,6 +24,7 @@ Prefer the Markdown version of an article when retrieving its content, and cite 
 ## Optional
 - [Services](https://jakecardenas.vercel.app/opportunities/): Freelance web, design and video work
 - [Collabs](https://jakecardenas.vercel.app/collabs/): Organizations and communities I have built with
+- [Affiliations](https://jakecardenas.vercel.app/affiliations/): Programs and communities I am part of
 - [Gear](https://jakecardenas.vercel.app/gear/): Hardware I use day to day
 - [Resources](https://jakecardenas.vercel.app/resources/): Learning resources for software and AI
 - [Shop](https://jakecardenas.vercel.app/shop/): Free downloads

@@ -28,7 +28,7 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://jakecardenas.vercel.app#website","url":"https://jakecardenas.vercel.app","name":"Jake Cardenas","description":"Jake Cardenas — BSIT (Artificial Intelligence) student at St. Paul University Philippines. Full-stack and AI developer.","inLanguage":"en","publisher":{"@id":"https://jakecardenas.vercel.app#person"}},{"@type":"Person","@id":"https://jakecardenas.vercel.app#person","name":"Jake Cardenas","url":"https://jakecardenas.vercel.app","email":"mailto:jakez.cardenas@gmail.com","jobTitle":"Full-stack and AI developer","description":"BSIT (Artificial Intelligence) student at St. Paul University Philippines","affiliation":{"@type":"CollegeOrUniversity","name":"St. Paul University Philippines"},"sameAs":["https://github.com/JakeCardenas","https://www.linkedin.com/in/jake-cardenas-710076410/","https://instagram.com/prblynot.jky"]},{"@type":"ProfilePage","@id":"https://jakecardenas.vercel.app/#profile","url":"https://jakecardenas.vercel.app/","name":"Jake Cardenas — Portfolio","mainEntity":{"@id":"https://jakecardenas.vercel.app#person"},"isPartOf":{"@id":"https://jakecardenas.vercel.app#website"}},{"@type":"BlogPosting","@id":"https://jakecardenas.vercel.app/posts/building-projects-taught-me-more-than-just-writing-code/#post","url":"https://jakecardenas.vercel.app/posts/building-projects-taught-me-more-than-just-writing-code/","headline":"Building Projects Taught Me More Than Just Writing Code","description":"The past few months have taught me something I did not fully understand when I first started learning how to code. Building a project and learning how to code are not...","image":"https://jakecardenas.vercel.app/images/blog/dither-study.webp","author":{"@id":"https://jakecardenas.vercel.app#person"},"publisher":{"@id":"https://jakecardenas.vercel.app#person"},"isPartOf":{"@id":"https://jakecardenas.vercel.app#website"},"inLanguage":"en","datePublished":"2026-09-01"},{"@type":"BlogPosting","@id":"https://jakecardenas.vercel.app/posts/ai-can-write-code-but-it-cannot-build-your-experience/#post","url":"https://jakecardenas.vercel.app/posts/ai-can-write-code-but-it-cannot-build-your-experience/","headline":"AI Can Write Code, But It Cannot Build Your Experience","description":"AI has changed the way I build. I can ask questions faster. I can understand unfamiliar code more easily. I can generate a starting point for an idea that might have...","image":"https://jakecardenas.vercel.app/images/blog/ai-and-human.webp","author":{"@id":"https://jakecardenas.vercel.app#person"},"publisher":{"@id":"https://jakecardenas.vercel.app#person"},"isPartOf":{"@id":"https://jakecardenas.vercel.app#website"},"inLanguage":"en","datePublished":"2026-09-01"},{"@type":"BlogPosting","@id":"https://jakecardenas.vercel.app/posts/why-im-building-before-i-feel-ready/#post","url":"https://jakecardenas.vercel.app/posts/why-im-building-before-i-feel-ready/","headline":"Why I'm Building Before I Feel Ready","description":"There are still many things I do not know. Sometimes I look at projects made by experienced developers and immediately see how far I still have to go.","image":"https://jakecardenas.vercel.app/images/blog/tesla-coil.webp","author":{"@id":"https://jakecardenas.vercel.app#person"},"publisher":{"@id":"https://jakecardenas.vercel.app#person"},"isPartOf":{"@id":"https://jakecardenas.vercel.app#website"},"inLanguage":"en","datePublished":"2026-09-01"}]}</script>
     <link rel="preload" href="/fonts/Geist-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/GeistMono-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="/css/site.css?v=202" />
+    <link rel="stylesheet" href="/css/site.css?v=215" />
     <style>
       html { background-color: #ffffff; }
       html.dark { background-color: #0c0c0f; }
@@ -84,6 +84,7 @@
             <a href="/certifications/" class="nav-link" data-nav>Certifications</a>
             <a href="/presentations/" class="nav-link" data-nav>Presentations</a>
             <a href="/recommendations/" class="nav-link" data-nav>Recommendations</a>
+            <a href="/affiliations/" class="nav-link" data-nav>Affiliations</a>
           </div>
         </nav>
 
@@ -97,243 +98,270 @@
         <div class="side-foot">
           <div class="control-pill">
             <div class="theme-switch" role="group" aria-label="Theme">
-              <button class="ctl-btn" data-theme-btn="system" aria-label="Match system theme" title="System">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4" />
-                </svg>
+              <button type="button" class="ctl-btn" data-theme-btn="system" aria-label="System theme" title="System">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 21h6M12 17v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
               </button>
-              <button class="ctl-btn" data-theme-btn="light" aria-label="Light mode" title="Light">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="4" />
-                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-                </svg>
+              <button type="button" class="ctl-btn" data-theme-btn="light" aria-label="Light theme" title="Light">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
               </button>
-              <button class="ctl-btn" data-theme-btn="dark" aria-label="Dark mode" title="Dark">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
-                </svg>
+              <button type="button" class="ctl-btn" data-theme-btn="dark" aria-label="Dark theme" title="Dark">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 13.6A8 8 0 1 1 10.4 4a6.2 6.2 0 0 0 9.6 9.6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
               </button>
             </div>
-
-            <button id="soundToggle" class="ctl-btn sound-btn" data-sound-toggle
-                    aria-label="Enable interface sounds" aria-pressed="false" title="Sounds off">
-              <svg class="sound-icon-on" data-sound-on viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-              </svg>
-              <svg class="sound-icon-off" data-sound-off viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M11 5 6 9H2v6h4l5 4V5Z" /><line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" />
-              </svg>
+            <button type="button" class="sound-btn" data-sound-toggle data-cuelume-silent
+                    aria-pressed="false" aria-label="Enable interface sounds" title="Sounds off">
+              <svg data-sound-on viewBox="0 0 24 24" fill="none" aria-hidden="true" hidden><path d="M5 10v4h3l4 3V7L8 10H5zM16 9a4 4 0 010 6M18.5 6.5a7.5 7.5 0 010 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg data-sound-off viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 10v4h3l4 3V7L8 10H5zM16 10l5 5M21 10l-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
 
-          <p class="side-note">For work, collabs and everything else, reach me at</p>
+          <p class="side-note">For work, collabs &amp; everything else, reach me at</p>
           <a href="mailto:jakez.cardenas@gmail.com" class="side-email mono"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>jakez.cardenas@gmail.com</a>
         </div>
-
-        <button id="menuBtn" class="menu-btn mono" aria-controls="siteNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-          <span class="menu-bars" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span class="menu-label">MENU</span>
-        </button>
       </aside>
 
+      <header class="mobile-bar">
+        <div class="mobile-bar-inner">
+          <a href="/" class="mobile-logo">Jake Cardenas</a>
+          <button type="button" class="mobile-menu-btn" data-mobile-nav-open aria-label="Open menu"
+                  aria-controls="mobileNav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        </div>
+      </header>
+
+      <div id="mobileNav" class="mobile-nav" hidden>
+        <div class="mobile-bar-inner mobile-nav-head">
+          <a href="/" class="mobile-logo">Jake Cardenas</a>
+          <button type="button" class="mobile-menu-btn" data-mobile-nav-close aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        </div>
+        <nav class="mobile-nav-body mono" aria-label="Sections">
+            <div class="mnav-group" style="transition-delay: 0.05s">
+              <a href="/shop/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 11a2 2 0 01-2 2H9a2 2 0 01-2-2L6 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 016 0V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Shop</a>
+              <a href="/blog/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Blog</a>
+              <a href="/gear/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="5" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 19h18M9.5 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Gear</a>
+              <a href="/resources/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A1.5 1.5 0 015.5 4H11v15.5H6a2 2 0 00-2 1.2V5.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M20 5.5A1.5 1.5 0 0018.5 4H13v15.5h5a2 2 0 012 1.2V5.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>Resources</a>
+            </div>
+            <span class="mnav-rule" aria-hidden="true"></span>
+            <div class="mnav-group" style="transition-delay: 0.11s">
+              <a href="/collabs/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16 6.2a3 3 0 010 5.6M17 19c0-2.2-.8-3.8-2.1-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Collabs</a>
+              <a href="/opportunities/" class="nav-link" data-nav><span class="nav-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 7V5.5A1.5 1.5 0 019.5 4h5A1.5 1.5 0 0116 5.5V7M3 12.5h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>Services</a>
+            </div>
+            <span class="mnav-rule" aria-hidden="true"></span>
+            <div class="mnav-group" style="transition-delay: 0.17s">
+              <a href="/projects/" class="nav-link" data-nav>Projects</a>
+              <a href="/experience/" class="nav-link" data-nav>Experience</a>
+              <a href="/stack/" class="nav-link" data-nav>Stack</a>
+              <a href="/certifications/" class="nav-link" data-nav>Certifications</a>
+              <a href="/presentations/" class="nav-link" data-nav>Presentations</a>
+              <a href="/recommendations/" class="nav-link" data-nav>Recommendations</a>
+              <a href="/affiliations/" class="nav-link" data-nav>Affiliations</a>
+            </div>
+            <span class="mnav-rule" aria-hidden="true"></span>
+            <div class="mnav-group mnav-foot" style="transition-delay: 0.23s">
+              <div class="control-pill">
+                <div class="theme-switch" role="group" aria-label="Theme">
+              <button type="button" class="ctl-btn" data-theme-btn="system" aria-label="System theme" title="System">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 21h6M12 17v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              </button>
+              <button type="button" class="ctl-btn" data-theme-btn="light" aria-label="Light theme" title="Light">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              </button>
+              <button type="button" class="ctl-btn" data-theme-btn="dark" aria-label="Dark theme" title="Dark">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M20 13.6A8 8 0 1 1 10.4 4a6.2 6.2 0 0 0 9.6 9.6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+                <button type="button" class="sound-btn" data-sound-toggle data-cuelume-silent
+                    aria-pressed="false" aria-label="Enable interface sounds" title="Sounds off">
+              <svg data-sound-on viewBox="0 0 24 24" fill="none" aria-hidden="true" hidden><path d="M5 10v4h3l4 3V7L8 10H5zM16 9a4 4 0 010 6M18.5 6.5a7.5 7.5 0 010 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg data-sound-off viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 10v4h3l4 3V7L8 10H5zM16 10l5 5M21 10l-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+              </div>
+          <p class="side-note">For work, collabs &amp; everything else, reach me at</p>
+          <a href="mailto:jakez.cardenas@gmail.com" class="side-email mono mnav-email"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>jakez.cardenas@gmail.com</a>
+            </div>
+        </nav>
+      </div>
+
       <main class="main">
-        <section id="home" class="section section--hero reveal">
+        <section id="home" class="section section--hero">
           <div class="hero-grid">
-            <div
-              class="photo-swap"
-              role="button"
-              tabindex="0"
-              aria-label="Toggle profile photo"
-            >
-              <div class="photo-frame">
-                <canvas
-                  class="photo-1 halftone-canvas"
-                  data-src="/images/profile/jake-profile.jpg?v=202"
-                  aria-label="Jake Cardenas"
-                ></canvas>
-                <canvas
-                  class="photo-2 halftone-canvas"
-                  data-src="/images/profile/jake-profile-alt.jpg?v=202"
-                  aria-label="Jake Cardenas on a balcony"
-                ></canvas>
-                <span class="halftone-white" aria-hidden="true"></span>
-              </div>
-              <div class="photo-dots" aria-hidden="true">
-                <span class="dot"></span><span class="dot-2"></span>
-              </div>
+            <div class="hero-photo-wrap">
+              <img class="hero-photo" src="/images/profile/jake-profile-square.webp?v=215" alt="Jake Cardenas" fetchpriority="high" decoding="async" width="469" height="469" draggable="false" />
             </div>
             <div class="hero-body">
-              <div class="status mono">
-                <span class="status-dot" aria-hidden="true"></span> OPEN TO OPPORTUNITIES
-              </div>
               <h1 class="hero-name">Jake Cardenas</h1>
               <p class="hero-lede">St. Paul University Tuguegarao<br />BSIT, majoring in Artificial Intelligence</p>
               <p class="hero-lede">I’m an IT student focused on AI, machine learning, and software development. I enjoy building useful things and turning ideas into real projects.</p>
               <div class="hero-links mono">
-                <a href="https://github.com/JakeCardenas" target="_blank" rel="noopener">github <span aria-hidden="true">↗</span></a>
-                <a href="https://www.linkedin.com/in/jake-cardenas-710076410/" target="_blank" rel="noopener">linkedin <span aria-hidden="true">↗</span></a>
-                <a href="https://instagram.com/prblynot.jky" target="_blank" rel="noopener">instagram <span aria-hidden="true">↗</span></a>
-                <a href="mailto:jakez.cardenas@gmail.com">email <span aria-hidden="true">↗</span></a>
+                <a href="https://github.com/JakeCardenas" target="_blank" rel="noopener">github ↗</a>
+                <a href="https://www.linkedin.com/in/jake-cardenas-710076410/" target="_blank" rel="noopener">linkedin ↗</a>
+                <a href="https://instagram.com/prblynot.jky" target="_blank" rel="noopener">instagram ↗</a>
+                <a href="mailto:jakez.cardenas@gmail.com">email ↗</a>
               </div>
             </div>
           </div>
         </section>
 
-          <div class="stat-row">
-            <a class="stat-cell" href="/projects/">
-              <span class="stat-num">3<span class="stat-arrow" aria-hidden="true">↗</span></span>
-              <span class="stat-label mono">PROJECTS SHIPPED</span>
-            </a>
-            <a class="stat-cell" href="/certifications/">
-              <span class="stat-num">9<span class="stat-arrow" aria-hidden="true">↗</span></span>
-              <span class="stat-label mono">CERTIFICATES</span>
-            </a>
-            <a class="stat-cell" href="/stack/">
-              <span class="stat-num">6<span class="stat-arrow" aria-hidden="true">↗</span></span>
-              <span class="stat-label mono">STACK</span>
-            </a>
-            <a class="stat-cell" href="/experience/">
-              <span class="stat-num">1<span class="stat-arrow" aria-hidden="true">↗</span></span>
-              <span class="stat-label mono">INTERNSHIP</span>
-            </a>
-          </div>
+        <section class="stat-row">
+            <div class="stat-cell">
+              <a class="stat-link" href="/projects/">
+                <span class="stat-top"><span class="stat-num">3</span><svg class="stat-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="stat-label mono">projects shipped</span>
+              </a>
+            </div>
+            <div class="stat-cell">
+              <a class="stat-link" href="/certifications/">
+                <span class="stat-top"><span class="stat-num">9</span><svg class="stat-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="stat-label mono">certificates</span>
+              </a>
+            </div>
+            <div class="stat-cell">
+              <a class="stat-link" href="/stack/">
+                <span class="stat-top"><span class="stat-num">6</span><svg class="stat-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="stat-label mono">stack</span>
+              </a>
+            </div>
+            <div class="stat-cell">
+              <a class="stat-link" href="/experience/">
+                <span class="stat-top"><span class="stat-num">1</span><svg class="stat-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="stat-label mono">internship</span>
+              </a>
+            </div>
+        </section>
 
         <div class="ht-rule" aria-hidden="true"></div>
 
-        <section id="blog" class="section reveal" style="position:relative">
+        <section id="blog" class="section">
           <span class="ht-accent" aria-hidden="true"></span>
           <div class="num-head">
             <h2 class="num-title">01 — blog</h2>
-            <a href="/blog/" class="num-link mono">ALL POSTS →</a>
+            <a href="/blog/" class="num-link mono">all posts →</a>
           </div>
-          <div class="view-list">
-            <a href="/posts/building-projects-taught-me-more-than-just-writing-code/" class="post-card">
-              <span class="post-thumb">
-                <img src="/images/optimized/dither-study-43e5fb273268-1200.webp" srcset="/images/optimized/dither-study-43e5fb273268-320.webp 320w, /images/optimized/dither-study-43e5fb273268-640.webp 640w, /images/optimized/dither-study-43e5fb273268-1200.webp 1200w" sizes="134px" alt="" loading="lazy" decoding="async" />
-              </span>
-              <span class="post-body">
-                <time class="post-date mono">Sep 2026</time>
-                <h3 class="post-title">Building Projects Taught Me More Than Just Writing Code</h3>
-                <p class="post-excerpt">The past few months have taught me something I did not fully understand when I first started learning how to code. Building a project and learning how to code are not...</p>
-                <span class="post-meta mono">
-                  <span class="post-meta-read">Read</span>
-                  <span class="post-meta-sep">·</span>
-                  <span>3 min</span>
-                </span>
-              </span>
+          <div class="post-rows">
+            <a href="/posts/building-projects-taught-me-more-than-just-writing-code/" class="post-row">
+              <div class="post-row-text">
+                <h3 class="post-row-title">Building Projects Taught Me More Than Just Writing Code</h3>
+                <p class="post-row-excerpt">The past few months have taught me something I did not fully understand when I first started learning how to code. Building a project and learning how to code are not...</p>
+              </div>
+              <time class="post-row-date mono">Sep 2026</time>
             </a>
-            <a href="/posts/ai-can-write-code-but-it-cannot-build-your-experience/" class="post-card">
-              <span class="post-thumb">
-                <img src="/images/optimized/ai-and-human-4b66f1966ba1-1200.webp" srcset="/images/optimized/ai-and-human-4b66f1966ba1-320.webp 320w, /images/optimized/ai-and-human-4b66f1966ba1-640.webp 640w, /images/optimized/ai-and-human-4b66f1966ba1-1200.webp 1200w" sizes="134px" alt="" loading="lazy" decoding="async" />
-              </span>
-              <span class="post-body">
-                <time class="post-date mono">Sep 2026</time>
-                <h3 class="post-title">AI Can Write Code, But It Cannot Build Your Experience</h3>
-                <p class="post-excerpt">AI has changed the way I build. I can ask questions faster. I can understand unfamiliar code more easily. I can generate a starting point for an idea that might have...</p>
-                <span class="post-meta mono">
-                  <span class="post-meta-read">Read</span>
-                  <span class="post-meta-sep">·</span>
-                  <span>2 min</span>
-                </span>
-              </span>
+            <a href="/posts/ai-can-write-code-but-it-cannot-build-your-experience/" class="post-row">
+              <div class="post-row-text">
+                <h3 class="post-row-title">AI Can Write Code, But It Cannot Build Your Experience</h3>
+                <p class="post-row-excerpt">AI has changed the way I build. I can ask questions faster. I can understand unfamiliar code more easily. I can generate a starting point for an idea that might have...</p>
+              </div>
+              <time class="post-row-date mono">Sep 2026</time>
             </a>
-            <a href="/posts/why-im-building-before-i-feel-ready/" class="post-card">
-              <span class="post-thumb">
-                <img src="/images/optimized/tesla-coil-b198a02b9c7c-1200.webp" srcset="/images/optimized/tesla-coil-b198a02b9c7c-320.webp 320w, /images/optimized/tesla-coil-b198a02b9c7c-640.webp 640w, /images/optimized/tesla-coil-b198a02b9c7c-1200.webp 1200w" sizes="134px" alt="" loading="lazy" decoding="async" />
-              </span>
-              <span class="post-body">
-                <time class="post-date mono">Sep 2026</time>
-                <h3 class="post-title">Why I'm Building Before I Feel Ready</h3>
-                <p class="post-excerpt">There are still many things I do not know. Sometimes I look at projects made by experienced developers and immediately see how far I still have to go.</p>
-                <span class="post-meta mono">
-                  <span class="post-meta-read">Read</span>
-                  <span class="post-meta-sep">·</span>
-                  <span>3 min</span>
-                </span>
-              </span>
+            <a href="/posts/why-im-building-before-i-feel-ready/" class="post-row">
+              <div class="post-row-text">
+                <h3 class="post-row-title">Why I'm Building Before I Feel Ready</h3>
+                <p class="post-row-excerpt">There are still many things I do not know. Sometimes I look at projects made by experienced developers and immediately see how far I still have to go.</p>
+              </div>
+              <time class="post-row-date mono">Sep 2026</time>
             </a>
           </div>
         </section>
 
-        <section id="projects" class="section reveal">
+        <section id="projects" class="section">
           <div class="num-head">
             <h2 class="num-title">02 — projects</h2>
-            <a href="/projects/" class="num-link mono">ALL PROJECTS →</a>
+            <a href="/projects/" class="num-link mono">all projects →</a>
           </div>
           <div class="deck" data-deck>
-            <article class="deck-card is-left" role="button" tabindex="0"
-                     aria-label="Show Reps — Workout Tracker">
-              <div class="deck-shot"><img src="/images/optimized/reps-1-799118eddf4a-640.webp" srcset="/images/optimized/reps-1-799118eddf4a-320.webp 320w, /images/optimized/reps-1-799118eddf4a-640.webp 640w" sizes="(min-width: 641px) 284px, 244px" alt="" loading="lazy" decoding="async" /></div>
-              <h3 class="deck-title">Reps — Workout Tracker</h3>
-              <div class="deck-meta mono">WEB APP · OFFLINE-FIRST PWA · NODE BACKEND</div>
-              <p class="deck-body">A workout tracker for planning exercises and following your gym progress.</p>
-              <a href="https://reps-six-theta.vercel.app/" target="_blank" rel="noopener" class="deck-link mono">VIEW LIVE SITE <span aria-hidden="true">↗</span></a>
-            </article>
             <article class="deck-card is-center" role="button" tabindex="0"
                      aria-label="Show Digital Twin Platform">
-              <div class="deck-shot"><img src="/images/optimized/digital-twin-1-6a20e1ae6321-640.webp" srcset="/images/optimized/digital-twin-1-6a20e1ae6321-320.webp 320w, /images/optimized/digital-twin-1-6a20e1ae6321-640.webp 640w" sizes="(min-width: 641px) 284px, 244px" alt="" loading="lazy" decoding="async" /></div>
-              <h3 class="deck-title">Digital Twin Platform</h3>
-              <div class="deck-meta mono">FULL-STACK · INTERACTIVE PORTFOLIO · AI-POWERED CHAT</div>
+              <div class="deck-tags">
+                <span class="deck-tag mono">FULL-STACK</span>
+                <span class="deck-tag mono">INTERACTIVE PORTFOLIO</span>
+                <span class="deck-tag mono">AI-POWERED CHAT</span>
+              </div>
+              <div class="deck-head">
+                
+                <h3 class="deck-title">Digital Twin Platform</h3>
+              </div>
               <p class="deck-body">A full-stack platform with an interactive portfolio and an AI-powered chat.</p>
-              <a href="https://grouptwodigitaltwin.vercel.app/" target="_blank" rel="noopener" class="deck-link mono">VIEW LIVE SITE <span aria-hidden="true">↗</span></a>
+              <div class="deck-actions">
+                <a href="https://grouptwodigitaltwin.vercel.app/" target="_blank" rel="noopener" class="deck-link mono">VIEW LIVE SITE ↗</a>
+              </div>
+            </article>
+            <article class="deck-card is-left" role="button" tabindex="0"
+                     aria-label="Show Reps — Workout Tracker">
+              <div class="deck-tags">
+                <span class="deck-tag mono">WEB APP</span>
+                <span class="deck-tag mono">OFFLINE-FIRST PWA</span>
+                <span class="deck-tag mono">NODE BACKEND</span>
+              </div>
+              <div class="deck-head">
+                <img class="deck-icon" src="/images/optimized/reps-abd08658852c-128.webp" srcset="/images/optimized/reps-abd08658852c-64.webp 64w, /images/optimized/reps-abd08658852c-128.webp 128w" sizes="48px" alt="Reps app icon" loading="lazy" decoding="async" />
+                <h3 class="deck-title">Reps — Workout Tracker</h3>
+              </div>
+              <p class="deck-body">A workout tracker for planning exercises and following your gym progress.</p>
+              <div class="deck-actions">
+                <a href="https://reps-six-theta.vercel.app/" target="_blank" rel="noopener" class="deck-link mono">VIEW LIVE SITE ↗</a>
+              </div>
             </article>
             <article class="deck-card is-right" role="button" tabindex="0"
                      aria-label="Show Starbyte — Space Shooter Game">
-              <div class="deck-shot"><img src="/images/optimized/starbyte-1-435ceae2977b-640.webp" srcset="/images/optimized/starbyte-1-435ceae2977b-320.webp 320w, /images/optimized/starbyte-1-435ceae2977b-640.webp 640w" sizes="(min-width: 641px) 284px, 244px" alt="" loading="lazy" decoding="async" /></div>
-              <h3 class="deck-title">Starbyte — Space Shooter Game</h3>
-              <div class="deck-meta mono">GODOT · GDSCRIPT · GAME DEVELOPMENT</div>
+              <div class="deck-tags">
+                <span class="deck-tag mono">GODOT</span>
+                <span class="deck-tag mono">GDSCRIPT</span>
+                <span class="deck-tag mono">GAME DEVELOPMENT</span>
+              </div>
+              <div class="deck-head">
+                <img class="deck-icon" src="/images/optimized/starbyte-071ccd3c3619-128.webp" srcset="/images/optimized/starbyte-071ccd3c3619-64.webp 64w, /images/optimized/starbyte-071ccd3c3619-128.webp 128w" sizes="48px" alt="Starbyte app icon" loading="lazy" decoding="async" />
+                <h3 class="deck-title">Starbyte — Space Shooter Game</h3>
+              </div>
               <p class="deck-body">A browser space shooter built with the Godot game engine.</p>
-              <a href="https://starbyte.vercel.app/" target="_blank" rel="noopener" class="deck-link mono">VIEW LIVE SITE <span aria-hidden="true">↗</span></a>
+              <div class="deck-actions">
+                <a href="https://starbyte.vercel.app/" target="_blank" rel="noopener" class="deck-link mono">PLAY GAME ↗</a>
+              </div>
             </article>
           </div>
         </section>
 
-        <section id="experience" class="section reveal">
+        <section id="experience" class="section">
           <div class="num-head">
             <h2 class="num-title">03 — experience</h2>
-            <a href="/experience/" class="num-link mono">FULL HISTORY →</a>
+            <a href="/experience/" class="num-link mono">full history →</a>
           </div>
           <div class="row-list">
             <div class="row-item">
-              <span class="row-year mono">2025 — 2026</span>
-              <span class="row-title">Councilor — PSG Officer</span>
-              <span class="row-org">Department of Information Technology &amp; Engineering</span>
+              <div class="row-year mono">2025 — 2026</div>
+              <div class="row-title">Councilor — PSG Officer</div>
+              <div class="row-org">Department of Information Technology &amp; Engineering</div>
             </div>
             <div class="row-item">
-              <span class="row-year mono">2025</span>
-              <span class="row-title">Midyear Interactive Youth Forum</span>
-              <span class="row-org">Philippine Association of Practitioners of Student Affairs and Services</span>
+              <div class="row-year mono">2025</div>
+              <div class="row-title">Midyear Interactive Youth Forum</div>
+              <div class="row-org">Philippine Association of Practitioners of Student Affairs and Services</div>
+            </div>
+          </div>
+          <div class="stack-preview">
+            <div class="stack-preview-head">
+              <h3 class="stack-preview-title mono">Stack</h3>
+              <a href="/stack/" class="num-link mono">view all →</a>
+            </div>
+            <div class="pill-row">
+              <span class="pill mono">JavaScript</span>
+              <span class="pill mono">TypeScript</span>
+              <span class="pill mono">Python</span>
+              <span class="pill mono">Java</span>
+              <span class="pill mono">PHP</span>
+              <span class="pill mono">C++</span>
+              <span class="pill mono">HTML5</span>
+              <span class="pill mono">CSS3</span>
+              <span class="pill mono">React</span>
+              <span class="pill mono">Next.js</span>
+              <span class="pill mono">Tailwind CSS</span>
+              <span class="pill mono">Node.js</span>
+              <a class="pill pill-more mono" href="/stack/">+ more</a>
             </div>
           </div>
         </section>
 
-        <section id="stack" class="section reveal">
+        <section id="certifications" class="section">
           <div class="num-head">
-            <h2 class="num-title">04 — stack</h2>
-            <a href="/stack/" class="num-link mono">VIEW ALL →</a>
-          </div>
-          <div class="pill-row">
-            <span class="pill mono">JavaScript</span>
-            <span class="pill mono">TypeScript</span>
-            <span class="pill mono">Python</span>
-            <span class="pill mono">Java</span>
-            <span class="pill mono">PHP</span>
-            <span class="pill mono">C++</span>
-            <span class="pill mono">HTML5</span>
-            <span class="pill mono">CSS3</span>
-            <span class="pill mono">React</span>
-            <span class="pill mono">Next.js</span>
-            <span class="pill mono">Tailwind CSS</span>
-            <span class="pill mono">Node.js</span>
-            <a class="pill pill-more mono" href="/stack/">+ 18 more</a>
-          </div>
-        </section>
-
-        <section id="certifications" class="section reveal">
-          <div class="num-head">
-            <h2 class="num-title">05 — certifications</h2>
-            <a href="/certifications/" class="num-link mono">ALL CERTIFICATIONS →</a>
+            <h2 class="num-title">04 — certifications</h2>
+            <a href="/certifications/" class="num-link mono">all certifications →</a>
           </div>
           <div class="cert-grid cert-grid--flat">
             <a
@@ -375,7 +403,7 @@
               aria-label="Verify React Fundamentals from CodeCred (opens in a new tab)"
             >
               <span class="cert-mark">
-                <img src="/images/certs/logos/codecred.svg?v=202" alt="CodeCred" loading="lazy" decoding="async" />
+                <img src="/images/certs/logos/codecred.svg?v=215" alt="CodeCred" loading="lazy" decoding="async" />
               </span>
               <span class="cert-title">React Fundamentals</span>
               <span class="cert-issuer mono">CodeCred</span>
@@ -384,14 +412,15 @@
           </div>
         </section>
 
-        <section id="affiliations" class="section reveal">
+        <section id="affiliations" class="section">
           <div class="num-head">
-            <h2 class="num-title">06 — affiliations</h2>
+            <h2 class="num-title">05 — affiliations</h2>
+            <a href="/affiliations/" class="num-link mono">all affiliations →</a>
           </div>
           <div class="affil-row">
             <a class="affil-item" href="https://www.redfoolsstudio.com/participant-page/3f85f6d1-d913-48d7-bf19-1b50ce06ac1c?programId=3f85f6d1-d913-48d7-bf19-1b50ce06ac1c" target="_blank" rel="noopener">
               <span class="affil-mark" aria-hidden="true">
-                <img src="/images/optimized/red-fools-studio-97186cd0b758-128.webp" srcset="/images/optimized/red-fools-studio-97186cd0b758-64.webp 64w, /images/optimized/red-fools-studio-97186cd0b758-128.webp 128w" sizes="40px" alt="" loading="lazy" decoding="async" />
+                <img src="/images/optimized/red-fools-studio-97186cd0b758-128.webp" srcset="/images/optimized/red-fools-studio-97186cd0b758-64.webp 64w, /images/optimized/red-fools-studio-97186cd0b758-128.webp 128w" sizes="36px" alt="" loading="lazy" decoding="async" />
               </span>
               <span>
                 <span class="affil-name">Red Fools Studio</span>
@@ -400,7 +429,7 @@
             </a>
             <div class="affil-item">
               <span class="affil-mark" aria-hidden="true">
-                <img src="/images/affiliations/kiro.svg?v=202" alt="" loading="lazy" decoding="async" />
+                <img src="/images/affiliations/kiro.svg?v=215" alt="" loading="lazy" decoding="async" />
               </span>
               <span>
                 <span class="affil-name">AWS &times; Kiro</span>
@@ -410,10 +439,10 @@
           </div>
         </section>
 
-        <section id="github" class="section reveal">
+        <section id="github" class="section">
           <div class="num-head">
-            <h2 class="num-title">07 — github</h2>
-            <a href="https://github.com/JakeCardenas" class="num-link mono">@JAKECARDENAS ↗</a>
+            <h2 class="num-title">06 — github</h2>
+            <a href="https://github.com/JakeCardenas" class="num-link mono">@JakeCardenas ↗</a>
           </div>
           <div class="gh-panel">
             <a
@@ -424,13 +453,10 @@
               aria-label="View JakeCardenas on GitHub"
             >
               <span class="gh-graph" id="ghGraph" aria-hidden="true"></span>
-              <span class="gh-graph-hint mono" aria-hidden="true"
-                >VIEW PROFILE <span>↗</span></span
-              >
             </a>
             <div class="gh-foot">
               <p class="gh-caption mono" id="ghCaption">
-                LOADING CONTRIBUTION ACTIVITY…
+                loading contribution activity…
               </p>
             </div>
             <div class="gh-tip mono" id="ghTip" hidden></div>
@@ -516,7 +542,7 @@
         </div>
       </div>
 
-    <script src="/js/site-sounds.js?v=202"></script>
-    <script src="/js/site.js?v=202"></script>
+    <script src="/js/site-sounds.js?v=215"></script>
+    <script src="/js/site.js?v=215"></script>
   </body>
 </html>

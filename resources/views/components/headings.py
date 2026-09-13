@@ -11,10 +11,17 @@ def numbered(number, name, link_label="", link_href=""):
     )
 
 
-def page(name, lede):
+def page(name, lede, head_gap="3rem", lede_gap=None):
+    if lede_gap is None:
+        return (
+            f'          <header class="page-head" style="margin-bottom: {head_gap}">\n'
+            f'            <h1 class="page-title">{name}</h1>\n'
+            f'            <p class="page-lede">{lede}</p>\n'
+            f"          </header>"
+        )
     return (
-        f'          <header class="page-head">\n'
+        f'          <header class="page-head" style="margin-bottom: {head_gap}">\n'
         f'            <h1 class="page-title">{name}</h1>\n'
-        f'            <p class="page-lede">{lede}</p>\n'
-        f"          </header>"
+        f"          </header>\n"
+        f'          <p class="page-lede page-lede--block" style="margin-bottom: {lede_gap}">{lede}</p>'
     )

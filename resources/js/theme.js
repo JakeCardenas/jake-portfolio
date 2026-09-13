@@ -1,84 +1,83 @@
 const root = document.documentElement;
 const themeBtns = document.querySelectorAll("[data-theme-btn]");
 const systemQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let themeAnimTimer;
 
-function applyTheme(mode) {
-  const isDark = mode === "dark" || (mode === "system" && systemQuery.matches);
-  root.classList.toggle("dark", isDark);
+function savedMode() {
+  try {
+    const v = localStorage.getItem("theme-mode");
+    return v === "dark" || v === "light" || v === "system" ? v : "system";
+  } catch (e) {
+    return "system";
+  }
+}
+
+function isDark(mode) {
+  return mode === "dark" || (mode === "system" && systemQuery.matches);
+}
+
+function setClass(mode) {
+  root.classList.toggle("dark", isDark(mode));
   themeBtns.forEach((btn) =>
     btn.classList.toggle("active", btn.getAttribute("data-theme-btn") === mode),
   );
-  localStorage.setItem("theme-mode", mode);
-  renderAllHalftones();
 }
 
-function revealThemeChange(x, y, willBeDark, onComplete) {
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
+function crossfade(mode) {
+  root.classList.add("theme-anim");
+  setClass(mode);
+  clearTimeout(themeAnimTimer);
+  themeAnimTimer = setTimeout(() => root.classList.remove("theme-anim"), 520);
+}
 
-  if (
-    prefersReducedMotion ||
-    !document.startViewTransition ||
-    document.visibilityState !== "visible"
-  ) {
-    onComplete();
-    return;
-  }
-
-  const maxRadius = Math.hypot(
-    Math.max(x, window.innerWidth - x),
-    Math.max(y, window.innerHeight - y),
-  );
-
-  const transition = document.startViewTransition(() => {
-    onComplete();
-  });
-
-  transition.ready
+function reveal(mode, x, y) {
+  const r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+  const vt = document.startViewTransition(() => setClass(mode));
+  vt.ready
     .then(() => {
-      document.documentElement.animate(
+      root.animate(
         {
           clipPath: [
             `circle(0px at ${x}px ${y}px)`,
-            `circle(${maxRadius}px at ${x}px ${y}px)`,
+            `circle(${r}px at ${x}px ${y}px)`,
           ],
         },
         {
-          duration: 650,
-          easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+          duration: 540,
+          easing: "cubic-bezier(.32,.08,.24,1)",
           pseudoElement: "::view-transition-new(root)",
         },
       );
     })
-    .catch(() => {
-    });
-
-  transition.finished.catch(() => {});
+    .catch(() => {});
 }
 
-const savedMode = localStorage.getItem("theme-mode") || "system";
-applyTheme(savedMode);
+function setTheme(mode, ev) {
+  try {
+    localStorage.setItem("theme-mode", mode);
+  } catch (e) {}
+  if (isDark(mode) === root.classList.contains("dark")) {
+    setClass(mode);
+    return;
+  }
+  if (reduceMotion || !document.startViewTransition) {
+    crossfade(mode);
+    return;
+  }
+  const x = (ev && ev.clientX) || innerWidth;
+  const y = (ev && ev.clientY) || innerHeight;
+  reveal(mode, x, y);
+}
 
-themeBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const mode = btn.getAttribute("data-theme-btn");
-    const willBeDark =
-      mode === "dark" || (mode === "system" && systemQuery.matches);
-    const isCurrentlyDark = root.classList.contains("dark");
+setClass(savedMode());
 
-    if (willBeDark !== isCurrentlyDark) {
-      const rect = btn.getBoundingClientRect();
-      const x = rect.left + rect.width / 2;
-      const y = rect.top + rect.height / 2;
-      revealThemeChange(x, y, willBeDark, () => applyTheme(mode));
-    } else {
-      applyTheme(mode);
-    }
-  });
-});
+themeBtns.forEach((btn) =>
+  btn.addEventListener("click", (e) =>
+    setTheme(btn.getAttribute("data-theme-btn"), e),
+  ),
+);
 
 systemQuery.addEventListener("change", () => {
-  if ((localStorage.getItem("theme-mode") || "system") === "system")
-    applyTheme("system");
+  if (savedMode() === "system") crossfade("system");
 });

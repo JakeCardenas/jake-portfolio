@@ -30,7 +30,7 @@ def render():
         group(g, i) for i, g in enumerate(content.load("resources"), start=1)
     )
     return f"""        <section class="section reveal">
-{headings.page("resources", LEDE)}
+{headings.page("resources", LEDE, head_gap="3rem")}
 {groups}
           <p class="res-foot mono reveal" style="animation-delay: .4s">
             Missing something great? <a href="mailto:{site.EMAIL}">Send me a link →</a>

@@ -1,53 +1,34 @@
-const menuBtn = document.getElementById("menuBtn");
-const siteNav = document.getElementById("siteNav");
+const mobileNav = document.getElementById("mobileNav");
+const mobileOpenBtn = document.querySelector("[data-mobile-nav-open]");
+let mobileNavTimer;
 
-function setMenuOpen(open) {
-  siteNav.classList.toggle("open", open);
-  menuBtn.setAttribute("aria-expanded", String(open));
-  document.body.classList.toggle("menu-open", open);
+function openMobileNav() {
+  clearTimeout(mobileNavTimer);
+  mobileNav.hidden = false;
+  document.documentElement.style.overflow = "hidden";
+  mobileOpenBtn.setAttribute("aria-expanded", "true");
+  requestAnimationFrame(() => mobileNav.classList.add("is-open"));
 }
-menuBtn.addEventListener("click", () => {
-  setMenuOpen(!siteNav.classList.contains("open"));
-});
+
+function closeMobileNav() {
+  mobileNav.classList.remove("is-open");
+  document.documentElement.style.overflow = "";
+  mobileOpenBtn.setAttribute("aria-expanded", "false");
+  mobileNavTimer = setTimeout(() => {
+    mobileNav.hidden = true;
+  }, 300);
+}
+
+mobileOpenBtn.addEventListener("click", openMobileNav);
+document
+  .querySelector("[data-mobile-nav-close]")
+  .addEventListener("click", closeMobileNav);
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && siteNav.classList.contains("open")) {
-    setMenuOpen(false);
-    menuBtn.focus();
-  }
+  if (e.key === "Escape" && !mobileNav.hidden) closeMobileNav();
 });
 
-document.addEventListener("click", (e) => {
-  if (!siteNav.classList.contains("open")) return;
-  if (!(e.target instanceof Element) || e.target.closest(".sidebar")) return;
-  setMenuOpen(false);
+// the menu locks page scroll, and it can't be reached again at desktop width
+window.matchMedia("(min-width: 1024px)").addEventListener("change", (e) => {
+  if (e.matches && !mobileNav.hidden) closeMobileNav();
 });
-
-// closing here matters: the rail locks scroll, and the button is gone at this width
-const desktopQuery = window.matchMedia("(min-width: 1024px)");
-desktopQuery.addEventListener("change", (e) => {
-  if (e.matches) setMenuOpen(false);
-});
-
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll("[data-nav]");
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        navLinks.forEach((link) => {
-          link.classList.toggle(
-            "active",
-            link.getAttribute("href") === "#" + entry.target.id,
-          );
-        });
-      }
-    });
-  },
-  { rootMargin: "-40% 0px -50% 0px", threshold: 0 },
-);
-sections.forEach((s) => observer.observe(s));
-
-navLinks.forEach((link) =>
-  link.addEventListener("click", () => setMenuOpen(false)),
-);

@@ -37,7 +37,7 @@ def card(entry):
 
     actions = "\n".join(
         f'              <a href="{entry[key]}" target="_blank" rel="noopener" '
-        f'class="link-out mono">{label} <span aria-hidden="true">↗</span></a>'
+        f'class="link-out mono">{label} ↗</a>'
         for key, label in LINKS
         if entry.get(key)
     )
@@ -76,7 +76,7 @@ def render():
     else:
         body = f'          <p class="section-empty mono">{EMPTY}</p>'
     return f"""        <section class="section reveal">
-{headings.page("presentations", LEDE)}
+{headings.page("presentations", LEDE, lede_gap="3rem")}
 {body}
         </section>
 """

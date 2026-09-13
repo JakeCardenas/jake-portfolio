@@ -71,8 +71,8 @@ For the same reason a few small-screen `@media` blocks that touch several
 components at once live in the feature file they were written next to rather
 than being split up.
 
-`SCRIPTS` order matters too: `theme.js` calls `renderAllHalftones()`, so
-`halftone.js` has to be bundled first.
+Every file in `SCRIPTS` is concatenated into one classic `<script>`, so none of
+them can use `import` or `export`.
 
 ## Cache busting
 

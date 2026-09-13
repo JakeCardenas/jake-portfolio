@@ -17,7 +17,7 @@ def render():
         for c in content.load("collabs")
     )
     return f"""        <section class="section reveal">
-{headings.page("collabs", LEDE)}
+{headings.page("collabs", LEDE, head_gap="1.5rem", lede_gap="2.5rem")}
           <div class="collab-row">
 {logos}
           </div>

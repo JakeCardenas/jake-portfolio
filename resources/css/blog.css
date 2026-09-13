@@ -5,8 +5,8 @@
   gap: 1rem;
   margin-bottom: 2.5rem;
 }
-.blog-head .page-head {
-  margin: 0;
+.blog-head .page-lede {
+  margin-top: 1rem;
 }
 .view-toggle {
   display: inline-flex;
@@ -58,13 +58,11 @@
   min-width: 0;
 }
 .post-date {
-  display: block;
   font-size: 11.5px;
   color: var(--fg-faint);
 }
 .post-title {
   margin-top: 0.25rem;
-  font-family: var(--font-serif);
   font-size: 18px;
   font-weight: 600;
   line-height: 1.375;
@@ -174,4 +172,51 @@
   .post-card:hover .post-thumb img {
     transform: none;
   }
+}
+.post-rows {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.post-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+}
+.post-row + .post-row {
+  border-top: 1px solid var(--border);
+}
+.post-row:hover {
+  background: color-mix(in srgb, var(--g50) 80%, transparent);
+}
+.post-row-text {
+  min-width: 0;
+}
+.post-row-title,
+.post-row-excerpt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.post-row-title {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--fg);
+}
+.post-row:hover .post-row-title {
+  color: var(--fg-dim);
+}
+.post-row-excerpt {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--fg-dim);
+}
+.post-row-date {
+  flex: none;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--fg-faint);
 }

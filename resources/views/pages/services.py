@@ -34,7 +34,7 @@ def card(entry):
 def render():
     cards = "\n".join(card(s) for s in content.load("services"))
     return f"""        <section class="section reveal">
-{headings.page("services", LEDE)}
+{headings.page("services", LEDE, head_gap="2.5rem")}
           <div class="svc-grid">
 {cards}
           </div>

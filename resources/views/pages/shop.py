@@ -44,7 +44,7 @@ def render():
     else:
         inner = '          <p class="shop-empty mono">Nothing here yet.</p>'
     return f"""        <section class="section reveal">
-{headings.page("shop", LEDE)}
+{headings.page("shop", LEDE, head_gap="2rem")}
 {inner}
         </section>
 """

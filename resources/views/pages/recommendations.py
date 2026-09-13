@@ -52,7 +52,7 @@ def render():
     else:
         body = f'          <p class="section-empty mono">{EMPTY}</p>'
     return f"""        <section class="section reveal">
-{headings.page("recommendations", LEDE)}
+{headings.page("recommendations", LEDE, lede_gap="3rem")}
 {body}
         </section>
 """

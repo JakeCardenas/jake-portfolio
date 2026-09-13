@@ -2,10 +2,7 @@ from config import site
 from resources.views.components import media
 
 
-def posts(entries, *, heading="h2", container_id=""):
-    box = (
-        f'id="{container_id}" class="view-list"' if container_id else 'class="view-list"'
-    )
+def posts(entries):
     cards = "\n".join(
         f"""            <a href="{site.url('posts/' + p['slug'])}" class="post-card">
               <span class="post-thumb">
@@ -13,7 +10,7 @@ def posts(entries, *, heading="h2", container_id=""):
               </span>
               <span class="post-body">
                 <time class="post-date mono">{p['date']}</time>
-                <{heading} class="post-title">{p['title']}</{heading}>
+                <h2 class="post-title">{p['title']}</h2>
                 <p class="post-excerpt">{p['excerpt']}</p>
                 <span class="post-meta mono">
                   <span class="post-meta-read">Read</span>
@@ -24,7 +21,21 @@ def posts(entries, *, heading="h2", container_id=""):
             </a>"""
         for p in entries
     )
-    return f'          <div {box}>\n{cards}\n          </div>'
+    return f'          <div id="postsContainer" class="view-list">\n{cards}\n          </div>'
+
+
+def post_rows(entries):
+    rows = "\n".join(
+        f"""            <a href="{site.url('posts/' + p['slug'])}" class="post-row">
+              <div class="post-row-text">
+                <h3 class="post-row-title">{p['title']}</h3>
+                <p class="post-row-excerpt">{p['excerpt']}</p>
+              </div>
+              <time class="post-row-date mono">{p['date']}</time>
+            </a>"""
+        for p in entries
+    )
+    return f'          <div class="post-rows">\n{rows}\n          </div>'
 
 
 def certificates(entries):

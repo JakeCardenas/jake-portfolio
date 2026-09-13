@@ -59,12 +59,12 @@ VIEW_SCRIPT = """    <script>
 def render():
     return f"""        <section class="section reveal">
           <div class="blog-head">
-{headings.page("blog", LEDE)}
+{headings.page("blog", LEDE, head_gap="0")}
             <div class="view-toggle" role="group" aria-label="Layout">
               <button type="button" class="view-btn is-active" data-view="list" title="List view" aria-label="List view">{icons.VIEW['list']}</button>
               <button type="button" class="view-btn" data-view="grid" title="Grid view" aria-label="Grid view">{icons.VIEW['grid']}</button>
             </div>
           </div>
-{cards.posts(content.load("posts"), container_id="postsContainer")}
+{cards.posts(content.load("posts"))}
         </section>
 """

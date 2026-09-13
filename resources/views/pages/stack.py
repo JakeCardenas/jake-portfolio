@@ -22,7 +22,7 @@ def group(item):
 def render():
     groups = "\n".join(group(g) for g in content.load("stack"))
     return f"""        <section class="section reveal">
-{headings.page("stack", LEDE)}
+{headings.page("tech stack", LEDE, lede_gap="3rem")}
 {groups}
         </section>
 """
