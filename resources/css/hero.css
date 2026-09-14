@@ -35,7 +35,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.375rem 0.75rem;
+  /* 12px left the fourth link 0.2px short of the 296px column, so it wrapped */
+  gap: 0.375rem 0.625rem;
   margin-top: 1.75rem;
   font-size: 12px;
   color: var(--fg-dim);

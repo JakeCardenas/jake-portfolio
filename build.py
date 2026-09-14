@@ -73,6 +73,7 @@ OPTIMIZED = "images/optimized"
 # widths generated per directory; anything outside these is copied as-is
 IMAGE_LADDERS = {
     "images/blog": [320, 640, 1200],
+    "images/profile": [288, 576],
     "images/projects/icons": [64, 128],
     "images/projects": [320, 640],
     "images/gear": [256, 512],
@@ -82,8 +83,8 @@ IMAGE_LADDERS = {
     "images/shop": [320, 640, 1024],
 }
 
-# the blog art is dithered, so it needs headroom before the dots start to smear
-IMAGE_QUALITY = {"images/blog": "92"}
+# the blog art and the portrait are dithered, so they need headroom before the dots start to smear
+IMAGE_QUALITY = {"images/blog": "92", "images/profile": "92"}
 DEFAULT_QUALITY = "86"
 
 

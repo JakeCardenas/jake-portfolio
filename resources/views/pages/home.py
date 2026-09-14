@@ -27,8 +27,9 @@ def hero():
         profile["photo"]["src"],
         alt=profile["photo"]["alt"],
         cls="hero-photo",
+        sizes="288px",
         priority=True,
-        extra='width="469" height="469" draggable="false"',
+        extra='width="576" height="576" draggable="false"',
     )
     return f"""          <div class="hero-grid">
             <div class="hero-photo-wrap">
