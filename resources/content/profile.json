@@ -3,6 +3,11 @@
     "src": "images/profile/jake-profile.png",
     "alt": "Jake Cardenas"
   },
+  "photo_dark": {
+    "src": "images/profile/jake-profile-matrix.webp",
+    "still": "images/profile/jake-profile-matrix-still.png",
+    "alt": "Jake Cardenas"
+  },
   "lede": [
     "St. Paul University Tuguegarao<br />BSIT, majoring in Artificial Intelligence",
     "I’m an IT student focused on AI, machine learning, and software development. I enjoy building useful things and turning ideas into real projects."

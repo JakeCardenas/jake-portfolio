@@ -761,7 +761,16 @@ html.theme-anim *::after {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   user-select: none;
+}
+.hero-photo-dark,
+.dark .hero-photo--light {
+  display: none;
+}
+.dark .hero-photo-dark {
+  display: block;
 }
 .hero-name {
   font-family: var(--font-pixel);

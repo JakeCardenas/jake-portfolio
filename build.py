@@ -73,7 +73,7 @@ OPTIMIZED = "images/optimized"
 # widths generated per directory; anything outside these is copied as-is
 IMAGE_LADDERS = {
     "images/blog": [320, 640, 1200],
-    "images/profile": [288, 576],
+    "images/profile": [288, 400, 576],
     "images/projects/icons": [64, 128],
     "images/projects": [320, 640],
     "images/gear": [256, 512],
@@ -133,6 +133,12 @@ def source_width(path):
     return 0
 
 
+def animated(path):
+    with open(path, "rb") as f:
+        head = f.read(21)
+    return head[12:16] == b"VP8X" and bool(head[20] & 0x02)
+
+
 def lookup(table, relative, fallback=None):
     directory = os.path.dirname(relative)
     while directory:
@@ -148,7 +154,7 @@ def ladder_for(relative):
 
 def optimise_images():
     """resources/images -> public/images: derivatives where a ladder applies,
-    a straight copy for everything served as-is (svg, halftone sources)"""
+    a straight copy for everything served as-is (svg, animated webp)"""
     source_root = os.path.join(ROOT, "resources/images")
     out_dir = os.path.join(PUBLIC, OPTIMIZED)
     os.makedirs(out_dir, exist_ok=True)
@@ -158,9 +164,11 @@ def optimise_images():
         if not os.path.isfile(path):
             continue
         relative = os.path.join("images", os.path.relpath(path, source_root))
+        # cwebp cannot resize animated webp, so those ship as-is
         ladder = (
             ladder_for(relative)
             if relative.rsplit(".", 1)[-1].lower() in ("png", "jpg", "jpeg", "webp")
+            and not animated(path)
             else None
         )
         if not ladder:

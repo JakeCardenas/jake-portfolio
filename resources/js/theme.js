@@ -72,6 +72,15 @@ function setTheme(mode, ev) {
 
 setClass(savedMode());
 
+// the dark portrait is a 2 MB animation, so it is only fetched when dark mode is on or a switch looks likely
+const darkPhoto = document.querySelector(".hero-photo--dark");
+if (darkPhoto) {
+  if (root.classList.contains("dark")) darkPhoto.loading = "eager";
+  themeBtns.forEach((btn) =>
+    btn.addEventListener("pointerenter", () => (darkPhoto.loading = "eager"), { once: true }),
+  );
+}
+
 themeBtns.forEach((btn) =>
   btn.addEventListener("click", (e) =>
     setTheme(btn.getAttribute("data-theme-btn"), e),

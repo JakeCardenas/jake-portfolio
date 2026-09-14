@@ -26,14 +26,24 @@ def hero():
     photo = media.img(
         profile["photo"]["src"],
         alt=profile["photo"]["alt"],
-        cls="hero-photo",
+        cls="hero-photo hero-photo--light",
         sizes="288px",
         priority=True,
         extra='width="576" height="576" draggable="false"',
     )
+    dark = profile["photo_dark"]
+    still = ", ".join(
+        f"{media.derivative(dark['still'], w)} {w}w"
+        for w in media.DERIVATIVES[dark["still"]][1]
+    )
     return f"""          <div class="hero-grid">
             <div class="hero-photo-wrap">
               {photo}
+              <picture class="hero-photo-dark">
+                <source media="(prefers-reduced-motion: reduce)" srcset="{still}" sizes="288px" />
+                <img class="hero-photo hero-photo--dark" src="{site.asset(dark['src'])}" alt="{dark['alt']}"
+                     width="400" height="400" loading="lazy" decoding="async" draggable="false" />
+              </picture>
             </div>
             <div class="hero-body">
               <h1 class="hero-name">{site.NAME}</h1>
