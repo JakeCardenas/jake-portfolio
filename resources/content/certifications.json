@@ -106,5 +106,65 @@
     "aria_label": "Verify Microsoft Azure AI Fundamentals from TESDA (opens in a new tab)",
     "rot": "-3deg",
     "ty": "4px"
+  },
+  {
+    "title": "Professional Networking for Career Growth",
+    "issuer": "HP LIFE",
+    "issuer_full": "HP LIFE · HP Foundation",
+    "href": "https://drive.google.com/file/d/1PNMi8ORtLSx27D5adusKP9O6RyzBXCeT/view",
+    "logo": "images/certs/logos/hp.svg",
+    "logo_alt": "HP LIFE",
+    "action": "VIEW",
+    "aria_label": "View the Professional Networking for Career Growth certificate from HP LIFE (opens in a new tab)",
+    "rot": "2deg",
+    "ty": "-3px"
+  },
+  {
+    "title": "Social Entrepreneurship",
+    "issuer": "HP LIFE",
+    "issuer_full": "HP LIFE · HP Foundation",
+    "href": "https://drive.google.com/file/d/1ZRXAs785PfGqoP6S3D6-39SL-Uxnvukd/view",
+    "logo": "images/certs/logos/hp.svg",
+    "logo_alt": "HP LIFE",
+    "action": "VIEW",
+    "aria_label": "View the Social Entrepreneurship certificate from HP LIFE (opens in a new tab)",
+    "rot": "-4deg",
+    "ty": "5px"
+  },
+  {
+    "title": "Introduction to AI Literacy and Responsible Use",
+    "issuer": "Mapúa University",
+    "issuer_full": "Mapúa University · CHED ACHIEVE micro-credentials",
+    "href": "https://drive.google.com/file/d/19SmFPbrT9CIZ91Dcp6Da1V11vCPpSVQ2/view",
+    "logo": "images/certs/logos/mapua.svg",
+    "logo_alt": "Mapúa University",
+    "action": "VIEW",
+    "aria_label": "View the Introduction to AI Literacy and Responsible Use certificate from Mapúa University (opens in a new tab)",
+    "rot": "3deg",
+    "ty": "-4px"
+  },
+  {
+    "title": "Kiro &amp; Amazon Quick Workshop",
+    "issuer": "AWS SBG",
+    "issuer_full": "AWS Student Builder Group — USLT Chapter",
+    "href": "https://drive.google.com/file/d/16yIQQ9luI1NBvCAsiRX0qq5t0fk2xQSR/view",
+    "logo": "images/affiliations/kiro.svg",
+    "logo_alt": "Kiro",
+    "action": "VIEW",
+    "aria_label": "View the certificate of appreciation for the Learn. Build. Launch: Kiro and Amazon Quick Workshop from the AWS Student Builder Group, USLT Chapter (opens in a new tab)",
+    "rot": "-2deg",
+    "ty": "3px"
+  },
+  {
+    "title": "Python Fundamentals",
+    "issuer": "CodeCred",
+    "issuer_full": "",
+    "href": "https://www.codecred.dev/verify/2b90cc8e-2750-43eb-bb97-274c862aca76",
+    "logo": "images/certs/logos/codecred.svg",
+    "logo_alt": "CodeCred",
+    "action": "VERIFY",
+    "aria_label": "Verify Python Fundamentals from CodeCred (opens in a new tab)",
+    "rot": "4deg",
+    "ty": "-6px"
   }
 ]
