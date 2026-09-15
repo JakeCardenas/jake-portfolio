@@ -4,7 +4,7 @@ from config import site
 from resources import content
 from resources.views.components import cards, headings, media
 
-DECK_SLOTS = (("is-center", 0), ("is-left", 1), ("is-right", 2))
+DECK_SLOTS = (("is-center", 0), ("is-left", 2), ("is-right", 3))
 STACK_PREVIEW = 12
 
 ARROW = (
