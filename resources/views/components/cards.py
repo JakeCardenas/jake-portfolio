@@ -45,7 +45,7 @@ def certificates(entries):
               href="{c['href']}"
               target="_blank"
               rel="noopener noreferrer"
-              style="--rot: {c['rot']}; --ty: {c['ty']}"
+              style="--rot: {c.get('rot', '0deg')}; --ty: {c.get('ty', '0px')}"
               aria-label="{c['aria_label']}"
             >
               <span class="cert-mark">

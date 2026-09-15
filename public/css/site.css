@@ -2558,12 +2558,23 @@ a.aff-card:hover .aff-link svg {
 .deck-link:hover {
   color: var(--fg);
 }
+.cert-section + .cert-section {
+  margin-top: 3rem;
+}
+.cert-section-title {
+  margin-bottom: 1.5rem;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
 .cert-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   /* no gutter — the cards' negative margin is what makes them overlap */
   gap: 0;
-  padding: 0.75rem 0;
 }
 @media (min-width: 640px) {
   .cert-grid {

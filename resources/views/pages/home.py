@@ -180,7 +180,11 @@ def github_panel():
 
 
 def render():
-    certs = cards.certificates(content.load("certifications")[:3])
+    featured = sorted(
+        (c for c in content.load("certifications") if c.get("featured")),
+        key=lambda c: c["featured"],
+    )
+    certs = cards.certificates(featured)
     return f"""        <section id="home" class="section section--hero">
 {hero()}
         </section>
