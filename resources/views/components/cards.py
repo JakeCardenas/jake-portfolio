@@ -59,8 +59,7 @@ def certificates(entries):
     )
 
 
-def _leaf(extra=""):
-    cls = f"cert-leaf{extra}"
+def _leaf(cls):
     return (
         f'<svg class="{cls}" viewBox="0 0 13 22" fill="currentColor" aria-hidden="true">'
         '<path d="M0 -4C2.1 -2.6 2.1 2.6 0 4C-2.1 2.6 -2.1 -2.6 0 -4Z" transform="translate(8 5) rotate(46)"/>'
@@ -69,5 +68,23 @@ def _leaf(extra=""):
     )
 
 
-LEAF = _leaf()
-LEAF_FLIP = _leaf(" cert-leaf--flip")
+LEAF = _leaf("cert-leaf")
+LEAF_FLIP = _leaf("cert-leaf cert-leaf--flip")
+RANK_LEAF = _leaf("rank-leaf")
+RANK_LEAF_FLIP = _leaf("rank-leaf rank-leaf--flip")
+
+
+def rank_pill(label):
+    return f'<span class="rank-pill mono">{RANK_LEAF}{label}{RANK_LEAF_FLIP}</span>'
+
+
+
+STORE_BADGES = (
+    ("images/badges/app-store-soon.svg", "Coming soon to the App Store", "store-badge"),
+    ("images/badges/google-play-soon.svg", "Coming soon on Google Play", "store-badge store-badge--play"),
+)
+
+
+def store_badges():
+    badges = "".join(media.img(src, alt=alt, cls=cls) for src, alt, cls in STORE_BADGES)
+    return f'<div class="store-badges">{badges}</div>'

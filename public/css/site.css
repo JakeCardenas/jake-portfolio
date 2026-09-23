@@ -2399,6 +2399,48 @@ a.aff-card:hover .aff-link svg {
 .spot-card .link-out {
   margin-top: 0;
 }
+.rank-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.rank-leaf {
+  flex: none;
+  width: auto;
+  height: 18px;
+}
+.rank-leaf--flip {
+  transform: scaleX(-1);
+}
+.deck-card .rank-pill {
+  gap: 0.375rem;
+  padding: 0.125rem 0.625rem;
+  font-size: 9px;
+}
+.deck-card .rank-leaf {
+  height: 17px;
+}
+.store-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+}
+.store-badge {
+  width: auto;
+  height: 2.75rem;
+}
+.store-badge--play {
+  height: 3.65rem;
+}
 @media (min-width: 640px) {
   .spot-card {
     padding: 1.75rem;
@@ -2499,13 +2541,15 @@ a.aff-card:hover .aff-link svg {
 .deck-card:not(.is-center) a {
   pointer-events: none;
 }
-.deck-tags {
+.deck-tags,
+.spot-tags {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.375rem;
 }
-.deck-tag {
+.deck-tag,
+.spot-tag {
   padding: 0.125rem 0.5rem;
   border: 1px solid var(--border-strong);
   border-radius: 9999px;
@@ -2544,9 +2588,19 @@ a.aff-card:hover .aff-link svg {
 }
 .deck-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
   margin-top: 1rem;
+}
+.deck-actions .store-badges {
+  gap: 0.5rem;
+}
+.deck-actions .store-badge {
+  height: 2rem;
+}
+.deck-actions .store-badge--play {
+  height: 2.65rem;
 }
 .deck-link {
   font-size: 11px;

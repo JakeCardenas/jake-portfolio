@@ -83,11 +83,14 @@ def deck():
         tags = "\n".join(
             f'                <span class="deck-tag mono">{tag}</span>' for tag in project["meta"]
         )
+        if project.get("rank"):
+            tags = f"                {cards.rank_pill(project['rank'])}\n{tags}"
         icon = (
             media.img(project["icon"]["src"], sizes="48px", alt=project["icon"]["alt"], cls="deck-icon")
             if project.get("icon")
             else ""
         )
+        badges = f"\n                {cards.store_badges()}" if project.get("stores_coming_soon") else ""
         entries.append(
             f"""            <article class="deck-card {slot}" role="button" tabindex="0"
                      aria-label="Show {project['title']}">
@@ -99,7 +102,7 @@ def deck():
                 <h3 class="deck-title">{project['title']}</h3>
               </div>
               <p class="deck-body">{project['body']}</p>
-              <div class="deck-actions">
+              <div class="deck-actions">{badges}
                 <a href="{project['link']['href']}" target="_blank" rel="noopener" class="deck-link mono">{project['link']['label']} ↗</a>
               </div>
             </article>"""

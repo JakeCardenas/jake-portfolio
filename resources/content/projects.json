@@ -1,12 +1,13 @@
 [
   {
     "title": "Faldo — Budget Tracker",
+    "rank": "#1 Finance App",
     "meta": [
       "WEB APP",
       "NEXT.JS",
       "AI COPILOT"
     ],
-    "body": "A personal money companion for tracking spending, planning ahead and growing savings, with an AI copilot that answers from your real transactions.",
+    "body": "A personal budget &amp; savings tracker powered by an AI copilot.",
     "link": {
       "href": "https://faldo.vercel.app/",
       "label": "VIEW LIVE SITE"
@@ -14,7 +15,8 @@
     "icon": {
       "src": "images/projects/icons/faldo.png",
       "alt": "Faldo app icon"
-    }
+    },
+    "stores_coming_soon": true
   },
   {
     "title": "Digital Twin Platform",

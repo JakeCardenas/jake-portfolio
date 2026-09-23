@@ -1,5 +1,5 @@
 from resources import content
-from resources.views.components import headings, media
+from resources.views.components import cards, headings, media
 
 LEDE = "Things I've built — full-stack apps, AI work, and design."
 
@@ -24,16 +24,21 @@ def card(item):
               <span class="stack-note-label mono">{n['label']}</span>
               <a href="{n['href']}" target="_blank" rel="noopener" class="stack-note-link mono">{n['text']} ↗</a>
             </div>"""
-    meta = SEPARATOR.join(item["meta"])
+    badges = f"\n              {cards.store_badges()}" if item.get("stores_coming_soon") else ""
+    if item.get("rank"):
+        tags = "".join(f'<span class="spot-tag mono">{t}</span>' for t in item["meta"])
+        meta = f'<div class="spot-tags">{cards.rank_pill(item["rank"])}{tags}</div>'
+    else:
+        meta = f'<div class="entry-meta mono">{SEPARATOR.join(item["meta"])}</div>'
     return f"""          <article class="spot-card reveal">
             <div class="spot-head">
 {icon}              <div class="spot-text">
-                <div class="entry-meta mono">{meta}</div>
+                {meta}
                 <h3 class="entry-title">{item['title']}</h3>
                 <p class="entry-body">{item['body']}</p>
               </div>
             </div>
-            <div class="spot-actions">
+            <div class="spot-actions">{badges}
               <a
                 href="{item['link']['href']}"
                 target="_blank"
