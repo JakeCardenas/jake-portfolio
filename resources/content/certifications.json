@@ -1,5 +1,16 @@
 [
   {
+    "title": "Google AI Professional Certificate",
+    "issuer": "Google",
+    "issuer_full": "Google Career Certificates · Coursera",
+    "category": "AI &amp; Generative AI",
+    "href": "https://coursera.org/verify/professional-cert/1OGV7OSXYC6S",
+    "logo": "images/certs/logos/google.svg",
+    "logo_alt": "Google",
+    "action": "VERIFY",
+    "aria_label": "Verify the Google AI Professional Certificate from Google (opens in a new tab)"
+  },
+  {
     "title": "Getting Started with Generative AI",
     "issuer": "IBM",
     "issuer_full": "",
