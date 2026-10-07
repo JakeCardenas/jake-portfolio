@@ -19,6 +19,24 @@
     "stores_coming_soon": true
   },
   {
+    "title": "Nutriq — Food Tracker",
+    "meta": [
+      "MOBILE APP",
+      "FLUTTER",
+      "SUPABASE"
+    ],
+    "body": "A free, privacy-first food logger. Snap, describe or search a meal, then review it.",
+    "link": {
+      "href": "https://github.com/JakeCardenas/Nutriq-Food-Tracker",
+      "label": "VIEW CODE"
+    },
+    "icon": {
+      "src": "images/projects/icons/nutriq.png",
+      "alt": "Nutriq app icon"
+    },
+    "stores_coming_soon": true
+  },
+  {
     "title": "Digital Twin Platform",
     "meta": [
       "FULL-STACK",
